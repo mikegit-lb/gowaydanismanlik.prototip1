@@ -242,6 +242,37 @@ main { padding: clamp(58px, 9vw, 104px) 0; }
 }
 .service-card p, .content-card p { color: var(--muted); }
 .service-card .button { width: 100%; margin-top: auto; }
+.services-page .service-grid { gap: 14px; }
+.services-page #hizmet-omurgasi { scroll-margin-top: 126px; }
+.services-page .service-card {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0 12px;
+  padding: 22px;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.services-page .service-card:hover { transform: translateY(-3px); border-color: rgb(2 99 102 / .28); box-shadow: 0 20px 40px rgb(2 99 102 / .11); }
+.services-page .service-card .service-number { width: auto; min-width: 34px; height: 30px; margin: 0; padding: 0 9px; border-radius: 999px; font-size: .65rem; letter-spacing: .055em; }
+.services-page .service-card h3 { align-self: center; font-size: 1.08rem; letter-spacing: -.025em; }
+.services-page .service-card p { grid-column: 1 / -1; margin: 13px 0 16px; font-size: .9rem; line-height: 1.55; }
+.services-page .service-card .button {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 42px;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 14px;
+  border-color: rgb(216 160 43 / .42);
+  border-radius: 8px;
+  color: var(--navy);
+  background: rgb(216 160 43 / .14);
+  box-shadow: none;
+  font-size: .82rem;
+}
+.services-page .service-card .button::after { margin-left: 12px; color: var(--teal); content: "→"; font-size: 1rem; }
+.services-page .service-card .button:hover { color: var(--navy); background: rgb(216 160 43 / .23); box-shadow: none; }
 .inline-link { margin-top: 16px; color: var(--teal); font-weight: 900; }
 .section-note {
   display: flex;
@@ -342,6 +373,10 @@ main { padding: clamp(58px, 9vw, 104px) 0; }
 .trust-links a:hover { background: rgb(244 248 251 / .14); }
 .trust-links strong { color: var(--gold); font-size: 1rem; }
 .trust-links span { margin-top: 4px; color: rgb(244 248 251 / .72); font-size: .76rem; }
+.services-page .trust-links { gap: 14px; }
+.services-page .trust-links a { min-height: 116px; padding: 20px; border-radius: 14px; }
+.services-page .trust-links strong { font-size: 1.08rem; }
+.services-page .trust-links span { margin-top: 7px; font-size: .84rem; line-height: 1.45; }
 .verifier { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 22px; align-items: start; }
 .verifier-panel, .verification-result { padding: clamp(25px, 4vw, 38px); border: 1px solid var(--line); border-radius: 18px; background: rgb(255 255 255 / .96); box-shadow: 0 18px 40px rgb(2 99 102 / .09); }
 .verifier-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; margin-top: 22px; }
@@ -422,6 +457,7 @@ button.button { cursor: pointer; font: inherit; }
   .catalog-intro { grid-template-columns: 1fr; gap: 24px; }
   .scope-catalog { grid-template-columns: 1fr; }
   .scope-catalog-section { scroll-margin-top: 240px; }
+  .services-page #hizmet-omurgasi { scroll-margin-top: 240px; }
 }
 @media (max-width: 560px) {
   :root { --container: min(100% - 28px, 1120px); }
