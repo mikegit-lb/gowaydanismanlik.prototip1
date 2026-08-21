@@ -155,6 +155,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     linear-gradient(90deg, rgb(6 59 92 / .96) 0%, rgb(6 59 92 / .88) 48%, rgb(6 59 92 / .61) 76%, rgb(6 59 92 / .34) 100%),
     url("assets/cozumler-hero-planlama.png") center 48% / cover no-repeat;
 }
+.hero-page-knowledge {
+  background:
+    linear-gradient(90deg, rgb(6 59 92 / .98) 0%, rgb(6 59 92 / .92) 48%, rgb(6 59 92 / .68) 76%, rgb(6 59 92 / .44) 100%),
+    url("assets/goway-hero-ambient.png") center 54% / cover no-repeat;
+}
 .hero-page-experts {
   background:
     linear-gradient(90deg, rgb(6 59 92 / .94) 0%, rgb(6 59 92 / .84) 48%, rgb(6 59 92 / .58) 76%, rgb(6 59 92 / .32) 100%),
@@ -192,6 +197,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .hero-page-services::before,
 .hero-page-solutions::before,
+.hero-page-knowledge::before,
 .hero-page-experts::before,
 .hero-page-faq::before,
 .hero-page-contact::before,
@@ -541,6 +547,7 @@ button.button { cursor: pointer; font: inherit; }
   .hero-page .lede { max-width: 100%; font-size: 1rem; }
   .hero-page-services,
   .hero-page-solutions,
+  .hero-page-knowledge,
   .hero-page-experts,
   .hero-page-faq,
   .hero-page-contact,
