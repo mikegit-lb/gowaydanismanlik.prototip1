@@ -259,6 +259,18 @@ main { padding: clamp(58px, 9vw, 104px) 0; }
 }
 .section-note p { max-width: 680px; margin: 0; color: rgb(244 248 251 / .76); }
 
+/* About page: values are principles, not a sequence; the type carries the emphasis. */
+.about-page .content-card > p:not(.eyebrow) { color: #225c75; font-size: 1.07rem; line-height: 1.72; }
+.about-page .content-card h3 { margin-top: 25px; color: var(--navy); font-size: 1.22rem; letter-spacing: -.025em; }
+.about-values .service-card { padding: 34px 29px 31px; }
+.about-values .service-card h3 { position: relative; margin: 0 0 18px; padding-bottom: 15px; color: var(--navy); font-size: clamp(1.3rem, 2vw, 1.58rem); font-weight: 900; letter-spacing: -.045em; }
+.about-values .service-card h3::after { position: absolute; bottom: 0; left: 0; width: 44px; height: 3px; background: var(--gold); content: ""; }
+.about-values .service-card p { color: #225c75; font-size: 1.02rem; line-height: 1.7; }
+.about-next-steps { min-height: 154px; margin-top: 46px; padding: 32px 34px; }
+.about-next-steps .eyebrow { margin: 0 0 10px; color: rgb(244 248 251 / .82); }
+.about-next-steps p:last-child { max-width: 730px; color: #f4f8fb; font-size: clamp(1.05rem, 1.7vw, 1.22rem); font-weight: 600; line-height: 1.55; }
+.about-next-steps .button { min-width: 255px; min-height: 58px; justify-content: center; }
+
 .detail-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr); gap: 24px; align-items: start; }
 .content-card { padding: clamp(26px, 4vw, 42px); }
 .content-card > * + * { margin-top: 20px; }
@@ -335,6 +347,9 @@ button.button { cursor: pointer; font: inherit; }
   .service-grid, .form-grid { grid-template-columns: 1fr; }
   .field.full { grid-column: auto; }
   .section-note { align-items: flex-start; flex-direction: column; }
+  .about-values .service-card { padding: 29px 25px; }
+  .about-next-steps { min-height: 0; padding: 28px 24px; }
+  .about-next-steps .button { width: 100%; min-width: 0; }
   .hero-page { padding: 58px 0 60px; }
   .hero-page h1 { max-width: 100%; font-size: clamp(2rem, 10vw, 2.7rem); overflow-wrap: anywhere; }
   .hero-page .lede { max-width: 100%; font-size: 1rem; }
