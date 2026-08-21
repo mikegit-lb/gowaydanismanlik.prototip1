@@ -1,0 +1,1 @@
+# gowaydanismanlik.prototip1
