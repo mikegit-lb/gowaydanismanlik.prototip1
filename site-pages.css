@@ -247,7 +247,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .hero-page .container { position: relative; z-index: 1; max-width: none; margin-inline: auto; }
 .hero-page .eyebrow {
   gap: 10px;
-  font-size: clamp(.8rem, calc(.5rem + .8vw), .9rem);
+  font-size: clamp(.88rem, calc(.55rem + .9vw), 1rem);
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-shadow: 0 1px 9px rgb(3 18 36 / .28);
 }
 .hero-page .eyebrow::before { width: 34px; }
 .eyebrow {
