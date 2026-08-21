@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Goway Danışmanlık ücretsiz ön görüşme talep sayfası.">
+  <title>Ücretsiz Ön Görüşme | Goway Danışmanlık</title>
+  <link rel="stylesheet" href="site-pages.css">
+</head>
+<body>
+  <div class="utility"><div class="container"><span>İlk görüşme · 15 dakika · Zorunluluk yok</span><a href="tel:+905334390003">+90 533 439 00 03</a></div></div>
+  <header class="site-header"><div class="container">
+    <a class="brand" href="index.html" aria-label="Goway Danışmanlık ana sayfa"><strong>GOWAY</strong><span>DANIŞMANLIK</span></a>
+    <nav class="page-nav" aria-label="Sayfa menüsü"><a href="index.html">Ana Sayfa</a><a href="hizmetler.html">Hizmetler</a><a href="cozumler.html">Çözümler</a><a href="uzman-kadro.html">Uzman Kadro</a><a href="hakkimizda.html">Hakkımızda</a><a href="sss.html">SSS</a><a href="iletisim.html">İletişim</a><a href="on-gorusme.html" aria-current="page">Ön Görüşme</a></nav>
+  </div></header>
+  <section class="hero-page"><div class="container">
+    <p class="eyebrow">Ücretsiz ön görüşme</p>
+    <h1>İhtiyacınızı netleştirmek için kısa, odaklı bir başlangıç</h1>
+    <p class="lede">Mevcut sistemlerinizi, saha risklerinizi veya denetim hedefinizi birlikte değerlendirelim; size uygun kapsamı ve ilk adımı netleştirelim.</p>
+  </div></section>
+  <main><div class="container contact-layout">
+    <aside class="contact-copy">
+      <p class="eyebrow">Nasıl ilerleriz?</p>
+      <h2>Talebinizden sonraki adım açık</h2>
+      <p>Formu gönderdiğinizde e-posta uygulamanız açılır. Gönderimin ardından aynı iş günü içinde dönüş yaparak görüşme zamanını netleştiririz.</p>
+      <ul><li>15 dakikalık ihtiyaç değerlendirmesi</li><li>Türkiye geneli saha ve uzaktan destek</li><li>Telefon veya e-posta ile hızlı dönüş</li></ul>
+      <p><strong>Telefon:</strong> <a href="tel:+905334390003">+90 533 439 00 03</a><br><strong>E-posta:</strong> <a href="mailto:goway@gowaydanismanlik.com">goway@gowaydanismanlik.com</a></p>
+    </aside>
+    <section class="contact-card" aria-labelledby="form-title">
+      <p class="eyebrow">Talep formu</p>
+      <h2 id="form-title">Ön görüşme talebinizi paylaşın</h2>
+      <p id="contextNote" class="context-note" aria-live="polite"></p>
+      <form id="consultationForm">
+        <div class="form-grid">
+          <div class="field"><label for="name">Ad soyad *</label><input id="name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="company">Şirket adı</label><input id="company" name="company" autocomplete="organization"></div>
+          <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="email">E-posta</label><input id="email" name="email" type="email" autocomplete="email"></div>
+          <div class="field full"><label for="service">İlgilenilen hizmet *</label><select id="service" name="service" required><option value="">Hizmet seçiniz</option><option>ISO Yönetim Sistemleri</option><option>ISO Denetim Hazırlığı</option><option>ISO 45001 ve İSG Yönetimi</option><option>İSG Saha Güvenliği</option><option>Yangın ve Acil Durum Yönetimi</option><option>Kurumsal Eğitimler</option><option>Sürdürülebilirlik ve Sosyal Uygunluk</option><option>Çevre Danışmanlığı</option><option>Teşvik Danışmanlığı</option><option>Tekstil Standartları ve Belgelendirme Hazırlığı</option><option>Entegre ISO ve İSG Gelişim Programı</option><option>Genel ön görüşme</option></select></div>
+          <div class="field full"><label for="message">Kısa mesaj *</label><textarea id="message" name="message" required placeholder="İhtiyacınızı bir veya iki cümleyle açıklayın."></textarea></div>
+        </div>
+        <div class="form-actions"><button class="button primary" type="submit">E-posta ile talep oluştur</button><p class="form-status" id="formStatus" aria-live="polite"></p></div>
+      </form>
+    </section>
+  </div></main>
+<footer class="site-footer"><div class="container site-footer-inner"><span>© 2026 Goway Danışmanlık · Türkiye geneli hizmet</span><nav class="site-footer-nav" aria-label="Alt menü"><a href="hizmetler.html">Hizmetler</a><a href="cozumler.html">Çözümler</a><a href="hakkimizda.html">Hakkımızda</a><a href="is-ortaklari.html">İş Ortakları</a><a href="medya.html">Medya</a><a href="ihtiyac-rehberi.html">İhtiyaç Rehberi</a><a href="katalog.html">Hizmet Kataloğu</a><a href="ciktilar.html">Proje Çıktıları</a><a href="iletisim.html">İletişim</a><a href="kvkk-aydinlatma-metni.html">KVKK</a></nav></div></footer>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const selectedService = params.get('hizmet');
+    const serviceSelect = document.getElementById('service');
+    const contextNote = document.getElementById('contextNote');
+    if (selectedService) {
+      const matchingOption = [...serviceSelect.options].find(option => option.value === selectedService);
+      if (matchingOption) {
+        serviceSelect.value = selectedService;
+      } else {
+        const option = new Option(selectedService, selectedService, true, true);
+        serviceSelect.add(option);
+      }
+      contextNote.textContent = 'Bu sayfaya "' + selectedService + '" hizmeti için geldiniz. Form bu kapsamla hazırlandı.';
+      contextNote.dataset.visible = 'true';
+    }
+    document.getElementById('consultationForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const phone = form.elements.phone.value.trim();
+      const email = form.elements.email.value.trim();
+      if (!phone && !email) {
+        document.getElementById('formStatus').textContent = 'Telefon veya e-posta alanlarından en az birini girin.';
+        return;
+      }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const data = new FormData(form);
+      const get = key => data.get(key) || '-';
+      const message = 'Ad soyad: ' + get('name') + '\\nŞirket: ' + get('company') + '\\nTelefon: ' + get('phone') + '\\nE-posta: ' + get('email') + '\\nHizmet: ' + get('service') + '\\n\\nİhtiyaç:\\n' + get('message');
+      document.getElementById('formStatus').textContent = 'E-posta uygulamanız açılıyor.';
+      window.location.href = 'mailto:goway@gowaydanismanlik.com?subject=' + encodeURIComponent('Ön görüşme talebi — ' + get('service')) + '&body=' + encodeURIComponent(message);
+    });
+  </script>
+</body>
+</html>
