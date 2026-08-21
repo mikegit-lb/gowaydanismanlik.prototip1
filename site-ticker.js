@@ -1,4 +1,5 @@
 (() => {
+  const utilityContext = 'Denizli merkezli · Türkiye geneli hizmet';
   const slogans = [
     'Standartları sahada yaşatır.',
     'Riski görünür, aksiyonu uygulanabilir kılar.',
@@ -35,9 +36,18 @@
     const container = utility.querySelector('.container');
     if (!container || container.querySelector('.site-slogan-ticker')) return;
 
-    const context = container.querySelector(':scope > span');
+    let context = container.querySelector(':scope > span');
     const phone = container.querySelector(':scope > a');
-    if (context) context.classList.add('utility-context');
+    if (!context) {
+      context = document.createElement('span');
+      container.prepend(context);
+    }
+    context.classList.add('utility-context');
+    context.textContent = utilityContext;
+    if (phone) {
+      phone.href = 'tel:+905334390003';
+      phone.textContent = '+90 533 439 00 03';
+    }
     container.insertBefore(createTicker(), phone || null);
     return;
   }
@@ -47,13 +57,16 @@
 
   const generatedUtility = document.createElement('div');
   const container = document.createElement('div');
+  const context = document.createElement('span');
   const phone = document.createElement('a');
 
   generatedUtility.className = 'utility utility-generated';
   container.className = 'container';
+  context.className = 'utility-context';
+  context.textContent = utilityContext;
   phone.href = 'tel:+905334390003';
   phone.textContent = '+90 533 439 00 03';
-  container.append(createTicker(), phone);
+  container.append(context, createTicker(), phone);
   generatedUtility.append(container);
   header.before(generatedUtility);
 })();
