@@ -50,6 +50,50 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .utility a { color: var(--mist); }
 .utility a:hover { color: var(--gold); }
+.utility-context { flex: 0 0 auto; }
+.site-slogan-ticker {
+  position: relative;
+  min-width: 220px;
+  height: 20px;
+  flex: 1 1 auto;
+  overflow: hidden;
+  color: rgb(244 248 251 / .84);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .045em;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.site-slogan-stage { position: relative; width: 100%; height: 100%; }
+.site-slogan-item {
+  position: absolute;
+  inset: 50% 0 auto;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate3d(48px,-50%,0);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  animation: siteSlogan 42s linear infinite;
+  animation-delay: var(--ticker-delay);
+}
+.site-slogan-ticker:hover .site-slogan-item,
+.site-slogan-ticker:focus-within .site-slogan-item { animation-play-state: paused; }
+.site-slogan-item::before {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 0 10px 1px 0;
+  border-radius: 50%;
+  background: var(--gold);
+  content: "";
+}
+@keyframes siteSlogan {
+  0% { opacity: 0; transform: translate3d(48px,-50%,0); }
+  1.8%, 14.8% { opacity: 1; transform: translate3d(0,-50%,0); }
+  16.667%, 100% { opacity: 0; transform: translate3d(-48px,-50%,0); }
+}
 
 .site-header {
   position: sticky;
@@ -507,6 +551,10 @@ button.button { cursor: pointer; font: inherit; }
   .process-list li::before { width: 38px; height: 38px; }
   .partner-footnote { padding: 12px 14px; font-size: .88rem; }
   .hero-actions .button { width: 100%; }
+  .utility .container { gap: 7px; }
+  .utility-context { display: none; }
+  .site-slogan-ticker { width: 100%; min-width: 0; }
+  .utility-generated .container { align-items: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -517,4 +565,7 @@ button.button { cursor: pointer; font: inherit; }
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
+  .site-slogan-ticker { mask-image: none; }
+  .site-slogan-item { display: none; animation: none !important; }
+  .site-slogan-item:first-child { display: block; opacity: 1; transform: translate3d(0,-50%,0); }
 }
