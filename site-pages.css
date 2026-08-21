@@ -67,7 +67,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   gap: 24px;
 }
 .brand { display: inline-grid; grid-template-columns: 74px auto; grid-template-rows: auto auto; align-items: center; column-gap: 12px; line-height: 1; letter-spacing: .14em; }
-.brand::before { width: 74px; height: 68px; grid-row: 1 / span 2; background: url("goway-logo.png") 50% 20% / 180px auto no-repeat; content: ""; mix-blend-mode: multiply; pointer-events: none; }
+.brand::before { width: 74px; height: 68px; grid-row: 1 / span 2; background: url("goway-mark.png") center / contain no-repeat; content: ""; pointer-events: none; }
 .brand strong { grid-column: 2; align-self: end; color: var(--teal); font-size: 1.2rem; }
 .brand span { grid-column: 2; align-self: start; margin-top: 7px; color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .22em; }
 .page-nav { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
@@ -321,10 +321,20 @@ textarea { min-height: 136px; resize: vertical; }
 .form-actions { margin-top: 22px; }
 button.button { cursor: pointer; font: inherit; }
 
-.site-footer { padding: 24px 0; border-top: 3px solid var(--gold); color: rgb(244 248 251 / .76); background: var(--navy); }
-.site-footer .site-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: .86rem; }
+.site-footer { border-top: 3px solid var(--gold); color: rgb(244 248 251 / .76); background: var(--navy); }
+.site-footer .site-footer-inner { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr); gap: 44px; padding: 42px 0 28px; }
+.footer-brand-lockup { display: flex; align-items: center; gap: 14px; }
+.footer-logo { display: block; width: 72px; height: 66px; object-fit: contain; padding: 5px; border: 1px solid rgb(244 248 251 / .25); border-radius: 10px; background: var(--mist); }
+.footer-brand-copy strong { display: block; color: var(--mist); font-size: 1rem; letter-spacing: .1em; }
+.footer-brand-copy span { display: block; margin-top: 4px; color: var(--gold); font-size: .67rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+.footer-brand-block p { max-width: 420px; margin: 16px 0 0; color: rgb(244 248 251 / .72); font-size: .88rem; line-height: 1.75; }
+.footer-contact-block { border-left: 1px solid rgb(244 248 251 / .16); padding-left: 32px; }
+.footer-contact-block h2 { margin: 0 0 14px; color: var(--mist); font-size: .88rem; letter-spacing: .08em; text-transform: uppercase; }
+.footer-contact-block a, .footer-contact-block span { display: block; margin-top: 9px; color: rgb(244 248 251 / .78); font-size: .86rem; line-height: 1.45; }
+.footer-contact-block a:hover { color: var(--gold); }
+.site-footer .footer-legal-row { display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 64px; border-top: 1px solid rgb(244 248 251 / .15); font-size: .78rem; }
 .site-footer-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px 18px; }
-.site-footer a { position: relative; padding: 4px 0; color: var(--mist); font-size: .82rem; font-weight: 800; white-space: nowrap; }
+.site-footer a { position: relative; padding: 4px 0; color: var(--mist); font-size: .78rem; font-weight: 700; white-space: nowrap; }
 .site-footer-nav a::after { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; transform: scaleX(0); transform-origin: right; background: var(--gold); content: ""; transition: transform .2s ease; }
 .site-footer-nav a:hover::after, .site-footer-nav a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 
@@ -340,7 +350,10 @@ button.button { cursor: pointer; font: inherit; }
   .brand::before { width: 64px; height: 58px; background-size: 156px auto; }
   .brand strong { font-size: .98rem; }
   .brand span { margin-top: 5px; font-size: .61rem; letter-spacing: .17em; }
-  .utility .container, .site-footer .site-footer-inner { align-items: flex-start; flex-direction: column; padding: 10px 0; }
+  .utility .container { align-items: flex-start; flex-direction: column; padding: 10px 0; }
+  .site-footer .site-footer-inner { grid-template-columns: 1fr; gap: 28px; padding: 34px 0 24px; }
+  .footer-contact-block { border-left: 0; border-top: 1px solid rgb(244 248 251 / .16); padding-top: 24px; padding-left: 0; }
+  .site-footer .footer-legal-row { align-items: flex-start; flex-direction: column; padding: 18px 0; }
   .page-nav { gap: 5px; }
   .page-nav a { min-height: 38px; flex: 1 1 calc(33.333% - 5px); padding: 7px 5px; font-size: .78rem; line-height: 1.16; text-align: center; }
   .site-footer-nav { justify-content: flex-start; }
