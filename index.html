@@ -419,9 +419,12 @@
     .legal-links { display:flex; flex-wrap:wrap; gap:20px; }
 
     .floating-contact {
+      --floating-shift:0px;
       position:fixed; right:22px; bottom:22px; z-index:45; display:flex; align-items:center; gap:10px;
       min-height:54px; padding:0 18px; color:#fff; background:#25D366; border-radius:999px;
-      box-shadow:0 16px 34px rgba(12,96,120,.30); font-weight:900; transition:bottom .24s ease, transform .24s ease;
+      box-shadow:0 16px 34px rgba(12,96,120,.30); font-weight:900;
+      transform:translate3d(0,var(--floating-shift),0); will-change:transform; backface-visibility:hidden;
+      transition:box-shadow .24s ease, background-color .24s ease;
     }
     .floating-contact .icon { width:22px; height:22px; }
     .mobile-sticky-cta { display:none; }
@@ -636,8 +639,6 @@
     .proof-item:nth-child(even) { background:rgb(2 99 102 / .16); }
     .proof-icon { color:var(--gold-300); background:rgb(244 248 251 / .10); }
     .proof-item .pd { color:rgb(244 248 251 / .80); }
-    .hero-proof-visible .floating-contact { bottom:172px; }
-
     .service-card {
       background:rgb(244 248 251 / .96);
       border-color:rgb(34 126 167 / .18);
@@ -831,7 +832,6 @@
     .home-footer-legal { display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 64px; border-top: 1px solid rgb(244 248 251 / .15); font-size: .78rem; }
     .home-footer-nav { display: flex; min-width: 0; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 18px; }
     .home-footer-nav a { position: relative; color: #f4f8fb; font-size: .78rem; font-weight: 700; white-space: nowrap; }
-    .footer-visible .floating-contact { bottom: 128px; transform: translateY(0); }
     @media (min-width: 681px) and (max-width: 1020px) {
       .home-hub { padding-top: 132px; }
     }
@@ -1371,17 +1371,25 @@
   <nav class="mobile-sticky-cta" aria-label="Hızlı iletişim"><a href="tel:+905334390003">Ara</a><a href="https://wa.me/905334390003?text=Merhaba%2C%20%C3%BCcretsiz%2015%20dakikal%C4%B1k%20%C3%B6n%20g%C3%B6r%C3%BC%C5%9Fme%20talep%20ediyorum." target="_blank" rel="noopener">WhatsApp</a><a href="on-gorusme.html">Ön Görüşme</a></nav>
 
   <script>
+    const floatingContact = document.querySelector('.floating-contact');
     const homeFooter = document.querySelector('.home-footer');
-    if (homeFooter && 'IntersectionObserver' in window) {
-      new IntersectionObserver(([entry]) => {
-        document.body.classList.toggle('footer-visible', entry.isIntersecting);
-      }, { threshold: 0.12 }).observe(homeFooter);
-    }
-    const heroProof = document.querySelector('.hero-proof');
-    if (heroProof && 'IntersectionObserver' in window) {
-      new IntersectionObserver(([entry]) => {
-        document.body.classList.toggle('hero-proof-visible', entry.isIntersecting);
-      }, { threshold: 0.12 }).observe(heroProof);
+    if (floatingContact && homeFooter) {
+      let floatingContactFrame = 0;
+      const syncFloatingContact = () => {
+        floatingContactFrame = 0;
+        const viewportHeight = window.visualViewport?.height || window.innerHeight;
+        const footerTop = homeFooter.getBoundingClientRect().top;
+        const footerOverlap = Math.max(0, viewportHeight - footerTop + 12);
+        const shift = -Math.min(106, footerOverlap);
+        floatingContact.style.setProperty('--floating-shift', `${shift}px`);
+      };
+      const queueFloatingContactSync = () => {
+        if (!floatingContactFrame) floatingContactFrame = requestAnimationFrame(syncFloatingContact);
+      };
+      window.addEventListener('scroll', queueFloatingContactSync, { passive: true });
+      window.addEventListener('resize', queueFloatingContactSync, { passive: true });
+      window.visualViewport?.addEventListener('resize', queueFloatingContactSync, { passive: true });
+      syncFloatingContact();
     }
   </script>
 
