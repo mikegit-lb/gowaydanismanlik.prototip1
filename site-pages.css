@@ -310,13 +310,31 @@ main { padding: clamp(58px, 9vw, 104px) 0; }
 .evidence-card li::before, .mini-list li::before { position: absolute; top: .62em; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); content: ""; }
 .card-meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0 0; }
 .tag { display: inline-flex; align-items: center; min-height: 28px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--teal); background: rgb(2 99 102 / .05); font-size: .74rem; font-weight: 900; letter-spacing: .02em; }
-.decision-table-wrap { overflow-x: auto; margin-top: 26px; border: 1px solid var(--line); border-radius: 16px; background: rgb(255 255 255 / .94); box-shadow: 0 16px 36px rgb(2 99 102 / .07); }
-.decision-table { width: 100%; min-width: 760px; border-collapse: collapse; }
-.decision-table th, .decision-table td { padding: 17px 18px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-.decision-table th { color: var(--mist); background: var(--navy); font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; }
-.decision-table td { color: var(--muted); }
-.decision-table td:first-child { color: var(--navy); font-weight: 900; }
-.decision-table tr:last-child td { border-bottom: 0; }
+.scope-catalog-section { scroll-margin-top: 126px; }
+.catalog-intro { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr); gap: 42px; align-items: end; margin-bottom: 30px; }
+.catalog-intro .section-heading { margin-bottom: 0; }
+.catalog-key { display: grid; gap: 0; overflow: hidden; border: 1px solid rgb(244 248 251 / .16); border-left: 4px solid var(--gold); border-radius: 14px; color: rgb(244 248 251 / .72); background: var(--navy); box-shadow: 0 18px 36px rgb(2 99 102 / .14); }
+.catalog-key span { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; padding: 12px 16px; border-bottom: 1px solid rgb(244 248 251 / .12); font-size: .78rem; line-height: 1.45; }
+.catalog-key span:last-child { border-bottom: 0; }
+.catalog-key strong { color: var(--gold); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
+.scope-catalog { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.scope-card { --scope-accent: var(--teal); position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: rgb(255 255 255 / .96); box-shadow: 0 16px 36px rgb(2 99 102 / .07); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.scope-card:nth-child(3n + 2) { --scope-accent: var(--gold); }
+.scope-card::before { position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--scope-accent); content: ""; }
+.scope-card:hover { transform: translateY(-3px); border-color: rgb(2 99 102 / .28); box-shadow: 0 22px 44px rgb(2 99 102 / .12); }
+.scope-card-head { min-height: 108px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 11px 14px; align-content: center; padding: 22px 24px 19px 29px; border-bottom: 1px solid var(--line); background: linear-gradient(135deg, rgb(244 248 251 / .88), rgb(255 255 255 / .98)); }
+.scope-code { align-self: start; padding: 5px 9px; border: 1px solid color-mix(in srgb, var(--scope-accent) 45%, transparent); border-radius: 999px; color: var(--navy); background: color-mix(in srgb, var(--scope-accent) 12%, white); font-size: .66rem; font-weight: 900; letter-spacing: .07em; line-height: 1.2; }
+.scope-card h3 { align-self: center; color: var(--navy); font-size: clamp(1.08rem, 2vw, 1.28rem); }
+.scope-card-link { grid-column: 2; width: fit-content; color: var(--teal); font-size: .78rem; font-weight: 900; }
+.scope-card-link span { display: inline-block; margin-left: 4px; transition: transform .18s ease; }
+.scope-card-link:hover span { transform: translateX(4px); }
+.scope-details { margin: 0; }
+.scope-detail { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 18px; padding: 16px 24px 16px 29px; border-bottom: 1px solid var(--line); }
+.scope-detail:last-child { border-bottom: 0; }
+.scope-detail dt { position: relative; padding-left: 15px; color: var(--navy); font-size: .7rem; font-weight: 900; letter-spacing: .055em; line-height: 1.45; text-transform: uppercase; }
+.scope-detail dt::before { position: absolute; top: .48em; left: 0; width: 7px; height: 7px; border: 2px solid var(--scope-accent); border-radius: 50%; content: ""; }
+.scope-detail dd { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+.scope-output { background: rgb(2 99 102 / .045); }
 .trust-band { display: grid; grid-template-columns: .75fr 1.25fr; gap: 28px; align-items: center; margin: 42px 0; padding: 32px; border-radius: 18px; color: var(--mist); background: linear-gradient(135deg, var(--navy), var(--teal)); box-shadow: 0 20px 42px rgb(2 99 102 / .17); }
 .trust-band p { margin: 12px 0 0; color: rgb(244 248 251 / .76); }
 .trust-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
@@ -401,6 +419,9 @@ button.button { cursor: pointer; font: inherit; }
   .trust-band, .verifier { grid-template-columns: 1fr; }
   .reference-row { grid-template-columns: 120px minmax(0, 1fr); }
   .reference-row > :last-child { grid-column: 2; }
+  .catalog-intro { grid-template-columns: 1fr; gap: 24px; }
+  .scope-catalog { grid-template-columns: 1fr; }
+  .scope-catalog-section { scroll-margin-top: 240px; }
 }
 @media (max-width: 560px) {
   :root { --container: min(100% - 28px, 1120px); }
@@ -429,6 +450,11 @@ button.button { cursor: pointer; font: inherit; }
   .about-values .service-card { padding: 29px 25px; }
   .about-next-steps { min-height: 0; padding: 28px 24px; }
   .about-next-steps .button { width: 100%; min-width: 0; }
+  .scope-card-head { grid-template-columns: 1fr; min-height: 0; padding: 22px 21px 18px 25px; }
+  .scope-code { width: fit-content; }
+  .scope-card-link { grid-column: auto; }
+  .scope-detail { grid-template-columns: 1fr; gap: 7px; padding: 15px 21px 15px 25px; }
+  .catalog-key span { grid-template-columns: 78px minmax(0, 1fr); }
   .hero-page { padding: 58px 0 60px; }
   .hero-page h1 { max-width: 100%; font-size: clamp(2rem, 10vw, 2.7rem); overflow-wrap: anywhere; }
   .hero-page .lede { max-width: 100%; font-size: 1rem; }
