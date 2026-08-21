@@ -245,6 +245,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     linear-gradient(90deg, rgb(6 59 92 / .18), transparent 72%);
 }
 .hero-page .container { position: relative; z-index: 1; max-width: none; margin-inline: auto; }
+.hero-page .eyebrow {
+  gap: 10px;
+  font-size: clamp(.8rem, calc(.5rem + .8vw), .9rem);
+}
+.hero-page .eyebrow::before { width: 34px; }
 .eyebrow {
   display: inline-flex;
   align-items: center;
