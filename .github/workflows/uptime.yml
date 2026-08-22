@@ -1,0 +1,22 @@
+name: Uptime check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      TARGET_URL: ${{ vars.UPTIME_URL || 'https://www.gowaydanismanlik.com/' }}
+    steps:
+      - name: Check homepage
+        run: |
+          curl --fail --silent --show-error --location --retry 3 --retry-delay 5 --max-time 20 "$TARGET_URL" > /dev/null
+      - name: Check sitemap
+        run: |
+          curl --fail --silent --show-error --location --retry 3 --retry-delay 5 --max-time 20 "${TARGET_URL%/}/sitemap.xml" > /dev/null
