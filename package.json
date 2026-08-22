@@ -4,7 +4,9 @@
   "private": true,
   "description": "Goway Danışmanlık static website build pipeline",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "npm run generate && node scripts/build.mjs",
+    "generate": "node scripts/sitegen.mjs",
+    "generate:check": "node scripts/sitegen.mjs",
     "build:watch": "node scripts/build.mjs --watch",
     "dev": "concurrently --kill-others-on-fail --names build,serve \"npm run build:watch\" \"browser-sync start --server dist --files dist/**/* --no-open\"",
     "start": "browser-sync start --server dist --files dist/**/*",

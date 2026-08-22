@@ -39,7 +39,7 @@ async function emptyDist() {
 async function copyStatic(source, target) {
   const entries = await fs.readdir(source, { withFileTypes: true });
   for (const entry of entries) {
-    if (entry.name === '.git' || entry.name === 'node_modules' || entry.name === 'dist' || entry.name === 'scripts') continue;
+    if (entry.name === '.git' || entry.name === 'node_modules' || entry.name === 'dist' || entry.name === 'scripts' || entry.name === 'data' || entry.name === 'templates') continue;
     if (entry.name === 'package.json' || entry.name === 'package-lock.json') continue;
     if (entry.name.endsWith('.html') || entry.name.endsWith('.css') || entry.name === 'site-ticker.js') continue;
     const from = path.join(source, entry.name);

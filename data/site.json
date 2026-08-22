@@ -1,0 +1,43 @@
+{
+  "site": {
+    "name": "Goway Danışmanlık",
+    "phone": "+90 533 439 00 03",
+    "phoneHref": "tel:+905334390003",
+    "email": "goway@gowaydanismanlik.com",
+    "emailHref": "mailto:goway@gowaydanismanlik.com",
+    "address": "Denizli · Türkiye geneli hizmet",
+    "serviceArea": "Türkiye geneli"
+  },
+  "navigation": [
+    { "label": "Ana Sayfa", "href": "index.html" },
+    { "label": "Hizmetler", "href": "hizmetler.html" },
+    { "label": "Sektörler", "href": "sektorel-cozumler.html" },
+    { "label": "Bilgi Merkezi", "href": "bilgi-merkezi.html" },
+    { "label": "Referanslar", "href": "referanslar.html" },
+    { "label": "Belge Sorgula", "href": "belge-sorgulama.html" },
+    { "label": "Ön Görüşme", "href": "on-gorusme.html" }
+  ],
+  "heroes": {
+    "index.html": { "label": "Uzmanlığa dayalı, uygulanabilir sistemler", "asset": "ana-sayfa-iso-isg-kurumsal-hero" },
+    "hizmetler.html": { "label": "Hizmetler", "asset": "hizmetler-hero-endustriyel" },
+    "sektorel-cozumler.html": { "label": "Sektörel çözümler", "asset": "cozumler-hero-planlama" },
+    "bilgi-merkezi.html": { "label": "Bilgi merkezi", "asset": "goway-hero-ambient" },
+    "uzman-kadro.html": { "label": "Uzman kadro", "asset": "uzman-kadro-hero-saha-ekibi" },
+    "sss.html": { "label": "Sıkça sorulan sorular", "asset": "sss-hero-danismanlik" },
+    "iletisim.html": { "label": "İletişim", "asset": "iletisim-hero-ilk-gorusme" },
+    "hakkimizda.html": { "label": "Hakkımızda", "asset": "hakkimizda-hero" }
+  },
+  "services": [
+    { "slug": "iso-yonetim-sistemleri", "title": "ISO Yönetim Sistemleri", "summary": "ISO 9001, 14001 ve 45001 için kuruluşunuza uyarlanmış, çalışan sistemler.", "href": "iso-yonetim-sistemleri.html", "category": "Yönetim standartları" },
+    { "slug": "iso-denetim-hazirligi", "title": "ISO Denetim Hazırlığı", "summary": "Belgelendirme, gözetim ve müşteri denetimleri öncesi kanıta dayalı hazırlık.", "href": "iso-denetim-hazirligi.html", "category": "Yönetim standartları" },
+    { "slug": "isg-yonetimi", "title": "İSG Yönetimi", "summary": "Mevzuat, risk ve operasyonel kontrolleri tek yönetim sistemi içinde birleştirin.", "href": "isg-yonetimi.html", "category": "Saha ve güvenlik" },
+    { "slug": "saha-guvenligi", "title": "Saha Güvenliği", "summary": "Üretim, depo, bakım ve montaj alanlarında uygulanabilir güvenlik kontrolleri.", "href": "saha-guvenligi.html", "category": "Saha ve güvenlik" },
+    { "slug": "yangin-acil-durum", "title": "Yangın ve Acil Durum", "summary": "Plan, ekip, eğitim ve tatbikatı birlikte yöneten hazırlık sistemi.", "href": "yangin-acil-durum.html", "category": "Saha ve güvenlik" },
+    { "slug": "kurumsal-egitim", "title": "Kurumsal Eğitim", "summary": "Bilgiyi günlük uygulamaya ve ölçülebilir yetkinliğe dönüştüren programlar.", "href": "kurumsal-egitim.html", "category": "Gelişim" },
+    { "slug": "surdurulebilirlik", "title": "Sürdürülebilirlik", "summary": "Çevre, karbon, enerji ve sosyal uygunluk hedeflerini izlenebilir hale getirin.", "href": "surdurulebilirlik.html", "category": "Sürdürülebilirlik" },
+    { "slug": "entegre-program", "title": "Entegre Program", "summary": "ISO, İSG ve çalışan yetkinliğini tek yol haritasında buluşturan gelişim modeli.", "href": "entegre-program.html", "category": "Gelişim" },
+    { "slug": "tekstil-standartlari", "title": "Tekstil Standartları", "summary": "GOTS, OCS, GRS, RCS ve OEKO-TEX Standard 100 için belgelendirme hazırlığı.", "href": "tekstil-standartlari.html", "category": "Sektörel çözümler" },
+    { "slug": "cevre-danismanligi", "title": "Çevre Danışmanlığı", "summary": "İzin, lisans, ölçüm, beyan ve takip süreçlerini planlı biçimde yönetin.", "href": "cevre-danismanligi.html", "category": "Sektörel çözümler" },
+    { "slug": "tesvik-danismanligi", "title": "Teşvik Danışmanlığı", "summary": "Yatırım planınız için teşvik ihtiyacını, başvuru hazırlığını ve takibini netleştirin.", "href": "tesvik-danismanligi.html", "category": "Sektörel çözümler" }
+  ]
+}
