@@ -33,16 +33,18 @@
     "hakkimizda.html": { "label": "Hakkımızda", "asset": "hakkimizda-hero" }
   },
   "services": [
-    { "slug": "iso-yonetim-sistemleri", "title": "ISO Yönetim Sistemleri", "summary": "ISO 9001, 14001 ve 45001 için kuruluşunuza uyarlanmış, çalışan sistemler.", "href": "iso-yonetim-sistemleri.html", "category": "Yönetim standartları" },
-    { "slug": "iso-denetim-hazirligi", "title": "ISO Denetim Hazırlığı", "summary": "Belgelendirme, gözetim ve müşteri denetimleri öncesi kanıta dayalı hazırlık.", "href": "iso-denetim-hazirligi.html", "category": "Yönetim standartları" },
-    { "slug": "isg-yonetimi", "title": "İSG Yönetimi", "summary": "Mevzuat, risk ve operasyonel kontrolleri tek yönetim sistemi içinde birleştirin.", "href": "isg-yonetimi.html", "category": "Saha ve güvenlik" },
-    { "slug": "saha-guvenligi", "title": "Saha Güvenliği", "summary": "Üretim, depo, bakım ve montaj alanlarında uygulanabilir güvenlik kontrolleri.", "href": "saha-guvenligi.html", "category": "Saha ve güvenlik" },
-    { "slug": "yangin-acil-durum", "title": "Yangın ve Acil Durum", "summary": "Plan, ekip, eğitim ve tatbikatı birlikte yöneten hazırlık sistemi.", "href": "yangin-acil-durum.html", "category": "Saha ve güvenlik" },
-    { "slug": "kurumsal-egitim", "title": "Kurumsal Eğitim", "summary": "Bilgiyi günlük uygulamaya ve ölçülebilir yetkinliğe dönüştüren programlar.", "href": "kurumsal-egitim.html", "category": "Gelişim" },
-    { "slug": "surdurulebilirlik", "title": "Sürdürülebilirlik", "summary": "Çevre, karbon, enerji ve sosyal uygunluk hedeflerini izlenebilir hale getirin.", "href": "surdurulebilirlik.html", "category": "Sürdürülebilirlik" },
-    { "slug": "entegre-program", "title": "Entegre Program", "summary": "ISO, İSG ve çalışan yetkinliğini tek yol haritasında buluşturan gelişim modeli.", "href": "entegre-program.html", "category": "Gelişim" },
-    { "slug": "tekstil-standartlari", "title": "Tekstil Standartları", "summary": "GOTS, OCS, GRS, RCS ve OEKO-TEX Standard 100 için belgelendirme hazırlığı.", "href": "tekstil-standartlari.html", "category": "Sektörel çözümler" },
-    { "slug": "cevre-danismanligi", "title": "Çevre Danışmanlığı", "summary": "İzin, lisans, ölçüm, beyan ve takip süreçlerini planlı biçimde yönetin.", "href": "cevre-danismanligi.html", "category": "Sektörel çözümler" },
-    { "slug": "tesvik-danismanligi", "title": "Teşvik Danışmanlığı", "summary": "Yatırım planınız için teşvik ihtiyacını, başvuru hazırlığını ve takibini netleştirin.", "href": "tesvik-danismanligi.html", "category": "Sektörel çözümler" }
+    { "slug": "iso-yonetim-sistemleri", "title": "ISO Yönetim Sistemleri", "summary": "Sistemleri kopya dokümanlara değil, gerçek operasyonunuza göre kuruyoruz.", "href": "iso-yonetim-sistemleri.html", "category": "Yönetim standartları" },
+    { "slug": "iso-denetim-hazirligi", "title": "ISO Denetim Hazırlığı", "summary": "Son dakika paniği yerine kanıta dayalı, izlenebilir denetim hazırlığı.", "href": "iso-denetim-hazirligi.html", "category": "Yönetim standartları" },
+    { "slug": "isg-yonetimi", "title": "İSG Yönetimi (ISO 45001)", "summary": "Güvenliği saha davranışına, çalışan katılımına ve uygulanabilir kontrollere bağlıyoruz.", "href": "isg-yonetimi.html", "category": "Saha ve güvenlik" },
+    { "slug": "saha-guvenligi", "title": "Saha Güvenliği", "summary": "Makine güvenliği, LOTO, yüklenici, kimyasal ve saha kontrollerini birlikte yönetin.", "href": "saha-guvenligi.html", "category": "Saha ve güvenlik" },
+    { "slug": "yangin-acil-durum", "title": "Yangın ve Acil Durum", "summary": "Senaryo, ekip, eğitim ve tatbikatı tek çalışan hazırlık sisteminde birleştiriyoruz.", "href": "yangin-acil-durum.html", "category": "Saha ve güvenlik" },
+    { "slug": "kurumsal-egitim", "title": "Kurumsal Eğitim", "summary": "Davranış değişimi ve ölçülebilir yetkinlik için göreve, riske ve sahaya göre eğitim.", "href": "kurumsal-egitim.html", "category": "Gelişim" },
+    { "slug": "cevre-danismanligi", "title": "Çevre Danışmanlığı", "summary": "Çevre izinleri, uygunluk, atık ve emisyon süreçlerini planlı biçimde yönetin.", "href": "cevre-danismanligi.html", "category": "Çevre ve sürdürülebilirlik" },
+    { "slug": "tesvik-danismanligi", "title": "Teşvik Danışmanlığı", "summary": "Yatırım, Ar-Ge ve istihdam için kamu teşvik ve hibe başvurularını hazırlayın.", "href": "tesvik-danismanligi.html", "category": "Çevre ve sürdürülebilirlik" },
+    { "slug": "tekstil-standartlari", "title": "Tekstil Standartları", "summary": "GOTS, GRS, OCS ve RCS izlenebilirliği ile denetim hazırlığını güçlendirin.", "href": "tekstil-standartlari.html", "category": "Sektörel çözümler" },
+    { "slug": "surdurulebilirlik", "title": "Sürdürülebilirlik", "summary": "Karbon ayak izi, sürdürülebilirlik raporlaması ve ESG hedeflerini ölçülebilir kılın.", "href": "surdurulebilirlik.html", "category": "Çevre ve sürdürülebilirlik" },
+    { "slug": "entegre-program", "title": "Entegre ISO/İSG Programı", "summary": "9001, 14001 ve 45001’i üç fazlı tek bir gelişim yol haritasında birleştirin.", "href": "entegre-program.html", "category": "Gelişim" },
+    { "slug": "is-ortaklari", "title": "Çözüm Ortaklığı", "summary": "Belgelendirme, test, eğitim ve uzmanlık ihtiyaçları için güvenilir partner ağı.", "href": "is-ortaklari.html", "category": "Sektörel çözümler" },
+    { "slug": "sektorel-cozumler", "title": "Sektörel Çözümler", "summary": "Tekstil, üretim, metal, gıda, depolama, inşaat, otomotiv, enerji ve çok lokasyonlu işletmeler için çözümler.", "href": "sektorel-cozumler.html", "category": "Sektörel çözümler" }
   ]
 }
