@@ -167,8 +167,7 @@
       color: #fff; overflow: visible;
       background:
         radial-gradient(circle at 78% 40%, rgba(12,96,120,.10), transparent 34%),
-        linear-gradient(90deg, rgba(4,32,55,.98) 0%, rgba(4,32,55,.91) 39%, rgba(4,32,55,.52) 60%, rgba(4,32,55,.20) 79%, rgba(4,32,55,.10) 100%),
-        url("hero-industrial.jpg") center 37% / cover no-repeat;
+        linear-gradient(90deg, rgba(4,32,55,.98) 0%, rgba(4,32,55,.91) 39%, rgba(4,32,55,.52) 60%, rgba(4,32,55,.20) 79%, rgba(4,32,55,.10) 100%);
     }
     .hero { background-position:center 34%; background-color:var(--hero-navy); }
     .hero::after { content:""; position:absolute; inset:auto 0 0; height:170px; background:linear-gradient(transparent, rgba(4,32,55,.33)); pointer-events:none; }
@@ -625,10 +624,9 @@
     .hero {
       background:
         radial-gradient(circle at 78% 40%, rgb(30 126 159 / .15), transparent 34%),
-        linear-gradient(90deg, rgb(8 69 100 / .95) 0%, rgb(8 69 100 / .87) 39%, rgb(8 69 100 / .51) 60%, rgb(8 69 100 / .22) 79%, rgb(8 69 100 / .10) 100%),
-        url("assets/ana-sayfa-iso-isg-kurumsal-hero.png") center 38% / cover no-repeat;
-      background-position:center, center, center 34%;
-      background-size:auto, auto, cover;
+        linear-gradient(90deg, rgb(8 69 100 / .95) 0%, rgb(8 69 100 / .87) 39%, rgb(8 69 100 / .51) 60%, rgb(8 69 100 / .22) 79%, rgb(8 69 100 / .10) 100%);
+      background-position:center, center;
+      background-size:auto, auto;
       background-repeat:no-repeat;
     }
     .hero::before {
@@ -642,6 +640,9 @@
         linear-gradient(90deg, rgb(8 69 100 / .58) 0%, rgb(8 69 100 / .36) 50%, rgb(8 69 100 / .08) 100%);
     }
     .hero::after { z-index:1; height:190px; background:linear-gradient(transparent, rgb(8 69 100 / .36)); }
+    .hero-media { position:absolute; inset:0; z-index:0; display:block; overflow:hidden; pointer-events:none; }
+    .hero-media img { display:block; width:100%; height:100%; object-fit:cover; object-position:center 34%; }
+    .hero-media-home img { object-position:center 34%; }
     .hero-inner, .hero-proof { z-index:2; }
     .hero-proof {
       border-color:rgb(214 160 43 / .48);
@@ -998,7 +999,7 @@
       body.multi-page-home .brand-mark { width: 64px; height: 58px; background-size: 156px auto; }
     }
   </style>
-</head>
+<link rel="preload" as="image" href="assets/hero/ana-sayfa-iso-isg-kurumsal-hero-1200.webp" type="image/webp" imagesrcset="assets/hero/ana-sayfa-iso-isg-kurumsal-hero-400.webp 400w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-800.webp 800w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-1200.webp 1200w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high"></head>
 <body class="multi-page-home">
   <a class="visually-hidden" href="#home-links">İçeriğe geç</a>
 
@@ -1042,7 +1043,7 @@
   </header>
 
   <main>
-    <section class="hero" id="anasayfa">
+    <section class="hero" id="anasayfa"><picture class="hero-media hero-media-home" aria-hidden="true"><source type="image/avif" srcset="assets/hero/ana-sayfa-iso-isg-kurumsal-hero-400.avif 400w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-800.avif 800w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-1200.avif 1200w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/hero/ana-sayfa-iso-isg-kurumsal-hero-400.webp 400w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-800.webp 800w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-1200.webp 1200w, assets/hero/ana-sayfa-iso-isg-kurumsal-hero-1600.webp 1600w" sizes="100vw"><img src="assets/hero/ana-sayfa-iso-isg-kurumsal-hero-1200.webp" alt="" loading="eager" fetchpriority="high" decoding="async"></picture>
       <div class="container hero-inner">
         <div class="hero-copy">
           <span class="eyebrow">Uzmanlığa dayalı, uygulanabilir sistemler</span>
@@ -1476,7 +1477,7 @@
 
   <footer class="home-footer">
     <div class="container home-footer-main">
-      <section class="home-footer-brand" aria-label="Goway Danışmanlık"><div class="home-footer-lockup"><img class="home-footer-logo" src="goway-mark.png" alt=""><div class="home-footer-copy"><strong>GOWAY</strong><span>Danışmanlık</span></div></div><p>ISO, İSG, çevre ve kurumsal gelişim ihtiyaçlarını; uygulanabilir, izlenebilir ve sürdürülebilir çözümlere dönüştürüyoruz.</p></section>
+      <section class="home-footer-brand" aria-label="Goway Danışmanlık"><div class="home-footer-lockup"><img loading="lazy" decoding="async" class="home-footer-logo" src="goway-mark.png" alt=""><div class="home-footer-copy"><strong>GOWAY</strong><span>Danışmanlık</span></div></div><p>ISO, İSG, çevre ve kurumsal gelişim ihtiyaçlarını; uygulanabilir, izlenebilir ve sürdürülebilir çözümlere dönüştürüyoruz.</p></section>
       <section class="home-footer-contact" aria-label="İletişim"><h2>İletişim</h2><a href="tel:+905334390003">+90 533 439 00 03</a><a href="mailto:goway@gowaydanismanlik.com">goway@gowaydanismanlik.com</a><span>Denizli · Türkiye geneli hizmet</span></section>
     </div>
     <div class="container home-footer-legal"><span>© 2026 Goway Danışmanlık · Tüm hakları saklıdır.</span><nav class="home-footer-nav" aria-label="Yasal bağlantılar"><a href="kvkk-aydinlatma-metni.html">KVKK</a><a href="gizlilik-politikasi.html">Gizlilik Politikası</a><a href="cerez-politikasi.html">Çerez Politikası</a><a href="kullanim-sartlari.html">Kullanım Şartları</a></nav></div>
