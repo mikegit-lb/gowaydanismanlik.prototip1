@@ -47,15 +47,16 @@ async function main() {
     slogans: site.slogans,
     navigation: site.runtimeNavigation,
     heroes: site.heroes,
-    services: site.services
+    services: site.services,
+    trainingCatalog: site.trainingCatalog || []
   };
   await fs.writeFile(runtimeConfig, 'window.GOWAY_SITE_CONFIG=' + JSON.stringify(config) + ';\n');
   const htmlFiles = (await fs.readdir(root)).filter((file) => file.endsWith('.html'));
   for (const file of htmlFiles) {
     const htmlPath = path.join(root, file);
     let pageHtml = await fs.readFile(htmlPath, 'utf8');
-    pageHtml = pageHtml.replace(/\s*<script src="site-config\.js" defer><\/script>/g, '');
-    pageHtml = pageHtml.replace(/<script src="site-ticker\.js" defer><\/script>/, '<script src="site-config.js" defer></script>\n<script src="site-ticker.js" defer></script>');
+    pageHtml = pageHtml.replace(/\s*<script src="site-config\.js"(?: defer)?><\/script>/g, '');
+    pageHtml = pageHtml.replace(/<script src="site-ticker\.js" defer><\/script>/, '<script src="site-config.js"></script>\n<script src="site-ticker.js" defer></script>');
     await fs.writeFile(htmlPath, pageHtml);
   }
   console.log('Generated:', path.relative(root, output), '(' + site.services.length + ' services)');

@@ -46,9 +46,18 @@
       "surdurulebilirlik.html", "entegre-program.html", "tekstil-standartlari.html",
       "cevre-danismanligi.html", "tesvik-danismanligi.html", "ciktilar.html",
       "ihtiyac-rehberi.html", "katalog.html", "calisma-modelleri.html", "medya.html",
-      "is-ortaklari.html", "sektorel-cozumler.html", "iso-50001-enerji-yonetimi.html"
+      "is-ortaklari.html", "sektorel-cozumler.html", "iso-50001-enerji-yonetimi.html",
+      "egitim-katalog.html", "egitim-takvimi.html", "egitim-online.html", "egitim-takip.html"
     ]
   },
+  "trainingCatalog": [
+    { "topic": "ISO 45001 İç Tetkikçi", "duration": "2 gün", "audience": "Kalite / İSG ekipleri", "level": "Orta", "certificate": "Katılım + değerlendirme" },
+    { "topic": "Risk Değerlendirmesi", "duration": "1 gün", "audience": "İSG profesyonelleri · saha liderleri", "level": "Temel", "certificate": "Uygulama doğrulamalı" },
+    { "topic": "LOTO Yetkili Kişi", "duration": "1 gün", "audience": "Bakım · üretim · teknik ekip", "level": "Uygulamalı", "certificate": "Yetkinlik değerlendirmesi" },
+    { "topic": "ISO 50001 Enerji Farkındalığı", "duration": "4 saat", "audience": "Enerji ekipleri · yöneticiler", "level": "Temel", "certificate": "Katılım belgesi" },
+    { "topic": "Kök Neden ve DÖF", "duration": "1 gün", "audience": "Kalite · İSG · proses sahipleri", "level": "Orta", "certificate": "Vaka çalışması" },
+    { "topic": "Acil Durum ve Yangın Tatbikatı", "duration": "1 gün", "audience": "Acil durum ekipleri", "level": "Uygulamalı", "certificate": "Tatbikat katılımı" }
+  ],
   "heroes": {
     "index.html": { "label": "Uzmanlığa dayalı, uygulanabilir sistemler", "asset": "ana-sayfa-iso-isg-kurumsal-hero" },
     "hizmetler.html": { "label": "Hizmetler", "asset": "hizmetler-hero-endustriyel" },

@@ -452,6 +452,26 @@ main { padding: clamp(58px, 9vw, 104px) 0; }
 .verification-result dd { margin: 0; color: var(--muted); }
 .status-pill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border-radius: 999px; color: var(--navy); background: rgb(216 160 43 / .18); font-size: .76rem; font-weight: 900; }
 .status-pill::before { width: 7px; height: 7px; border-radius: 50%; background: currentColor; content: ""; }
+.training-toolbar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0 18px; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: rgb(255 255 255 / .72); }
+.training-toolbar label { display: grid; gap: 6px; font-size: .76rem; }
+.training-toolbar select { padding: 10px 11px; }
+.training-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: rgb(255 255 255 / .9); }
+.training-table { width: 100%; min-width: 760px; border-collapse: collapse; text-align: left; }
+.training-table th, .training-table td { padding: 16px 15px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.training-table thead th { color: var(--mist); background: var(--navy); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; }
+.training-table tbody th { color: var(--navy); font-size: .92rem; }
+.training-table tbody td { color: var(--muted); font-size: .88rem; }
+.training-table tbody tr:last-child th, .training-table tbody tr:last-child td { border-bottom: 0; }
+.training-table td strong { display: block; color: var(--teal); font-size: .8rem; }
+.training-table td a { display: inline-block; margin-top: 7px; color: var(--teal); font-size: .78rem; font-weight: 900; text-decoration: underline; text-underline-offset: 3px; }
+.training-dialog { width: min(560px, calc(100% - 30px)); padding: 0; border: 0; border-radius: 18px; color: var(--navy); background: var(--mist); box-shadow: 0 24px 80px rgb(6 59 92 / .3); }
+.training-dialog::backdrop { background: rgb(6 59 92 / .58); backdrop-filter: blur(3px); }
+.training-request { position: relative; display: grid; gap: 12px; padding: 30px; }
+.training-request h2 { margin: 0; }
+.training-request p:not(.eyebrow) { margin: 0 0 8px; color: var(--muted); }
+.training-request label { display: grid; gap: 6px; }
+.training-request textarea { min-height: 100px; }
+.dialog-close { position: absolute; top: 13px; right: 15px; border: 0; color: var(--navy); background: transparent; font-size: 1.6rem; cursor: pointer; }
 .reference-row { display: grid; grid-template-columns: 150px minmax(0, 1fr) minmax(0, .9fr); gap: 18px; padding: 22px 0; border-top: 1px solid var(--line); }
 .reference-row:first-child { border-top: 0; }
 .reference-sector { color: var(--teal); font-size: .82rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
@@ -508,6 +528,7 @@ button.button { cursor: pointer; font: inherit; }
 .site-footer-nav a:hover::after, .site-footer-nav a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 
 @media (max-width: 820px) {
+  .training-toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   :root {
     --header-height: 132px;
     --hero-min-height: 640px;
@@ -575,6 +596,7 @@ button.button { cursor: pointer; font: inherit; }
   }
 }
 @media (max-width: 560px) {
+  .training-toolbar { grid-template-columns: 1fr; }
   :root {
     --container: min(100% - 28px, 1120px);
     --hero-min-height: 606px;
