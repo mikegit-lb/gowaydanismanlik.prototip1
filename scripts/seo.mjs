@@ -35,6 +35,21 @@ async function injectPage(file, service) {
   await fs.writeFile(full, html);
 }
 
+async function injectFaqSchema() {
+  const file = 'sss.html';
+  const full = path.join(root, file);
+  let html = await fs.readFile(full, 'utf8');
+  const items = [...html.matchAll(/<article[^>]*class="service-card"[^>]*>[\s\S]*?<h3>([\s\S]*?)<\/h3>[\s\S]*?<p>([\s\S]*?)<\/p>/g)].map((match) => ({
+    '@type': 'Question',
+    name: match[1].replace(/<[^>]+>/g, '').trim(),
+    acceptedAnswer: { '@type': 'Answer', text: match[2].replace(/<[^>]+>/g, '').trim() }
+  }));
+  if (items.length !== 18) throw new Error('Expected 18 visible FAQs, found ' + items.length);
+  const schema = '<script type="application/ld+json">' + JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items }) + '</script>';
+  html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, schema);
+  await fs.writeFile(full, html);
+}
+
 async function writeSitemap() {
   const files = (await fs.readdir(root)).filter((file) => file.endsWith('.html') && !excluded.has(file) && file !== '404.html');
   if (!files.includes('hizmet-katalogu.html')) files.push('hizmet-katalogu.html');
@@ -47,4 +62,5 @@ async function writeSitemap() {
 }
 
 for (const file of [...serviceFiles.keys(), 'hizmetler.html']) await injectPage(file, serviceFiles.get(file));
+await injectFaqSchema();
 await writeSitemap();
