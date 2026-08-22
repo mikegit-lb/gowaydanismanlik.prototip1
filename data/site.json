@@ -47,7 +47,7 @@
       "cevre-danismanligi.html", "tesvik-danismanligi.html", "ciktilar.html",
       "ihtiyac-rehberi.html", "katalog.html", "calisma-modelleri.html", "medya.html",
       "is-ortaklari.html", "sektorel-cozumler.html", "iso-50001-enerji-yonetimi.html",
-      "egitim-katalog.html", "egitim-takvimi.html", "egitim-online.html", "egitim-takip.html"
+      "egitim-katalog.html", "egitim-takvimi.html", "egitim-online.html", "egitim-takip.html", "enerji-verimliligi-teshvik.html"
     ]
   },
   "trainingCatalog": [
@@ -70,7 +70,8 @@
     "cevre-danismanligi.html": { "label": "Çevre danışmanlığı", "asset": "cevre-danismanligi-hero" },
     "tesvik-danismanligi.html": { "label": "Teşvik danışmanlığı", "asset": "tesvik-danismanligi-hero" },
     "tekstil-standartlari.html": { "label": "Tekstil standartları", "asset": "tekstil-standartlari-hero" },
-    "iso-50001-enerji-yonetimi.html": { "label": "ISO 50001 enerji yönetimi", "asset": "enerji-yonetimi-hero" }
+    "iso-50001-enerji-yonetimi.html": { "label": "ISO 50001 enerji yönetimi", "asset": "enerji-yonetimi-hero" },
+    "enerji-verimliligi-teshvik.html": { "label": "Enerji verimliliği teşvikleri", "asset": "tesvik-danismanligi-hero" }
   },
   "services": [
     { "slug": "iso-yonetim-sistemleri", "title": "ISO Yönetim Sistemleri", "summary": "Sistemleri kopya dokümanlara değil, gerçek operasyonunuza göre kuruyoruz.", "href": "iso-yonetim-sistemleri.html", "category": "Yönetim standartları" },

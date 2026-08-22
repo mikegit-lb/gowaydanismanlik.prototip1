@@ -63,8 +63,9 @@
 </footer>
   <script>
     const params = new URLSearchParams(window.location.search);
-    const selectedService = params.get('hizmet');
     const serviceSelect = document.getElementById('service');
+    ['Enerji Verimliliği Teşvikleri', 'Özel / İç Eğitim Talebi'].forEach(label => { if (![...serviceSelect.options].some(option => option.value === label)) serviceSelect.add(new Option(label, label)); });
+    const selectedService = params.get('hizmet');
     const contextNote = document.getElementById('contextNote');
     if (selectedService) {
       const matchingOption = [...serviceSelect.options].find(option => option.value === selectedService);

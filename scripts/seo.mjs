@@ -57,7 +57,7 @@ async function writeSitemap() {
   const priority = (file) => file === 'index.html' ? '1.0' : ['hizmetler.html', 'hizmet-katalogu.html', 'on-gorusme.html'].includes(file) ? '0.9' : serviceFiles.has(file) ? '0.8' : '0.7';
   const urls = unique.map((file) => '<url><loc>' + canonical(file) + '</loc><lastmod>2026-08-23</lastmod><priority>' + priority(file) + '</priority></url>').join('\n  ');
   await fs.writeFile(path.join(root, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  ' + urls + '\n</urlset>\n');
-  if (unique.length !== 35) throw new Error('Expected 35 indexable URLs, found ' + unique.length);
+  if (unique.length !== 36) throw new Error('Expected 36 indexable URLs, found ' + unique.length);
   console.log('Sitemap verified:', unique.length, 'URLs');
 }
 
