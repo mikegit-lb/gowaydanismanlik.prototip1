@@ -8,6 +8,14 @@
     "address": "Denizli · Türkiye geneli hizmet",
     "serviceArea": "Türkiye geneli"
   },
+  "slogans": [
+    "Standartları sahada yaşatır.",
+    "Riski görünür, aksiyonu uygulanabilir kılar.",
+    "Denetime değil, sürdürülebilir sisteme hazırlar.",
+    "ISO, İSG ve kurumsal gelişimi tek yol haritasında buluşturur.",
+    "Kâğıt üzerindeki sistemi sahada çalışan düzene dönüştürür.",
+    "Ölçülebilir gelişim için net sorumluluklar oluşturur."
+  ],
   "localization": {
     "enabled": false,
     "defaultLocale": "tr-TR",
@@ -22,6 +30,25 @@
     { "label": "Belge Sorgula", "href": "belge-sorgulama.html" },
     { "label": "Ön Görüşme", "href": "on-gorusme.html" }
   ],
+  "runtimeNavigation": {
+    "primary": [
+      { "label": "Ana Sayfa", "href": "index.html" },
+      { "label": "Hizmetler", "href": "hizmetler.html" },
+      { "label": "Uzman Kadro", "href": "uzman-kadro.html" },
+      { "label": "Çözümler", "href": "cozumler.html" },
+      { "label": "Hakkımızda", "href": "hakkimizda.html" },
+      { "label": "SSS", "href": "sss.html" },
+      { "label": "İletişim", "href": "iletisim.html" }
+    ],
+    "servicePages": [
+      "iso-yonetim-sistemleri.html", "iso-denetim-hazirligi.html", "isg-yonetimi.html",
+      "saha-guvenligi.html", "yangin-acil-durum.html", "kurumsal-egitim.html",
+      "surdurulebilirlik.html", "entegre-program.html", "tekstil-standartlari.html",
+      "cevre-danismanligi.html", "tesvik-danismanligi.html", "ciktilar.html",
+      "ihtiyac-rehberi.html", "katalog.html", "calisma-modelleri.html", "medya.html",
+      "is-ortaklari.html", "sektorel-cozumler.html"
+    ]
+  },
   "heroes": {
     "index.html": { "label": "Uzmanlığa dayalı, uygulanabilir sistemler", "asset": "ana-sayfa-iso-isg-kurumsal-hero" },
     "hizmetler.html": { "label": "Hizmetler", "asset": "hizmetler-hero-endustriyel" },
@@ -31,6 +58,9 @@
     "sss.html": { "label": "Sıkça sorulan sorular", "asset": "sss-hero-danismanlik" },
     "iletisim.html": { "label": "İletişim", "asset": "iletisim-hero-ilk-gorusme" },
     "hakkimizda.html": { "label": "Hakkımızda", "asset": "hakkimizda-hero" }
+    ,"cevre-danismanligi.html": { "label": "Çevre danışmanlığı", "asset": "cevre-danismanligi-hero" },
+    "tesvik-danismanligi.html": { "label": "Teşvik danışmanlığı", "asset": "tesvik-danismanligi-hero" },
+    "tekstil-standartlari.html": { "label": "Tekstil standartları", "asset": "tekstil-standartlari-hero" }
   },
   "services": [
     { "slug": "iso-yonetim-sistemleri", "title": "ISO Yönetim Sistemleri", "summary": "Sistemleri kopya dokümanlara değil, gerçek operasyonunuza göre kuruyoruz.", "href": "iso-yonetim-sistemleri.html", "category": "Yönetim standartları" },

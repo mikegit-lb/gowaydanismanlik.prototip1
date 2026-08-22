@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataFile = path.join(root, 'data', 'site.json');
 const templates = path.join(root, 'templates');
 const output = path.join(root, 'hizmet-katalogu.html');
+const runtimeConfig = path.join(root, 'site-config.js');
 const escapeHtml = (value) => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 const render = (template, values) => template.replace(/{{\s*([\w]+)\s*}}/g, (_, key) => values[key] ?? '');
 const read = (file) => fs.readFile(file, 'utf8');
@@ -16,6 +17,8 @@ async function main() {
   if (!Array.isArray(site.navigation) || site.navigation.length === 0) throw new Error('navigation must contain at least one item');
   if (!Array.isArray(site.services) || site.services.length === 0) throw new Error('services must contain at least one item');
   if (!site.heroes?.['hizmetler.html']?.asset) throw new Error('heroes.hizmetler.html.asset is required');
+  if (!Array.isArray(site.slogans) || site.slogans.length !== 6) throw new Error('slogans must contain exactly 6 items');
+  if (!site.runtimeNavigation?.primary?.length || !Array.isArray(site.runtimeNavigation.servicePages)) throw new Error('runtimeNavigation.primary and servicePages are required');
   const [layout, header, footer, hero, page, card] = await Promise.all([
     read(path.join(templates, 'layout.html')),
     read(path.join(templates, 'partials', 'header.html')),
@@ -39,6 +42,22 @@ async function main() {
     footer: render(footer, common)
   });
   await fs.writeFile(output, generated);
+  const config = {
+    site: site.site,
+    slogans: site.slogans,
+    navigation: site.runtimeNavigation,
+    heroes: site.heroes,
+    services: site.services
+  };
+  await fs.writeFile(runtimeConfig, 'window.GOWAY_SITE_CONFIG=' + JSON.stringify(config) + ';\n');
+  const htmlFiles = (await fs.readdir(root)).filter((file) => file.endsWith('.html'));
+  for (const file of htmlFiles) {
+    const htmlPath = path.join(root, file);
+    let pageHtml = await fs.readFile(htmlPath, 'utf8');
+    pageHtml = pageHtml.replace(/\s*<script src="site-config\.js" defer><\/script>/g, '');
+    pageHtml = pageHtml.replace(/<script src="site-ticker\.js" defer><\/script>/, '<script src="site-config.js" defer></script>\n<script src="site-ticker.js" defer></script>');
+    await fs.writeFile(htmlPath, pageHtml);
+  }
   console.log('Generated:', path.relative(root, output), '(' + site.services.length + ' services)');
 }
 main().catch((error) => { console.error(error.message); process.exitCode = 1; });

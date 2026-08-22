@@ -1,13 +1,8 @@
 (() => {
-  const utilityContext = 'Denizli merkezli · Türkiye geneli hizmet';
-  const slogans = [
-    'Standartları sahada yaşatır.',
-    'Riski görünür, aksiyonu uygulanabilir kılar.',
-    'Denetime değil, sürdürülebilir sisteme hazırlar.',
-    'ISO, İSG ve kurumsal gelişimi tek yol haritasında buluşturur.',
-    'Kâğıt üzerindeki sistemi sahada çalışan düzene dönüştürür.',
-    'Ölçülebilir gelişim için net sorumluluklar oluşturur.'
-  ];
+  const config = window.GOWAY_SITE_CONFIG || {};
+  const site = config.site || {};
+  const utilityContext = site.address || 'Denizli merkezli · Türkiye geneli hizmet';
+  const slogans = config.slogans || ['Standartları sahada yaşatır.'];
 
   const createTicker = () => {
     const ticker = document.createElement('div');
@@ -37,24 +32,9 @@
     const nav = container?.querySelector(':scope > .page-nav');
     if (!header || !container || !nav) return;
 
-    const primaryRoutes = [
-      ['index.html', 'Ana Sayfa'],
-      ['hizmetler.html', 'Hizmetler'],
-      ['uzman-kadro.html', 'Uzman Kadro'],
-      ['cozumler.html', 'Çözümler'],
-      ['hakkimizda.html', 'Hakkımızda'],
-      ['sss.html', 'SSS'],
-      ['iletisim.html', 'İletişim']
-    ];
+    const primaryRoutes = (config.navigation?.primary || []).map((item) => [item.href, item.label]);
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const servicePages = [
-      'iso-yonetim-sistemleri.html', 'iso-denetim-hazirligi.html', 'isg-yonetimi.html',
-      'saha-guvenligi.html', 'yangin-acil-durum.html', 'kurumsal-egitim.html',
-      'surdurulebilirlik.html', 'entegre-program.html', 'tekstil-standartlari.html',
-      'cevre-danismanligi.html', 'tesvik-danismanligi.html', 'ciktilar.html',
-      'ihtiyac-rehberi.html', 'katalog.html', 'calisma-modelleri.html', 'medya.html',
-      'is-ortaklari.html'
-    ];
+    const servicePages = config.navigation?.servicePages || [];
     const activePage = primaryRoutes.some(([href]) => href === currentPage)
       ? currentPage
       : servicePages.includes(currentPage) ? 'hizmetler.html' : '';
@@ -83,7 +63,37 @@
     container.append(actions);
   };
 
+  const applySiteIdentity = () => {
+    document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+      if (site.phone) { link.href = site.phoneHref || 'tel:' + site.phone.replace(/\D/g, ''); link.textContent = site.phone; }
+    });
+    document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+      if (site.email) { link.href = site.emailHref || 'mailto:' + site.email; link.textContent = site.email; }
+    });
+    document.querySelectorAll('.utility-context, .footer-contact-block span, .home-footer-contact span').forEach((element) => {
+      if (site.address) element.textContent = site.address;
+    });
+  };
+
+  const ensureHeroMapping = () => {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const heroConfig = config.heroes?.[currentPage];
+    const picture = document.querySelector('.hero-media');
+    if (!heroConfig || !picture) return;
+    const srcset = (extension) => [400, 800, 1200, 1600].map((width) => `assets/hero/${heroConfig.asset}-${width}.${extension} ${width}w`).join(', ');
+    picture.querySelector('source[type="image/avif"]')?.setAttribute('srcset', srcset('avif'));
+    picture.querySelector('source[type="image/webp"]')?.setAttribute('srcset', srcset('webp'));
+    const image = picture.querySelector('img');
+    if (image) image.src = `assets/hero/${heroConfig.asset}-1200.webp`;
+    const preload = document.querySelector('link[rel="preload"][as="image"]');
+    if (preload) {
+      preload.href = `assets/hero/${heroConfig.asset}-1200.webp`;
+      preload.imagesrcset = srcset('webp');
+    }
+  };
+
   const utility = document.querySelector('.utility');
+  ensureHeroMapping();
   if (utility) {
     const container = utility.querySelector('.container');
     if (!container || container.querySelector('.site-slogan-ticker')) return;
@@ -96,12 +106,13 @@
     }
     context.classList.add('utility-context');
     context.textContent = utilityContext;
-    if (phone) {
-      phone.href = 'tel:+905334390003';
-      phone.textContent = '+90 533 439 00 03';
+    if (phone && site.phone) {
+      phone.href = site.phoneHref || 'tel:' + site.phone.replace(/\D/g, '');
+      phone.textContent = site.phone;
     }
     container.insertBefore(createTicker(), phone || null);
     ensureSharedHeader();
+    applySiteIdentity();
     return;
   }
 
@@ -117,10 +128,11 @@
   container.className = 'container';
   context.className = 'utility-context';
   context.textContent = utilityContext;
-  phone.href = 'tel:+905334390003';
-  phone.textContent = '+90 533 439 00 03';
+  phone.href = site.phoneHref || 'tel:' + (site.phone || '').replace(/\D/g, '');
+  phone.textContent = site.phone || '';
   container.append(context, createTicker(), phone);
   generatedUtility.append(container);
   header.before(generatedUtility);
   ensureSharedHeader();
+  applySiteIdentity();
 })();
