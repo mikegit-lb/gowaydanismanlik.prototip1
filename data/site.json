@@ -8,6 +8,11 @@
     "address": "Denizli · Türkiye geneli hizmet",
     "serviceArea": "Türkiye geneli"
   },
+  "localization": {
+    "enabled": false,
+    "defaultLocale": "tr-TR",
+    "locales": []
+  },
   "navigation": [
     { "label": "Ana Sayfa", "href": "index.html" },
     { "label": "Hizmetler", "href": "hizmetler.html" },

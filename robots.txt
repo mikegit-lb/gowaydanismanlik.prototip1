@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Crawl-delay is intentionally omitted: Google ignores it and it can reduce crawl efficiency.
 Sitemap: https://www.gowaydanismanlik.com/sitemap.xml
