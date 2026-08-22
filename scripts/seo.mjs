@@ -19,7 +19,7 @@ function serviceSchema(file, service) {
 async function injectPage(file, service) {
   const full = path.join(root, file);
   let html = await fs.readFile(full, 'utf8');
-  html = html.replace(/<script type="application\/ld\+json" data-seo-schema>[\s\S]*?<\/script>/g, '');
+  html = html.replace(/\s*<script type="application\/ld\+json" data-seo-schema>[\s\S]*?<\/script>\s*/g, '\n');
   html = html.replace(/<link rel="alternate" hreflang="[^"]+" href="[^"]+">\s*/g, '');
   if (!html.includes('href="' + canonical(file) + '"')) html = html.replace('</head>', '  <link rel="canonical" href="' + canonical(file) + '">\n</head>');
   if (file === 'hizmetler.html') {
