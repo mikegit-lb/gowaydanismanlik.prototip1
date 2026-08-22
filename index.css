@@ -730,7 +730,7 @@
     }
 
 /* Multipage home: retain the visual language while replacing the long scroll with page routes. */
-    body.multi-page-home main > section:not(#anasayfa):not(.home-hub) { display: none !important; }
+    body.multi-page-home main > section:not(#anasayfa):not(.home-hub):not(.audience-section) { display: none !important; }
     body.multi-page-home .footer { display: none !important; }
     body.multi-page-home .hero { z-index: 2; }
     .home-hub {
@@ -810,6 +810,23 @@
     .home-hub-actions .btn-primary:hover { color: #f4f8fb; border-color: #227ea7; background: #227ea7; }
     .home-hub-actions .btn-secondary { border-color: rgb(244 248 251 / .62); background: rgb(244 248 251 / .08); }
     .home-hub-actions .btn-secondary:hover { border-color: #f4f8fb; background: rgb(244 248 251 / .16); }
+    .audience-section { padding: clamp(78px, 8vw, 126px) 0; color: #115a76; background: linear-gradient(180deg, #f4f8fb 0%, rgb(34 126 167 / .08) 100%); }
+    .audience-heading { max-width: 760px; margin-bottom: 34px; }
+    .audience-heading .eyebrow { color: #227ea7; }
+    .audience-heading h2 { max-width: 720px; margin: 0; font-size: clamp(2rem, 4vw, 3.15rem); font-weight: 850; line-height: 1.04; letter-spacing: -.052em; }
+    .audience-heading .lead { max-width: 660px; margin-top: 18px; color: rgb(17 90 118 / .74); }
+    .audience-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+    .audience-card { position: relative; display: flex; min-height: 260px; grid-column: span 2; flex-direction: column; padding: 24px 23px 21px; overflow: hidden; border: 1px solid rgb(17 90 118 / .15); border-radius: 17px; color: #115a76; background: rgb(244 248 251 / .96); box-shadow: 0 12px 28px rgb(17 90 118 / .06); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .audience-card:nth-child(4) { grid-column: 2 / span 2; }
+    .audience-card::before { position: absolute; inset: 0 auto 0 0; width: 4px; background: #227ea7; content: ""; }
+    .audience-card:hover, .audience-card:focus-visible { transform: translateY(-4px); border-color: rgb(34 126 167 / .52); box-shadow: 0 22px 42px rgb(17 90 118 / .13); outline: none; }
+    .audience-card:nth-child(3n+1)::before { background: #d6a02b; }
+    .audience-role { color: #227ea7; font-size: .72rem; font-weight: 900; letter-spacing: .1em; line-height: 1.3; text-transform: uppercase; }
+    .audience-card h3 { margin: 15px 0 0; color: #115a76; font-size: clamp(1.18rem, 1.7vw, 1.42rem); font-weight: 850; line-height: 1.15; letter-spacing: -.035em; }
+    .audience-card p { margin: 13px 0 0; color: rgb(17 90 118 / .75); font-size: .92rem; line-height: 1.58; }
+    .audience-proof { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 18px; color: #227ea7; font-size: .76rem; font-weight: 850; line-height: 1.4; }
+    .audience-proof b { display: grid; width: 31px; height: 31px; flex: 0 0 auto; place-items: center; border: 1px solid rgb(34 126 167 / .28); border-radius: 50%; color: #227ea7; background: rgb(34 126 167 / .08); font-size: 1rem; transition: transform .2s ease, color .2s ease, background .2s ease; }
+    .audience-card:hover .audience-proof b, .audience-card:focus-visible .audience-proof b { transform: translateX(3px); color: #f4f8fb; background: #227ea7; }
     .home-footer { border-top: 3px solid #d6a02b; color: rgb(244 248 251 / .76); background: #115a76; }
     .home-footer-main { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr); gap: 44px; padding: 42px 0 28px; }
     .home-footer-lockup { display: flex; align-items: center; gap: 14px; }
@@ -828,6 +845,8 @@
       .home-hub { padding-top: 132px; }
     }
     @media (max-width: 760px) {
+      .audience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .audience-card, .audience-card:nth-child(4) { grid-column: auto; }
       .home-hub-heading { grid-template-columns: 1fr; gap: 22px; }
       .home-route-grid { grid-template-columns: 1fr; }
       .home-hub-contact { grid-template-columns: 1fr; gap: 26px; }
@@ -838,6 +857,9 @@
       .home-footer-nav { justify-content: flex-start; }
     }
     @media (max-width: 520px) {
+      .audience-section { padding: 68px 0 74px; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .audience-card, .audience-card:nth-child(4) { min-height: 0; grid-column: auto; }
       .home-hub { padding: 68px 0 74px; }
       .home-route { min-height: 0; grid-template-columns: minmax(0, 1fr) 38px; gap: 14px; padding: 21px 19px 21px 22px; }
       .home-route::before { inset-block: 15px; }
