@@ -13,6 +13,7 @@ const dist = path.join(root, 'dist');
 const widths = [400, 800, 1200, 1600];
 const heroSources = [
   'ana-sayfa-iso-isg-kurumsal-hero',
+  'enerji-yonetimi-hero',
   'cevre-danismanligi-hero',
   'cozumler-hero-planlama',
   'goway-hero-ambient',

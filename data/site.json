@@ -46,7 +46,7 @@
       "surdurulebilirlik.html", "entegre-program.html", "tekstil-standartlari.html",
       "cevre-danismanligi.html", "tesvik-danismanligi.html", "ciktilar.html",
       "ihtiyac-rehberi.html", "katalog.html", "calisma-modelleri.html", "medya.html",
-      "is-ortaklari.html", "sektorel-cozumler.html"
+      "is-ortaklari.html", "sektorel-cozumler.html", "iso-50001-enerji-yonetimi.html"
     ]
   },
   "heroes": {
@@ -57,10 +57,11 @@
     "uzman-kadro.html": { "label": "Uzman kadro", "asset": "uzman-kadro-hero-saha-ekibi" },
     "sss.html": { "label": "Sıkça sorulan sorular", "asset": "sss-hero-danismanlik" },
     "iletisim.html": { "label": "İletişim", "asset": "iletisim-hero-ilk-gorusme" },
-    "hakkimizda.html": { "label": "Hakkımızda", "asset": "hakkimizda-hero" }
-    ,"cevre-danismanligi.html": { "label": "Çevre danışmanlığı", "asset": "cevre-danismanligi-hero" },
+    "hakkimizda.html": { "label": "Hakkımızda", "asset": "hakkimizda-hero" },
+    "cevre-danismanligi.html": { "label": "Çevre danışmanlığı", "asset": "cevre-danismanligi-hero" },
     "tesvik-danismanligi.html": { "label": "Teşvik danışmanlığı", "asset": "tesvik-danismanligi-hero" },
-    "tekstil-standartlari.html": { "label": "Tekstil standartları", "asset": "tekstil-standartlari-hero" }
+    "tekstil-standartlari.html": { "label": "Tekstil standartları", "asset": "tekstil-standartlari-hero" },
+    "iso-50001-enerji-yonetimi.html": { "label": "ISO 50001 enerji yönetimi", "asset": "enerji-yonetimi-hero" }
   },
   "services": [
     { "slug": "iso-yonetim-sistemleri", "title": "ISO Yönetim Sistemleri", "summary": "Sistemleri kopya dokümanlara değil, gerçek operasyonunuza göre kuruyoruz.", "href": "iso-yonetim-sistemleri.html", "category": "Yönetim standartları" },
@@ -73,6 +74,7 @@
     { "slug": "tesvik-danismanligi", "title": "Teşvik Danışmanlığı", "summary": "Yatırım, Ar-Ge ve istihdam için kamu teşvik ve hibe başvurularını hazırlayın.", "href": "tesvik-danismanligi.html", "category": "Çevre ve sürdürülebilirlik" },
     { "slug": "tekstil-standartlari", "title": "Tekstil Standartları", "summary": "GOTS, GRS, OCS ve RCS izlenebilirliği ile denetim hazırlığını güçlendirin.", "href": "tekstil-standartlari.html", "category": "Sektörel çözümler" },
     { "slug": "surdurulebilirlik", "title": "Sürdürülebilirlik", "summary": "Karbon ayak izi, sürdürülebilirlik raporlaması ve ESG hedeflerini ölçülebilir kılın.", "href": "surdurulebilirlik.html", "category": "Çevre ve sürdürülebilirlik" },
+    { "slug": "iso-50001-enerji-yonetimi", "title": "ISO 50001 Enerji Yönetimi", "summary": "Enerji gözden geçirmesi, EnPI hedefleri ve doğrulanabilir aksiyonlarla enerji performansını yönetin.", "href": "iso-50001-enerji-yonetimi.html", "category": "Çevre ve sürdürülebilirlik" },
     { "slug": "entegre-program", "title": "Entegre ISO/İSG Programı", "summary": "9001, 14001 ve 45001’i üç fazlı tek bir gelişim yol haritasında birleştirin.", "href": "entegre-program.html", "category": "Gelişim" },
     { "slug": "is-ortaklari", "title": "Çözüm Ortaklığı", "summary": "Belgelendirme, test, eğitim ve uzmanlık ihtiyaçları için güvenilir partner ağı.", "href": "is-ortaklari.html", "category": "Sektörel çözümler" },
     { "slug": "sektorel-cozumler", "title": "Sektörel Çözümler", "summary": "Tekstil, üretim, metal, gıda, depolama, inşaat, otomotiv, enerji ve çok lokasyonlu işletmeler için çözümler.", "href": "sektorel-cozumler.html", "category": "Sektörel çözümler" }
