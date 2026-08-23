@@ -25,20 +25,18 @@
     { "label": "Ana Sayfa", "href": "index.html" },
     { "label": "Hizmetler", "href": "hizmetler.html" },
     { "label": "Sektörler", "href": "sektorel-cozumler.html" },
-    { "label": "Bilgi Merkezi", "href": "bilgi-merkezi.html" },
-    { "label": "Referanslar", "href": "referanslar.html" },
-    { "label": "Belge Sorgula", "href": "belge-sorgulama.html" },
-    { "label": "Ön Görüşme", "href": "on-gorusme.html" }
+    { "label": "Kaynaklar", "href": "kaynaklar.html" },
+    { "label": "Vaka Çalışmaları", "href": "referanslar.html" },
+    { "label": "Hakkımızda", "href": "hakkimizda.html" }
   ],
   "runtimeNavigation": {
     "primary": [
       { "label": "Ana Sayfa", "href": "index.html" },
       { "label": "Hizmetler", "href": "hizmetler.html" },
-      { "label": "Uzman Kadro", "href": "uzman-kadro.html" },
-      { "label": "Çözümler", "href": "cozumler.html" },
-      { "label": "Hakkımızda", "href": "hakkimizda.html" },
-      { "label": "SSS", "href": "sss.html" },
-      { "label": "İletişim", "href": "iletisim.html" }
+      { "label": "Sektörler", "href": "sektorel-cozumler.html" },
+      { "label": "Kaynaklar", "href": "kaynaklar.html" },
+      { "label": "Vaka Çalışmaları", "href": "referanslar.html" },
+      { "label": "Hakkımızda", "href": "hakkimizda.html" }
     ],
     "servicePages": [
       "iso-yonetim-sistemleri.html", "iso-denetim-hazirligi.html", "isg-yonetimi.html",
@@ -51,9 +49,9 @@
     ]
   },
   "trainingCatalog": [
-    { "topic": "ISO 45001 İç Tetkikçi", "sector": "ISO / İSG", "duration": "2 gün", "audience": "İSG uzmanları · kalite", "level": "Orta", "certificate": "Goway + IQNet*", "nextDate": "15–16 Eyl", "availability": "Açık" },
+    { "topic": "ISO 45001 İç Tetkikçi", "sector": "ISO / İSG", "duration": "2 gün", "audience": "İSG uzmanları · kalite", "level": "Orta", "certificate": "Katılım Belgesi", "nextDate": "15–16 Eyl", "availability": "Açık" },
     { "topic": "Risk Değerlendirmesi (5x5, Fine-Kinney)", "sector": "İSG", "duration": "1 gün", "audience": "Mühendisler · şefler", "level": "Temel", "certificate": "Katılım Belgesi", "nextDate": "22 Eyl", "availability": "Açık" },
-    { "topic": "LOTO Yetkili Kişi", "sector": "Saha güvenliği", "duration": "0.5 gün", "audience": "Bakım · operatör", "level": "Temel", "certificate": "Yetki Belgesi", "nextDate": "Talep üzerine", "availability": "İç" },
+    { "topic": "LOTO Uygulama Eğitimi", "sector": "Saha güvenliği", "duration": "0.5 gün", "audience": "Bakım · operatör", "level": "Temel", "certificate": "Katılım Belgesi", "nextDate": "Talep üzerine", "availability": "İç" },
     { "topic": "GOTS/GRS Sertifikasyon Hazırlığı", "sector": "Tekstil", "duration": "1 gün", "audience": "Kalite · sürdürülebilirlik", "level": "Orta", "certificate": "Katılım Belgesi", "nextDate": "05 Eki", "availability": "Açık" },
     { "topic": "Kök Neden Analizi (5N, Ishikawa, 8D)", "sector": "Kalite", "duration": "1 gün", "audience": "Kalite · süreç sahipleri", "level": "Orta", "certificate": "Katılım Belgesi", "nextDate": "19 Eki", "availability": "Açık" }
   ],

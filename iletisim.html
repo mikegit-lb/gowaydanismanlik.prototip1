@@ -26,11 +26,27 @@
         <p>İlk iletişimde konunuzu, işletme türünüzü ve hedef tarihinizi paylaşmanız yeterlidir. Uygun hizmet sayfasına veya ön görüşmeye yönlendirelim.</p>
         <ul><li><a href="tel:+905334390003">+90 533 439 00 03</a></li><li><a href="mailto:goway@gowaydanismanlik.com">goway@gowaydanismanlik.com</a></li><li>Denizli · Türkiye geneli hizmet</li></ul>
       </section>
-      <section class="contact-card">
+      <section class="contact-card" aria-labelledby="contact-form-title">
         <p class="eyebrow">Ön görüşme</p>
-        <h2>Görüşme formuna geçin</h2>
-        <p>Mevcut durumunuzu ve önceliğinizi paylaşabileceğiniz form, ayrı bir sayfada açılır. Böylece talebiniz doğru kapsamla eşleştirilir.</p>
-        <div class="hero-actions"><a class="button primary" href="on-gorusme.html">Ön görüşme formunu açın</a><a class="button secondary" href="hizmetler.html">Hizmetleri inceleyin</a></div>
+        <h2 id="contact-form-title">Talebinizi doğrudan iletin</h2>
+        <p>Telefon veya e-posta tercihinizi seçin; hizmet ve sektör bilgisi talebin doğru kapsamla eşleştirilmesine yardımcı olur.</p>
+        <form id="contactConsultationForm" data-consultation-form novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="contactName">Ad soyad *</label><input id="contactName" name="name" autocomplete="name" required><span class="field-error" id="contactNameError" data-error-for="name"></span></div>
+            <div class="field"><label for="contactCompany">Şirket adı</label><input id="contactCompany" name="company" autocomplete="organization"><span class="field-error" id="contactCompanyError" data-error-for="company"></span></div>
+            <fieldset class="field contact-method"><legend>İletişim tercihi *</legend><div class="contact-method-options"><label><input name="contact_method" type="radio" value="telefon"> Telefon</label><label><input name="contact_method" type="radio" value="eposta"> E-posta</label><label><input name="contact_method" type="radio" value="farketmez" checked> Fark etmez</label></div></fieldset>
+            <div class="field"><label for="contactPhone">Telefon</label><input id="contactPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel"><span class="field-error" id="contactPhoneError" data-error-for="phone"></span></div>
+            <div class="field"><label for="contactEmail">E-posta</label><input id="contactEmail" name="email" type="email" inputmode="email" autocomplete="email"><span class="field-error" id="contactEmailError" data-error-for="email"></span></div>
+            <div class="field"><label for="contactService">Hizmet *</label><select id="contactService" name="service" required><option value="">Hizmet seçiniz</option><option>ISO Yönetim Sistemleri</option><option>ISO Denetim Hazırlığı</option><option>İSG ve Saha Güvenliği</option><option>Yangın ve Acil Durum</option><option>Kurumsal Eğitim</option><option>Çevre ve Sürdürülebilirlik</option><option>ISO 50001 Enerji Yönetimi</option><option>Tekstil Standartları</option><option>Genel ön görüşme</option></select><span class="field-error" id="contactServiceError" data-error-for="service"></span></div>
+            <div class="field"><label for="contactSector">Sektör</label><select id="contactSector" name="sector"><option value="">Sektör seçiniz</option><option data-slug="uretim-metal">Üretim ve metal</option><option data-slug="gida">Gıda üretimi</option><option data-slug="tekstil-hazir-giyim">Tekstil ve hazır giyim</option><option data-slug="lojistik-depolama">Lojistik ve depolama</option><option data-slug="insaat-montaj">İnşaat ve montaj</option><option data-slug="otomotiv-yan-sanayi">Otomotiv ve yan sanayi</option><option data-slug="kimya-plastik">Kimya ve plastik</option><option data-slug="enerji-altyapi">Enerji ve altyapı</option><option data-slug="saglik-laboratuvar">Sağlık ve laboratuvar</option><option data-slug="hizmet-cok-lokasyon">Hizmet ve çok lokasyon</option></select></div>
+            <div class="field full"><label for="contactMessage">Kısa mesaj *</label><textarea id="contactMessage" name="message" required placeholder="Öncelikli ihtiyacınızı ve hedef tarihinizi paylaşın."></textarea><span class="field-error" id="contactMessageError" data-error-for="message"></span></div>
+            <div class="consent-field"><label><input name="kvkk_ack" type="checkbox" value="evet" required><span><a href="kvkk-aydinlatma-metni.html" target="_blank" rel="noopener">KVKK Aydınlatma Metni</a>'ni okudum ve talebim için bilgi verildi. *</span></label><span class="field-error" id="contactKvkkError" data-error-for="kvkk_ack"></span></div>
+            <div class="consent-field"><label><input name="marketing_opt_in" type="checkbox" value="evet"><span>Yeni rehber ve etkinlik duyurularını almak istiyorum.</span></label></div>
+            <div class="honeypot-field" aria-hidden="true"><label for="contactWebsite">Bu alanı boş bırakın</label><input id="contactWebsite" name="company_website" tabindex="-1" autocomplete="off"></div>
+            <input type="hidden" name="source_page"><input type="hidden" name="source_offer">
+          </div>
+          <div class="form-actions"><button class="button primary" type="submit">Talebi güvenli biçimde gönder</button><p class="form-status" data-form-status role="status" aria-live="polite" tabindex="-1"></p></div>
+        </form>
       </section>
     </div>
   </div></main>

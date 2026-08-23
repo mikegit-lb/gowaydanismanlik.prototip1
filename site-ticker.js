@@ -1,19 +1,29 @@
 (() => {
   const config = window.GOWAY_SITE_CONFIG || {};
   const site = config.site || {};
-  const utilityContext = site.address || 'Denizli merkezli · Türkiye geneli hizmet';
-  const slogans = config.slogans || ['Standartları sahada yaşatır.'];
+  const navigation = config.navigation || {};
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const legalPages = new Set(['404.html', 'cerez-politikasi.html', 'gizlilik-politikasi.html', 'kvkk-aydinlatma-metni.html', 'kullanim-sartlari.html']);
+  const popupExcluded = new Set([...legalPages, 'on-gorusme.html', 'iletisim.html']);
+  const focusableSelector = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+
+  const track = (eventName, detail = {}) => {
+    const safeDetail = Object.fromEntries(Object.entries(detail).filter(([, value]) => ['string', 'number', 'boolean'].includes(typeof value)));
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...safeDetail });
+    window.dispatchEvent(new CustomEvent('goway:analytics', { detail: { event: eventName, ...safeDetail } }));
+  };
+  window.gowayTrack = track;
 
   const createTicker = () => {
+    const slogans = config.slogans || ['Standartları sahada yaşatır.'];
     const ticker = document.createElement('div');
     const stage = document.createElement('div');
-
     ticker.className = 'site-slogan-ticker';
     ticker.setAttribute('role', 'region');
     ticker.setAttribute('aria-label', `Goway sloganları: ${slogans.join(' ')}`);
     stage.className = 'site-slogan-stage';
     stage.setAttribute('aria-hidden', 'true');
-
     slogans.forEach((slogan, index) => {
       const item = document.createElement('span');
       item.className = 'site-slogan-item';
@@ -21,118 +31,405 @@
       item.textContent = slogan;
       stage.append(item);
     });
-
     ticker.append(stage);
     return ticker;
+  };
+
+  const activeNavigationPage = () => {
+    const primary = navigation.primary || [];
+    if (primary.some((item) => item.href === currentPage)) return currentPage;
+    if ((navigation.sectorPages || []).includes(currentPage)) return 'sektorel-cozumler.html';
+    if ((navigation.resourcePages || []).includes(currentPage)) return 'kaynaklar.html';
+    if ((navigation.servicePages || []).includes(currentPage)) return 'hizmetler.html';
+    return '';
   };
 
   const ensureSharedHeader = () => {
     const header = document.querySelector('.site-header');
     const container = header?.querySelector(':scope > .container');
-    const nav = container?.querySelector(':scope > .page-nav');
+    const nav = container?.querySelector(':scope > .page-nav, :scope > .nav-links');
     if (!header || !container || !nav) return;
+    container.querySelector('.brand')?.removeAttribute('aria-label');
 
-    const primaryRoutes = (config.navigation?.primary || []).map((item) => [item.href, item.label]);
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const servicePages = config.navigation?.servicePages || [];
-    const activePage = primaryRoutes.some(([href]) => href === currentPage)
-      ? currentPage
-      : servicePages.includes(currentPage) ? 'hizmetler.html' : '';
-
+    nav.id = nav.id || 'site-navigation';
     nav.classList.add('nav-links');
     nav.setAttribute('aria-label', 'Ana menü');
-    nav.replaceChildren(...primaryRoutes.map(([href, label]) => {
+    const activePage = activeNavigationPage();
+    nav.replaceChildren(...(navigation.primary || []).map((item) => {
       const link = document.createElement('a');
-      link.href = href;
-      link.textContent = label;
-      if (href === activePage) {
+      link.href = item.href;
+      link.textContent = item.label;
+      if (item.href === activePage) {
         link.classList.add('active');
         link.setAttribute('aria-current', 'page');
       }
       return link;
     }));
-    if (container.querySelector(':scope > .header-actions')) return;
 
-    const actions = document.createElement('div');
-    const cta = document.createElement('a');
-    actions.className = 'header-actions';
-    cta.className = 'button primary header-cta';
-    cta.href = 'on-gorusme.html';
-    cta.textContent = 'Ücretsiz Ön Görüşme';
-    actions.append(cta);
-    container.append(actions);
+    let toggle = container.querySelector('.menu-toggle');
+    if (!toggle) {
+      toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'menu-toggle';
+      toggle.innerHTML = '<span></span><span></span><span></span><span class="visually-hidden">Menüyü aç</span>';
+      container.insertBefore(toggle, nav);
+    }
+    if (toggle.parentElement !== container) container.insertBefore(toggle, nav);
+    if (toggle.querySelectorAll(':scope > span:not(.visually-hidden)').length !== 3) toggle.innerHTML = '<span></span><span></span><span></span><span class="visually-hidden">Menüyü aç</span>';
+    toggle.setAttribute('aria-controls', nav.id);
+    toggle.setAttribute('aria-expanded', 'false');
+
+    if (!container.querySelector(':scope > .header-actions')) {
+      const actions = document.createElement('div');
+      actions.className = 'header-actions';
+      actions.innerHTML = '<a class="button primary header-cta" href="on-gorusme.html">Ücretsiz Ön Görüşme</a>';
+      container.append(actions);
+    }
+
+    let backdrop = document.querySelector('.nav-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('button');
+      backdrop.type = 'button';
+      backdrop.className = 'nav-backdrop';
+      backdrop.setAttribute('aria-label', 'Menüyü kapat');
+      backdrop.hidden = true;
+      header.after(backdrop);
+    }
+
+    let returnFocus = null;
+    const mobileQuery = window.matchMedia('(max-width: 820px)');
+    const placeNavigation = () => {
+      if (mobileQuery.matches) document.body.append(nav);
+      else container.insertBefore(nav, container.querySelector('.header-actions'));
+    };
+    placeNavigation();
+    mobileQuery.addEventListener('change', placeNavigation);
+    const setOpen = (open) => {
+      document.body.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('.visually-hidden').textContent = open ? 'Menüyü kapat' : 'Menüyü aç';
+      backdrop.hidden = !open;
+      if (open) {
+        returnFocus = document.activeElement;
+        track('nav_open', { page: currentPage });
+        requestAnimationFrame(() => nav.querySelector('a')?.focus());
+      } else if (returnFocus && document.contains(returnFocus)) {
+        returnFocus.focus();
+      }
+    };
+    toggle.addEventListener('click', () => setOpen(!document.body.classList.contains('menu-open')));
+    backdrop.addEventListener('click', () => setOpen(false));
+    nav.addEventListener('click', (event) => { if (event.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (event) => {
+      if (!document.body.classList.contains('menu-open')) return;
+      if (event.key === 'Escape') { event.preventDefault(); setOpen(false); return; }
+      if (event.key !== 'Tab') return;
+      const items = [...nav.querySelectorAll(focusableSelector)];
+      if (!items.length) return;
+      const first = items[0], last = items.at(-1);
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+    window.matchMedia('(min-width: 821px)').addEventListener('change', (event) => { if (event.matches) setOpen(false); });
+  };
+
+  const ensureUtility = () => {
+    if (document.querySelector('.topbar')) return;
+    let utility = document.querySelector('.utility');
+    const header = document.querySelector('.site-header');
+    if (!utility && header) {
+      utility = document.createElement('div');
+      utility.className = 'utility utility-generated';
+      utility.innerHTML = '<div class="container"><span class="utility-context"></span><a></a></div>';
+      header.before(utility);
+    }
+    const container = utility?.querySelector('.container');
+    if (!container) return;
+    let context = container.querySelector(':scope > span');
+    let phone = container.querySelector(':scope > a');
+    if (!context) { context = document.createElement('span'); container.prepend(context); }
+    if (!phone) { phone = document.createElement('a'); container.append(phone); }
+    context.classList.add('utility-context');
+    context.textContent = site.address || 'Denizli · Türkiye geneli hizmet';
+    phone.href = site.phoneHref || 'tel:+905334390003';
+    phone.textContent = site.phone || '+90 533 439 00 03';
+    if (!container.querySelector('.site-slogan-ticker')) container.insertBefore(createTicker(), phone);
   };
 
   const applySiteIdentity = () => {
     document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
-      if (site.phone) { link.href = site.phoneHref || 'tel:' + site.phone.replace(/\D/g, ''); link.textContent = site.phone; }
+      link.href = site.phoneHref || 'tel:+905334390003';
+      if (!link.closest('.mobile-action-bar')) link.textContent = site.phone || '+90 533 439 00 03';
     });
     document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
-      if (site.email) { link.href = site.emailHref || 'mailto:' + site.email; link.textContent = site.email; }
-    });
-    document.querySelectorAll('.utility-context, .footer-contact-block span, .home-footer-contact span').forEach((element) => {
-      if (site.address) element.textContent = site.address;
+      link.href = site.emailHref || 'mailto:goway@gowaydanismanlik.com';
+      link.textContent = site.email || 'goway@gowaydanismanlik.com';
     });
   };
 
-  const ensureHeroMapping = () => {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const heroConfig = config.heroes?.[currentPage];
-    const picture = document.querySelector('.hero-media');
-    if (!heroConfig || !picture) return;
-    const srcset = (extension) => [400, 800, 1200, 1600].map((width) => `assets/hero/${heroConfig.asset}-${width}.${extension} ${width}w`).join(', ');
-    picture.querySelector('source[type="image/avif"]')?.setAttribute('srcset', srcset('avif'));
-    picture.querySelector('source[type="image/webp"]')?.setAttribute('srcset', srcset('webp'));
-    const image = picture.querySelector('img');
-    if (image) image.src = `assets/hero/${heroConfig.asset}-1200.webp`;
-    const preload = document.querySelector('link[rel="preload"][as="image"]');
-    if (preload) {
-      preload.href = `assets/hero/${heroConfig.asset}-1200.webp`;
-      preload.imagesrcset = srcset('webp');
+  const ensureMobileActions = () => {
+    if (legalPages.has(currentPage) || document.querySelector('.mobile-action-bar')) return;
+    const bar = document.createElement('nav');
+    bar.className = 'mobile-action-bar';
+    bar.setAttribute('aria-label', 'Hızlı iletişim');
+    bar.innerHTML = `<a href="${site.phoneHref || 'tel:+905334390003'}" data-contact-action="call"><span aria-hidden="true">☎</span><strong>Ara</strong></a><a href="https://wa.me/905334390003" target="_blank" rel="noopener" data-contact-action="whatsapp"><span aria-hidden="true">◉</span><strong>WhatsApp</strong></a><a href="on-gorusme.html" data-contact-action="consultation"><span aria-hidden="true">↗</span><strong>Ön Görüşme</strong></a>`;
+    document.body.append(bar);
+    const form = document.querySelector('[data-consultation-form]');
+    if (form && 'IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => bar.classList.toggle('is-form-visible', entries.some((entry) => entry.isIntersecting)), { threshold: 0.15 }).observe(form);
     }
   };
 
-  const utility = document.querySelector('.utility');
-  ensureHeroMapping();
-  if (utility) {
-    const container = utility.querySelector('.container');
-    if (!container || container.querySelector('.site-slogan-ticker')) return;
+  const ensureFooterTrust = () => {
+    const footer = document.querySelector('.site-footer, .home-footer');
+    if (!footer || footer.querySelector('.footer-trust-badges')) return;
+    const badges = document.createElement('nav');
+    badges.className = 'footer-trust-badges container';
+    badges.setAttribute('aria-label', 'Veri ve bağlantı güveni');
+    badges.innerHTML = '<a href="gizlilik-politikasi.html"><span aria-hidden="true">✓</span><strong>Şifreli bağlantı</strong></a><a href="kvkk-aydinlatma-metni.html"><span aria-hidden="true">✓</span><strong>KVKK bilgilendirmesi</strong></a><a href="gizlilik-politikasi.html#veri-minimizasyonu"><span aria-hidden="true">✓</span><strong>Veri minimizasyonu</strong></a>';
+    const legal = footer.querySelector('.footer-legal-row, .home-footer-legal');
+    if (legal) footer.insertBefore(badges, legal);
+    else footer.append(badges);
+  };
 
-    let context = container.querySelector(':scope > span');
-    const phone = container.querySelector(':scope > a');
-    if (!context) {
-      context = document.createElement('span');
-      container.prepend(context);
+  const ensureApprovedProof = () => {
+    const clients = config.approvedClients || [];
+    const cases = config.approvedCases || [];
+    const main = document.querySelector('main');
+    if (clients.length && main && !document.querySelector('.client-proof-strip')) {
+      const section = document.createElement('section');
+      section.className = 'client-proof-strip';
+      section.setAttribute('aria-labelledby', 'approved-client-title');
+      section.innerHTML = `<div class="container"><p class="eyebrow">Yayın izni doğrulanmış müşteriler</p><h2 id="approved-client-title">Birlikte çalıştığımız kuruluşlar</h2><div class="client-logo-grid">${clients.map((client) => `<img src="${client.logo}" alt="${client.alt}" width="180" height="80" loading="lazy" decoding="async">`).join('')}</div></div>`;
+      main.append(section);
     }
-    context.classList.add('utility-context');
-    context.textContent = utilityContext;
-    if (phone && site.phone) {
-      phone.href = site.phoneHref || 'tel:' + site.phone.replace(/\D/g, '');
-      phone.textContent = site.phone;
+    if (cases.length && currentPage === 'referanslar.html' && main && !document.querySelector('.approved-case-grid')) {
+      const section = document.createElement('section');
+      section.className = 'approved-case-section container';
+      section.innerHTML = `<p class="eyebrow">Doğrulanmış vaka çalışmaları</p><h2>Kaynağı ve yöntemi açıklanmış sonuçlar</h2><div class="approved-case-grid">${cases.map((item) => `<article><span>${item.sector}</span><h3>${item.title}</h3><p>${item.summary}</p><a class="button primary" href="vaka-${item.slug}.html" data-case-view="${item.slug}">Vakayı inceleyin</a></article>`).join('')}</div>`;
+      main.prepend(section);
     }
-    container.insertBefore(createTicker(), phone || null);
-    ensureSharedHeader();
-    applySiteIdentity();
-    return;
-  }
+  };
 
-  const header = document.querySelector('.site-header');
-  if (!header) return;
+  const setFieldError = (form, name, message = '') => {
+    const field = form.elements[name];
+    const error = form.querySelector(`[data-error-for="${name}"]`);
+    const fields = field instanceof RadioNodeList ? [...field] : field ? [field] : [];
+    fields.forEach((control) => {
+      control.setAttribute('aria-invalid', String(Boolean(message)));
+      if (message) control.setAttribute('aria-describedby', error?.id || 'formStatus');
+      else if (control.getAttribute('aria-describedby') === error?.id) control.removeAttribute('aria-describedby');
+    });
+    if (error) error.textContent = message;
+  };
 
-  const generatedUtility = document.createElement('div');
-  const container = document.createElement('div');
-  const context = document.createElement('span');
-  const phone = document.createElement('a');
+  const initializeConsultationForm = (form) => {
+    const status = form.querySelector('[data-form-status]');
+    const submit = form.querySelector('[type="submit"]');
+    const initialButtonLabel = submit?.textContent || 'Talebi gönder';
+    const params = new URLSearchParams(window.location.search);
+    const startedAt = Date.now();
+    const sourcePage = form.elements.source_page;
+    const sourceOffer = form.elements.source_offer;
+    if (sourcePage) sourcePage.value = currentPage;
+    if (sourceOffer) sourceOffer.value = params.get('kaynak') || '';
 
-  generatedUtility.className = 'utility utility-generated';
-  container.className = 'container';
-  context.className = 'utility-context';
-  context.textContent = utilityContext;
-  phone.href = site.phoneHref || 'tel:' + (site.phone || '').replace(/\D/g, '');
-  phone.textContent = site.phone || '';
-  container.append(context, createTicker(), phone);
-  generatedUtility.append(container);
-  header.before(generatedUtility);
+    const service = form.elements.service;
+    const sector = form.elements.sector;
+    const requestedService = params.get('hizmet');
+    const requestedSector = params.get('sektor');
+    const setSelectValue = (select, value) => {
+      if (!select || !value || value.length > 120) return;
+      let option = [...select.options].find((item) => item.value === value || item.dataset.slug === value);
+      if (!option) { option = new Option(value, value); select.add(option); }
+      select.value = option.value;
+    };
+    setSelectValue(service, requestedService);
+    setSelectValue(sector, requestedSector);
+    const contextNote = document.getElementById('contextNote');
+    if (contextNote && (requestedService || requestedSector)) {
+      const parts = [requestedService, requestedSector].filter(Boolean);
+      contextNote.textContent = `Form ${parts.join(' · ')} kapsamıyla hazırlandı.`;
+      contextNote.dataset.visible = 'true';
+    }
+
+    const validate = () => {
+      let valid = true;
+      form.querySelectorAll('[data-error-for]').forEach((error) => { error.textContent = ''; });
+      form.querySelectorAll('[aria-invalid="true"]').forEach((field) => field.setAttribute('aria-invalid', 'false'));
+      const method = form.elements.contact_method?.value || 'farketmez';
+      const phone = form.elements.phone?.value.trim() || '';
+      const email = form.elements.email?.value.trim() || '';
+      if ((method === 'telefon' && !phone) || (method === 'farketmez' && !phone && !email)) {
+        setFieldError(form, 'phone', method === 'telefon' ? 'Telefonla dönüş için numaranızı girin.' : 'Telefon veya e-posta alanlarından en az birini girin.');
+        valid = false;
+      }
+      if ((method === 'eposta' && !email) || (method === 'farketmez' && !phone && !email)) {
+        setFieldError(form, 'email', method === 'eposta' ? 'E-postayla dönüş için adresinizi girin.' : 'Telefon veya e-posta alanlarından en az birini girin.');
+        valid = false;
+      }
+      for (const field of form.querySelectorAll('[required]')) {
+        if (field.type === 'checkbox' ? !field.checked : !field.value.trim()) {
+          setFieldError(form, field.name, 'Bu alanı tamamlayın.');
+          valid = false;
+        }
+      }
+      if (form.elements.email?.value && !form.elements.email.validity.valid) { setFieldError(form, 'email', 'Geçerli bir e-posta adresi girin.'); valid = false; }
+      return valid;
+    };
+
+    const focusFirstError = () => form.querySelector('[aria-invalid="true"]')?.focus();
+    form.addEventListener('input', (event) => { if (event.target.name) setFieldError(form, event.target.name); });
+    form.addEventListener('change', (event) => { if (event.target.name) setFieldError(form, event.target.name); });
+    form.addEventListener('focusin', () => { if (!form.dataset.started) { form.dataset.started = 'true'; track('form_start', { page: currentPage }); } }, { once: true });
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = '';
+      status.dataset.state = '';
+      if (!validate()) {
+        status.textContent = 'Formda düzeltilmesi gereken alanlar var.';
+        status.dataset.state = 'error';
+        track('form_error', { page: currentPage, reason: 'validation' });
+        focusFirstError();
+        return;
+      }
+      if (form.elements.company_website?.value) return;
+      if (Date.now() - startedAt < (config.forms?.minimumCompletionMs || 3000)) {
+        status.textContent = 'Form çok hızlı tamamlandı. Bilgilerinizi kontrol edip yeniden deneyin.';
+        status.dataset.state = 'error';
+        track('form_error', { page: currentPage, reason: 'timing' });
+        return;
+      }
+      const endpoint = config.forms?.consultationEndpoint;
+      if (!endpoint) {
+        status.innerHTML = `Güvenli form servisi henüz etkinleştirilmedi. Şimdi <a href="${site.phoneHref || 'tel:+905334390003'}">telefonla arayın</a> veya <a href="${site.emailHref || 'mailto:goway@gowaydanismanlik.com'}">e-posta gönderin</a>.`;
+        status.dataset.state = 'error';
+        track('form_error', { page: currentPage, reason: 'endpoint_missing' });
+        return;
+      }
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), config.forms?.timeoutMs || 12000);
+      submit.disabled = true;
+      submit.textContent = 'Talebiniz gönderiliyor…';
+      status.textContent = 'Bilgileriniz güvenli biçimde iletiliyor.';
+      status.dataset.state = 'loading';
+      const payload = new FormData(form);
+      payload.append('_subject', `Goway ön görüşme talebi · ${payload.get('service') || 'Genel'}`);
+      try {
+        const response = await fetch(endpoint, { method: 'POST', body: payload, headers: { Accept: 'application/json' }, signal: controller.signal });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          if (response.status === 429) throw new Error('rate-limit');
+          if (Array.isArray(result.errors)) {
+            result.errors.forEach((item) => { if (item.field) setFieldError(form, item.field, item.message || 'Bu alanı kontrol edin.'); });
+          }
+          throw new Error('provider');
+        }
+        form.reset();
+        setSelectValue(service, requestedService);
+        setSelectValue(sector, requestedSector);
+        status.textContent = 'Talebiniz alındı. İletişim tercihinize göre en kısa sürede dönüş yapılacaktır.';
+        status.dataset.state = 'success';
+        sessionStorage.setItem('goway-converted', '1');
+        track('form_success', { page: currentPage, service: requestedService || 'selected' });
+        status.focus();
+      } catch (error) {
+        const offline = !navigator.onLine;
+        const message = offline ? 'İnternet bağlantınızı kontrol edin; bilgileriniz formda korunuyor.' : error.name === 'AbortError' ? 'Gönderim zaman aşımına uğradı. Bilgileriniz korunuyor; yeniden deneyin veya telefonla arayın.' : error.message === 'rate-limit' ? 'Kısa sürede çok sayıda deneme yapıldı. Birkaç dakika sonra yeniden deneyin.' : 'Form servisine şu anda ulaşılamıyor. Bilgileriniz korunuyor; yeniden deneyin veya telefonla arayın.';
+        status.textContent = message;
+        status.dataset.state = 'error';
+        track('form_error', { page: currentPage, reason: offline ? 'offline' : error.message || 'network' });
+      } finally {
+        window.clearTimeout(timer);
+        submit.disabled = false;
+        submit.textContent = initialButtonLabel;
+      }
+    });
+    track('form_view', { page: currentPage });
+  };
+
+  const initializeResourceFilters = () => {
+    const cards = [...document.querySelectorAll('[data-resource-card]')];
+    const filters = [...document.querySelectorAll('[data-resource-filter]')];
+    if (!cards.length || !filters.length) return;
+    const count = document.querySelector('[data-resource-count]');
+    const empty = document.querySelector('[data-resource-empty]');
+    const render = () => {
+      let visible = 0;
+      cards.forEach((card) => {
+        const matches = filters.every((filter) => !filter.value || card.dataset[filter.dataset.resourceFilter] === filter.value);
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      });
+      if (count) count.textContent = `${visible} kaynak gösteriliyor.`;
+      if (empty) empty.hidden = visible > 0;
+    };
+    filters.forEach((filter) => filter.addEventListener('change', render));
+    render();
+  };
+
+  const initializeExitOffer = () => {
+    if (popupExcluded.has(currentPage) || sessionStorage.getItem('goway-converted') || sessionStorage.getItem('goway-resource-downloaded')) return;
+    const lastShown = Number(localStorage.getItem('goway-exit-offer-shown') || 0);
+    if (Date.now() - lastShown < 14 * 24 * 60 * 60 * 1000) return;
+    const isResource = currentPage === 'kaynaklar.html';
+    const isSector = currentPage.startsWith('sektor-');
+    const heading = isResource ? 'Kontrol listesini çalışma planına çevirelim' : isSector ? `${document.querySelector('h1')?.textContent || 'Sektörünüz'} için ilk adımı netleştirin` : 'Ayrılmadan önce doğru başlangıç noktasını bulun';
+    const copy = isResource ? 'İndirdiğiniz kaynağı işletmenizin kapsamına göre yorumlamak için 15 dakikalık ön görüşme planlayın.' : 'Hedef tarihinizi ve öncelikli riskinizi paylaşın; hangi hizmetle başlamanız gerektiğini birlikte belirleyelim.';
+    const dialog = document.createElement('dialog');
+    dialog.className = 'exit-offer';
+    dialog.setAttribute('aria-labelledby', 'exit-offer-title');
+    const params = new URLSearchParams();
+    if (isSector) params.set('sektor', currentPage.replace(/^sektor-|\.html$/g, ''));
+    if (isResource) params.set('kaynak', 'kaynak-merkezi');
+    dialog.innerHTML = `<button class="exit-offer-close" type="button" aria-label="Teklifi kapat">×</button><p class="eyebrow">Ücretsiz ön görüşme</p><h2 id="exit-offer-title">${heading}</h2><p>${copy}</p><div class="hero-actions"><a class="button primary" href="on-gorusme.html?${params}">15 dakikalık görüşme isteyin</a><button class="button secondary exit-offer-dismiss" type="button">Şimdi değil</button></div>`;
+    document.body.append(dialog);
+    let eligibleByTime = false, shown = false, previousFocus = null;
+    const show = () => {
+      if (shown || !eligibleByTime || window.scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) < (matchMedia('(pointer:fine)').matches ? 0.3 : 0.6)) return;
+      shown = true;
+      previousFocus = document.activeElement;
+      localStorage.setItem('goway-exit-offer-shown', String(Date.now()));
+      dialog.classList.toggle('is-mobile-offer', !matchMedia('(pointer:fine)').matches);
+      dialog.showModal();
+      dialog.querySelector('.exit-offer-close').focus();
+      track('popup_view', { page: currentPage, variant: isResource ? 'resource' : isSector ? 'sector' : 'general' });
+    };
+    const close = () => { if (!dialog.open) return; dialog.close(); track('popup_close', { page: currentPage }); previousFocus?.focus(); };
+    dialog.querySelector('.exit-offer-close').addEventListener('click', close);
+    dialog.querySelector('.exit-offer-dismiss').addEventListener('click', close);
+    dialog.querySelector('a').addEventListener('click', () => track('popup_convert', { page: currentPage }));
+    dialog.addEventListener('cancel', (event) => { event.preventDefault(); close(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && dialog.open) { event.preventDefault(); close(); } });
+    if (matchMedia('(pointer:fine)').matches) {
+      window.setTimeout(() => { eligibleByTime = true; }, 20000);
+      document.addEventListener('mouseout', (event) => { if (!event.relatedTarget && event.clientY <= 8) show(); });
+    } else {
+      window.setTimeout(() => { eligibleByTime = true; show(); }, 45000);
+      window.addEventListener('scroll', show, { passive: true });
+    }
+  };
+
+  ensureUtility();
   ensureSharedHeader();
   applySiteIdentity();
+  ensureMobileActions();
+  ensureFooterTrust();
+  ensureApprovedProof();
+  document.querySelectorAll('[data-consultation-form]').forEach(initializeConsultationForm);
+  initializeResourceFilters();
+  initializeExitOffer();
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a');
+    if (!link) return;
+    if (link.matches('[href^="tel:"]')) track('click_call', { page: currentPage });
+    if (link.matches('[href*="wa.me"]')) track('click_whatsapp', { page: currentPage });
+    if (link.matches('[data-resource-download]')) {
+      sessionStorage.setItem('goway-resource-downloaded', '1');
+      track('resource_download', { page: currentPage, resource: link.dataset.resourceDownload, format: link.textContent.trim() });
+    }
+    if (link.matches('[data-case-view]')) track('case_view', { page: currentPage, case: link.dataset.caseView });
+    if (link.closest('.sector-page')) track('sector_cta', { page: currentPage });
+  });
 })();

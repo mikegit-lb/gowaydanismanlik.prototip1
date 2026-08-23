@@ -1,0 +1,123 @@
+{
+  "resources": [
+    {
+      "slug": "iso-9001-hazirlik-kontrol-listesi",
+      "title": "ISO 9001 Hazırlık Kontrol Listesi",
+      "summary": "Süreç, risk, hedef, kayıt ve iç tetkik kanıtlarını ilk değerlendirme öncesinde gözden geçirin.",
+      "sector": "Tüm sektörler",
+      "standard": "ISO 9001",
+      "need": "Denetim hazırlığı",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-denetim-hazirligi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/iso-9001-hazirlik-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/iso-9001-hazirlik-kontrol-listesi-v1.docx" }
+      ]
+    },
+    {
+      "slug": "iso-45001-saha-denetim-kontrol-listesi",
+      "title": "ISO 45001 Saha Denetim Kontrol Listesi",
+      "summary": "Makine, enerji izolasyonu, yüklenici, kimyasal ve acil durum kontrollerini sistematik biçimde kaydedin.",
+      "sector": "Üretim ve saha operasyonları",
+      "standard": "ISO 45001",
+      "need": "Saha güvenliği",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "saha-guvenligi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/iso-45001-saha-denetim-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/iso-45001-saha-denetim-kontrol-listesi-v1.docx" }
+      ]
+    },
+    {
+      "slug": "30-gunluk-denetim-hazirlik-plani",
+      "title": "30 Günlük Denetim Hazırlık Planı",
+      "summary": "Dört haftalık görevleri, sorumluları, kanıtları ve kapanış durumunu tek takvimde yönetin.",
+      "sector": "Tüm sektörler",
+      "standard": "ISO yönetim sistemleri",
+      "need": "Planlama",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-denetim-hazirligi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/30-gunluk-denetim-hazirlik-plani-v1.pdf" },
+        { "format": "XLSX", "href": "assets/downloads/30-gunluk-denetim-hazirlik-plani-v1.xlsx" }
+      ]
+    },
+    {
+      "slug": "denetim-kanit-matrisi",
+      "title": "Denetim Kanıt Matrisi",
+      "summary": "Madde, süreç, sorumlu, kayıt ve güncellik durumunu ilişkilendirerek eksik kanıtları görünür kılın.",
+      "sector": "Tüm sektörler",
+      "standard": "ISO yönetim sistemleri",
+      "need": "Kanıt yönetimi",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-denetim-hazirligi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/denetim-kanit-matrisi-v1.pdf" },
+        { "format": "XLSX", "href": "assets/downloads/denetim-kanit-matrisi-v1.xlsx" }
+      ]
+    },
+    {
+      "slug": "acil-durum-tatbikat-raporu",
+      "title": "Acil Durum Tatbikat Raporu",
+      "summary": "Senaryo, kronoloji, ekip performansı, gözlem ve düzeltici aksiyonları aynı raporda toplayın.",
+      "sector": "Tesis ve çok lokasyon",
+      "standard": "Acil durum yönetimi",
+      "need": "Tatbikat değerlendirmesi",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "yangin-acil-durum.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/acil-durum-tatbikat-raporu-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/acil-durum-tatbikat-raporu-v1.docx" }
+      ]
+    },
+    {
+      "slug": "iso-50001-seu-enpi-calisma-kitabi",
+      "title": "ISO 50001 SEU ve EnPI Çalışma Kitabı",
+      "summary": "Önemli enerji kullanımlarını, baz hattı, üretim etkisini ve performans göstergelerini izleyin.",
+      "sector": "Enerji yoğun işletmeler",
+      "standard": "ISO 50001",
+      "need": "Enerji performansı",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-50001-enerji-yonetimi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/iso-50001-seu-enpi-calisma-kitabi-v1.pdf" },
+        { "format": "XLSX", "href": "assets/downloads/iso-50001-seu-enpi-calisma-kitabi-v1.xlsx" }
+      ]
+    },
+    {
+      "slug": "tekstil-izlenebilirlik-kutle-denge-kontrol-listesi",
+      "title": "Tekstil İzlenebilirlik ve Kütle Denge Kontrol Listesi",
+      "summary": "Hammadde, tedarikçi, üretim kaybı, stok, sevkiyat ve belge bağlantılarını denetim öncesinde doğrulayın.",
+      "sector": "Tekstil ve hazır giyim",
+      "standard": "GOTS / GRS / OCS / RCS hazırlığı",
+      "need": "İzlenebilirlik",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "tekstil-standartlari.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/tekstil-izlenebilirlik-kutle-denge-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/tekstil-izlenebilirlik-kutle-denge-kontrol-listesi-v1.docx" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "sectors": [
+    {
+      "slug": "uretim-metal",
+      "file": "sektor-uretim-metal.html",
+      "title": "Üretim ve Metal İşletmeleri",
+      "eyebrow": "Sektörel çözüm · Üretim ve metal",
+      "summary": "Makine riski, bakım enerjileri, proses değişkenliği ve müşteri denetimlerini aynı yönetim ritminde kontrol edin.",
+      "heroAsset": "hizmetler-hero-endustriyel",
+      "triggers": ["Makine ve ekipman kaynaklı ramak kala olaylarının tekrarlanması", "Bakım sırasında enerji izolasyonunun kişiye bağlı yürütülmesi", "Kalite, çevre ve İSG kayıtlarının ayrı sistemlerde tutulması", "Müşteri veya belgelendirme denetimi öncesi kanıtların dağınık olması"],
+      "buyers": ["Fabrika ve operasyon yöneticileri", "Kalite, çevre ve İSG yöneticileri", "Bakım, üretim ve insan kaynakları ekipleri"],
+      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "outputs": ["Proses ve risk haritası", "Makine/enerji kaynağı envanteri ve LOTO kartları", "Ortak hedef ve gösterge panosu", "İç tetkik, DÖF ve yönetim gözden geçirmesi kanıt paketi"],
+      "process": [
+        { "label": "Saha fotoğrafı", "text": "Üretim akışı, bakım işleri, vardiya düzeni ve mevcut kayıtlar birlikte incelenir." },
+        { "label": "Önceliklendirme", "text": "Yasal, operasyonel ve müşteri kaynaklı riskler etki ve uygulanabilirliğe göre sıralanır." },
+        { "label": "Uygulama", "text": "Sorumlular, kontrol standartları, görsel iş talimatları ve takip ritmi sahada kurulur." },
+        { "label": "Doğrulama", "text": "Gözlem, iç tetkik ve gösterge sonuçlarıyla uygulamanın çalıştığı kanıtlanır." }
+      ],
+      "metrics": ["Plansız duruş süresi", "Açık DÖF yaşı ve kapanış oranı", "LOTO kapsamına alınan ekipman oranı", "Hurda, yeniden işleme veya müşteri şikâyeti eğilimi"],
+      "services": [
+        { "label": "Entegre ISO/İSG Programı", "href": "entegre-program.html" },
+        { "label": "Saha Güvenliği", "href": "saha-guvenligi.html" },
+        { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" }
+      ],
+      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "faq": [
+        { "question": "Çalışma üretimi durdurur mu?", "answer": "İnceleme ve uygulama adımları vardiya, bakım ve üretim planıyla eşleştirilir; zorunlu duruş ihtiyacı kapsam belirlenirken açıkça planlanır." },
+        { "question": "LOTO yalnızca bakım ekibini mi kapsar?", "answer": "Hayır. Temizlik, ayar, arıza giderme ve sıkışma açma gibi tehlikeli enerjiye maruz kalınabilecek işler de kapsama göre değerlendirilir." },
+        { "question": "Birden fazla ISO standardı birlikte ele alınabilir mi?", "answer": "Ortak süreç, risk, hedef, tetkik ve yönetim değerlendirme adımları tek omurgada kurulabilir; standarda özgü gereklilikler ayrıca korunur." }
+      ]
+    },
+    {
+      "slug": "gida",
+      "file": "sektor-gida.html",
+      "title": "Gıda Üretimi",
+      "eyebrow": "Sektörel çözüm · Gıda",
+      "summary": "Lot izlenebilirliği, hijyen, soğuk zincir, tedarikçi kanıtı ve çalışan güvenliğini denetime hazır tek akışta yönetin.",
+      "heroAsset": "cevre-danismanligi-hero",
+      "triggers": ["Geri çağırma provasının hedef sürede tamamlanamaması", "Hijyen ve kritik kontrol kayıtlarında vardiya farklılıkları", "Soğutma ve buhar sistemlerinde enerji yoğunluğunun izlenmemesi", "Tedarikçi değişikliklerinin risk değerlendirmesine geç yansıması"],
+      "buyers": ["Fabrika ve kalite güvence yöneticileri", "Gıda güvenliği ekipleri", "Satın alma, depo, bakım ve üretim sorumluları"],
+      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "outputs": ["Lot ve geri çağırma kanıt haritası", "Hijyen/görev bazlı kontrol standardı", "Tedarikçi onay ve değişiklik takip matrisi", "Soğuk zincir ve enerji performans göstergeleri"],
+      "process": [
+        { "label": "Akış testi", "text": "Hammadde kabulünden sevkiyata örnek bir lotun kayıt zinciri izlenir." },
+        { "label": "Risk eşleştirme", "text": "Hijyen, alerjen, kimyasal, makine ve çevre riskleri görevlerle eşleştirilir." },
+        { "label": "Kanıt standardı", "text": "Vardiyalar için aynı kayıt dili, sorumluluk ve kontrol sıklığı tanımlanır." },
+        { "label": "Prova", "text": "Geri çağırma, iç tetkik veya müşteri denetimi provasıyla açıklar doğrulanır." }
+      ],
+      "metrics": ["Geri çağırma iz sürme süresi", "Eksik veya geç tamamlanan kritik kayıt sayısı", "Tedarikçi uygunsuzluk kapanış süresi", "Üretim birimi başına enerji tüketimi"],
+      "services": [
+        { "label": "ISO Denetim Hazırlığı", "href": "iso-denetim-hazirligi.html" },
+        { "label": "ISO Yönetim Sistemleri", "href": "iso-yonetim-sistemleri.html" },
+        { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" }
+      ],
+      "resourceSlug": "denetim-kanit-matrisi",
+      "faq": [
+        { "question": "Gıda güvenliği belgelendirmesi yapıyor musunuz?", "answer": "Hayır. Goway analiz, sistem kurulumu, uygulama, eğitim ve denetime hazırlık desteği verir; belgelendirme kararı bağımsız yetkili kuruluşa aittir." },
+        { "question": "Geri çağırma provası nasıl değerlendirilir?", "answer": "İzlenen lot, erişilen miktar, geçen süre, kayıt boşlukları, sorumlular ve iletişim adımları birlikte raporlanır." },
+        { "question": "Enerji çalışması gıda güvenliği akışına bağlanabilir mi?", "answer": "Soğutma, buhar, basınçlı hava ve proses sıcaklıkları üretim verisiyle normalize edilerek ayrı performans göstergeleri kurulabilir." }
+      ]
+    },
+    {
+      "slug": "tekstil-hazir-giyim",
+      "file": "sektor-tekstil-hazir-giyim.html",
+      "title": "Tekstil ve Hazır Giyim",
+      "eyebrow": "Sektörel çözüm · Tekstil ve hazır giyim",
+      "summary": "Hammadde kaynağı, kütle dengesi, kimyasal yönetim, enerji kullanımı ve sosyal uygunluk kanıtlarını sipariş akışıyla bağlayın.",
+      "heroAsset": "tekstil-standartlari-hero",
+      "triggers": ["Girdi ve çıktı miktarlarının kütle dengesinde açıklanamaması", "Tedarikçi belgelerinin kapsam veya geçerlilik açısından eksik olması", "Sipariş, stok ve sevkiyat kayıtlarının farklı kodlarla izlenmesi", "Müşteri sosyal uygunluk veya sürdürülebilirlik denetimine kısa sürede hazırlanma ihtiyacı"],
+      "buyers": ["Sürdürülebilirlik ve uygunluk yöneticileri", "Üretim, planlama ve depo ekipleri", "Satın alma, ihracat ve kalite sorumluları"],
+      "standards": ["GOTS hazırlığı", "GRS / RCS / OCS hazırlığı", "ISO 14001", "ISO 50001"],
+      "outputs": ["Ürün ve belge izlenebilirlik haritası", "Kütle denge çalışma tablosu", "Tedarikçi kanıt ve geçerlilik matrisi", "Kimyasal, çevre, sosyal ve enerji aksiyon planı"],
+      "process": [
+        { "label": "Sipariş seçimi", "text": "Temsili bir sipariş üzerinden malzeme, üretim, stok ve sevkiyat zinciri izlenir." },
+        { "label": "Belge doğrulama", "text": "Tedarikçi kapsamı, ürün iddiası, geçerlilik ve işlem kayıtları birlikte kontrol edilir." },
+        { "label": "Denge ve kontrol", "text": "Girdi, fire, yeniden işleme, stok ve çıktı değerlerinin hesap düzeni kurulur." },
+        { "label": "Denetim provası", "text": "Rastgele örneklemle doküman ve saha kanıtı aynı anda test edilir." }
+      ],
+      "metrics": ["İzlenebilirlik örneklemini tamamlama süresi", "Açıklanamayan kütle denge farkı", "Geçersiz/eksik tedarikçi kanıtı oranı", "Birim ürün başına su ve enerji kullanımı"],
+      "services": [
+        { "label": "Tekstil Standartları", "href": "tekstil-standartlari.html" },
+        { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" },
+        { "label": "Sürdürülebilirlik", "href": "surdurulebilirlik.html" }
+      ],
+      "resourceSlug": "tekstil-izlenebilirlik-kutle-denge-kontrol-listesi",
+      "faq": [
+        { "question": "GOTS veya GRS sertifikası düzenliyor musunuz?", "answer": "Hayır. Goway hazırlık, izlenebilirlik, kayıt ve uygulama desteği sağlar; sertifikasyon kararı yetkili bağımsız kuruluşa aittir." },
+        { "question": "Kütle dengesi hangi kayıtlarla kurulur?", "answer": "Satın alma, hammadde kabul, üretim, fire, yeniden işleme, stok, satış ve sevkiyat kayıtları aynı ürün ve dönem tanımıyla ilişkilendirilir." },
+        { "question": "Sosyal uygunluk ve çevre birlikte çalışılabilir mi?", "answer": "Ortak tedarikçi, eğitim, risk, aksiyon ve doğrulama ritmi kurulabilir; her programın özel kriterleri ayrıca korunur." }
+      ]
+    },
+    {
+      "slug": "lojistik-depolama",
+      "file": "sektor-lojistik-depolama.html",
+      "title": "Lojistik ve Depolama",
+      "eyebrow": "Sektörel çözüm · Lojistik ve depolama",
+      "summary": "Araç-yaya trafiği, raf güvenliği, yükleme, taşeron ve çok lokasyonlu operasyonları görünür saha standartlarıyla yönetin.",
+      "heroAsset": "cozumler-hero-planlama",
+      "triggers": ["Yaya ve forklift yollarının operasyon sırasında karışması", "Raf, rampa ve yükleme kontrollerinin kayıt altına alınmaması", "Taşeron ve sürücü kurallarının lokasyona göre değişmesi", "Birden fazla depoda aynı performans standardının kurulamaması"],
+      "buyers": ["Depo ve lojistik yöneticileri", "Operasyon, İSG ve kalite ekipleri", "Tesis, güvenlik ve taşeron yönetimi sorumluları"],
+      "standards": ["ISO 9001", "ISO 45001", "ISO 14001", "ISO 39001 bağlantıları"],
+      "outputs": ["Araç-yaya trafik ve kör nokta haritası", "Raf/rampa/yükleme kontrol standardı", "Sürücü ve taşeron kabul akışı", "Lokasyonlar arası ortak gösterge ve denetim seti"],
+      "process": [
+        { "label": "Yoğunluk gözlemi", "text": "Vardiya değişimi, yükleme piki ve ziyaretçi akışı sahada gözlenir." },
+        { "label": "Kritik yol tasarımı", "text": "Araç, yaya, acil çıkış, geçici stok ve bekleme alanları netleştirilir." },
+        { "label": "Görsel standart", "text": "Saha işaretleri, kontrol noktaları, yetki ve bildirim kuralları uygulanır." },
+        { "label": "Lokasyon doğrulaması", "text": "Ortak denetim soruları ve performans göstergeleriyle tesisler karşılaştırılır." }
+      ],
+      "metrics": ["Araç-yaya ihlal gözlemi", "Raf ve yükleme uygunsuzluğu kapanış süresi", "Hasarlı ürün veya yanlış sevkiyat oranı", "Lokasyon bazlı denetim puanı"],
+      "services": [
+        { "label": "Saha Güvenliği", "href": "saha-guvenligi.html" },
+        { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" },
+        { "label": "Entegre Program", "href": "entegre-program.html" }
+      ],
+      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "faq": [
+        { "question": "Çalışma yalnızca depo içini mi kapsar?", "answer": "Kapsama göre saha girişi, güvenlik noktası, bekleme alanı, rampa, yükleme, depo içi trafik ve acil durum akışı birlikte ele alınır." },
+        { "question": "Çok lokasyon için tek sistem kurulabilir mi?", "answer": "Ortak minimum standart ve gösterge seti oluşturulur; her lokasyonun yerleşim ve operasyon riskleri ayrıca korunur." },
+        { "question": "Taşeron sürücüler nasıl dahil edilir?", "answer": "Giriş kriteri, kısa bilgilendirme, saha kuralı, ihlal bildirimi ve tekrar değerlendirme adımları tanımlanır." }
+      ]
+    },
+    {
+      "slug": "insaat-montaj",
+      "file": "sektor-insaat-montaj.html",
+      "title": "İnşaat ve Montaj",
+      "eyebrow": "Sektörel çözüm · İnşaat ve montaj",
+      "summary": "Taşeron, çalışma izni, yüksekte çalışma, kazı, kaldırma ve sıcak iş risklerini günlük saha kararlarına bağlayın.",
+      "heroAsset": "uzman-kadro-hero-saha-ekibi",
+      "triggers": ["Alt işverenlerin farklı izin ve kontrol formları kullanması", "Günlük iş değişikliklerinin risk değerlendirmesine yansımaması", "Yüksekte çalışma, kaldırma veya sıcak iş kontrollerinin imzaya indirgenmesi", "Saha gözlemlerinin aksiyon sahibine ve kapanış kanıtına bağlanmaması"],
+      "buyers": ["Proje ve şantiye yöneticileri", "İSG, kalite ve saha kontrol ekipleri", "Ana yüklenici ve alt işveren koordinatörleri"],
+      "standards": ["ISO 45001", "ISO 9001", "ISO 14001", "Yüklenici yönetimi"],
+      "outputs": ["İş ve risk bazlı izin sistemi", "Alt işveren yeterlilik ve saha kabul matrisi", "Günlük saha kontrol ve kapatma standardı", "Ramak kala, uygunsuzluk ve aksiyon takip panosu"],
+      "process": [
+        { "label": "İş paketi", "text": "Planlanan faaliyetler, ekipler, ekipman ve eşzamanlı işler üzerinden risk profili çıkarılır." },
+        { "label": "İzin kapıları", "text": "Hangi işin kim tarafından, hangi kanıtla başlatılıp durdurulacağı netleştirilir." },
+        { "label": "Saha rutini", "text": "Günlük toplantı, işe başlama kontrolü, gözlem ve vardiya kapanışı uygulanır." },
+        { "label": "Yönetim görünürlüğü", "text": "Tekrarlayan bulgular, geciken aksiyonlar ve alt işveren performansı raporlanır." }
+      ],
+      "metrics": ["Geçersiz/eksik çalışma izni sayısı", "Geciken saha aksiyonu oranı", "Tekrarlayan ramak kala kategorileri", "Alt işveren denetim ve kabul performansı"],
+      "services": [
+        { "label": "Saha Güvenliği", "href": "saha-guvenligi.html" },
+        { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" },
+        { "label": "Yangın ve Acil Durum", "href": "yangin-acil-durum.html" }
+      ],
+      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "faq": [
+        { "question": "Mevcut çalışma izinlerimiz kullanılabilir mi?", "answer": "Mevcut formlar korunabilir; karar, yetki, saha doğrulaması ve kapatma kanıtı açısından boşluklar hedefli biçimde iyileştirilir." },
+        { "question": "Alt işveren eğitimi tek başına yeterli mi?", "answer": "Eğitim, yeterlilik kontrolü, işe özel izin, saha gözetimi ve performans geri bildirimiyle birlikte çalıştığında etkili olur." },
+        { "question": "Kısa süreli montaj projeleri kapsama uygun mu?", "answer": "Evet. Proje süresine göre hafif ama kanıtlanabilir bir kabul, izin, gözlem ve kapanış akışı kurulabilir." }
+      ]
+    },
+    {
+      "slug": "otomotiv-yan-sanayi",
+      "file": "sektor-otomotiv-yan-sanayi.html",
+      "title": "Otomotiv ve Yan Sanayi",
+      "eyebrow": "Sektörel çözüm · Otomotiv ve yan sanayi",
+      "summary": "Müşteri özel şartları, değişiklik kontrolü, DÖF, proses riski ve enerji performansını kanıt odaklı yönetin.",
+      "heroAsset": "hizmetler-hero-endustriyel",
+      "triggers": ["Müşteri denetim bulgularının tekrar etmesi", "Mühendislik veya proses değişikliklerinin ilgili kayıtlara eksik yansıması", "Kök neden analizlerinin semptom düzeyinde kalması", "Kapasite, kalite, güvenlik ve enerji hedeflerinin farklı panolarda izlenmesi"],
+      "buyers": ["Fabrika, kalite ve operasyon yöneticileri", "Proses, bakım ve mühendislik ekipleri", "Müşteri kalite ve tedarikçi geliştirme sorumluları"],
+      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "outputs": ["Müşteri şartı ve kanıt eşleştirme matrisi", "Değişiklik kontrol ve onay akışı", "Kök neden/DÖF etkinlik değerlendirmesi", "Proses, güvenlik ve enerji gösterge seti"],
+      "process": [
+        { "label": "Şart eşleştirme", "text": "Müşteri maddeleri, iç süreçler, sorumlular ve mevcut kanıtlar aynı tabloda toplanır." },
+        { "label": "Proses riski", "text": "Değişiklik, hata, duruş, bakım ve operatör etkileşimleri birlikte incelenir." },
+        { "label": "Aksiyon kalitesi", "text": "Kök neden, uygulama kanıtı ve etkinlik ölçümü için ortak kapanış standardı kurulur." },
+        { "label": "Prova ve izleme", "text": "Denetim senaryosu uygulanır; açıkların sahip, tarih ve kanıtla kapanışı izlenir." }
+      ],
+      "metrics": ["Tekrarlayan DÖF oranı", "Müşteri bulgusu kapanış süresi", "Değişiklik sonrası hata/duruş eğilimi", "Birim üretim başına enerji kullanımı"],
+      "services": [
+        { "label": "ISO Denetim Hazırlığı", "href": "iso-denetim-hazirligi.html" },
+        { "label": "ISO Yönetim Sistemleri", "href": "iso-yonetim-sistemleri.html" },
+        { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" }
+      ],
+      "resourceSlug": "denetim-kanit-matrisi",
+      "faq": [
+        { "question": "IATF belgelendirme hizmeti veriyor musunuz?", "answer": "Belgelendirme yapılmaz. Kapsama göre kalite yönetimi, proses kanıtı, iç tetkik, DÖF ve müşteri denetimi hazırlığı desteklenebilir." },
+        { "question": "Müşteri özel şartları nasıl yönetilir?", "answer": "Şart, süreç, sorumlu, kanıt, güncelleme tarihi ve doğrulama yöntemi üzerinden izlenebilir bir matris kurulur." },
+        { "question": "DÖF etkinliği nasıl ölçülür?", "answer": "Aynı hata modunun tekrar durumu, proses göstergesi, saha gözlemi ve belirlenen kontrolün sürdürülebilirliği birlikte değerlendirilir." }
+      ]
+    },
+    {
+      "slug": "kimya-plastik",
+      "file": "sektor-kimya-plastik.html",
+      "title": "Kimya ve Plastik",
+      "eyebrow": "Sektörel çözüm · Kimya ve plastik",
+      "summary": "Kimyasal envanter, proses güvenliği, çevre yükümlülüğü, atık ve enerji kullanımını değişiklik kontrolüyle birlikte yönetin.",
+      "heroAsset": "cevre-danismanligi-hero",
+      "triggers": ["Kimyasal envanter, SDS ve saha etiketlerinin aynı güncellikte olmaması", "Proses veya hammadde değişikliklerinin çevre/İSG etkisinin geç değerlendirilmesi", "Depolama, transfer ve dökülme kontrollerinin lokasyona göre değişmesi", "Atık, emisyon ve enerji verilerinin yönetim kararına dönüşmemesi"],
+      "buyers": ["Tesis, üretim ve teknik yöneticiler", "Çevre, İSG ve kalite ekipleri", "Laboratuvar, depo, bakım ve satın alma sorumluları"],
+      "standards": ["ISO 14001", "ISO 45001", "ISO 9001", "ISO 50001"],
+      "outputs": ["Kimyasal envanter ve uygunluk matrisi", "Depolama/transfer/dökülme kontrol standardı", "Değişiklik yönetimi ve onay akışı", "Atık, emisyon, olay ve enerji performans panosu"],
+      "process": [
+        { "label": "Envanter doğrulama", "text": "Satın alma kayıtları, SDS, saha etiketi, miktar ve depolama alanı karşılaştırılır." },
+        { "label": "Senaryo analizi", "text": "Normal işletme, bakım, transfer, dökülme ve acil durum senaryoları değerlendirilir." },
+        { "label": "Kontrol ve yetki", "text": "Teknik kontrol, PPE, izin, eğitim ve müdahale sorumlulukları netleştirilir." },
+        { "label": "Performans doğrulama", "text": "Saha turu, tatbikat, kayıt ve gösterge verisiyle kontroller test edilir." }
+      ],
+      "metrics": ["Güncel SDS ile eşleşen kimyasal oranı", "Dökülme/kaçak ve ramak kala eğilimi", "Atık birim oranı ve uygunsuz depolama sayısı", "Birim ürün başına enerji tüketimi"],
+      "services": [
+        { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" },
+        { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" },
+        { "label": "Yangın ve Acil Durum", "href": "yangin-acil-durum.html" }
+      ],
+      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "faq": [
+        { "question": "Mevzuat uygunluğunu garanti ediyor musunuz?", "answer": "Güncel yükümlülüklerin belirlenmesi ve kanıt sisteminin kurulması desteklenir; resmî uygunluk kararı veya hukuki garanti verilmez." },
+        { "question": "Kimyasal envanter nasıl güncel tutulur?", "answer": "Satın alma onayı, yeni ürün kabulü, SDS kontrolü, saha etiketi ve periyodik sayım aynı değişiklik akışına bağlanır." },
+        { "question": "Çevre ve İSG denetimleri birleşebilir mi?", "answer": "Ortak saha turu ve aksiyon sistemi kullanılabilir; çevre ve İSG’ye özgü kriterler ayrı sorularla korunur." }
+      ]
+    },
+    {
+      "slug": "enerji-altyapi",
+      "file": "sektor-enerji-altyapi.html",
+      "title": "Enerji ve Altyapı",
+      "eyebrow": "Sektörel çözüm · Enerji ve altyapı",
+      "summary": "Kritik varlık, bakım, yüklenici, çevre etkisi, iş sürekliliği ve enerji performansını tek karar modelinde izleyin.",
+      "heroAsset": "enerji-yonetimi-hero",
+      "triggers": ["Kritik varlıkların bakım ve risk kayıtlarının ayrı sistemlerde kalması", "Yüklenici çalışmalarında enerji izolasyonu ve izin adımlarının değişmesi", "Çevresel olay ve performans verilerinin proje kararına geç yansıması", "Enerji baz hattı ve yatırım tasarruflarının doğrulanamaması"],
+      "buyers": ["Tesis, varlık ve işletme yöneticileri", "Bakım, proje, çevre ve İSG ekipleri", "Enerji yöneticileri ve yatırım planlama sorumluları"],
+      "standards": ["ISO 50001", "ISO 14001", "ISO 45001", "ISO 9001"],
+      "outputs": ["Kritik varlık ve önemli enerji kullanımı haritası", "Bakım/izolasyon/yüklenici kontrol standardı", "EnPI, baz hat ve proje doğrulama tablosu", "Çevre olayı, süreklilik ve aksiyon takip sistemi"],
+      "process": [
+        { "label": "Varlık resmi", "text": "Kritik ekipman, enerji akışı, bakım stratejisi ve arıza geçmişi birlikte incelenir." },
+        { "label": "Performans modeli", "text": "Tüketim, yük, üretim/hizmet çıktısı ve dış değişkenler üzerinden baz hat kurulur." },
+        { "label": "Kontrol entegrasyonu", "text": "İzin, izolasyon, yüklenici, çevre ve acil durum adımları ortak saha ritmine bağlanır." },
+        { "label": "Tasarruf doğrulama", "text": "Proje öncesi/sonrası ölçüm yöntemi ve veri sorumluluğu tanımlanır." }
+      ],
+      "metrics": ["Kritik varlık plansız duruşu", "Enerji yoğunluğu ve EnPI sapması", "İzolasyon/izin uygunsuzluğu", "Çevre olayı ve aksiyon kapanış süresi"],
+      "services": [
+        { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" },
+        { "label": "Enerji Verimliliği Teşvikleri", "href": "enerji-verimliligi-teshvik.html" },
+        { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" }
+      ],
+      "resourceSlug": "iso-50001-seu-enpi-calisma-kitabi",
+      "faq": [
+        { "question": "Enerji tasarrufu sonucu garanti edilir mi?", "answer": "Hayır. Fırsatlar, veri kalitesi ve doğrulama yöntemi ortaya konur; sonuç yatırım, işletme koşulu ve uygulama disiplinine bağlıdır." },
+        { "question": "Baz hat için ne kadar veri gerekir?", "answer": "Süreç ve değişkenliğe bağlıdır. Temsili sezon, yük ve üretim koşullarını kapsayan güvenilir veri seti kapsam aşamasında belirlenir." },
+        { "question": "Teşvik dosyasıyla bağlantı kurulabilir mi?", "answer": "Teknik veri, proje tanımı ve izleme modeli uygun programa göre dosyalanabilir; güncel uygunluk koşulları başvuru öncesinde ayrıca doğrulanır." }
+      ]
+    },
+    {
+      "slug": "saglik-laboratuvar",
+      "file": "sektor-saglik-laboratuvar.html",
+      "title": "Sağlık ve Laboratuvar",
+      "eyebrow": "Sektörel çözüm · Sağlık ve laboratuvar",
+      "summary": "Numune, cihaz, kimyasal, biyolojik risk, atık ve acil durum kanıtlarını hizmet sürekliliğini bozmadan yönetin.",
+      "heroAsset": "sss-hero-danismanlik",
+      "triggers": ["Numune veya hizmet kayıtlarında izlenebilirlik boşlukları", "Cihaz bakım/kalibrasyon planlarının riskle ilişkilendirilmemesi", "Kimyasal, biyolojik ve kesici-delici risk kontrollerinde bölüm farkları", "Acil durum ve iş sürekliliği planlarının birlikte test edilmemesi"],
+      "buyers": ["Laboratuvar ve sağlık işletmesi yöneticileri", "Kalite, teknik hizmetler ve İSG ekipleri", "Enfeksiyon, atık ve acil durum sorumluları"],
+      "standards": ["ISO 9001", "ISO 45001", "ISO 14001", "İş sürekliliği bağlantıları"],
+      "outputs": ["Hizmet/numune izlenebilirlik haritası", "Cihaz bakım, kontrol ve sapma matrisi", "Kimyasal/biyolojik risk kontrol standardı", "Acil durum, atık ve süreklilik tatbikat planı"],
+      "process": [
+        { "label": "Hizmet akışı", "text": "Başvuru veya numune kabulünden sonuç/teslim aşamasına kritik kayıtlar izlenir." },
+        { "label": "Kritik kaynak", "text": "Cihaz, altyapı, personel, sarf ve dış hizmet bağımlılıkları değerlendirilir." },
+        { "label": "Kontrol standardı", "text": "Bölüm bazlı riskler için görev, PPE, atık, temizlik ve bildirim adımları netleştirilir." },
+        { "label": "Senaryo testi", "text": "Elektrik, cihaz, kimyasal, tahliye veya hizmet kesintisi senaryosu kayıtla doğrulanır." }
+      ],
+      "metrics": ["İzlenebilirlik kaydı tamamlama oranı", "Geciken bakım/kalibrasyon sayısı", "Atık ayrıştırma uygunsuzluğu", "Tatbikat aksiyon kapanış süresi"],
+      "services": [
+        { "label": "ISO Yönetim Sistemleri", "href": "iso-yonetim-sistemleri.html" },
+        { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" },
+        { "label": "Yangın ve Acil Durum", "href": "yangin-acil-durum.html" }
+      ],
+      "resourceSlug": "acil-durum-tatbikat-raporu",
+      "faq": [
+        { "question": "Tıbbi veya laboratuvar akreditasyonu sağlıyor musunuz?", "answer": "Hayır. Yönetim sistemi, risk, kayıt ve hazırlık desteği verilir; akreditasyon veya resmî uygunluk kararı yetkili kuruluşa aittir." },
+        { "question": "Hasta veya numune verisi forma alınır mı?", "answer": "Web danışma formunda özel nitelikli sağlık verisi talep edilmez. İlk görüşmede yalnızca işletme ihtiyacı ve iletişim bilgisi alınır." },
+        { "question": "Tatbikat hizmeti kesmeden yapılabilir mi?", "answer": "Senaryo, bölüm ve zamanlama hizmet sürekliliğine göre kademeli tasarlanabilir; gerçekçi gözlem kriterleri korunur." }
+      ]
+    },
+    {
+      "slug": "hizmet-cok-lokasyon",
+      "file": "sektor-hizmet-cok-lokasyon.html",
+      "title": "Hizmet ve Çok Lokasyonlu İşletmeler",
+      "eyebrow": "Sektörel çözüm · Hizmet ve çok lokasyon",
+      "summary": "Merkez politikası, yerel risk, müşteri deneyimi, çalışan yetkinliği ve ortak performans standardını dengeli biçimde kurun.",
+      "heroAsset": "hakkimizda-hero",
+      "triggers": ["Lokasyonların aynı işi farklı kayıt ve kontrol yöntemleriyle yürütmesi", "Merkez prosedürlerinin yerel operasyon koşullarına uymaması", "Müşteri şikâyeti ve hizmet hatalarının kök nedene bağlanmaması", "Eğitim tamamlanmasının davranış ve performansla doğrulanmaması"],
+      "buyers": ["Genel müdürlük ve operasyon yöneticileri", "Kalite, İK, eğitim ve müşteri deneyimi ekipleri", "Bölge ve lokasyon yöneticileri"],
+      "standards": ["ISO 9001", "ISO 45001", "ISO 10002 bağlantıları", "Entegre yönetim sistemleri"],
+      "outputs": ["Merkez-lokasyon sorumluluk matrisi", "Ortak minimum süreç ve kanıt standardı", "Lokasyon denetim ve gösterge panosu", "Rol bazlı eğitim ve saha doğrulama planı"],
+      "process": [
+        { "label": "Temsili örneklem", "text": "Farklı büyüklük ve riskte lokasyonlar seçilerek merkez kuralı ile gerçek uygulama karşılaştırılır." },
+        { "label": "Ortak çekirdek", "text": "Değişmemesi gereken politika, kayıt, kontrol ve ölçüm standartları belirlenir." },
+        { "label": "Yerel uyarlama", "text": "Lokasyonun müşteri, ekip, bina ve operasyon koşullarına göre kontrollü esneklik tanımlanır." },
+        { "label": "Yayılım", "text": "Pilot, eğitim, öz değerlendirme, merkez denetimi ve performans geri bildirimiyle ölçeklenir." }
+      ],
+      "metrics": ["Lokasyonlar arası süreç sapması", "Müşteri şikâyeti kapanış ve tekrar oranı", "Eğitim sonrası görev gözlem sonucu", "Geciken aksiyon ve denetim bulgusu oranı"],
+      "services": [
+        { "label": "ISO Yönetim Sistemleri", "href": "iso-yonetim-sistemleri.html" },
+        { "label": "Kurumsal Eğitim", "href": "kurumsal-egitim.html" },
+        { "label": "Entegre Program", "href": "entegre-program.html" }
+      ],
+      "resourceSlug": "30-gunluk-denetim-hazirlik-plani",
+      "faq": [
+        { "question": "Her lokasyona ayrı prosedür gerekir mi?", "answer": "Genellikle ortak çekirdek süreç korunur; yalnızca bina, ekip, müşteri veya yerel risk nedeniyle gerekli olan kontrollü farklılıklar tanımlanır." },
+        { "question": "Yayılım nereden başlamalı?", "answer": "Farklı risk ve olgunluk düzeyini temsil eden sınırlı bir pilot grup seçilir; sonuçlar netleşmeden tüm lokasyonlara kopyalanmaz." },
+        { "question": "Eğitim etkinliği nasıl kanıtlanır?", "answer": "Katılım kaydına ek olarak görev uygulaması, yönetici gözlemi, kısa değerlendirme ve ilgili performans göstergesi birlikte kullanılır." }
+      ]
+    }
+  ]
+}

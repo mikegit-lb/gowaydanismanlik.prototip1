@@ -1,0 +1,34 @@
+{
+  "cases": [
+    {
+      "slug": "denetim-hazirligi-iyilestirmesi",
+      "title": "Denetim hazırlığında kanıt bütünlüğü",
+      "sector": "Üretim",
+      "status": "draft",
+      "permissionRecord": "",
+      "baseline": [],
+      "results": [],
+      "reviewDue": ""
+    },
+    {
+      "slug": "loto-saha-guvenligi-uygulamasi",
+      "title": "LOTO ve saha güvenliği uygulaması",
+      "sector": "Metal",
+      "status": "draft",
+      "permissionRecord": "",
+      "baseline": [],
+      "results": [],
+      "reviewDue": ""
+    },
+    {
+      "slug": "enerji-ve-izlenebilirlik-performansi",
+      "title": "Enerji veya izlenebilirlik performansı",
+      "sector": "Enerji / Tekstil",
+      "status": "draft",
+      "permissionRecord": "",
+      "baseline": [],
+      "results": [],
+      "reviewDue": ""
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "allowedStatuses": ["draft", "review", "approved", "withheld"],
+  "claims": [
+    {
+      "id": "experience-25-years",
+      "text": "25 yılı aşkın deneyim",
+      "status": "withheld",
+      "owner": "Goway yönetimi",
+      "source": "",
+      "reviewedAt": "",
+      "expiresAt": "",
+      "note": "Kuruluş ve ekip deneyimi ayrıştırılarak belgeyle doğrulanana kadar yayımlanmaz."
+    },
+    {
+      "id": "standards-44",
+      "text": "44 standart",
+      "status": "withheld",
+      "owner": "Goway yönetimi",
+      "source": "",
+      "reviewedAt": "",
+      "expiresAt": "",
+      "note": "Standart listesi ve kapsam kanıtı olmadan yayımlanmaz."
+    },
+    {
+      "id": "training-60-topics",
+      "text": "60 eğitim konusu",
+      "status": "withheld",
+      "owner": "Eğitim sorumlusu",
+      "source": "",
+      "reviewedAt": "",
+      "expiresAt": "",
+      "note": "Güncel katalog sayımı doğrulanana kadar yayımlanmaz."
+    },
+    {
+      "id": "training-225-hours",
+      "text": "225 eğitim saati",
+      "status": "withheld",
+      "owner": "Eğitim sorumlusu",
+      "source": "",
+      "reviewedAt": "",
+      "expiresAt": "",
+      "note": "Tamamlanan eğitim kayıtları doğrulanana kadar yayımlanmaz."
+    },
+    {
+      "id": "iqnet-partnership",
+      "text": "Goway + IQNet",
+      "status": "withheld",
+      "owner": "Goway yönetimi",
+      "source": "",
+      "reviewedAt": "",
+      "expiresAt": "",
+      "note": "Yazılı marka ve iş ortaklığı izni olmadan yayımlanmaz."
+    },
+    {
+      "id": "loto-authority-certificate",
+      "text": "LOTO Yetki Belgesi",
+      "status": "withheld",
+      "owner": "Eğitim sorumlusu",
+      "source": "",
+      "reviewedAt": "",
+      "expiresAt": "",
+      "note": "Katılım belgesi dışında resmî yetki belgesi iddiası kullanılmaz."
+    }
+  ]
+}
