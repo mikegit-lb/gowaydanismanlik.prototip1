@@ -197,6 +197,22 @@ async function minifyInlineScripts(html, file) {
   return output + html.slice(cursor);
 }
 
+function addServiceFaq(html, file) {
+  const faq = {
+    'iso-27001-bilgi-guvenligi.html': ['Bilgi güvenliği hazırlığı hakkında', 'Teknik ekip şart mı?', 'Teknik sahipler sürece katılır; Goway risk, sorumluluk ve kanıt akışını iş hedefleriyle birlikte kurar.', 'İlk çıktı nedir?', 'Varlık envanteri, risk kaydı, kontrol planı ve öncelikli aksiyon listesiyle başlanır.'],
+    'iso-22301-is-surekliligi.html': ['İş sürekliliği hazırlığı hakkında', 'Hangi faaliyetler seçilir?', 'Gelir, güvenlik, yasal veya müşteri etkisi yüksek faaliyetler iş sahipleriyle birlikte önceliklendirilir.', 'Tatbikat gerekli mi?', 'Senaryo ve tatbikatlar planın uygulanabilirliğini görmek ve öğrenimleri kaydetmek için kullanılır.'],
+    'iso-10002-sikayet-yonetimi.html': ['Şikâyet yönetimi hazırlığı hakkında', 'Şikâyetler nasıl sınıflanır?', 'Konu, önem, kanal, sorumlu ve yanıt süresi işletmenizin hizmet riskine göre tanımlanır.', 'Hangi kayıtlar incelenir?', 'Şikâyet kaydı, inceleme notu, yanıt, kök neden, aksiyon ve kapanış kanıtı birlikte gözden geçirilir.'],
+    'iso-22000-gida-guvenligi.html': ['Gıda güvenliği hazırlığı hakkında', 'PRP neden önemlidir?', 'Temel hijyen ve altyapı koşulları kontrol edilmeden tehlike analizi sahada sürdürülebilir olmaz.', 'İzlenebilirlik nasıl test edilir?', 'Seçilen bir lot veya sipariş girişten sevkiyata ve gerekirse geri çağırma senaryosuna kadar izlenir.'],
+    'iso-14064-karbon-ghg-hesap.html': ['GHG hesaplama hazırlığı hakkında', 'Hangi veriler gerekir?', 'Yakıt, elektrik, lojistik, soğutucu ve uygun diğer kaynakların dönem ve kaynak sahibi bilgisi gerekir.', 'Tahminler kullanılabilir mi?', 'Eksik veya tahmini veriler açıkça işaretlenir; varsayım, veri kalitesi ve belirsizlik ayrıca raporlanır.'],
+    'gida-belgelendirme-hazirlik.html': ['Gıda denetim hazırlığı hakkında', 'Nereden başlanır?', 'Yaklaşan denetim, tesis kapsamı, kritik prosesler ve son saha gözlemleriyle önceliklendirme yapılır.', 'Çıktı nasıl izlenir?', 'Kanıt matrisi, sorumlu, termin ve etkinlik doğrulamasıyla açıklar kapanışa kadar takip edilir.'],
+    'sosyal-uygunluk-denetim-hazirlik.html': ['Sosyal uygunluk hazırlığı hakkında', 'Kişisel veri nasıl korunur?', 'Hazırlıkta gereksiz kişisel veri çoğaltılmaz; kaynak, dönem, sorumlu ve kontrol durumu yeterli olur.', 'Tedarikçiler dahil mi?', 'İşletmenin kapsamına göre tedarikçi beklentileri, değerlendirme kayıtları ve aksiyon takibi dahil edilir.']
+  }[file];
+  if (!faq || html.includes(`id="${file.replace('.html', '')}-sss"`)) return html;
+  const id = file.replace('.html', '') + '-sss';
+  const block = `<section class="content-section" aria-labelledby="${id}"><div class="section-heading"><p class="eyebrow">SSS</p><h2 id="${id}">${faq[0]}</h2></div><div class="content-grid three"><article class="evidence-card"><h3>${faq[1]}</h3><p>${faq[2]}</p></article><article class="evidence-card"><h3>Karar kime aittir?</h3><p>Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir.</p></article><article class="evidence-card"><h3>${faq[3]}</h3><p>${faq[4]}</p></article></div></section>`;
+  return html.replace('</main>', `${block}</main>`);
+}
+
 async function processHtml(content, generated, styles, scripts) {
   const sourceFiles = (await fs.readdir(root)).filter((name) => name.endsWith('.html') && !generatedSourceOverrides.has(name));
   const pages = new Map(generated);
@@ -206,6 +222,7 @@ async function processHtml(content, generated, styles, scripts) {
     html = replaceUnverifiedClaims(html, file);
     html = ensureHeadMeta(html, file);
     html = addOrganizationSchema(html, file, content);
+    html = addServiceFaq(html, file);
     html = addAnalytics(html, content.analytics);
     html = addSharedShell(html, styles, scripts);
     html = await minifyInlineScripts(html, file);
@@ -227,7 +244,7 @@ async function writeSitemap(files) {
 
 async function validateContent(content) {
   if (content.sectors.length !== 10) throw new Error(`Expected 10 sectors, found ${content.sectors.length}`);
-  if (content.resources.length !== 7) throw new Error(`Expected 7 resources, found ${content.resources.length}`);
+  if (content.resources.length !== 14) throw new Error(`Expected 14 resources, found ${content.resources.length}`);
   const unique = (values, label) => { if (new Set(values).size !== values.length) throw new Error(`Duplicate ${label}`); };
   unique(content.sectors.map((item) => item.slug), 'sector slug');
   unique(content.sectors.map((item) => item.file), 'sector file');

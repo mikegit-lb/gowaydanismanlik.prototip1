@@ -94,6 +94,76 @@ RESOURCE_ROWS = {
         ("Sevkiyat", "Ürün iddiası, miktar ve satış/sevkiyat kaydı eşleşiyor mu?", "Fatura ve sevkiyat kaydı"),
         ("Örneklem", "Rastgele sipariş geriye ve ileriye doğru izlenebiliyor mu?", "İzlenebilirlik prova kaydı"),
     ],
+    "iso-27001-risk-varlik-envanteri-kontrol-listesi": [
+        ("Varlıklar", "Bilgi, uygulama, cihaz, hizmet ve tesis varlıkları envanterde mi?", "Varlık envanteri, sahiplik kaydı"),
+        ("Sınıflandırma", "Varlıkların önem, gizlilik ve erişilebilirlik seviyesi tanımlı mı?", "Sınıflandırma kuralı, kayıt"),
+        ("Risk", "Tehdit, zafiyet, etki ve olasılık birlikte değerlendiriliyor mu?", "Risk değerlendirmesi"),
+        ("Kontroller", "Risklere karşı teknik, fiziksel ve yönetsel kontroller atanmış mı?", "Kontrol planı, sorumlu matrisi"),
+        ("Erişim", "Yetki talebi, onay, gözden geçirme ve iptal kayıtları tutuluyor mu?", "Erişim kayıtları"),
+        ("Olay", "Bilgi güvenliği olayları sınıflandırılıyor ve öğrenimler aksiyona bağlanıyor mu?", "Olay kaydı, aksiyon planı"),
+        ("Süreklilik", "Yedekleme, kurtarma ve kritik hizmet bağımlılıkları test ediliyor mu?", "Test raporu, kurtarma kaydı"),
+        ("İyileştirme", "İç tetkik ve yönetim kararları risk kaydına geri besleniyor mu?", "Tetkik ve YGG kanıtı"),
+    ],
+    "iso-22301-is-etki-analizi-kontrol-listesi": [
+        ("Faaliyet", "Ürün, hizmet ve kritik faaliyet sahipleri tanımlı mı?", "Faaliyet envanteri"),
+        ("Etki", "Finansal, operasyonel, yasal ve itibar etkileri dönemlere göre değerlendirildi mi?", "Etki değerlendirmesi"),
+        ("Tolerans", "Maksimum kabul edilebilir kesinti ve veri kaybı süresi belirlendi mi?", "MTPD/RPO kaydı"),
+        ("Bağımlılık", "İnsan, teknoloji, tesis, tedarikçi ve veri bağımlılıkları haritalandı mı?", "Bağımlılık matrisi"),
+        ("Öncelik", "Kurtarma sırası ve asgari kaynak ihtiyacı onaylandı mı?", "Önceliklendirme tablosu"),
+        ("Strateji", "Alternatif çalışma, iletişim ve kaynak stratejileri tanımlı mı?", "Süreklilik stratejisi"),
+        ("Test", "Planlar tatbikat veya senaryo ile doğrulanıp öğrenimler kaydediliyor mu?", "Tatbikat raporu"),
+        ("Gözden geçirme", "Değişiklikler ve yönetim kararları analiz kayıtlarına işleniyor mu?", "Gözden geçirme tutanağı"),
+    ],
+    "iso-10002-sikayet-yonetimi-kontrol-listesi": [
+        ("Kanal", "Şikâyetlerin tüm kanallardan alınacağı ve kaydedileceği tanımlı mı?", "Kanal ve kayıt prosedürü"),
+        ("Sınıflandırma", "Konu, önem, müşteri ve sorumlu bilgisi tutarlı biçimde atanıyor mu?", "Şikâyet kayıtları"),
+        ("İnceleme", "Tarafsız inceleme, kanıt toplama ve iletişim adımları izleniyor mu?", "İnceleme notları"),
+        ("Yanıt", "Müşteriye verilen yanıt, tarih ve karar gerekçesiyle kayıtlı mı?", "Yanıt kaydı"),
+        ("Kök neden", "Tekrarlayan şikâyetler kök neden ve düzeltici aksiyona bağlanıyor mu?", "Kök neden/DÖF kaydı"),
+        ("Süre", "Yanıt ve kapanış süreleri hedeflerle karşılaştırılıyor mu?", "SLA ve gösterge tablosu"),
+        ("Memnuniyet", "Şikâyet sonrası geri bildirim ve eğilimler değerlendiriliyor mu?", "Geri bildirim analizi"),
+        ("YGG", "Şikâyet eğilimleri yönetim kararlarına ve iyileştirmeye taşınıyor mu?", "YGG girdisi"),
+    ],
+    "iso-22000-gida-guvenligi-on-hazirlik-listesi": [
+        ("Kapsam", "Ürün, proses, tesis, vardiya ve dış kaynak kapsamı açık mı?", "Kapsam ve akış şeması"),
+        ("Hijyen", "Temizlik, haşere, kişisel hijyen ve çevresel koşullar izleniyor mu?", "Hijyen ve temizlik kayıtları"),
+        ("Tehlike", "Biyolojik, kimyasal, fiziksel ve alerjen tehlikeler analiz edildi mi?", "Tehlike analizi"),
+        ("Kontrol noktası", "Kritik limit, izleme sıklığı ve sapma tepkisi tanımlı mı?", "KKN planı, ölçüm kaydı"),
+        ("Tedarikçi", "Hammadde şartları, kabul kriterleri ve tedarikçi performansı izleniyor mu?", "Tedarikçi değerlendirmesi"),
+        ("İzlenebilirlik", "Lot, giriş, üretim ve sevkiyat kayıtları geriye/ileriye izlenebiliyor mu?", "İzlenebilirlik provası"),
+        ("Geri çağırma", "Geri çekme/çağırma senaryosu test edilmiş ve öğrenimler kaydedilmiş mi?", "Tatbikat raporu"),
+        ("Doğrulama", "İç tetkik, analiz sonuçları ve yönetim gözden geçirmesi tamam mı?", "Tetkik ve YGG kanıtı"),
+    ],
+    "iso-14064-ghg-hesaplama-veri-matrisi": [
+        ("Sınır", "Kontrol yaklaşımı, tesisler ve raporlama dönemi açıkça tanımlı mı?", "Organizasyonel sınır kaydı"),
+        ("Kaynak", "Kapsam 1, 2 ve uygun Kapsam 3 kaynakları listelendi mi?", "Emisyon kaynak envanteri"),
+        ("Aktivite verisi", "Yakıt, elektrik, soğutucu, seyahat ve lojistik verileri kaynağıyla tutuluyor mu?", "Fatura, sayaç, tüketim kaydı"),
+        ("Faktör", "Emisyon faktörü kaynağı, birimi ve sürümü kaydedildi mi?", "Faktör referansı"),
+        ("Hesap", "Birim dönüşümü, formül ve yuvarlama yöntemi tekrarlanabilir mi?", "Hesaplama çalışma kâğıdı"),
+        ("Veri kalitesi", "Eksik, tahmini ve doğrulanmış veriler ayrı işaretleniyor mu?", "Veri kalite notu"),
+        ("Belirsizlik", "Önemli varsayımlar ve belirsizlik kaynakları açıklanıyor mu?", "Varsayım/belirsizlik kaydı"),
+        ("Rapor", "Sonuçlar, dönem karşılaştırması ve sınırlar yönetim tarafından gözden geçirildi mi?", "GHG raporu, onay kaydı"),
+    ],
+    "gida-denetim-hazirlik-kanit-matrisi": [
+        ("Personel", "Görev yetkinliği, hijyen eğitimi ve sağlık kontrolleri güncel mi?", "Eğitim ve yetkinlik kayıtları"),
+        ("Tesis", "Akış, zonlama, bakım ve altyapı koşulları kayıtlarla izleniyor mu?", "Tesis kontrolü, bakım kaydı"),
+        ("Temizlik", "Plan, kimyasal, uygulama ve doğrulama kayıtları eksiksiz mi?", "Temizlik ve doğrulama kaydı"),
+        ("Proses", "Kritik parametreler, sapmalar ve serbest bırakma kararları izleniyor mu?", "Proses izleme kaydı"),
+        ("Tedarikçi", "Hammadde şartları, kabul kontrolleri ve uygunsuzluklar yönetiliyor mu?", "Tedarikçi ve kabul kaydı"),
+        ("Ekipman", "Ölçüm cihazları, bakım ve kalibrasyon durumu görünür mü?", "Bakım/kalibrasyon kaydı"),
+        ("İzlenebilirlik", "Numune sipariş geriye ve ileriye doğru takip edilebiliyor mu?", "İzlenebilirlik prova kaydı"),
+        ("Aksiyon", "Bulgu, sorumlu, termin ve etkinlik doğrulaması tamam mı?", "Aksiyon ve kapanış kanıtı"),
+    ],
+    "sosyal-uygunluk-denetim-hazirlik-kontrol-listesi": [
+        ("Çalışan kayıtları", "İşe giriş, görev, yaş ve özlük kayıtları kontrollü erişimle tutuluyor mu?", "Personel kayıtları"),
+        ("Çalışma süresi", "Vardiya, puantaj, fazla çalışma ve izin kayıtları birbiriyle uyumlu mu?", "Puantaj ve vardiya kaydı"),
+        ("Ücret", "Ücret, yan hak ve ödeme kayıtları çalışan sözleşmeleriyle eşleşiyor mu?", "Bordro ve ödeme kaydı"),
+        ("İSG", "Riskler, eğitimler, olaylar ve acil durum kontrolleri uygulanıyor mu?", "İSG kayıtları"),
+        ("Özgür irade", "İşe alım, disiplin, ayrımcılık ve taciz şikâyeti süreçleri tanımlı mı?", "Politika ve şikâyet kaydı"),
+        ("Çalışan sesi", "Görüşme ve geri bildirim kanalları güvenli ve misillemesiz mi?", "Görüşme/geri bildirim özeti"),
+        ("Tedarik zinciri", "Tedarikçi beklentileri, değerlendirme ve aksiyonlar izleniyor mu?", "Tedarikçi taahhüdü ve takip"),
+        ("Kapanış", "Bulgu, sorumlu, termin ve doğrulama kanıtı kayıtlı mı?", "DÖF ve kapanış kaydı"),
+    ],
 }
 
 
@@ -302,7 +372,7 @@ def main():
     make_planner(OUT / "30-gunluk-denetim-hazirlik-plani-v1.xlsx")
     make_evidence_matrix(OUT / "denetim-kanit-matrisi-v1.xlsx")
     make_enpi(OUT / "iso-50001-seu-enpi-calisma-kitabi-v1.xlsx")
-    print(json.dumps({"pdf": 7, "xlsx": 3, "output": str(OUT)}, ensure_ascii=False))
+    print(json.dumps({"pdf": len(RESOURCES), "xlsx": 3, "output": str(OUT)}, ensure_ascii=False))
 
 
 if __name__ == "__main__":

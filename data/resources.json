@@ -118,6 +118,125 @@
         { "format": "PDF", "href": "assets/downloads/tekstil-izlenebilirlik-kutle-denge-kontrol-listesi-v1.pdf" },
         { "format": "DOCX", "href": "assets/downloads/tekstil-izlenebilirlik-kutle-denge-kontrol-listesi-v1.docx" }
       ]
+    },
+    {
+      "slug": "iso-27001-risk-varlik-envanteri-kontrol-listesi",
+      "title": "ISO 27001 Risk ve Varlık Envanteri Kontrol Listesi",
+      "summary": "Bilgi varlıklarını, sahiplerini, tehditleri, kontrolleri ve risk aksiyonlarını hazırlık öncesinde eşleştirin.",
+      "sector": "Bilgi teknolojileri ve tüm sektörler",
+      "standard": "ISO 27001",
+      "need": "Bilgi güvenliği hazırlığı",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-27001-bilgi-guvenligi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/iso-27001-risk-varlik-envanteri-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/iso-27001-risk-varlik-envanteri-kontrol-listesi-v1.docx" }
+      ]
+    },
+    {
+      "slug": "iso-22301-is-etki-analizi-kontrol-listesi",
+      "title": "ISO 22301 İş Etki Analizi Kontrol Listesi",
+      "summary": "Kritik faaliyetleri, bağımlılıkları, toleransları ve kurtarma önceliklerini tek bir iş etki analizi akışında görünür kılın.",
+      "sector": "Tüm sektörler ve çok lokasyonlu işletmeler",
+      "standard": "ISO 22301",
+      "need": "İş sürekliliği hazırlığı",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-22301-is-surekliligi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/iso-22301-is-etki-analizi-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/iso-22301-is-etki-analizi-kontrol-listesi-v1.docx" }
+      ]
+    },
+    {
+      "slug": "iso-10002-sikayet-yonetimi-kontrol-listesi",
+      "title": "ISO 10002 Şikâyet Yönetimi Kontrol Listesi",
+      "summary": "Şikâyet alma, sınıflandırma, inceleme, yanıt, kök neden ve iyileştirme kayıtlarını birlikte kontrol edin.",
+      "sector": "Müşteri hizmetleri ve çok lokasyonlu işletmeler",
+      "standard": "ISO 10002",
+      "need": "Müşteri deneyimi",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-10002-sikayet-yonetimi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/iso-10002-sikayet-yonetimi-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/iso-10002-sikayet-yonetimi-kontrol-listesi-v1.docx" }
+      ]
+    },
+    {
+      "slug": "iso-22000-gida-guvenligi-on-hazirlik-listesi",
+      "title": "ISO 22000 Gıda Güvenliği Ön Hazırlık Listesi",
+      "summary": "Ön gereksinim programı, tehlike analizi, kritik kontrol noktaları ve izlenebilirlik kayıtlarını sahada doğrulayın.",
+      "sector": "Gıda üretimi ve catering",
+      "standard": "ISO 22000",
+      "need": "Gıda güvenliği",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-22000-gida-guvenligi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/iso-22000-gida-guvenligi-on-hazirlik-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/iso-22000-gida-guvenligi-on-hazirlik-listesi-v1.docx" }
+      ]
+    },
+    {
+      "slug": "iso-14064-ghg-hesaplama-veri-matrisi",
+      "title": "ISO 14064 GHG Hesaplama Veri Matrisi",
+      "summary": "Organizasyonel sınır, emisyon kaynağı, aktivite verisi, emisyon faktörü ve veri kalitesini izlenebilir biçimde kaydedin.",
+      "sector": "Üretim, enerji ve hizmet işletmeleri",
+      "standard": "ISO 14064",
+      "need": "Karbon envanteri",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "iso-14064-karbon-ghg-hesap.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/iso-14064-ghg-hesaplama-veri-matrisi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/iso-14064-ghg-hesaplama-veri-matrisi-v1.docx" }
+      ]
+    },
+    {
+      "slug": "gida-denetim-hazirlik-kanit-matrisi",
+      "title": "Gıda Denetim Hazırlık Kanıt Matrisi",
+      "summary": "Hijyen, proses, personel, ekipman, tedarikçi ve izlenebilirlik gerekliliklerini gerçek kayıtlarla eşleştirin.",
+      "sector": "Gıda tesisleri",
+      "standard": "Gıda güvenliği ve hijyen hazırlığı",
+      "need": "Denetim hazırlığı",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "gida-belgelendirme-hazirlik.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/gida-denetim-hazirlik-kanit-matrisi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/gida-denetim-hazirlik-kanit-matrisi-v1.docx" }
+      ]
+    },
+    {
+      "slug": "sosyal-uygunluk-denetim-hazirlik-kontrol-listesi",
+      "title": "Sosyal Uygunluk Denetim Hazırlık Kontrol Listesi",
+      "summary": "Çalışma saatleri, ücret kayıtları, iş sağlığı, çalışan görüşmeleri ve tedarikçi kanıtlarını hazırlık sürecinde gözden geçirin.",
+      "sector": "Tekstil, hazır giyim ve tedarik zinciri",
+      "standard": "Sosyal uygunluk hazırlığı",
+      "need": "Sosyal denetim",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "sosyal-uygunluk-denetim-hazirlik.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/sosyal-uygunluk-denetim-hazirlik-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/sosyal-uygunluk-denetim-hazirlik-kontrol-listesi-v1.docx" }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "site": {
     "name": "Goway Danışmanlık",
     "phone": "+90 533 439 00 03",
-    "phoneHref": "tel:+905334390003",
+    "phoneHref": "tel:+905****0003",
     "email": "goway@gowaydanismanlik.com",
     "emailHref": "mailto:goway@gowaydanismanlik.com",
     "address": "Denizli · Türkiye geneli hizmet",
@@ -39,13 +39,37 @@
       { "label": "Hakkımızda", "href": "hakkimizda.html" }
     ],
     "servicePages": [
-      "iso-yonetim-sistemleri.html", "iso-denetim-hazirligi.html", "isg-yonetimi.html",
-      "saha-guvenligi.html", "yangin-acil-durum.html", "kurumsal-egitim.html",
-      "surdurulebilirlik.html", "entegre-program.html", "tekstil-standartlari.html",
-      "cevre-danismanligi.html", "tesvik-danismanligi.html", "ciktilar.html",
-      "ihtiyac-rehberi.html", "katalog.html", "calisma-modelleri.html", "medya.html",
-      "is-ortaklari.html", "sektorel-cozumler.html", "iso-50001-enerji-yonetimi.html",
-      "egitim-katalog.html", "egitim-takvimi.html", "egitim-online.html", "egitim-takip.html", "enerji-verimliligi-teshvik.html"
+      "iso-yonetim-sistemleri.html",
+      "iso-denetim-hazirligi.html",
+      "isg-yonetimi.html",
+      "saha-guvenligi.html",
+      "yangin-acil-durum.html",
+      "kurumsal-egitim.html",
+      "surdurulebilirlik.html",
+      "entegre-program.html",
+      "tekstil-standartlari.html",
+      "cevre-danismanligi.html",
+      "tesvik-danismanligi.html",
+      "ciktilar.html",
+      "ihtiyac-rehberi.html",
+      "katalog.html",
+      "calisma-modelleri.html",
+      "medya.html",
+      "is-ortaklari.html",
+      "sektorel-cozumler.html",
+      "iso-50001-enerji-yonetimi.html",
+      "egitim-katalog.html",
+      "egitim-takvimi.html",
+      "egitim-online.html",
+      "egitim-takip.html",
+      "enerji-verimliligi-teshvik.html",
+      "iso-27001-bilgi-guvenligi.html",
+      "iso-22301-is-surekliligi.html",
+      "iso-10002-sikayet-yonetimi.html",
+      "iso-22000-gida-guvenligi.html",
+      "iso-14064-karbon-ghg-hesap.html",
+      "gida-belgelendirme-hazirlik.html",
+      "sosyal-uygunluk-denetim-hazirlik.html"
     ]
   },
   "trainingCatalog": [
@@ -68,7 +92,14 @@
     "tesvik-danismanligi.html": { "label": "Teşvik danışmanlığı", "asset": "tesvik-danismanligi-hero" },
     "tekstil-standartlari.html": { "label": "Tekstil standartları", "asset": "tekstil-standartlari-hero" },
     "iso-50001-enerji-yonetimi.html": { "label": "ISO 50001 enerji yönetimi", "asset": "enerji-yonetimi-hero" },
-    "enerji-verimliligi-teshvik.html": { "label": "Enerji verimliliği teşvikleri", "asset": "tesvik-danismanligi-hero" }
+    "enerji-verimliligi-teshvik.html": { "label": "Enerji verimliliği teşvikleri", "asset": "tesvik-danismanligi-hero" },
+    "iso-27001-bilgi-guvenligi.html": { "label": "Bilgi güvenliği", "asset": "hizmetler-hero-endustriyel" },
+    "iso-22301-is-surekliligi.html": { "label": "İş sürekliliği", "asset": "uzman-kadro-hero-saha-ekibi" },
+    "iso-10002-sikayet-yonetimi.html": { "label": "Şikâyet yönetimi", "asset": "hizmetler-hero-endustriyel" },
+    "iso-22000-gida-guvenligi.html": { "label": "Gıda güvenliği", "asset": "cozumler-hero-planlama" },
+    "iso-14064-karbon-ghg-hesap.html": { "label": "Karbon ve GHG hesabı", "asset": "cevre-danismanligi-hero" },
+    "gida-belgelendirme-hazirlik.html": { "label": "Gıda hazırlığı", "asset": "cozumler-hero-planlama" },
+    "sosyal-uygunluk-denetim-hazirlik.html": { "label": "Sosyal uygunluk", "asset": "tekstil-standartlari-hero" }
   },
   "services": [
     { "slug": "iso-yonetim-sistemleri", "title": "ISO Yönetim Sistemleri", "summary": "Sistemleri kopya dokümanlara değil, gerçek operasyonunuza göre kuruyoruz.", "href": "iso-yonetim-sistemleri.html", "category": "Yönetim standartları" },
@@ -82,8 +113,15 @@
     { "slug": "tekstil-standartlari", "title": "Tekstil Standartları", "summary": "GOTS, GRS, OCS ve RCS izlenebilirliği ile denetim hazırlığını güçlendirin.", "href": "tekstil-standartlari.html", "category": "Sektörel çözümler" },
     { "slug": "surdurulebilirlik", "title": "Sürdürülebilirlik", "summary": "Karbon ayak izi, sürdürülebilirlik raporlaması ve ESG hedeflerini ölçülebilir kılın.", "href": "surdurulebilirlik.html", "category": "Çevre ve sürdürülebilirlik" },
     { "slug": "iso-50001-enerji-yonetimi", "title": "ISO 50001 Enerji Yönetimi", "summary": "Enerji gözden geçirmesi, EnPI hedefleri ve doğrulanabilir aksiyonlarla enerji performansını yönetin.", "href": "iso-50001-enerji-yonetimi.html", "category": "Çevre ve sürdürülebilirlik" },
-    { "slug": "entegre-program", "title": "Entegre ISO/İSG Programı", "summary": "9001, 14001 ve 45001’i üç fazlı tek bir gelişim yol haritasında birleştirin.", "href": "entegre-program.html", "category": "Gelişim" },
+    { "slug": "entegre-program", "title": "Entegre ISO/İSG Programı", "summary": "9001, 14001 ve 45001'i üç fazlı tek bir gelişim yol haritasında birleştirin.", "href": "entegre-program.html", "category": "Gelişim" },
     { "slug": "is-ortaklari", "title": "Çözüm Ortaklığı", "summary": "Belgelendirme, test, eğitim ve uzmanlık ihtiyaçları için güvenilir partner ağı.", "href": "is-ortaklari.html", "category": "Sektörel çözümler" },
-    { "slug": "sektorel-cozumler", "title": "Sektörel Çözümler", "summary": "Tekstil, üretim, metal, gıda, depolama, inşaat, otomotiv, enerji ve çok lokasyonlu işletmeler için çözümler.", "href": "sektorel-cozumler.html", "category": "Sektörel çözümler" }
+    { "slug": "sektorel-cozumler", "title": "Sektörel Çözümler", "summary": "Tekstil, üretim, metal, gıda, depolama, inşaat, otomotiv, enerji ve çok lokasyonlu işletmeler için çözümler.", "href": "sektorel-cozumler.html", "category": "Sektörel çözümler" },
+    { "slug": "iso-27001-bilgi-guvenligi", "title": "ISO 27001 Bilgi Güvenliği Yönetim Sistemi", "summary": "Veri, sistem ve proses risklerini anahtar kelime veya teknik kontrol ile değil, işlenecek süreç, sorumlu ve kanıtla yönetin.", "href": "iso-27001-bilgi-guvenligi.html", "category": "Sistem ve güvenlik" },
+    { "slug": "iso-22301-is-surekliligi", "title": "ISO 22301 İş Sürekliliği Yönetim Sistemi", "summary": "Olay, kesinti veya darbe durumunda kritik faaliyetlerin nasıl devam edeceğini ve süresini önceden planlayın.", "href": "iso-22301-is-surekliligi.html", "category": "Sistem ve güvenlik" },
+    { "slug": "iso-10002-sikayet-yonetimi", "title": "ISO 10002 Şikâyet Yönetimi", "summary": "Müşteri geri bildirimlerini sınıflandırılmış kayıt, kök neden ve kapanış kanıtıyla iyileştirme döngüsüne bağlayın.", "href": "iso-10002-sikayet-yonetimi.html", "category": "Yönetim standartları" },
+    { "slug": "iso-22000-gida-guvenligi", "title": "ISO 22000 Gıda Güvenliği Yönetim Sistemi", "summary": "Ön gereksinim programlarını, tehlike analizini ve izlenebilirlik kayıtlarını üretim akışına yerleştirin.", "href": "iso-22000-gida-guvenligi.html", "category": "Sektörel çözümler" },
+    { "slug": "iso-14064-karbon-ghg-hesap", "title": "ISO 14064 Karbon ve GHG Hesaplama", "summary": "Sınırları, emisyon kaynaklarını, veri kalitesini ve hesaplama varsayımlarını izlenebilir bir envanterde yönetin.", "href": "iso-14064-karbon-ghg-hesap.html", "category": "Çevre ve sürdürülebilirlik" },
+    { "slug": "gida-belgelendirme-hazirlik", "title": "Gıda Denetim ve Sistem Hazırlığı", "summary": "Gıda tesisinizde hijyen, proses, izlenebilirlik ve denetim kanıtlarını uygulanabilir bir hazırlık planına bağlayın.", "href": "gida-belgelendirme-hazirlik.html", "category": "Sektörel çözümler" },
+    { "slug": "sosyal-uygunluk-denetim-hazirlik", "title": "Sosyal Uygunluk Denetim Hazırlığı", "summary": "Çalışma koşulları, çalışan kayıtları, saha uygulamaları ve tedarikçi beklentilerini denetime hazır hale getirin.", "href": "sosyal-uygunluk-denetim-hazirlik.html", "category": "Sektörel çözümler" }
   ]
 }
