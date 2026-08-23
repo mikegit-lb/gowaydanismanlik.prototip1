@@ -293,9 +293,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .site-header .brand { min-width: 200px; flex: 0 0 auto; }
 .brand { display: inline-grid; grid-template-columns: 74px auto; grid-template-rows: auto auto; align-items: center; column-gap: 12px; line-height: 1; letter-spacing: .14em; }
-.brand::before { width: 74px; height: 68px; grid-row: 1 / span 2; background: url("goway-mark.png") center / contain no-repeat; content: ""; pointer-events: none; }
-.brand strong { grid-column: 2; align-self: end; color: var(--teal); font-size: 1.2rem; }
-.brand span { grid-column: 2; align-self: start; margin-top: 7px; color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .22em; }
+.brand-mark { width: 74px; height: 68px; grid-column: 1; grid-row: 1 / span 2; display: block; background: url("goway-mark.png") center / contain no-repeat; }
+.brand-copy { grid-column: 2; grid-row: 1 / span 2; display: block; }
+.brand-copy strong { display: block; color: var(--teal); font-size: 1.2rem; }
+.brand-copy span { display: block; margin-top: 7px; color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .22em; }
 .page-nav {
   display: flex;
   align-items: center;

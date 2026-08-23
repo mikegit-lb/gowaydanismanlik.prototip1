@@ -30,12 +30,14 @@ function header(site) {
   const links = site.navigation.map((item) => `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`).join('');
   return `<div class="utility"><div class="container"><span>${escapeHtml(site.site.address)}</span><a href="${escapeHtml(site.site.phoneHref)}">${escapeHtml(site.site.phone)}</a></div></div>
   <header class="site-header"><div class="container nav-wrap">
-    <a class="brand" href="index.html"><strong>GOWAY</strong><span>DANIŞMANLIK</span></a>
+    <a class="brand" href="index.html" aria-label="Goway Danışmanlık ana sayfa"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><strong>GOWAY</strong><span>DANIŞMANLIK</span></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span><span class="visually-hidden">Menüyü aç</span></button>
     <nav class="page-nav" id="site-navigation" aria-label="Ana menü">${links}</nav>
     <div class="header-actions"><a class="button primary header-cta" href="on-gorusme.html">Ücretsiz Ön Görüşme</a></div>
   </div></header>`;
 }
+
+export const renderSharedHeader = header;
 
 function footer(site) {
   return `<footer class="site-footer"><div class="container site-footer-inner">
@@ -43,6 +45,8 @@ function footer(site) {
     <section class="footer-contact-block" aria-label="İletişim"><h2>İletişim</h2><a href="${escapeHtml(site.site.phoneHref)}">${escapeHtml(site.site.phone)}</a><a href="${escapeHtml(site.site.emailHref)}">${escapeHtml(site.site.email)}</a><span>${escapeHtml(site.site.address)}</span></section>
   </div><div class="container footer-legal-row"><span>© 2026 Goway Danışmanlık · Tüm hakları saklıdır.</span><nav class="site-footer-nav" aria-label="Yasal bağlantılar"><a href="kvkk-aydinlatma-metni.html">KVKK</a><a href="gizlilik-politikasi.html">Gizlilik</a><a href="cerez-politikasi.html">Çerezler</a><a href="kullanim-sartlari.html">Kullanım</a><a href="sss.html">SSS</a></nav></div></footer>`;
 }
+
+export const renderSharedFooter = footer;
 
 function hero(asset, eyebrow, title, summary, actions = '') {
   const srcset = (format) => [400, 800, 1200, 1600].map((width) => `assets/hero/${asset}-${width}.${format} ${width}w`).join(', ');

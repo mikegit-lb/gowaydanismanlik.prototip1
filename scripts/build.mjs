@@ -7,7 +7,7 @@ import cssnano from 'cssnano';
 import { minify as minifyHtml } from 'html-minifier-terser';
 import { minify as minifyJs } from 'terser';
 import sharp from 'sharp';
-import { createRuntimeConfig, loadContent, renderGeneratedPages } from './content.mjs';
+import { createRuntimeConfig, loadContent, renderGeneratedPages, renderSharedFooter, renderSharedHeader } from './content.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -229,6 +229,24 @@ async function processHtml(content, generated, styles, scripts) {
   for (const file of sourceFiles) pages.set(file, await fs.readFile(path.join(root, file), 'utf8'));
   for (const [file, original] of pages) {
     let html = file === 'index.html' ? pruneLegacyHomepage(original) : original;
+    // Every route uses the same utility strip, logo lockup, responsive menu and CTA.
+    // Remove hand-authored shell variants before inserting the canonical shell.
+    const utilityStart = html.search(/<div\s+class=["'](?:topbar|utility)["'][^>]*>/i);
+    if (utilityStart >= 0) {
+      const headerStart = html.indexOf('<header', utilityStart);
+      if (headerStart > utilityStart) html = `${html.slice(0, utilityStart)}${html.slice(headerStart)}`;
+    }
+    html = html.replace(/\s*<a\s+class=["'][^"']*topbar-phone[^"']*["'][^>]*>[\s\S]*?<\/a>/i, '');
+    html = html.replace(/\s*<a\s+class=["'][^"']*visually-hidden[^"']*["'][^>]*href=["']#home-links["'][^>]*>[\s\S]*?<\/a>/i, '');
+    html = html.replace(/<header\b[\s\S]*?<\/header>/i, renderSharedHeader(content.site));
+    if (file === 'index.html') {
+      let keptFooter = false;
+      html = html.replace(/<footer\b[\s\S]*?<\/footer>/gi, () => {
+        if (keptFooter) return '';
+        keptFooter = true;
+        return renderSharedFooter(content.site);
+      });
+    }
     html = html.replaceAll('LOTO Yetkili Kişi', 'LOTO Uygulama Eğitimi');
     html = replaceUnverifiedClaims(html, file);
     html = ensureHeadMeta(html, file);
