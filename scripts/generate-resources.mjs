@@ -190,6 +190,21 @@ const templates = [
     ]
   },
   {
+    file: 'ced-sonrasi-isletme-uyum-kontrol-listesi-v1.docx',
+    title: 'ÇED Sonrası İşletme Dönemi Uyum Kontrol Listesi',
+    intro: 'ÇED sonrası işletme döneminde izin, ölçüm, beyan, atık, deşarj ve aylık çevre değerlendirme kayıtlarını izlemek için düzenlenebilir şablon.',
+    rows: [
+      ['Kapsam', 'Ek-1/Ek-2 kapsamı ve kapasite değişiklikleri güncel mi?', 'Kapsam değerlendirmesi, kapasite kaydı'],
+      ['İzinler', 'Çevre izin/lisans koşulları, süreleri ve sorumluları takip ediliyor mu?', 'İzin dosyası, yükümlülük takvimi'],
+      ['Ölçüm', 'Emisyon, deşarj, gürültü veya diğer ölçümler döneminde planlanıyor mu?', 'Ölçüm planı ve raporu'],
+      ['Beyan', 'Yıllık veya dönemsel beyanlar kaynak verisiyle uzlaştırılıyor mu?', 'Beyan kaydı, veri kontrolü'],
+      ['Atık', 'Atık kodu, miktarı, geçici depolama ve teslim kayıtları eşleşiyor mu?', 'Atık takip ve teslim kayıtları'],
+      ['Aylık değerlendirme', 'Uygunsuzluk, aksiyon, veri eğilimi ve yönetim özeti her ay gözden geçiriliyor mu?', 'Aylık çevre değerlendirme tutanağı'],
+      ['Deşarj', 'Deşarj noktası, limitler, numune ve aksiyonlar izlenebilir mi?', 'Deşarj kayıtları ve sonuçlar'],
+      ['Değişiklik', 'Tesis, proses veya kapasite değişiklikleri çevresel açıdan yeniden değerlendiriliyor mu?', 'Değişiklik değerlendirme formu']
+    ]
+  },
+  {
     file: '30-60-90-egitim-etkinlik-raporu-v1.docx',
     title: '30/60/90 Gün Eğitim Etkinlik Raporu Örneği',
     intro: 'Eğitim sonrası uygulama görevi, yönetici gözlemi, ön/son ölçüm ve aksiyon kapanışını izlemek için yapılandırılmış rapor şablonu.',

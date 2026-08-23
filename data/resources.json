@@ -239,6 +239,23 @@
       ]
     },
     {
+      "slug": "ced-sonrasi-isletme-uyum-kontrol-listesi",
+      "title": "ÇED Sonrası İşletme Dönemi Uyum Kontrol Listesi",
+      "summary": "Ek-1/Ek-2 kapsamı, izin, ölçüm, beyan, atık, deşarj ve aylık çevre değerlendirme kayıtlarını birlikte gözden geçirin.",
+      "sector": "Üretim, enerji ve altyapı işletmeleri",
+      "standard": "ÇED sonrası çevre uyumu",
+      "need": "Çevre yükümlülükleri",
+      "version": "1.0",
+      "updatedAt": "2026-08-24",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "cevre-danismanligi.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/ced-sonrasi-isletme-uyum-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/ced-sonrasi-isletme-uyum-kontrol-listesi-v1.docx" }
+      ]
+    },
+    {
       "slug": "30-60-90-egitim-etkinlik-raporu",
       "title": "30/60/90 Gün Eğitim Etkinlik Raporu Örneği",
       "summary": "Eğitim sonrası uygulama görevi, yönetici gözlemi, ön/son ölçüm ve aksiyon kapanışını tek rapor yapısında izleyin.",

@@ -2,7 +2,8 @@
   "site": {
     "name": "Goway Danışmanlık",
     "phone": "+90 533 439 00 03",
-    "phoneHref": "tel:+905****0003",
+    "phoneHref": "tel:+905334390003",
+    "whatsappHref": "https://wa.me/905334390003",
     "email": "goway@gowaydanismanlik.com",
     "emailHref": "mailto:goway@gowaydanismanlik.com",
     "address": "Denizli · Türkiye geneli hizmet",

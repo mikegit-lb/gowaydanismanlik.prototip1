@@ -197,21 +197,22 @@ async function minifyInlineScripts(html, file) {
   return output + html.slice(cursor);
 }
 
-function addServiceFaq(html, file) {
-  const faq = {
-    'iso-27001-bilgi-guvenligi.html': ['Bilgi güvenliği hazırlığı hakkında', 'Teknik ekip şart mı?', 'Teknik sahipler sürece katılır; Goway risk, sorumluluk ve kanıt akışını iş hedefleriyle birlikte kurar.', 'İlk çıktı nedir?', 'Varlık envanteri, risk kaydı, kontrol planı ve öncelikli aksiyon listesiyle başlanır.'],
-    'iso-22301-is-surekliligi.html': ['İş sürekliliği hazırlığı hakkında', 'Hangi faaliyetler seçilir?', 'Gelir, güvenlik, yasal veya müşteri etkisi yüksek faaliyetler iş sahipleriyle birlikte önceliklendirilir.', 'Tatbikat gerekli mi?', 'Senaryo ve tatbikatlar planın uygulanabilirliğini görmek ve öğrenimleri kaydetmek için kullanılır.'],
-    'iso-10002-sikayet-yonetimi.html': ['Şikâyet yönetimi hazırlığı hakkında', 'Şikâyetler nasıl sınıflanır?', 'Konu, önem, kanal, sorumlu ve yanıt süresi işletmenizin hizmet riskine göre tanımlanır.', 'Hangi kayıtlar incelenir?', 'Şikâyet kaydı, inceleme notu, yanıt, kök neden, aksiyon ve kapanış kanıtı birlikte gözden geçirilir.'],
-    'iso-22000-gida-guvenligi.html': ['Gıda güvenliği hazırlığı hakkında', 'PRP neden önemlidir?', 'Temel hijyen ve altyapı koşulları kontrol edilmeden tehlike analizi sahada sürdürülebilir olmaz.', 'İzlenebilirlik nasıl test edilir?', 'Seçilen bir lot veya sipariş girişten sevkiyata ve gerekirse geri çağırma senaryosuna kadar izlenir.'],
-    'iso-14064-karbon-ghg-hesap.html': ['GHG hesaplama hazırlığı hakkında', 'Hangi veriler gerekir?', 'Yakıt, elektrik, lojistik, soğutucu ve uygun diğer kaynakların dönem ve kaynak sahibi bilgisi gerekir.', 'Tahminler kullanılabilir mi?', 'Eksik veya tahmini veriler açıkça işaretlenir; varsayım, veri kalitesi ve belirsizlik ayrıca raporlanır.'],
-    'gida-belgelendirme-hazirlik.html': ['Gıda denetim hazırlığı hakkında', 'Nereden başlanır?', 'Yaklaşan denetim, tesis kapsamı, kritik prosesler ve son saha gözlemleriyle önceliklendirme yapılır.', 'Çıktı nasıl izlenir?', 'Kanıt matrisi, sorumlu, termin ve etkinlik doğrulamasıyla açıklar kapanışa kadar takip edilir.'],
-    'sosyal-uygunluk-denetim-hazirlik.html': ['Sosyal uygunluk hazırlığı hakkında', 'Kişisel veri nasıl korunur?', 'Hazırlıkta gereksiz kişisel veri çoğaltılmaz; kaynak, dönem, sorumlu ve kontrol durumu yeterli olur.', 'Tedarikçiler dahil mi?', 'İşletmenin kapsamına göre tedarikçi beklentileri, değerlendirme kayıtları ve aksiyon takibi dahil edilir.']
-  }[file];
-  if (!faq || html.includes(`id="${file.replace('.html', '')}-sss"`)) return html;
-  const id = file.replace('.html', '') + '-sss';
-  const block = `<section class="content-section" aria-labelledby="${id}"><div class="section-heading"><p class="eyebrow">SSS</p><h2 id="${id}">${faq[0]}</h2></div><div class="content-grid three"><article class="evidence-card"><h3>${faq[1]}</h3><p>${faq[2]}</p></article><article class="evidence-card"><h3>Karar kime aittir?</h3><p>Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir.</p></article><article class="evidence-card"><h3>${faq[3]}</h3><p>${faq[4]}</p></article></div></section>`;
-  const schema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [{ '@type': 'Question', name: faq[1], acceptedAnswer: { '@type': 'Answer', text: faq[2] } }, { '@type': 'Question', name: 'Karar kime aittir?', acceptedAnswer: { '@type': 'Answer', text: 'Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir.' } }, { '@type': 'Question', name: faq[3], acceptedAnswer: { '@type': 'Answer', text: faq[4] } }] };
-  return html.replace('</head>', `<script type="application/ld+json" data-service-faq-schema>${JSON.stringify(schema).replaceAll('<', '\\u003c')}</script></head>`).replace('</main>', `${block}</main>`);
+function addServicesHubEnhancements(html, content, file) {
+  if (file !== 'hizmetler.html') return html;
+  const itemList = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Goway Danışmanlık Hizmetleri', url: `${baseUrl}/hizmetler.html`, numberOfItems: content.services.length, itemListElement: content.services.map((service, index) => ({ '@type': 'ListItem', position: index + 1, name: service.title, url: `${baseUrl}/${service.file}` })) };
+  const schemaScript = `<script type="application/ld+json">${JSON.stringify(itemList).replaceAll('<', '\\u003c')}</script>`;
+  const withSchema = html.replace(/<script type="application\/ld\+json">[\s\S]*?"@type":"ItemList"[\s\S]*?<\/script>/, schemaScript);
+  if (withSchema.includes('id="service-sector-matrix"')) return withSchema;
+  const categories = [...new Set(content.services.map((service) => (service.eyebrow || 'Hizmet').split('·').at(-1).trim()))].sort((a, b) => a.localeCompare(b, 'tr'));
+  const options = categories.map((category) => `<option value="${escapeAttribute(category)}">${escapeAttribute(category)}</option>`).join('');
+  const headers = content.sectors.map((sector) => `<th scope="col"><a href="${escapeAttribute(sector.file)}">${escapeAttribute(sector.title)}</a></th>`).join('');
+  const rows = content.services.map((service) => {
+    const category = (service.eyebrow || 'Hizmet').split('·').at(-1).trim();
+    const cells = content.sectors.map((sector) => service.sectorLinks?.includes(sector.file) ? '<td class="matrix-hit" aria-label="Kapsam var">●</td>' : '<td aria-label="Bu sayfada belirtilmedi">—</td>').join('');
+    return `<tr data-service-matrix-row data-category="${escapeAttribute(category)}"><th scope="row"><a href="${escapeAttribute(service.file)}">${escapeAttribute(service.title)}</a><small>${escapeAttribute(category)}</small></th>${cells}</tr>`;
+  }).join('');
+  const section = `<section id="service-sector-matrix" class="content-section service-matrix-section" aria-labelledby="service-sector-matrix-title"><div class="section-heading"><p class="eyebrow">21 hizmet × 10 sektör</p><h2 id="service-sector-matrix-title">Hangi hizmet hangi sahada karşılık bulur?</h2><p>İşaretler hizmet manifestosunda tanımlı sektör bağlantılarını gösterir; kapsam ilk görüşmede işletmenin gerçek verisiyle kesinleştirilir.</p></div><label class="matrix-filter">Hizmet ailesi<select id="service-matrix-filter"><option value="">Tümü</option>${options}</select></label><div class="comparison-table-wrap"><table class="comparison-table service-matrix"><thead><tr><th scope="col">Hizmet</th>${headers}</tr></thead><tbody>${rows}</tbody></table></div><script>document.addEventListener('DOMContentLoaded',()=>{const filter=document.querySelector('#service-matrix-filter');const rows=[...document.querySelectorAll('[data-service-matrix-row]')];filter?.addEventListener('change',()=>rows.forEach(row=>{row.hidden=Boolean(filter.value)&&row.dataset.category!==filter.value;}));});</script></section>`;
+  return withSchema.replace('</main>', `${section}</main>`);
 }
 
 async function processHtml(content, generated, styles, scripts) {
@@ -220,10 +221,11 @@ async function processHtml(content, generated, styles, scripts) {
   for (const file of sourceFiles) pages.set(file, await fs.readFile(path.join(root, file), 'utf8'));
   for (const [file, original] of pages) {
     let html = file === 'index.html' ? pruneLegacyHomepage(original) : original;
+    html = html.replaceAll('LOTO Yetkili Kişi', 'LOTO Uygulama Eğitimi');
     html = replaceUnverifiedClaims(html, file);
     html = ensureHeadMeta(html, file);
     html = addOrganizationSchema(html, file, content);
-    if (!generated.has(file)) html = addServiceFaq(html, file);
+    html = addServicesHubEnhancements(html, content, file);
     html = addAnalytics(html, content.analytics);
     html = addSharedShell(html, styles, scripts);
     html = await minifyInlineScripts(html, file);
@@ -246,7 +248,7 @@ async function writeSitemap(files) {
 async function validateContent(content) {
   if (content.sectors.length !== 10) throw new Error(`Expected 10 sectors, found ${content.sectors.length}`);
   if (content.services.length !== 21) throw new Error(`Expected 21 services, found ${content.services.length}`);
-  if (content.resources.length !== 15) throw new Error(`Expected 15 resources, found ${content.resources.length}`);
+  if (content.resources.length !== 16) throw new Error(`Expected 16 resources, found ${content.resources.length}`);
   const unique = (values, label) => { if (new Set(values).size !== values.length) throw new Error(`Duplicate ${label}`); };
   unique(content.sectors.map((item) => item.slug), 'sector slug');
   unique(content.sectors.map((item) => item.file), 'sector file');

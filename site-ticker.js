@@ -172,7 +172,7 @@
     const bar = document.createElement('nav');
     bar.className = 'mobile-action-bar';
     bar.setAttribute('aria-label', 'Hızlı iletişim');
-    bar.innerHTML = `<a href="${site.phoneHref || 'tel:+905334390003'}" data-contact-action="call"><span aria-hidden="true">☎</span><strong>Ara</strong></a><a href="https://wa.me/905334390003" target="_blank" rel="noopener" data-contact-action="whatsapp"><span aria-hidden="true">◉</span><strong>WhatsApp</strong></a><a href="on-gorusme.html" data-contact-action="consultation"><span aria-hidden="true">↗</span><strong>Ön Görüşme</strong></a>`;
+    bar.innerHTML = `<a href="${site.phoneHref || 'tel:+905334390003'}" data-contact-action="call"><span aria-hidden="true">☎</span><strong>Ara</strong></a><a href="${site.whatsappHref || 'https://wa.me/905334390003'}" target="_blank" rel="noopener" data-contact-action="whatsapp"><span aria-hidden="true">◉</span><strong>WhatsApp</strong></a><a href="on-gorusme.html" data-contact-action="consultation"><span aria-hidden="true">↗</span><strong>Ön Görüşme</strong></a>`;
     document.body.append(bar);
     const form = document.querySelector('[data-consultation-form]');
     if (form && 'IntersectionObserver' in window) {
@@ -190,6 +190,37 @@
     const legal = footer.querySelector('.footer-legal-row, .home-footer-legal');
     if (legal) footer.insertBefore(badges, legal);
     else footer.append(badges);
+  };
+
+  const normalizeTrainingNames = () => {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => { if (node.nodeValue.includes('LOTO Yetkili Kişi')) node.nodeValue = node.nodeValue.replaceAll('LOTO Yetkili Kişi', 'LOTO Uygulama Eğitimi'); });
+  };
+
+  const initializeTrainingCalendar = () => {
+    if (currentPage !== 'egitim-takvimi.html') return;
+    const grid = document.querySelector('.hero-page + main .content-grid.three');
+    const catalog = (window.GOWAY_SITE_CONFIG?.trainingCatalog || []).filter((item) => item.scheduledDate || item.availability === 'Açık');
+    if (!grid || !catalog.length) return;
+    grid.replaceChildren(...catalog.slice(0, 6).map((item) => {
+      const card = document.createElement('article');
+      card.className = 'evidence-card';
+      const status = document.createElement('span');
+      status.className = 'status-pill';
+      status.textContent = item.scheduledDate ? `Açık takvim · ${item.scheduledDate}` : 'Talep toplanıyor';
+      const title = document.createElement('h3');
+      title.textContent = item.topic;
+      const details = document.createElement('p');
+      details.textContent = `${item.duration} · ${item.format || 'Yüz yüze veya canlı uzaktan'} · ${item.audience}`;
+      const link = document.createElement('a');
+      link.className = 'inline-link';
+      link.href = item.scheduledDate ? '#kayit' : `on-gorusme.html?hizmet=${encodeURIComponent(item.relatedService || item.topic)}`;
+      link.textContent = item.scheduledDate ? 'Ön kayıt bırakın →' : 'Talep bırakın →';
+      card.append(status, title, details, link);
+      return card;
+    }));
   };
 
   const setFieldError = (form, name, message = '') => {
@@ -365,6 +396,8 @@
   applySiteIdentity();
   ensureMobileActions();
   ensureFooterTrust();
+  normalizeTrainingNames();
+  initializeTrainingCalendar();
   document.querySelectorAll('[data-consultation-form]').forEach(initializeConsultationForm);
   initializeResourceFilters();
   initializeExitOffer();
