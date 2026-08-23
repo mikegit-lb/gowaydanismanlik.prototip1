@@ -202,14 +202,14 @@
   const initializeTrainingCalendar = () => {
     if (currentPage !== 'egitim-takvimi.html') return;
     const grid = document.querySelector('.hero-page + main .content-grid.three');
-    const catalog = (window.GOWAY_SITE_CONFIG?.trainingCatalog || []).filter((item) => item.scheduledDate || item.availability === 'Açık');
+    const catalog = (window.GOWAY_SITE_CONFIG?.trainingCatalog || []).filter((item) => item.scheduledDate || item.availability === 'Açık').sort((a, b) => Number(Boolean(b.scheduledDate)) - Number(Boolean(a.scheduledDate)));
     if (!grid || !catalog.length) return;
     grid.replaceChildren(...catalog.slice(0, 6).map((item) => {
       const card = document.createElement('article');
       card.className = 'evidence-card';
       const status = document.createElement('span');
       status.className = 'status-pill';
-      status.textContent = item.scheduledDate ? `Açık takvim · ${item.scheduledDate}` : 'Talep toplanıyor';
+      status.textContent = item.scheduledDate ? `Açık takvim · ${item.scheduledDate}` : item.availability === 'Açık' ? 'Açık takvim · tarih talep ediliyor' : 'Talep toplanıyor';
       const title = document.createElement('h3');
       title.textContent = item.topic;
       const details = document.createElement('p');

@@ -151,7 +151,7 @@ function addOrganizationSchema(html, file, content) {
   return html.replace('</head>', `<script type="application/ld+json" data-seo-schema>${JSON.stringify(graph).replaceAll('<', '\\u003c')}</script></head>`);
 }
 
-function addSharedShell(html, styles, scripts) {
+function addSharedShell(html, styles, scripts, content, file) {
   html = html
     .replace(/href=["']site-pages\.css(?:\?[^"']*)?["']/g, `href="${styles['site-pages.css']}"`)
     .replace(/href=["']index\.css(?:\?[^"']*)?["']/g, `href="${styles['index.css']}"`)
@@ -163,8 +163,16 @@ function addSharedShell(html, styles, scripts) {
   html = html.replace(/<img(?![^>]*\bwidth=)([^>]*class=["'][^"']*(?:footer-logo|home-footer-logo)[^"']*["'][^>]*)>/gi, '<img width="80" height="72"$1>');
   html = html.replace(/<img(?![^>]*\bwidth=)([^>]*src=["']assets\/hero\/[^"']+["'][^>]*)>/gi, '<img width="1600" height="900"$1>');
   if (!/<main\b[^>]*\bid=["']main-content["']/i.test(html)) html = html.replace(/<main(\s|>)/i, '<main id="main-content"$1');
+  const navLinks = content.site.navigation.map((item) => `<a href="${escapeAttribute(item.href)}"${item.href === file ? ' aria-current="page"' : ''}>${escapeAttribute(item.label)}</a>`).join('');
+  html = html.replace(/<nav\b[^>]*class=["'][^"']*(?:page-nav|nav-links)[^"']*["'][^>]*>[\s\S]*?<\/nav>/i, `<nav class="page-nav" id="site-navigation" aria-label="Ana menü">${navLinks}</nav>`);
   if (!html.includes('skip-link')) html = html.replace(/<body([^>]*)>/i, '<body$1><a class="visually-hidden skip-link" href="#main-content">İçeriğe geç</a>');
   return html.replace('</body>', `<script src="${scripts.configName}"></script><script src="${scripts.tickerName}" defer></script></body>`);
+}
+
+function enrichOnlineTraining(html, file) {
+  if (file !== 'egitim-online.html' || html.includes('data-online-enrichment')) return html;
+  const section = `<section class="content-section" data-online-enrichment><div class="section-heading"><p class="eyebrow">Program envanteri</p><h2>Modüller, uygulama ve ölçüm aynı akışta</h2><p>Online içerik, canlı oturum ve saha görevi birlikte planlanır; her rol için tamamlanma ve uygulama kanıtı ayrı izlenir.</p></div><div class="content-grid three"><article class="evidence-card"><h3>ISO &amp; yönetim sistemleri</h3><p>ISO 9001, ISO 14001, ISO 45001, ISO 50001, ISO 27001 ve ISO 22301 farkındalık modülleri.</p><span class="status-pill">Kısa modül · ön/son test</span></article><article class="evidence-card"><h3>Saha uygulamaları</h3><p>LOTO, risk değerlendirmesi, acil durum ve kök neden çalışmaları görev kartlarıyla ilerler.</p><span class="status-pill">Uygulama görevi · yönetici gözlemi</span></article><article class="evidence-card"><h3>Tekstil &amp; çevre</h3><p>GOTS/GRS izlenebilirlik, GHG veri kalitesi ve çevre farkındalığı için rol bazlı öğrenme yolları.</p><span class="status-pill">Vaka · kanıt matrisi</span></article></div></section><section class="content-section detail-layout"><article class="content-card"><p class="eyebrow">LMS önizlemesi</p><h2>Öğrenme ekranında neler görünür?</h2><ol class="process-list"><li><div><h3>Atama</h3><p>Rol, lokasyon ve vardiyaya göre modül ataması; tamamlanma ve yeniden izleme durumu.</p></div></li><li><div><h3>Ölçme</h3><p>Ön/son test, kısa senaryo ve uygulama görevi puanları aynı rapor üzerinde.</p></div></li><li><div><h3>Takip</h3><p>30/60/90 gün yönetici gözlemi, aksiyon kapanışı ve yeni eğitim ihtiyacı.</p></div></li></ol></article><aside class="aside-card"><p class="eyebrow">Kurumsal başlangıç</p><h3>İçerik ve LMS koşullarınızı paylaşın</h3><p>Mevcut platform, cihaz erişimi, vardiya yapısı ve hedef rollerle uygun formatı seçelim.</p><a class="button primary" href="on-gorusme.html?hizmet=Kurumsal%20Eğitim">Online eğitim talebi</a><a class="button secondary" href="egitim-katalog.html">Katalogdaki programlar</a></aside></section>`;
+  return html.replace('</main>', `${section}</main>`);
 }
 
 function addAnalytics(html, analytics) {
@@ -227,8 +235,10 @@ async function processHtml(content, generated, styles, scripts) {
     html = addOrganizationSchema(html, file, content);
     html = addServicesHubEnhancements(html, content, file);
     html = addAnalytics(html, content.analytics);
-    html = addSharedShell(html, styles, scripts);
+    html = addSharedShell(html, styles, scripts, content, file);
+    html = enrichOnlineTraining(html, file);
     html = await minifyInlineScripts(html, file);
+    html = html.replace(/<script type="application\/json" id="training-data">\s*<\/script>/gi, '');
     html = await minifyHtml(html, { collapseWhitespace: true, conservativeCollapse: true, keepClosingSlash: true, removeComments: true, minifyCSS: false, minifyJS: false });
     await fs.writeFile(path.join(dist, file), html);
   }
@@ -246,6 +256,7 @@ async function writeSitemap(files) {
 }
 
 async function validateContent(content) {
+  if (!/^tel:\+905334390003$/.test(content.site.site.phoneHref)) throw new Error(`Invalid phoneHref: ${content.site.site.phoneHref}`);
   if (content.sectors.length !== 10) throw new Error(`Expected 10 sectors, found ${content.sectors.length}`);
   if (content.services.length !== 21) throw new Error(`Expected 21 services, found ${content.services.length}`);
   if (content.resources.length !== 16) throw new Error(`Expected 16 resources, found ${content.resources.length}`);
