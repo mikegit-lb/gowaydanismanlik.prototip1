@@ -26,7 +26,7 @@
     { "label": "Hizmetler", "href": "hizmetler.html" },
     { "label": "Sektörler", "href": "sektorel-cozumler.html" },
     { "label": "Kaynaklar", "href": "kaynaklar.html" },
-    { "label": "Vaka Çalışmaları", "href": "referanslar.html" },
+    { "label": "Proje Kapsamları", "href": "referanslar.html" },
     { "label": "Hakkımızda", "href": "hakkimizda.html" }
   ],
   "runtimeNavigation": {
@@ -35,7 +35,7 @@
       { "label": "Hizmetler", "href": "hizmetler.html" },
       { "label": "Sektörler", "href": "sektorel-cozumler.html" },
       { "label": "Kaynaklar", "href": "kaynaklar.html" },
-      { "label": "Vaka Çalışmaları", "href": "referanslar.html" },
+      { "label": "Proje Kapsamları", "href": "referanslar.html" },
       { "label": "Hakkımızda", "href": "hakkimizda.html" }
     ],
     "servicePages": [

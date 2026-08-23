@@ -15,17 +15,14 @@ const list = (items, className = '') => `<ul${className ? ` class="${className}"
 
 export async function loadContent(root) {
   const readJson = async (name) => JSON.parse(await fs.readFile(path.join(root, 'data', name), 'utf8'));
-  const [site, sectors, resources, cases, clients, claims, forms, analytics] = await Promise.all([
+  const [site, sectors, resources, claims, analytics] = await Promise.all([
     readJson('site.json'),
     readJson('sectors.json'),
     readJson('resources.json'),
-    readJson('case-studies.json'),
-    readJson('clients.json'),
     readJson('claims.json'),
-    readJson('forms.json'),
     readJson('analytics.json')
   ]);
-  return { site, sectors: sectors.sectors, resources: resources.resources, cases: cases.cases, clients: clients.clients, claims, forms, analytics };
+  return { site, sectors: sectors.sectors, resources: resources.resources, claims, analytics };
 }
 
 function header(site) {
@@ -145,18 +142,6 @@ function renderCatalogRedirect(content) {
   return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=hizmet-katalogu.html"><meta name="description" content="Güncel Goway hizmet kataloğuna yönlendirme sayfası."><title>Güncel Hizmet Kataloğuna Yönlendirme | Goway Danışmanlık</title><link rel="stylesheet" href="site-pages.css"></head><body class="generated-page redirect-page">${header(content.site)}<main id="main-content"><div class="container"><section class="content-section section-note"><p class="eyebrow">Sayfa taşındı</p><h1>Güncel hizmet kataloğuna yönlendiriliyorsunuz</h1><p>Yönlendirme başlamazsa güncel hizmet kapsamlarını açın.</p><a class="button primary" href="hizmet-katalogu.html">Hizmet kataloğunu açın</a></section></div></main>${footer(content.site)}</body></html>`;
 }
 
-function renderCaseStudy(content, item) {
-  const file = `vaka-${item.slug}.html`;
-  const metricRows = (records) => records.map((record) => `<tr><th scope="row">${escapeHtml(record.label)}</th><td>${escapeHtml(record.value)}</td><td>${escapeHtml(record.period)}</td><td>${escapeHtml(record.method)}</td><td>${escapeHtml(record.source)}</td></tr>`).join('');
-  const body = `<div class="container">${breadcrumb([{ label: 'Ana Sayfa', href: 'index.html' }, { label: 'Vaka Çalışmaları', href: 'referanslar.html' }, { label: item.title }])}
-    <section class="content-section case-study-intro"><div><p class="eyebrow">Başlangıç durumu</p><h2>İşletme bağlamı ve problem</h2><p>${escapeHtml(item.context)}</p><p>${escapeHtml(item.challenge)}</p></div><aside><dl><div><dt>Sektör</dt><dd>${escapeHtml(item.sector)}</dd></div><div><dt>Çalışma dönemi</dt><dd>${escapeHtml(item.timeline)}</dd></div><div><dt>Son inceleme</dt><dd>${escapeHtml(item.reviewedAt)}</dd></div></dl></aside></section>
-    <section class="content-section"><div class="section-heading"><p class="eyebrow">Müdahale</p><h2>Uygulanan çalışma ve teslimatlar</h2></div>${list(item.intervention)}</section>
-    <section class="content-section"><div class="section-heading"><p class="eyebrow">Önce / sonra</p><h2>Kaynağı ve yöntemi açıklanmış ölçümler</h2></div><div class="table-shell"><table class="case-metric-table"><thead><tr><th>Gösterge</th><th>Değer</th><th>Dönem</th><th>Yöntem</th><th>Kaynak</th></tr></thead><tbody>${metricRows(item.baseline)}${metricRows(item.results)}</tbody></table></div><p class="case-limitations"><strong>Sınırlamalar:</strong> ${escapeHtml(item.limitations)}</p></section>
-    ${item.quote ? `<blockquote class="case-quote"><p>“${escapeHtml(item.quote.text)}”</p><cite>${escapeHtml(item.quote.attribution)}</cite></blockquote>` : ''}
-    ${trustStrip()}<section class="section-note sector-final-cta"><div><p class="eyebrow">Benzer bir ihtiyaç mı?</p><h2>Kapsamı ve ölçüm yöntemini birlikte tanımlayalım</h2></div><a class="button primary" href="on-gorusme.html?kaynak=${encodeURIComponent(item.slug)}">Ön görüşme isteyin</a></section></div>`;
-  return page({ site: content.site, file, title: item.title, description: item.summary, bodyClass: 'case-study-page', heroHtml: hero(item.heroAsset || 'hizmetler-hero-endustriyel', 'Doğrulanmış vaka çalışması', item.title, item.summary), content: body, schema: [{ '@type': 'Article', headline: item.title, description: item.summary, dateModified: item.reviewedAt, publisher: { '@type': 'Organization', name: content.site.site.name }, mainEntityOfPage: `${baseUrl}/${file}` }] });
-}
-
 export function renderGeneratedPages(content) {
   const resourcesBySlug = new Map(content.resources.map((resource) => [resource.slug, resource]));
   const generated = new Map();
@@ -169,11 +154,10 @@ export function renderGeneratedPages(content) {
     if (!resource) throw new Error(`Sector ${sector.slug} references missing resource ${sector.resourceSlug}`);
     generated.set(sector.file, renderSectorPage(content, sector, resource));
   }
-  for (const item of content.cases.filter((record) => record.status === 'approved' && record.permissionRecord)) generated.set(`vaka-${item.slug}.html`, renderCaseStudy(content, item));
   return generated;
 }
 
-export function createRuntimeConfig(content, endpoint = '') {
+export function createRuntimeConfig(content) {
   return {
     site: content.site.site,
     slogans: content.site.slogans,
@@ -186,15 +170,6 @@ export function createRuntimeConfig(content, endpoint = '') {
     heroes: content.site.heroes,
     services: content.site.services,
     sectors: content.sectors.map(({ slug, file, title }) => ({ slug, file, title })),
-    trainingCatalog: content.site.trainingCatalog || [],
-    forms: {
-      provider: content.forms.provider,
-      consultationEndpoint: endpoint || content.forms.consultationEndpoint || '',
-      timeoutMs: content.forms.timeoutMs,
-      minimumCompletionMs: content.forms.minimumCompletionMs,
-      retentionNotice: content.forms.retentionNotice
-    },
-    approvedCases: content.cases.filter((item) => item.status === 'approved' && item.permissionRecord),
-    approvedClients: content.clients.filter((item) => item.status === 'approved' && item.permissionRecord)
+    trainingCatalog: content.site.trainingCatalog || []
   };
 }

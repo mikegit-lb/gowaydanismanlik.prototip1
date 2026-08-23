@@ -192,25 +192,6 @@
     else footer.append(badges);
   };
 
-  const ensureApprovedProof = () => {
-    const clients = config.approvedClients || [];
-    const cases = config.approvedCases || [];
-    const main = document.querySelector('main');
-    if (clients.length && main && !document.querySelector('.client-proof-strip')) {
-      const section = document.createElement('section');
-      section.className = 'client-proof-strip';
-      section.setAttribute('aria-labelledby', 'approved-client-title');
-      section.innerHTML = `<div class="container"><p class="eyebrow">Yayın izni doğrulanmış müşteriler</p><h2 id="approved-client-title">Birlikte çalıştığımız kuruluşlar</h2><div class="client-logo-grid">${clients.map((client) => `<img src="${client.logo}" alt="${client.alt}" width="180" height="80" loading="lazy" decoding="async">`).join('')}</div></div>`;
-      main.append(section);
-    }
-    if (cases.length && currentPage === 'referanslar.html' && main && !document.querySelector('.approved-case-grid')) {
-      const section = document.createElement('section');
-      section.className = 'approved-case-section container';
-      section.innerHTML = `<p class="eyebrow">Doğrulanmış vaka çalışmaları</p><h2>Kaynağı ve yöntemi açıklanmış sonuçlar</h2><div class="approved-case-grid">${cases.map((item) => `<article><span>${item.sector}</span><h3>${item.title}</h3><p>${item.summary}</p><a class="button primary" href="vaka-${item.slug}.html" data-case-view="${item.slug}">Vakayı inceleyin</a></article>`).join('')}</div>`;
-      main.prepend(section);
-    }
-  };
-
   const setFieldError = (form, name, message = '') => {
     const field = form.elements[name];
     const error = form.querySelector(`[data-error-for="${name}"]`);
@@ -225,10 +206,7 @@
 
   const initializeConsultationForm = (form) => {
     const status = form.querySelector('[data-form-status]');
-    const submit = form.querySelector('[type="submit"]');
-    const initialButtonLabel = submit?.textContent || 'Talebi gönder';
     const params = new URLSearchParams(window.location.search);
-    const startedAt = Date.now();
     const sourcePage = form.elements.source_page;
     const sourceOffer = form.elements.source_offer;
     if (sourcePage) sourcePage.value = currentPage;
@@ -282,7 +260,7 @@
     form.addEventListener('input', (event) => { if (event.target.name) setFieldError(form, event.target.name); });
     form.addEventListener('change', (event) => { if (event.target.name) setFieldError(form, event.target.name); });
     form.addEventListener('focusin', () => { if (!form.dataset.started) { form.dataset.started = 'true'; track('form_start', { page: currentPage }); } }, { once: true });
-    form.addEventListener('submit', async (event) => {
+    form.addEventListener('submit', (event) => {
       event.preventDefault();
       status.textContent = '';
       status.dataset.state = '';
@@ -293,57 +271,29 @@
         focusFirstError();
         return;
       }
-      if (form.elements.company_website?.value) return;
-      if (Date.now() - startedAt < (config.forms?.minimumCompletionMs || 3000)) {
-        status.textContent = 'Form çok hızlı tamamlandı. Bilgilerinizi kontrol edip yeniden deneyin.';
-        status.dataset.state = 'error';
-        track('form_error', { page: currentPage, reason: 'timing' });
-        return;
-      }
-      const endpoint = config.forms?.consultationEndpoint;
-      if (!endpoint) {
-        status.innerHTML = `Güvenli form servisi henüz etkinleştirilmedi. Şimdi <a href="${site.phoneHref || 'tel:+905334390003'}">telefonla arayın</a> veya <a href="${site.emailHref || 'mailto:goway@gowaydanismanlik.com'}">e-posta gönderin</a>.`;
-        status.dataset.state = 'error';
-        track('form_error', { page: currentPage, reason: 'endpoint_missing' });
-        return;
-      }
-      const controller = new AbortController();
-      const timer = window.setTimeout(() => controller.abort(), config.forms?.timeoutMs || 12000);
-      submit.disabled = true;
-      submit.textContent = 'Talebiniz gönderiliyor…';
-      status.textContent = 'Bilgileriniz güvenli biçimde iletiliyor.';
-      status.dataset.state = 'loading';
       const payload = new FormData(form);
-      payload.append('_subject', `Goway ön görüşme talebi · ${payload.get('service') || 'Genel'}`);
-      try {
-        const response = await fetch(endpoint, { method: 'POST', body: payload, headers: { Accept: 'application/json' }, signal: controller.signal });
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok) {
-          if (response.status === 429) throw new Error('rate-limit');
-          if (Array.isArray(result.errors)) {
-            result.errors.forEach((item) => { if (item.field) setFieldError(form, item.field, item.message || 'Bu alanı kontrol edin.'); });
-          }
-          throw new Error('provider');
-        }
-        form.reset();
-        setSelectValue(service, requestedService);
-        setSelectValue(sector, requestedSector);
-        status.textContent = 'Talebiniz alındı. İletişim tercihinize göre en kısa sürede dönüş yapılacaktır.';
-        status.dataset.state = 'success';
-        sessionStorage.setItem('goway-converted', '1');
-        track('form_success', { page: currentPage, service: requestedService || 'selected' });
-        status.focus();
-      } catch (error) {
-        const offline = !navigator.onLine;
-        const message = offline ? 'İnternet bağlantınızı kontrol edin; bilgileriniz formda korunuyor.' : error.name === 'AbortError' ? 'Gönderim zaman aşımına uğradı. Bilgileriniz korunuyor; yeniden deneyin veya telefonla arayın.' : error.message === 'rate-limit' ? 'Kısa sürede çok sayıda deneme yapıldı. Birkaç dakika sonra yeniden deneyin.' : 'Form servisine şu anda ulaşılamıyor. Bilgileriniz korunuyor; yeniden deneyin veya telefonla arayın.';
-        status.textContent = message;
-        status.dataset.state = 'error';
-        track('form_error', { page: currentPage, reason: offline ? 'offline' : error.message || 'network' });
-      } finally {
-        window.clearTimeout(timer);
-        submit.disabled = false;
-        submit.textContent = initialButtonLabel;
-      }
+      const subject = `Goway ön görüşme talebi · ${payload.get('service') || 'Genel'}`;
+      const body = [
+        `Ad soyad: ${payload.get('name') || ''}`,
+        `Şirket: ${payload.get('company') || '-'}`,
+        `İletişim tercihi: ${payload.get('contact_method') || '-'}`,
+        `Telefon: ${payload.get('phone') || '-'}`,
+        `E-posta: ${payload.get('email') || '-'}`,
+        `Hizmet: ${payload.get('service') || '-'}`,
+        `Sektör: ${payload.get('sector') || '-'}`,
+        `Kaynak sayfa: ${payload.get('source_page') || currentPage}`,
+        `Kaynak teklif: ${payload.get('source_offer') || '-'}`,
+        '',
+        'Mesaj:',
+        payload.get('message') || ''
+      ].join('\n');
+      const email = (site.emailHref || 'mailto:goway@gowaydanismanlik.com').replace(/^mailto:/, '');
+      status.textContent = 'E-posta uygulamanızda düzenleyebileceğiniz bir talep taslağı hazırlanıyor.';
+      status.dataset.state = 'success';
+      sessionStorage.setItem('goway-converted', '1');
+      track('form_handoff', { page: currentPage, service: requestedService || 'selected' });
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      status.focus();
     });
     track('form_view', { page: currentPage });
   };
@@ -415,7 +365,6 @@
   applySiteIdentity();
   ensureMobileActions();
   ensureFooterTrust();
-  ensureApprovedProof();
   document.querySelectorAll('[data-consultation-form]').forEach(initializeConsultationForm);
   initializeResourceFilters();
   initializeExitOffer();
@@ -429,7 +378,6 @@
       sessionStorage.setItem('goway-resource-downloaded', '1');
       track('resource_download', { page: currentPage, resource: link.dataset.resourceDownload, format: link.textContent.trim() });
     }
-    if (link.matches('[data-case-view]')) track('case_view', { page: currentPage, case: link.dataset.caseView });
     if (link.closest('.sector-page')) track('sector_cta', { page: currentPage });
   });
 })();

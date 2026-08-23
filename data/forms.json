@@ -1,8 +1,0 @@
-{
-  "provider": "formspree",
-  "consultationEndpoint": "",
-  "endpointEnvironmentVariable": "FORMSPREE_ENDPOINT",
-  "timeoutMs": 12000,
-  "minimumCompletionMs": 3000,
-  "retentionNotice": "Form ile iletilen bilgiler yalnızca talebin değerlendirilmesi ve geri dönüş amacıyla işlenir."
-}

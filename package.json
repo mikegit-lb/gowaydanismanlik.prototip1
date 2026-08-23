@@ -5,7 +5,7 @@
   "description": "Goway Danışmanlık static website build pipeline",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "build:production": "node scripts/build.mjs --require-form-endpoint",
+    "build:production": "node scripts/build.mjs",
     "generate": "node scripts/build.mjs",
     "generate:check": "node scripts/build.mjs",
     "seo": "node scripts/build.mjs",

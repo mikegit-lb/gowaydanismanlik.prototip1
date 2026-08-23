@@ -104,14 +104,10 @@ async function processScripts(content) {
   const tickerName = `site-ticker.${hash(minified.code)}.js`;
   await fs.writeFile(path.join(dist, tickerName), minified.code);
 
-  const configuredEndpoint = process.env.FORMSPREE_ENDPOINT?.trim() || content.forms.consultationEndpoint?.trim() || '';
-  const endpointRequired = process.argv.includes('--require-form-endpoint') || process.env.REQUIRE_FORM_ENDPOINT === '1' || process.env.NODE_ENV === 'production';
-  if (configuredEndpoint && !/^https:\/\/formspree\.io\/f\/[A-Za-z0-9_-]+$/.test(configuredEndpoint)) throw new Error('FORMSPREE_ENDPOINT must match https://formspree.io/f/{form-id}');
-  if (endpointRequired && !configuredEndpoint) throw new Error('Production build blocked: FORMSPREE_ENDPOINT is required.');
-  const runtime = `window.GOWAY_SITE_CONFIG=${JSON.stringify(createRuntimeConfig(content, configuredEndpoint)).replaceAll('<', '\\u003c')};\n`;
+  const runtime = `window.GOWAY_SITE_CONFIG=${JSON.stringify(createRuntimeConfig(content)).replaceAll('<', '\\u003c')};\n`;
   const configName = `site-config.${hash(runtime)}.js`;
   await fs.writeFile(path.join(dist, configName), runtime);
-  return { tickerName, configName, endpointConfigured: Boolean(configuredEndpoint) };
+  return { tickerName, configName };
 }
 
 function pruneLegacyHomepage(html) {
@@ -240,14 +236,6 @@ async function validateContent(content) {
     if (!content.claims.allowedStatuses.includes(claim.status)) throw new Error(`Invalid claim status: ${claim.id}`);
     if (claim.status === 'approved' && (!claim.source || !claim.reviewedAt || !claim.expiresAt)) throw new Error(`Approved claim lacks evidence metadata: ${claim.id}`);
   }
-  for (const item of [...content.cases, ...content.clients]) if (item.status === 'approved' && !item.permissionRecord) throw new Error(`Approved proof lacks permission: ${item.slug || item.name}`);
-  for (const item of content.clients.filter((record) => record.status === 'approved')) {
-    if (!item.name || !item.logo || !item.alt || !item.reviewedAt || !item.expiresAt) throw new Error(`Approved client record is incomplete: ${item.name || 'unnamed'}`);
-  }
-  for (const item of content.cases.filter((record) => record.status === 'approved')) {
-    const required = ['title', 'sector', 'summary', 'context', 'challenge', 'timeline', 'reviewedAt', 'limitations'];
-    if (required.some((key) => !item[key]) || !Array.isArray(item.intervention) || !item.intervention.length || !Array.isArray(item.baseline) || !item.baseline.length || !Array.isArray(item.results) || !item.results.length) throw new Error(`Approved case record is incomplete: ${item.slug}`);
-  }
 }
 
 async function validateOutput(files, content) {
@@ -294,7 +282,7 @@ async function build() {
   const sitemapCount = await writeSitemap(files);
   await validateOutput(files, content);
   const bytes = await directorySize(dist);
-  console.log(JSON.stringify({ output: dist, pages: files.length, sitemapUrls: sitemapCount, bytes, megabytes: Number((bytes / 1024 / 1024).toFixed(2)), formEndpointConfigured: scripts.endpointConfigured }, null, 2));
+  console.log(JSON.stringify({ output: dist, pages: files.length, sitemapUrls: sitemapCount, bytes, megabytes: Number((bytes / 1024 / 1024).toFixed(2)) }, null, 2));
 }
 
 if (process.argv.includes('--clean')) {

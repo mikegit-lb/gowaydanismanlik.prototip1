@@ -1,6 +1,6 @@
 # Goway Danışmanlık Web Sitesi
 
-Veri odaklı statik site üretimi; sektör sayfaları, indirilebilir kaynaklar, güvenli talep formu ve erişilebilir mobil navigasyon içerir.
+Veri odaklı statik site üretimi; sektör sayfaları, indirilebilir kaynaklar, e-posta taslaklı iletişim formu ve erişilebilir mobil navigasyon içerir.
 
 ## Yerel kullanım
 
@@ -11,23 +11,11 @@ npm run build
 npm start
 ```
 
-`npm run build` yalnızca `dist/` klasörünü üretir; takip edilen kaynak dosyalarını değiştirmez. Sektörler, kaynaklar, iddialar, müşteriler, vaka çalışmaları ve form ayarları `data/` altındaki manifestlerden yönetilir.
+`npm run build` yalnızca `dist/` klasörünü üretir; takip edilen kaynak dosyalarını değiştirmez. Sektörler, kaynaklar ve içerik iddiaları `data/` altındaki manifestlerden yönetilir.
 
-Netlify ve Vercel `npm run build:production` kullanır; `FORMSPREE_ENDPOINT` eksikse yayın derlemesi bilerek durur.
+Netlify ve Vercel aynı bağımsız statik build komutunu kullanır; mevcut sürüm herhangi bir form servisi veya gizli ortam değişkeni gerektirmez. Form, girilen bilgileri tarayıcıdan göndermek yerine kullanıcının e-posta uygulamasında düzenlenebilir bir taslak hazırlar.
 
-## Formspree aktivasyonu
-
-Yayın ortamında `FORMSPREE_ENDPOINT` değişkenini tam form uç noktasıyla tanımlayın (ör. `https://formspree.io/f/...`). Uç nokta yoksa form veri kaybetmeden güvenli biçimde hata durumuna geçer ve telefon/e-posta yedeklerini gösterir.
-
-Üretim aktivasyonundan önce:
-
-1. Bildirim e-postasını doğrulayın.
-2. Başarılı teslim, çevrimdışı, zaman aşımı, spam ve hız sınırı senaryolarını test edin.
-3. KVKK metnindeki veri işleyen, aktarım, saklama ve silme açıklamalarını hukuk danışmanına onaylatın.
-
-## Kanıt yayınlama kuralı
-
-Müşteri logosu, sonuç metriği, referans, sertifika veya uzman unvanı yalnızca `approved` durumunda; kaynak, yazılı izin, inceleme ve son kullanma tarihleri eksiksizse derlemeye girebilir. Eksik kayıtlar otomatik olarak gizli kalır.
+Ertelenen form servisi, hukuk incelemesi, müşteri logoları ve ölçümlü vaka çalışmaları [gelecek build notlarında](docs/future-build.md) tutulur ve mevcut public build’e dahil edilmez.
 
 ## Kalite kontrolleri
 
