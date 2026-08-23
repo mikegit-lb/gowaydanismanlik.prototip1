@@ -237,6 +237,23 @@
         { "format": "PDF", "href": "assets/downloads/sosyal-uygunluk-denetim-hazirlik-kontrol-listesi-v1.pdf" },
         { "format": "DOCX", "href": "assets/downloads/sosyal-uygunluk-denetim-hazirlik-kontrol-listesi-v1.docx" }
       ]
+    },
+    {
+      "slug": "30-60-90-egitim-etkinlik-raporu",
+      "title": "30/60/90 Gün Eğitim Etkinlik Raporu Örneği",
+      "summary": "Eğitim sonrası uygulama görevi, yönetici gözlemi, ön/son ölçüm ve aksiyon kapanışını tek rapor yapısında izleyin.",
+      "sector": "Tüm sektörler",
+      "standard": "Kurumsal eğitim ve yetkinlik",
+      "need": "Eğitim etkinliği",
+      "version": "1.0",
+      "updatedAt": "2026-08-23",
+      "owner": "Goway Danışmanlık",
+      "reviewer": "Teknik inceleme bekliyor",
+      "relatedService": "egitim-takip.html",
+      "files": [
+        { "format": "PDF", "href": "assets/downloads/30-60-90-egitim-etkinlik-raporu-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/30-60-90-egitim-etkinlik-raporu-v1.docx" }
+      ]
     }
   ]
 }

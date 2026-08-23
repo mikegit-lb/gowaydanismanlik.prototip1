@@ -188,6 +188,21 @@ const templates = [
       ['Tedarik zinciri', 'Tedarikçi beklentileri, değerlendirme ve aksiyonlar izleniyor mu?', 'Tedarikçi taahhüdü ve takip'],
       ['Kapanış', 'Bulgu, sorumlu, termin ve doğrulama kanıtı kayıtlı mı?', 'DÖF ve kapanış kaydı']
     ]
+  },
+  {
+    file: '30-60-90-egitim-etkinlik-raporu-v1.docx',
+    title: '30/60/90 Gün Eğitim Etkinlik Raporu Örneği',
+    intro: 'Eğitim sonrası uygulama görevi, yönetici gözlemi, ön/son ölçüm ve aksiyon kapanışını izlemek için yapılandırılmış rapor şablonu.',
+    rows: [
+      ['Eğitim', 'Konu, hedef kitle, tarih, format ve eğitmen bilgisi tanımlı mı?', 'Program ve katılım kaydı'],
+      ['Ön ölçüm', 'Başlangıç bilgi veya beceri seviyesi aynı yöntemle kaydedildi mi?', 'Ön test / gözlem formu'],
+      ['30 gün', 'Katılımcı öğrendiği yöntemi gerçek görevinde uyguladı mı?', 'Uygulama görevi ve kanıt'],
+      ['60 gün', 'Yönetici davranış, kontrol kalitesi ve ekip katılımını gözlemledi mi?', 'Yönetici gözlem formu'],
+      ['90 gün', 'Son ölçüm ve saha bulguları ön ölçümle karşılaştırıldı mı?', 'Son test / saha karşılaştırması'],
+      ['Aksiyon', 'Eksik kalan davranış veya süreç için sorumlu ve tarih belirlendi mi?', 'Aksiyon planı'],
+      ['Etkinlik', 'Ölçüm sonucu bir sonraki eğitim veya danışmanlık ihtiyacına bağlandı mı?', 'Etkinlik değerlendirmesi'],
+      ['Onay', 'Rapor, eğitim sahibi ve yönetici tarafından gözden geçirildi mi?', 'Onay ve paylaşım kaydı']
+    ]
   }
 ];
 

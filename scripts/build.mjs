@@ -20,7 +20,7 @@ const heroSources = [
   'tekstil-standartlari-hero', 'tesvik-danismanligi-hero', 'uzman-kadro-hero-saha-ekibi'
 ];
 const noIndexPages = new Set(['404.html', 'belge-sorgulama.html', 'medya.html', 'katalog.html']);
-const generatedSourceOverrides = new Set(['hizmet-katalogu.html', 'sektorel-cozumler.html', 'katalog.html']);
+const generatedSourceOverrides = new Set(['hizmet-katalogu.html', 'sektorel-cozumler.html', 'katalog.html', 'egitim-katalog.html', 'egitim-takip.html']);
 
 const hash = (value) => crypto.createHash('sha256').update(value).digest('hex').slice(0, 10);
 const exists = async (file) => { try { await fs.access(file); return true; } catch { return false; } };
@@ -210,11 +210,12 @@ function addServiceFaq(html, file) {
   if (!faq || html.includes(`id="${file.replace('.html', '')}-sss"`)) return html;
   const id = file.replace('.html', '') + '-sss';
   const block = `<section class="content-section" aria-labelledby="${id}"><div class="section-heading"><p class="eyebrow">SSS</p><h2 id="${id}">${faq[0]}</h2></div><div class="content-grid three"><article class="evidence-card"><h3>${faq[1]}</h3><p>${faq[2]}</p></article><article class="evidence-card"><h3>Karar kime aittir?</h3><p>Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir.</p></article><article class="evidence-card"><h3>${faq[3]}</h3><p>${faq[4]}</p></article></div></section>`;
-  return html.replace('</main>', `${block}</main>`);
+  const schema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [{ '@type': 'Question', name: faq[1], acceptedAnswer: { '@type': 'Answer', text: faq[2] } }, { '@type': 'Question', name: 'Karar kime aittir?', acceptedAnswer: { '@type': 'Answer', text: 'Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir.' } }, { '@type': 'Question', name: faq[3], acceptedAnswer: { '@type': 'Answer', text: faq[4] } }] };
+  return html.replace('</head>', `<script type="application/ld+json" data-service-faq-schema>${JSON.stringify(schema).replaceAll('<', '\\u003c')}</script></head>`).replace('</main>', `${block}</main>`);
 }
 
 async function processHtml(content, generated, styles, scripts) {
-  const sourceFiles = (await fs.readdir(root)).filter((name) => name.endsWith('.html') && !generatedSourceOverrides.has(name));
+  const sourceFiles = (await fs.readdir(root)).filter((name) => name.endsWith('.html') && !generated.has(name) && !generatedSourceOverrides.has(name));
   const pages = new Map(generated);
   for (const file of sourceFiles) pages.set(file, await fs.readFile(path.join(root, file), 'utf8'));
   for (const [file, original] of pages) {
@@ -222,7 +223,7 @@ async function processHtml(content, generated, styles, scripts) {
     html = replaceUnverifiedClaims(html, file);
     html = ensureHeadMeta(html, file);
     html = addOrganizationSchema(html, file, content);
-    html = addServiceFaq(html, file);
+    if (!generated.has(file)) html = addServiceFaq(html, file);
     html = addAnalytics(html, content.analytics);
     html = addSharedShell(html, styles, scripts);
     html = await minifyInlineScripts(html, file);
@@ -244,10 +245,19 @@ async function writeSitemap(files) {
 
 async function validateContent(content) {
   if (content.sectors.length !== 10) throw new Error(`Expected 10 sectors, found ${content.sectors.length}`);
-  if (content.resources.length !== 14) throw new Error(`Expected 14 resources, found ${content.resources.length}`);
+  if (content.services.length !== 21) throw new Error(`Expected 21 services, found ${content.services.length}`);
+  if (content.resources.length !== 15) throw new Error(`Expected 15 resources, found ${content.resources.length}`);
   const unique = (values, label) => { if (new Set(values).size !== values.length) throw new Error(`Duplicate ${label}`); };
   unique(content.sectors.map((item) => item.slug), 'sector slug');
   unique(content.sectors.map((item) => item.file), 'sector file');
+  unique(content.services.map((item) => item.slug), 'service slug');
+  unique(content.services.map((item) => item.file), 'service file');
+  const resourceSlugs = new Set(content.resources.map((item) => item.slug));
+  const serviceFiles = new Set(content.services.map((item) => item.file));
+  content.services.forEach((service) => {
+    if (!resourceSlugs.has(service.resourceSlug)) throw new Error(`Service ${service.slug} references missing resource ${service.resourceSlug}`);
+    (service.siblingServices || []).forEach((file) => { if (!serviceFiles.has(file)) throw new Error(`Service ${service.slug} references missing sibling ${file}`); });
+  });
   unique(content.resources.map((item) => item.slug), 'resource slug');
   for (const claim of content.claims.claims) {
     if (!content.claims.allowedStatuses.includes(claim.status)) throw new Error(`Invalid claim status: ${claim.id}`);
