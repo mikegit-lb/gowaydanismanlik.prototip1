@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import re
+import zipfile
 from pathlib import Path
 
 from openpyxl import Workbook
@@ -17,10 +19,15 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 import reportlab
+from reportlab import rl_config
+
+rl_config.invariant = 1
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "downloads"
 RESOURCES = json.loads((ROOT / "data" / "resources.json").read_text(encoding="utf-8"))["resources"]
+DETERMINISTIC_TIMESTAMP = "2026-01-01T00:00:00Z"
+ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
 NAVY = "185A77"
 TEAL = "2F83A6"
 GOLD = "D6A02B"
@@ -387,6 +394,32 @@ def make_enpi(target):
     wb.save(target)
 
 
+def normalize_office_package(target: Path):
+    temp = target.with_name(target.name + ".tmp")
+    with zipfile.ZipFile(target, "r") as source, zipfile.ZipFile(temp, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as output:
+        for info in source.infolist():
+            data = source.read(info.filename)
+            if info.filename == "docProps/core.xml":
+                xml = data.decode("utf-8")
+                xml = re.sub(
+                    r"(<dcterms:(?:created|modified)\b[^>]*>)[^<]*(</dcterms:(?:created|modified)>)",
+                    lambda match: f"{match.group(1)}{DETERMINISTIC_TIMESTAMP}{match.group(2)}",
+                    xml,
+                )
+                data = xml.encode("utf-8")
+            normalized = zipfile.ZipInfo(info.filename, ZIP_TIMESTAMP)
+            normalized.compress_type = zipfile.ZIP_DEFLATED
+            normalized.create_system = 3
+            normalized.external_attr = info.external_attr
+            output.writestr(normalized, data)
+    temp.replace(target)
+
+
+def normalize_office_packages():
+    for target in sorted((*OUT.glob("*.docx"), *OUT.glob("*.xlsx"))):
+        normalize_office_package(target)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for resource in RESOURCES:
@@ -394,6 +427,7 @@ def main():
     make_planner(OUT / "30-gunluk-denetim-hazirlik-plani-v1.xlsx")
     make_evidence_matrix(OUT / "denetim-kanit-matrisi-v1.xlsx")
     make_enpi(OUT / "iso-50001-seu-enpi-calisma-kitabi-v1.xlsx")
+    normalize_office_packages()
     print(json.dumps({"pdf": len(RESOURCES), "xlsx": 3, "output": str(OUT)}, ensure_ascii=False))
 
 

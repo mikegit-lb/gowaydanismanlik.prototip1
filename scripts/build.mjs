@@ -36,15 +36,22 @@ const contactTokens = (site) => ({
 });
 const replaceContactTokens = (html, site) => Object.entries(contactTokens(site))
   .reduce((output, [token, value]) => output.replaceAll(token, escapeAttribute(value)), html);
-const legacyContactLiterals = [
-  'tel:+905334390003',
-  '+90 533 439 00 03',
-  'https://wa.me/905334390003',
-  'goway@gowaydanismanlik.com',
-  'mailto:goway@gowaydanismanlik.com',
-  'Denizli merkezli · Türkiye geneli hizmet',
-  'Denizli · Türkiye geneli hizmet'
-];
+const contactFields = ['phone', 'phoneHref', 'whatsappHref', 'email', 'emailHref', 'address'];
+const contactLiterals = (site) => contactFields
+  .map((field) => site?.[field])
+  .filter((value) => typeof value === 'string' && value.length > 0);
+const hasHardcodedContactLiteral = (html, site) => {
+  const sourcePatterns = [
+    /\btel:\+?[0-9][0-9 ()-]{6,}/i,
+    /\bhttps?:\/\/(?:api\.)?wa\.me\/[0-9]+/i,
+    /\bmailto:[^\s"'<>]+/i
+  ];
+  const emailLiterals = html.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi) || [];
+  const exampleEmails = new Set(['ornek@sirket.com', 'ad@firma.com']);
+  return sourcePatterns.some((pattern) => pattern.test(html))
+    || emailLiterals.some((literal) => !exampleEmails.has(literal.toLowerCase()))
+    || contactLiterals(site).some((literal) => html.includes(literal));
+};
 
 async function emptyDist() {
   await fs.rm(dist, { recursive: true, force: true });
@@ -247,7 +254,7 @@ async function processHtml(content, generated, styles, scripts) {
   const pages = new Map(generated);
   for (const file of sourceFiles) pages.set(file, await fs.readFile(path.join(root, file), 'utf8'));
   for (const [file, original] of pages) {
-    if (sourceFiles.includes(file) && legacyContactLiterals.some((literal) => original.includes(literal))) {
+    if (sourceFiles.includes(file) && hasHardcodedContactLiteral(original, content.site.site)) {
       throw new Error(`Hardcoded contact literal remains in source template: ${file}`);
     }
     let html = file === 'index.html' ? pruneLegacyHomepage(original) : original;
@@ -297,7 +304,11 @@ async function writeSitemap(files) {
 }
 
 async function validateContent(content) {
-  if (!/^tel:\+905334390003$/.test(content.site.site.phoneHref)) throw new Error(`Invalid phoneHref: ${content.site.site.phoneHref}`);
+  const site = content.site.site;
+  for (const field of contactFields) if (typeof site[field] !== 'string' || !site[field].trim()) throw new Error(`Missing site contact field: ${field}`);
+  if (!/^tel:\+[1-9][0-9]+$/.test(site.phoneHref)) throw new Error(`Invalid phoneHref: ${site.phoneHref}`);
+  if (!/^https:\/\/wa\.me\/[1-9][0-9]+$/.test(site.whatsappHref)) throw new Error(`Invalid whatsappHref: ${site.whatsappHref}`);
+  if (!/^mailto:[^\s@]+@[^\s@]+\.[^\s@]+$/.test(site.emailHref)) throw new Error(`Invalid emailHref: ${site.emailHref}`);
   if (content.sectors.length !== 10) throw new Error(`Expected 10 sectors, found ${content.sectors.length}`);
   if (content.services.length !== 21) throw new Error(`Expected 21 services, found ${content.services.length}`);
   if (content.resources.length !== 16) throw new Error(`Expected 16 resources, found ${content.resources.length}`);
@@ -319,7 +330,7 @@ async function validateContent(content) {
   }
 }
 
-async function validateOutput(files, content) {
+async function validateOutput(files, content, scripts) {
   const failures = [], publicText = [];
   for (const file of files) {
     const html = await fs.readFile(path.join(dist, file), 'utf8');
@@ -340,6 +351,8 @@ async function validateOutput(files, content) {
   }
   const joined = publicText.join(' ');
   for (const claim of content.claims.claims.filter((item) => item.status === 'withheld')) if (joined.includes(claim.text)) failures.push(`withheld claim is public: ${claim.text}`);
+  const ticker = await fs.readFile(path.join(dist, scripts.tickerName), 'utf8');
+  for (const literal of contactLiterals(content.site.site)) if (ticker.includes(literal)) failures.push(`${scripts.tickerName}: hardcoded contact literal remains`);
   if (failures.length) throw new Error(`Output validation failed:\n${failures.slice(0, 40).join('\n')}${failures.length > 40 ? `\n...and ${failures.length - 40} more` : ''}`);
 }
 
@@ -362,7 +375,7 @@ async function build() {
   const scripts = await processScripts(content);
   const files = await processHtml(content, renderGeneratedPages(content), styles, scripts);
   const sitemapCount = await writeSitemap(files);
-  await validateOutput(files, content);
+  await validateOutput(files, content, scripts);
   const bytes = await directorySize(dist);
   console.log(JSON.stringify({ output: dist, pages: files.length, sitemapUrls: sitemapCount, bytes, megabytes: Number((bytes / 1024 / 1024).toFixed(2)) }, null, 2));
 }

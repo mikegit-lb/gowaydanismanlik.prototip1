@@ -150,20 +150,20 @@
     if (!context) { context = document.createElement('span'); container.prepend(context); }
     if (!phone) { phone = document.createElement('a'); container.append(phone); }
     context.classList.add('utility-context');
-    context.textContent = site.address || 'Denizli · Türkiye geneli hizmet';
-    phone.href = site.phoneHref || 'tel:+905334390003';
-    phone.textContent = site.phone || '+90 533 439 00 03';
+    context.textContent = site.address;
+    phone.href = site.phoneHref;
+    phone.textContent = site.phone;
     if (!container.querySelector('.site-slogan-ticker')) container.insertBefore(createTicker(), phone);
   };
 
   const applySiteIdentity = () => {
     document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
-      link.href = site.phoneHref || 'tel:+905334390003';
-      if (!link.closest('.mobile-action-bar')) link.textContent = site.phone || '+90 533 439 00 03';
+      link.href = site.phoneHref;
+      if (!link.closest('.mobile-action-bar')) link.textContent = site.phone;
     });
     document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
-      link.href = site.emailHref || 'mailto:goway@gowaydanismanlik.com';
-      link.textContent = site.email || 'goway@gowaydanismanlik.com';
+      link.href = site.emailHref;
+      link.textContent = site.email;
     });
   };
 
@@ -172,7 +172,7 @@
     const bar = document.createElement('nav');
     bar.className = 'mobile-action-bar';
     bar.setAttribute('aria-label', 'Hızlı iletişim');
-    bar.innerHTML = `<a href="${site.phoneHref || 'tel:+905334390003'}" data-contact-action="call"><span aria-hidden="true">☎</span><strong>Ara</strong></a><a href="${site.whatsappHref || 'https://wa.me/905334390003'}" target="_blank" rel="noopener" data-contact-action="whatsapp"><span aria-hidden="true">◉</span><strong>WhatsApp</strong></a><a href="on-gorusme.html" data-contact-action="consultation"><span aria-hidden="true">↗</span><strong>Ön Görüşme</strong></a>`;
+    bar.innerHTML = `<a href="${site.phoneHref}" data-contact-action="call"><span aria-hidden="true">☎</span><strong>Ara</strong></a><a href="${site.whatsappHref}" target="_blank" rel="noopener" data-contact-action="whatsapp"><span aria-hidden="true">◉</span><strong>WhatsApp</strong></a><a href="on-gorusme.html" data-contact-action="consultation"><span aria-hidden="true">↗</span><strong>Ön Görüşme</strong></a>`;
     document.body.append(bar);
     const form = document.querySelector('[data-consultation-form]');
     if (form && 'IntersectionObserver' in window) {
@@ -318,7 +318,7 @@
         'Mesaj:',
         payload.get('message') || ''
       ].join('\n');
-      const email = (site.emailHref || 'mailto:goway@gowaydanismanlik.com').replace(/^mailto:/, '');
+      const email = site.emailHref.replace(/^mailto:/, '');
       status.textContent = 'E-posta uygulamanızda düzenleyebileceğiniz bir talep taslağı hazırlanıyor.';
       status.dataset.state = 'success';
       sessionStorage.setItem('goway-converted', '1');

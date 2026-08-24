@@ -13,7 +13,10 @@ const read = (file) => fs.readFile(file, 'utf8');
 
 async function main() {
   const site = JSON.parse(await read(dataFile));
-  if (!site.site?.phone || !site.site?.email || !site.site?.address) throw new Error('site.phone, site.email and site.address are required');
+  const requiredContactFields = ['phone', 'phoneHref', 'whatsappHref', 'email', 'emailHref', 'address'];
+  if (requiredContactFields.some((field) => typeof site.site?.[field] !== 'string' || !site.site[field].trim())) {
+    throw new Error(`site contact fields are required: ${requiredContactFields.join(', ')}`);
+  }
   if (!Array.isArray(site.navigation) || site.navigation.length === 0) throw new Error('navigation must contain at least one item');
   if (!Array.isArray(site.services) || site.services.length === 0) throw new Error('services must contain at least one item');
   if (!site.heroes?.['hizmetler.html']?.asset) throw new Error('heroes.hizmetler.html.asset is required');

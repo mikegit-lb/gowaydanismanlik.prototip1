@@ -27,6 +27,7 @@ jobs:
       - run: npm ci
       - run: python -m pip install -r requirements.txt
       - run: npm run resources
+      - run: git diff --exit-code -- assets/downloads
       - run: npm run ci
       - uses: actions/upload-artifact@v4
         with:
