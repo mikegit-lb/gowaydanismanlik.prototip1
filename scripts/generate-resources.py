@@ -16,6 +16,7 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+import reportlab
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "downloads"
@@ -188,13 +189,14 @@ RESOURCE_ROWS = {
 
 
 def register_fonts():
-    regular = Path(r"C:\Windows\Fonts\arial.ttf")
-    bold = Path(r"C:\Windows\Fonts\arialbd.ttf")
-    if regular.exists() and bold.exists():
-        pdfmetrics.registerFont(TTFont("GowayArial", str(regular)))
-        pdfmetrics.registerFont(TTFont("GowayArialBold", str(bold)))
-        return "GowayArial", "GowayArialBold"
-    return "Helvetica", "Helvetica-Bold"
+    bundled_fonts = Path(reportlab.__file__).resolve().parent / "fonts"
+    regular = bundled_fonts / "Vera.ttf"
+    bold = bundled_fonts / "VeraBd.ttf"
+    if not regular.exists() or not bold.exists():
+        raise RuntimeError(f"ReportLab Unicode fonts missing: {regular} and {bold}")
+    pdfmetrics.registerFont(TTFont("GowayVera", str(regular)))
+    pdfmetrics.registerFont(TTFont("GowayVeraBold", str(bold)))
+    return "GowayVera", "GowayVeraBold"
 
 
 FONT, FONT_BOLD = register_fonts()
