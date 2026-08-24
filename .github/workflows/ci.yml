@@ -19,7 +19,14 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
       - run: npm ci
+      - run: python -m pip install -r requirements.txt
+      - run: npm run resources
       - run: npm run ci
       - uses: actions/upload-artifact@v4
         with:

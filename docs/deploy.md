@@ -4,7 +4,7 @@ Every push to main and every pull request runs npm ci, npm run build, Lighthouse
 
 Azure Static Web Apps preview deployments are enabled when the repository secret AZURE_STATIC_WEB_APPS_API_TOKEN is present. Pull request environments are created and closed automatically.
 
-Netlify can deploy the dist directory after npm run build and uses _headers. Vercel uses vercel.json with the same build/output settings. IIS deploys dist with the included Web.config.
+Netlify can deploy the dist directory after npm run build and uses _headers. Vercel Git deployments use `npm ci`, `npm run build`, and the `dist` output configured in `vercel.json`. IIS deploys dist with the included Web.config.
 
 Set the repository variable UPTIME_URL to override the scheduled 15-minute uptime target. The default is the production homepage; /sitemap.xml is checked too.
 

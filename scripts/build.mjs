@@ -26,6 +26,25 @@ const hash = (value) => crypto.createHash('sha256').update(value).digest('hex').
 const exists = async (file) => { try { await fs.access(file); return true; } catch { return false; } };
 const canonical = (file) => file === 'index.html' ? `${baseUrl}/` : `${baseUrl}/${file}`;
 const escapeAttribute = (value) => String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+const contactTokens = (site) => ({
+  '__GOWAY_SITE_PHONE__': site.phone,
+  '__GOWAY_SITE_PHONE_HREF__': site.phoneHref,
+  '__GOWAY_SITE_WHATSAPP_HREF__': site.whatsappHref,
+  '__GOWAY_SITE_EMAIL__': site.email,
+  '__GOWAY_SITE_EMAIL_HREF__': site.emailHref,
+  '__GOWAY_SITE_ADDRESS__': site.address
+});
+const replaceContactTokens = (html, site) => Object.entries(contactTokens(site))
+  .reduce((output, [token, value]) => output.replaceAll(token, escapeAttribute(value)), html);
+const legacyContactLiterals = [
+  'tel:+905334390003',
+  '+90 533 439 00 03',
+  'https://wa.me/905334390003',
+  'goway@gowaydanismanlik.com',
+  'mailto:goway@gowaydanismanlik.com',
+  'Denizli merkezli · Türkiye geneli hizmet',
+  'Denizli · Türkiye geneli hizmet'
+];
 
 async function emptyDist() {
   await fs.rm(dist, { recursive: true, force: true });
@@ -228,7 +247,11 @@ async function processHtml(content, generated, styles, scripts) {
   const pages = new Map(generated);
   for (const file of sourceFiles) pages.set(file, await fs.readFile(path.join(root, file), 'utf8'));
   for (const [file, original] of pages) {
+    if (sourceFiles.includes(file) && legacyContactLiterals.some((literal) => original.includes(literal))) {
+      throw new Error(`Hardcoded contact literal remains in source template: ${file}`);
+    }
     let html = file === 'index.html' ? pruneLegacyHomepage(original) : original;
+    html = replaceContactTokens(html, content.site.site);
     // Every route uses the same utility strip, logo lockup, responsive menu and CTA.
     // Remove hand-authored shell variants before inserting the canonical shell.
     const utilityStart = html.search(/<div\s+class=["'](?:topbar|utility)["'][^>]*>/i);
@@ -300,6 +323,7 @@ async function validateOutput(files, content) {
   const failures = [], publicText = [];
   for (const file of files) {
     const html = await fs.readFile(path.join(dist, file), 'utf8');
+    if (/__GOWAY_SITE_[A-Z_]+__/.test(html)) failures.push(`${file}: unresolved contact token`);
     const ids = [...html.matchAll(/\sid=["']([^"']+)["']/g)].map((match) => match[1]);
     const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
     if (duplicates.length) failures.push(`${file}: duplicate ids ${[...new Set(duplicates)].join(', ')}`);
