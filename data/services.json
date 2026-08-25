@@ -16,7 +16,7 @@
       "firstStepData": ["Denetim kriteri ve tarih", "Son raporlar ve açıklar", "Kapsama giren lokasyonlar"],
       "metrics": ["Hazır kanıt oranı", "Açık bulgu kapanış oranı", "Prova denetiminde tekrarlanan bulgu sayısı"],
       "faq": [{"question":"Hazırlık ne kadar önce başlamalı?","answer":"Tarih, kapsam ve açıkların durumuna göre planlanır; ilk tarama için denetim tarihi, son rapor ve mevcut kanıt listesi yeterli başlangıçtır."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "30-gunluk-denetim-hazirlik-plani", "trainingSlugs": ["iso-9001-ic-tetkikci", "iso-45001-ic-tetkikci"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-tekstil-hazir-giyim.html"], "siblingServices": ["iso-yonetim-sistemleri.html", "isg-yonetimi.html", "saha-guvenligi.html"]
+      "resourceSlug": "30-gunluk-denetim-hazirlik-plani", "trainingSlugs": ["iso-9001-ic-tetkikci", "iso-9001-proses-kpi", "kok-neden"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-tekstil-hazir-giyim.html"], "siblingServices": ["iso-yonetim-sistemleri.html", "isg-yonetimi.html", "saha-guvenligi.html"]
     },
     {
       "slug": "isg-yonetimi", "file": "isg-yonetimi.html", "title": "İSG Yönetimi (ISO 45001)", "eyebrow": "Hizmet · İSG", "summary": "Riskleri, çalışan katılımını ve saha kontrollerini tek bir uygulanabilir ritimde yönetin.", "heroAsset": "uzman-kadro-hero-saha-ekibi",
@@ -25,7 +25,7 @@
       "firstStepData": ["Tesis ve iş akışları", "Ekipman, vardiya ve çalışan profili", "Son olay/risk kayıtları"],
       "metrics": ["Açık risk aksiyonu yaşı", "Ramak kala bildirim eğilimi", "Kritik kontrol uygulama oranı"],
       "faq": [{"question":"İSG çalışması yalnızca doküman mıdır?","answer":"Hayır. Saha gözlemi, görev bazlı kontrol, çalışan katılımı ve aksiyon kapanışı birlikte doğrulanır."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi", "trainingSlugs": ["isg-temel", "iso-45001-ic-tetkikci", "risk-degerlendirmesi"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-insaat-montaj.html"], "siblingServices": ["saha-guvenligi.html", "yangin-acil-durum.html", "kurumsal-egitim.html"]
+      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi", "trainingSlugs": ["isg-temel", "isg-periyodik", "risk-degerlendirmesi", "acil-durum"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-insaat-montaj.html"], "siblingServices": ["saha-guvenligi.html", "yangin-acil-durum.html", "kurumsal-egitim.html"]
     },
     {
       "slug": "saha-guvenligi", "file": "saha-guvenligi.html", "title": "Saha Güvenliği", "eyebrow": "Hizmet · Saha uygulamaları", "summary": "Makine, enerji izolasyonu, kimyasal, yüklenici ve trafik risklerini sahada görünür kılın.", "heroAsset": "hizmetler-hero-endustriyel",
@@ -52,7 +52,7 @@
       "firstStepData": ["Hedef rol ve kişi sayısı", "Görev/risk ve mevcut seviye", "Beklenen davranış ve tarih"],
       "metrics": ["Ön/son test farkı", "Uygulama görevi tamamlama oranı", "30/60/90 gün gözlem kapanışı"],
       "faq": [{"question":"Eğitim sonunda hangi ölçüm yapılır?","answer":"Konuya göre ön/son test, uygulama görevi, yönetici gözlemi ve etkinlik raporu birlikte seçilir."},{"question":"Resmî sertifika veriliyor mu?","answer":"Eğitim katılımı ve öğrenme çıktısı Goway tarafından raporlanır; bağımsız sertifikasyon kararı yetkili kuruluşa aittir."}],
-      "resourceSlug": "30-60-90-egitim-etkinlik-raporu", "trainingSlugs": ["isg-temel", "iso-9001-farkindalik", "loto-uygulama"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-tekstil-hazir-giyim.html"], "siblingServices": ["isg-yonetimi.html", "saha-guvenligi.html", "iso-denetim-hazirligi.html"]
+      "resourceSlug": "30-60-90-egitim-etkinlik-raporu", "trainingSlugs": ["isg-temel", "iso-9001-farkindalik", "loto-uygulama", "kurumsal-egitim-olcum"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-tekstil-hazir-giyim.html"], "siblingServices": ["isg-yonetimi.html", "saha-guvenligi.html", "iso-denetim-hazirligi.html"]
     },
     {
       "slug": "cevre-danismanligi", "file": "cevre-danismanligi.html", "title": "Çevre Danışmanlığı", "eyebrow": "Hizmet · Çevre", "summary": "İzin, atık, emisyon, yasal takip ve performans verilerini işletme ritmine bağlayın.", "heroAsset": "cevre-danismanligi-hero",
@@ -62,7 +62,7 @@
       "metrics": ["Yasal takip zamanında tamamlama", "Atık geri kazanım oranı", "Birim üretim başına emisyon veya su kullanımı"],
       "faq": [{"question":"Çevre izin kararını siz mi veriyorsunuz?","answer":"Goway veri, başvuru hazırlığı ve takip desteği sunar; resmî karar ve yetki ilgili kamu kurumuna aittir."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
       "customSections": [{"eyebrow":"ÇED sonrası işletme dönemi","title":"Kapsamı ve yükümlülüğü aynı takvimde görün","intro":"Ek-1/Ek-2 kapsam tespiti, izin akışı ve aylık değerlendirme ritmi; tesisin fiili kapasitesi ve ölçüm kayıtlarıyla birlikte ele alınır.","items":["Ek-1 / Ek-2 kapsam tespiti ve değişikliklerin kayıt altına alınması","Deşarj, emisyon ve çevre izin akışında sorumlu–termin eşleştirmesi","Aylık çevre değerlendirme ritmi: veri, uygunsuzluk, aksiyon ve yönetim özeti"],"links":[{"label":"ÇED sonrası uyum kontrol listesini ve indirme bağlantılarını açın","href":"kaynaklar.html#resource-ced-sonrasi-isletme-uyum-kontrol-listesi"}] }],
-      "resourceSlug": "ced-sonrasi-isletme-uyum-kontrol-listesi", "trainingSlugs": ["iso-14001-farkindalik", "iso-14001-ic-tetkikci"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-enerji-altyapi.html"], "siblingServices": ["surdurulebilirlik.html", "iso-14064-karbon-ghg-hesap.html", "iso-50001-enerji-yonetimi.html"]
+      "resourceSlug": "ced-sonrasi-isletme-uyum-kontrol-listesi", "trainingSlugs": ["iso-14001-farkindalik", "iso-14001-ic-tetkikci", "iso-14001-boyut-etki"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-enerji-altyapi.html"], "siblingServices": ["surdurulebilirlik.html", "iso-14064-karbon-ghg-hesap.html", "iso-50001-enerji-yonetimi.html"]
     },
     {
       "slug": "tesvik-danismanligi", "file": "tesvik-danismanligi.html", "title": "Teşvik Danışmanlığı", "eyebrow": "Hizmet · Teşvik ve yatırım", "summary": "Yatırım, Ar-Ge ve istihdam teşvikleri için uygunluk, başvuru ve takip akışını düzenleyin.", "heroAsset": "tesvik-danismanligi-hero",
@@ -72,7 +72,7 @@
       "metrics": ["Eksiksiz başvuru oranı", "Başvuru aksiyonu kapanış süresi", "Gerçekleşme izleme güncelliği"],
       "faq": [{"question":"Teşvik onayını siz mi veriyorsunuz?","answer":"Goway uygunluk ve başvuru hazırlığına destek olur; teşvik kararı ilgili kamu kurumunun değerlendirmesine bağlıdır."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
       "customSections": [{"eyebrow":"İlk görüşmede hangi konular?","title":"Programı, yatırımın gerçek ritmine göre seçin","intro":"Uygunluk ön incelemesini; yatırım konusu, lokasyon, bütçe, istihdam, makine/teknoloji ve başvuru penceresi üzerinden birlikte netleştiririz.","table":{"headers":["Program","Kim için?","Ne sağlar?","Başvuru ritmi"],"rows":[["Yatırım Teşvik Sistemi","Yeni veya kapasite artıran yatırımlar","Yatırım kalemleri ve bölgesel/konu bazlı destek çerçevesi","Yatırım planı ve revizyon dönemine göre"],["KOSGEB","KOBİ ölçeğinde işletmeler","Makine, kapasite, dijitalleşme veya işletme geliştirme desteği","Program çağrısı ve başvuru takvimine göre"],["TÜBİTAK BiGG / 1707","Ar-Ge ve teknoloji geliştiren ekipler","Proje geliştirme, iş birliği ve Ar-Ge finansman çerçevesi","Çağrıya bağlı dönemsel"],["VAYGİP","Bölgesel yatırım ve girişim planları","Uygunluk, dosya ve izleme hazırlığı","Program duyurusu ve kurum takvimine göre"]]},"links":[{"label":"Enerji verimliliği teşviklerini de inceleyin","href":"enerji-verimliligi-teshvik.html"}] }],
-      "resourceSlug": "30-gunluk-denetim-hazirlik-plani", "trainingSlugs": ["iso-9001-farkindalik"], "sectorLinks": ["sektor-enerji-altyapi.html", "sektor-uretim-metal.html"], "siblingServices": ["cevre-danismanligi.html", "surdurulebilirlik.html", "is-ortaklari.html"]
+      "resourceSlug": "30-gunluk-denetim-hazirlik-plani", "trainingSlugs": ["iso-9001-farkindalik", "iso-9001-proses-kpi", "iso-50001-enerji-verisi"], "sectorLinks": ["sektor-enerji-altyapi.html", "sektor-uretim-metal.html"], "siblingServices": ["cevre-danismanligi.html", "surdurulebilirlik.html", "is-ortaklari.html"]
     },
     {
       "slug": "tekstil-standartlari", "file": "tekstil-standartlari.html", "title": "Tekstil Standartları", "eyebrow": "Hizmet · Tekstil", "summary": "İzlenebilirlik, kütle dengesi, tedarikçi kanıtı ve sosyal uygunluk hazırlığını sipariş akışıyla bağlayın.", "heroAsset": "tekstil-standartlari-hero",
@@ -81,7 +81,7 @@
       "firstStepData": ["Ürün grubu ve hammadde", "Tedarikçi/üretim/sevkiyat akışı", "Müşteri standardı ve denetim tarihi"],
       "metrics": ["İzlenebilirlik prova süresi", "Açıklanamayan kütle denge farkı", "Eksik tedarikçi kanıtı oranı"],
       "faq": [{"question":"Hangi tekstil programları ele alınabilir?","answer":"GOTS, GRS, OCS, RCS ve müşteri özel gereklilikleri için kapsam, kayıt ve hazırlık akışı kurulabilir."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "tekstil-izlenebilirlik-kutle-denge-kontrol-listesi", "trainingSlugs": ["tekstil-gots-grs"], "sectorLinks": ["sektor-tekstil-hazir-giyim.html"], "siblingServices": ["surdurulebilirlik.html", "cevre-danismanligi.html", "sosyal-uygunluk-denetim-hazirlik.html"]
+      "resourceSlug": "tekstil-izlenebilirlik-kutle-denge-kontrol-listesi", "trainingSlugs": ["tekstil-gots-grs", "sosyal-uygunluk-saha"], "sectorLinks": ["sektor-tekstil-hazir-giyim.html"], "siblingServices": ["surdurulebilirlik.html", "cevre-danismanligi.html", "sosyal-uygunluk-denetim-hazirlik.html"]
     },
     {
       "slug": "surdurulebilirlik", "file": "surdurulebilirlik.html", "title": "Sürdürülebilirlik", "eyebrow": "Hizmet · Sürdürülebilirlik", "summary": "Çevre, karbon, enerji ve sosyal uygunluk hedeflerini ölçülebilir bir yol haritasında birleştirin.", "heroAsset": "cevre-danismanligi-hero",
@@ -90,7 +90,7 @@
       "firstStepData": ["Paydaş ve müşteri beklentileri", "Mevcut çevre/enerji/sosyal veriler", "Hedef dönem ve raporlama çerçevesi"],
       "metrics": ["Kapsanan veri kaynağı oranı", "Hedef aksiyonu kapanış oranı", "Birim çıktı başına enerji/karbon göstergesi"],
       "faq": [{"question":"Sürdürülebilirlik raporu hazırlıyor musunuz?","answer":"Veri, gösterge, hedef ve aksiyon altyapısını kurarız; raporlama çerçevesi ve doğrulama kapsamı işletmeyle ayrıca belirlenir."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "iso-14064-ghg-hesaplama-veri-matrisi", "trainingSlugs": ["iso-14001-farkindalik", "iso-50001-farkindalik"], "sectorLinks": ["sektor-tekstil-hazir-giyim.html", "sektor-enerji-altyapi.html"], "siblingServices": ["cevre-danismanligi.html", "iso-14064-karbon-ghg-hesap.html", "iso-50001-enerji-yonetimi.html"]
+      "resourceSlug": "iso-14064-ghg-hesaplama-veri-matrisi", "trainingSlugs": ["iso-14001-farkindalik", "iso-14001-boyut-etki", "iso-50001-farkindalik", "iso-50001-enerji-verisi", "iso-14064-ghg"], "sectorLinks": ["sektor-tekstil-hazir-giyim.html", "sektor-enerji-altyapi.html"], "siblingServices": ["cevre-danismanligi.html", "iso-14064-karbon-ghg-hesap.html", "iso-50001-enerji-yonetimi.html"]
     },
     {
       "slug": "iso-50001-enerji-yonetimi", "file": "iso-50001-enerji-yonetimi.html", "title": "ISO 50001 Enerji Yönetimi", "eyebrow": "Hizmet · Enerji performansı", "summary": "SEU, EnPI, baz hat ve enerji aksiyonlarını üretim verisiyle doğrulanabilir hale getirin.", "heroAsset": "cevre-danismanligi-hero",
@@ -100,7 +100,7 @@
       "metrics": ["Birim çıktı başına enerji", "SEU kapsamı ve veri güncelliği", "Tasarruf projesi doğrulama oranı"],
       "faq": [{"question":"Üretim değişkenliği nasıl ele alınır?","answer":"Üretim, derece-gün, çalışma saati veya uygun diğer değişkenler baz hat ve EnPI modelinde açıkça tanımlanır."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
       "customSections": [{"eyebrow":"Yatırım bağlantısı","title":"Enerji aksiyonunu teşvik penceresiyle birlikte planlayın","intro":"SEU ve EnPI çıktıları, enerji verimliliği yatırımı için ihtiyaç duyulan kapsam ve veri hazırlığıyla birlikte okunabilir.","links":[{"label":"Enerji verimliliği teşviklerini inceleyin","href":"enerji-verimliligi-teshvik.html"}] }],
-      "resourceSlug": "iso-50001-seu-enpi-calisma-kitabi", "trainingSlugs": ["iso-50001-farkindalik", "iso-50001-ic-tetkikci"], "sectorLinks": ["sektor-enerji-altyapi.html", "sektor-uretim-metal.html"], "siblingServices": ["surdurulebilirlik.html", "cevre-danismanligi.html", "iso-14064-karbon-ghg-hesap.html"]
+      "resourceSlug": "iso-50001-seu-enpi-calisma-kitabi", "trainingSlugs": ["iso-50001-farkindalik", "iso-50001-ic-tetkikci", "iso-50001-enerji-verisi"], "sectorLinks": ["sektor-enerji-altyapi.html", "sektor-uretim-metal.html"], "siblingServices": ["surdurulebilirlik.html", "cevre-danismanligi.html", "iso-14064-karbon-ghg-hesap.html"]
     },
     {
       "slug": "entegre-program", "file": "entegre-program.html", "title": "Entegre ISO/İSG Programı", "eyebrow": "Hizmet · Entegre gelişim", "summary": "ISO, İSG, eğitim ve saha uygulamalarını tek sorumluluk ve takvim omurgasında birleştirin.", "heroAsset": "cozumler-hero-planlama",
@@ -109,7 +109,7 @@
       "firstStepData": ["Mevcut sistemler ve açıklar", "Öncelikli riskler ve kaynaklar", "Hedef tarih ve yönetim beklentisi"],
       "metrics": ["Ortak aksiyon kapanış oranı", "Birleşik tetkik kapsamı", "Yönetim raporu güncelliği"],
       "faq": [{"question":"Tüm standartlar aynı şekilde mi uygulanır?","answer":"Ortak süreç ve yönetim adımları birleştirilir; her standardın özgün gereklilikleri ve kanıtları ayrı korunur."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "denetim-kanit-matrisi", "trainingSlugs": ["iso-9001-ic-tetkikci", "iso-45001-ic-tetkikci"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-gida.html"], "siblingServices": ["iso-yonetim-sistemleri.html", "isg-yonetimi.html", "kurumsal-egitim.html"]
+      "resourceSlug": "denetim-kanit-matrisi", "trainingSlugs": ["iso-9001-ic-tetkikci", "iso-9001-proses-kpi", "kok-neden"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-gida.html"], "siblingServices": ["iso-yonetim-sistemleri.html", "isg-yonetimi.html", "kurumsal-egitim.html"]
     },
     {
       "slug": "is-ortaklari", "file": "is-ortaklari.html", "title": "Çözüm Ortaklığı", "eyebrow": "Hizmet · Uzman ağı", "summary": "Test, ölçüm, eğitim ve bağımsız değerlendirme ihtiyaçlarını doğru uzmanlıkla eşleştirin.", "heroAsset": "uzman-kadro-hero-saha-ekibi",
@@ -136,7 +136,7 @@
       "firstStepData": ["Varlık ve uygulama listesi", "Kritik iş süreçleri", "Mevcut erişim/olay/yedekleme kayıtları"],
       "metrics": ["Risk aksiyonu kapanış oranı", "Periyodik erişim gözden geçirme oranı", "Olay tespit ve yanıt süresi"],
       "faq": [{"question":"Teknik ekip şart mı?","answer":"Teknik sahipler sürece katılır; risk, sorumluluk ve kanıt akışı iş hedefleriyle birlikte tasarlanır."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "iso-27001-risk-varlik-envanteri-kontrol-listesi", "trainingSlugs": ["iso-27001-farkindalik", "iso-27001-ic-tetkikci"], "sectorLinks": ["sektor-hizmet-cok-lokasyon.html", "sektor-uretim-metal.html"], "siblingServices": ["iso-22301-is-surekliligi.html", "iso-denetim-hazirligi.html", "iso-yonetim-sistemleri.html"]
+      "resourceSlug": "iso-27001-risk-varlik-envanteri-kontrol-listesi", "trainingSlugs": ["iso-27001-farkindalik", "iso-27001-ic-tetkikci", "iso-27001-olay-varlik"], "sectorLinks": ["sektor-hizmet-cok-lokasyon.html", "sektor-uretim-metal.html"], "siblingServices": ["iso-22301-is-surekliligi.html", "iso-denetim-hazirligi.html", "iso-yonetim-sistemleri.html"]
     },
     {
       "slug": "iso-22301-is-surekliligi", "file": "iso-22301-is-surekliligi.html", "title": "ISO 22301 İş Sürekliliği Yönetim Sistemi", "eyebrow": "Hizmet · İş sürekliliği", "summary": "Kritik faaliyetleri, bağımlılıkları ve kurtarma önceliklerini kesinti öncesinde planlayın.", "heroAsset": "uzman-kadro-hero-saha-ekibi",
@@ -145,7 +145,7 @@
       "firstStepData": ["Kritik ürün/hizmet listesi", "Kesinti toleransları", "Teknoloji, tesis ve tedarikçi bağımlılıkları"],
       "metrics": ["Kritik faaliyet kapsama oranı", "Tatbikat hedef süresine uyum", "Açık süreklilik aksiyonu yaşı"],
       "faq": [{"question":"Hangi faaliyetler kritik sayılır?","answer":"Gelir, güvenlik, yasal, müşteri veya tedarik zinciri etkisi yüksek faaliyetler iş sahipleriyle birlikte önceliklendirilir."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "iso-22301-is-etki-analizi-kontrol-listesi", "trainingSlugs": ["iso-22301-farkindalik"], "sectorLinks": ["sektor-lojistik-depolama.html", "sektor-hizmet-cok-lokasyon.html"], "siblingServices": ["iso-27001-bilgi-guvenligi.html", "iso-denetim-hazirligi.html", "yangin-acil-durum.html"]
+      "resourceSlug": "iso-22301-is-etki-analizi-kontrol-listesi", "trainingSlugs": ["iso-22301-farkindalik", "iso-22301-tatbikat"], "sectorLinks": ["sektor-lojistik-depolama.html", "sektor-hizmet-cok-lokasyon.html"], "siblingServices": ["iso-27001-bilgi-guvenligi.html", "iso-denetim-hazirligi.html", "yangin-acil-durum.html"]
     },
     {
       "slug": "iso-10002-sikayet-yonetimi", "file": "iso-10002-sikayet-yonetimi.html", "title": "ISO 10002 Şikâyet Yönetimi", "eyebrow": "Hizmet · Müşteri deneyimi", "summary": "Müşteri geri bildirimlerini sınıflandırılmış kayıt, kök neden ve kapanış kanıtıyla iyileştirin.", "heroAsset": "hizmetler-hero-endustriyel",
@@ -163,7 +163,7 @@
       "firstStepData": ["Ürün ve proses akışı", "Hijyen ve kritik kontrol kayıtları", "Tedarikçi ve lot bilgileri"],
       "metrics": ["Kritik kayıt tamamlama oranı", "Geri çağırma iz sürme süresi", "Tedarikçi uygunsuzluk kapanış süresi"],
       "faq": [{"question":"PRP neden önemlidir?","answer":"Temel hijyen ve altyapı koşulları kontrol edilmeden tehlike analizi ve kritik kontrol uygulaması sürdürülebilir olmaz."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "iso-22000-gida-guvenligi-on-hazirlik-listesi", "trainingSlugs": ["iso-9001-farkindalik", "iso-9001-ic-tetkikci"], "sectorLinks": ["sektor-gida.html"], "siblingServices": ["gida-belgelendirme-hazirlik.html", "iso-denetim-hazirligi.html", "iso-yonetim-sistemleri.html"]
+      "resourceSlug": "iso-22000-gida-guvenligi-on-hazirlik-listesi", "trainingSlugs": ["iso-9001-farkindalik", "iso-9001-ic-tetkikci", "iso-22000-haccp"], "sectorLinks": ["sektor-gida.html"], "siblingServices": ["gida-belgelendirme-hazirlik.html", "iso-denetim-hazirligi.html", "iso-yonetim-sistemleri.html"]
     },
     {
       "slug": "iso-14064-karbon-ghg-hesap", "file": "iso-14064-karbon-ghg-hesap.html", "title": "ISO 14064 Karbon ve GHG Hesaplama", "eyebrow": "Hizmet · Karbon envanteri", "summary": "Sınırları, emisyon kaynaklarını, veri kalitesini ve hesap varsayımlarını izlenebilir yönetin.", "heroAsset": "cevre-danismanligi-hero",
@@ -181,7 +181,7 @@
       "firstStepData": ["Tesis ve ürün kapsamı", "Son saha gözlemleri", "Denetim kriteri ve hedef tarih"],
       "metrics": ["Hazır kanıt oranı", "Kritik bulgu kapanış süresi", "Vardiyalar arası kayıt tutarlılığı"],
       "faq": [{"question":"Hazırlık neyi garanti eder?","answer":"Hazırlık kapsamı ve açıkları görünür kılar; uygunluk veya bağımsız sertifikasyon sonucu garanti etmez."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "gida-denetim-hazirlik-kanit-matrisi", "trainingSlugs": ["iso-9001-farkindalik", "isg-temel"], "sectorLinks": ["sektor-gida.html"], "siblingServices": ["iso-22000-gida-guvenligi.html", "iso-denetim-hazirligi.html", "kurumsal-egitim.html"]
+      "resourceSlug": "gida-denetim-hazirlik-kanit-matrisi", "trainingSlugs": ["iso-9001-farkindalik", "isg-temel", "iso-22000-haccp"], "sectorLinks": ["sektor-gida.html"], "siblingServices": ["iso-22000-gida-guvenligi.html", "iso-denetim-hazirligi.html", "kurumsal-egitim.html"]
     },
     {
       "slug": "sosyal-uygunluk-denetim-hazirlik", "file": "sosyal-uygunluk-denetim-hazirlik.html", "title": "Sosyal Uygunluk Denetim Hazırlığı", "eyebrow": "Hizmet · Sosyal uygunluk", "summary": "Çalışma süresi, ücret, İSG, çalışan görüşmeleri ve tedarikçi kayıtlarını saygılı ve izlenebilir hazırlayın.", "heroAsset": "tekstil-standartlari-hero",
@@ -190,7 +190,7 @@
       "firstStepData": ["Lokasyon ve çalışan profili", "Puantaj/ücret/İSG kayıtları", "Müşteri standardı ve denetim tarihi"],
       "metrics": ["Kayıt tutarlılığı oranı", "Açık sosyal bulgu kapanış süresi", "Tedarikçi takip güncelliği"],
       "faq": [{"question":"Kişisel veri nasıl korunur?","answer":"Gereksiz kişisel veri çoğaltılmaz; kaynak, dönem, sorumlu ve kontrol durumu yeterli olacak şekilde veri minimizasyonu uygulanır."},{"question":"Karar kime aittir?","answer":"Goway danışmanlık ve hazırlık desteği verir; bağımsız sertifikasyon/sertifika kararı bağımsız kuruluşa aittir."}],
-      "resourceSlug": "sosyal-uygunluk-denetim-hazirlik-kontrol-listesi", "trainingSlugs": ["tekstil-gots-grs", "isg-temel"], "sectorLinks": ["sektor-tekstil-hazir-giyim.html"], "siblingServices": ["tekstil-standartlari.html", "kurumsal-egitim.html", "iso-denetim-hazirligi.html"]
+      "resourceSlug": "sosyal-uygunluk-denetim-hazirlik-kontrol-listesi", "trainingSlugs": ["tekstil-gots-grs", "sosyal-uygunluk-saha", "isg-temel"], "sectorLinks": ["sektor-tekstil-hazir-giyim.html"], "siblingServices": ["tekstil-standartlari.html", "kurumsal-egitim.html", "iso-denetim-hazirligi.html"]
     }
   ]
 }

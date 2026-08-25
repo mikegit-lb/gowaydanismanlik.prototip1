@@ -213,7 +213,7 @@ function replaceSharedFooter(html, content) {
 
 function enrichOnlineTraining(html, file) {
   if (file !== 'egitim-online.html' || html.includes('data-online-enrichment')) return html;
-  const section = `<section class="content-section" data-online-enrichment><div class="section-heading"><p class="eyebrow">Program envanteri</p><h2>Modüller, uygulama ve ölçüm aynı akışta</h2><p>Online içerik, canlı oturum ve saha görevi birlikte planlanır; her rol için tamamlanma ve uygulama kanıtı ayrı izlenir.</p></div><div class="content-grid three"><article class="evidence-card"><h3>ISO &amp; yönetim sistemleri</h3><p>ISO 9001, ISO 14001, ISO 45001, ISO 50001, ISO 27001 ve ISO 22301 farkındalık modülleri.</p><span class="status-pill">Kısa modül · ön/son test</span></article><article class="evidence-card"><h3>Saha uygulamaları</h3><p>LOTO, risk değerlendirmesi, acil durum ve kök neden çalışmaları görev kartlarıyla ilerler.</p><span class="status-pill">Uygulama görevi · yönetici gözlemi</span></article><article class="evidence-card"><h3>Tekstil &amp; çevre</h3><p>GOTS/GRS izlenebilirlik, GHG veri kalitesi ve çevre farkındalığı için rol bazlı öğrenme yolları.</p><span class="status-pill">Vaka · kanıt matrisi</span></article></div></section><section class="content-section detail-layout"><article class="content-card"><p class="eyebrow">LMS önizlemesi</p><h2>Öğrenme ekranında neler görünür?</h2><ol class="process-list"><li><div><h3>Atama</h3><p>Rol, lokasyon ve vardiyaya göre modül ataması; tamamlanma ve yeniden izleme durumu.</p></div></li><li><div><h3>Ölçme</h3><p>Ön/son test, kısa senaryo ve uygulama görevi puanları aynı rapor üzerinde.</p></div></li><li><div><h3>Takip</h3><p>30/60/90 gün yönetici gözlemi, aksiyon kapanışı ve yeni eğitim ihtiyacı.</p></div></li></ol></article><aside class="aside-card"><p class="eyebrow">Kurumsal başlangıç</p><h3>İçerik ve LMS koşullarınızı paylaşın</h3><p>Mevcut platform, cihaz erişimi, vardiya yapısı ve hedef rollerle uygun formatı seçelim.</p><a class="button primary" href="on-gorusme.html?hizmet=Kurumsal%20Eğitim">Online eğitim talebi</a><a class="button secondary" href="egitim-katalog.html">Katalogdaki programlar</a></aside></section>`;
+  const section = `<section class="content-section" data-online-enrichment><div class="section-heading"><p class="eyebrow">Program envanteri</p><h2>Modüller, uygulama ve ölçüm aynı akışta</h2><p>Online içerik, canlı oturum ve saha görevi birlikte planlanır; her rol için tamamlanma ve uygulama kanıtı ayrı izlenir.</p></div><div class="content-grid three"><article class="evidence-card"><h3>ISO &amp; yönetim sistemleri</h3><p>ISO 9001, ISO 14001, ISO 50001, ISO 27001 ve ISO 22301 farkındalık modülleri.</p><span class="status-pill">Kısa modül · ön/son test</span></article><article class="evidence-card"><h3>Saha uygulamaları</h3><p>LOTO, risk değerlendirmesi, acil durum ve kök neden çalışmaları görev kartlarıyla ilerler.</p><span class="status-pill">Uygulama görevi · yönetici gözlemi</span></article><article class="evidence-card"><h3>Tekstil &amp; çevre</h3><p>GOTS/GRS izlenebilirlik, GHG veri kalitesi ve çevre farkındalığı için rol bazlı öğrenme yolları.</p><span class="status-pill">Vaka · kanıt matrisi</span></article></div></section><section class="content-section detail-layout"><article class="content-card"><p class="eyebrow">LMS önizlemesi</p><h2>Öğrenme ekranında neler görünür?</h2><ol class="process-list"><li><div><h3>Atama</h3><p>Rol, lokasyon ve vardiyaya göre modül ataması; tamamlanma ve yeniden izleme durumu.</p></div></li><li><div><h3>Ölçme</h3><p>Ön/son test, kısa senaryo ve uygulama görevi puanları aynı rapor üzerinde.</p></div></li><li><div><h3>Takip</h3><p>30/60/90 gün yönetici gözlemi, aksiyon kapanışı ve yeni eğitim ihtiyacı.</p></div></li></ol></article><aside class="aside-card"><p class="eyebrow">Kurumsal başlangıç</p><h3>İçerik ve LMS koşullarınızı paylaşın</h3><p>Mevcut platform, cihaz erişimi, vardiya yapısı ve hedef rollerle uygun formatı seçelim.</p><a class="button primary" href="on-gorusme.html?hizmet=Kurumsal%20Eğitim">Online eğitim talebi</a><a class="button secondary" href="egitim-katalog.html">Katalogdaki programlar</a></aside></section>`;
   return html.replace('</main>', `${section}</main>`);
 }
 
@@ -288,12 +288,16 @@ async function processHtml(content, generated, styles, scripts) {
     html = replaceSharedFooter(html, content);
     html = html.replaceAll('LOTO Yetkili Kişi', 'LOTO Uygulama Eğitimi');
     html = replaceUnverifiedClaims(html, file);
+    if (file === 'egitim-online.html' || file === 'egitim-takvimi.html') {
+      html = html.replaceAll('ISO 45001 İç Tetkikçi', 'ISO 9001 İç Tetkikçi');
+    }
     html = ensureHeadMeta(html, file);
     html = addOrganizationSchema(html, file, content);
     html = addServicesHubEnhancements(html, content, file);
     html = addAnalytics(html, content.analytics);
     html = addSharedShell(html, styles, scripts, content, file);
     html = enrichOnlineTraining(html, file);
+    if (file.startsWith('egitim-') && /\b45001\b/i.test(html)) throw new Error(`Retired ISO 45001 training remains in education page: ${file}`);
     html = await minifyInlineScripts(html, file);
     html = html.replace(/<script type="application\/json" id="training-data">\s*<\/script>/gi, '');
     html = await minifyHtml(html, { collapseWhitespace: true, conservativeCollapse: true, keepClosingSlash: true, removeComments: true, minifyCSS: false, minifyJS: false });
@@ -321,6 +325,12 @@ async function validateContent(content) {
   if (content.sectors.length !== 10) throw new Error(`Expected 10 sectors, found ${content.sectors.length}`);
   if (content.services.length !== 21) throw new Error(`Expected 21 services, found ${content.services.length}`);
   if (content.resources.length !== 16) throw new Error(`Expected 16 resources, found ${content.resources.length}`);
+  const trainingCatalog = content.site.trainingCatalog || [];
+  const trainingSlugs = new Set(trainingCatalog.map((item) => item.slug));
+  if (trainingCatalog.some((item) => /45001/i.test(`${item.slug} ${item.topic}`))) throw new Error('ISO 45001 training remains in trainingCatalog');
+  for (const service of content.services) {
+    for (const slug of service.trainingSlugs || []) if (!trainingSlugs.has(slug)) throw new Error(`Unknown training slug ${slug} in ${service.slug}`);
+  }
   const unique = (values, label) => { if (new Set(values).size !== values.length) throw new Error(`Duplicate ${label}`); };
   unique(content.sectors.map((item) => item.slug), 'sector slug');
   unique(content.sectors.map((item) => item.file), 'sector file');

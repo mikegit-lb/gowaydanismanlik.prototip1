@@ -71,6 +71,12 @@ function renderSectorPage(content, sector, resource) {
   const actions = `<div class="hero-actions"><a class="button primary" href="${consultation}">Sektör görüşmesi planlayın</a><a class="button secondary" href="#sektor-ciktilari">Çıktıları inceleyin</a></div>`;
   const process = sector.process.map((step, index) => `<article class="process-step"><span>${String(index + 1).padStart(2, '0')}</span><h3>${escapeHtml(step.label)}</h3><p>${escapeHtml(step.text)}</p></article>`).join('');
   const services = sector.services.map((service) => `<a class="service-path" href="${escapeHtml(service.href)}"><strong>${escapeHtml(service.label)}</strong><span>Hizmet kapsamını görün →</span></a>`).join('');
+  const sectorTraining = [...new Set(sector.services.flatMap((service) => content.services.find((item) => item.file === service.href)?.trainingSlugs || []))]
+    .map((slug) => (content.site.trainingCatalog || []).find((item) => item.slug === slug))
+    .filter(Boolean)
+    .slice(0, 6);
+  const trainingCards = sectorTraining.map((item) => `<a class="service-path" href="egitim-katalog.html#training-${escapeHtml(item.slug)}"><strong>${escapeHtml(item.topic)}</strong><span>${escapeHtml(item.duration)} · ${escapeHtml(item.track)} →</span></a>`).join('');
+  const trainingSection = trainingCards ? `<section class="content-section sector-training-section"><div class="section-heading"><p class="eyebrow">Sektöre uygun eğitimler</p><h2>Hizmet kapsamını ekibinizin görevlerine taşıyın</h2><p>Bu programlar, sektörünüzde öne çıkan hizmet bağlantılarına göre seçildi.</p></div><div class="service-path-grid">${trainingCards}</div></section>` : '';
   const faq = sector.faq.map((item, index) => `<details class="sector-faq"><summary>${escapeHtml(item.question)}</summary><div><p>${escapeHtml(item.answer)}</p></div></details>`).join('');
   const resourceLinks = resource.files.map((file) => `<a class="button ${file.format === 'PDF' ? 'primary' : 'secondary'}" href="${escapeHtml(file.href)}" download data-resource-download="${escapeHtml(resource.slug)}">${escapeHtml(file.format)} indir</a>`).join('');
   const contentHtml = `<div class="container sector-page-content">${breadcrumb([{ label: 'Ana Sayfa', href: 'index.html' }, { label: 'Sektörler', href: 'sektorel-cozumler.html' }, { label: sector.title }])}
@@ -79,6 +85,7 @@ function renderSectorPage(content, sector, resource) {
     <section class="content-section process-section"><div class="section-heading"><p class="eyebrow">Uygulama akışı</p><h2>Saha fotoğrafından doğrulanmış sisteme</h2></div><div class="process-rail">${process}</div></section>
     <section class="content-section metric-section"><div class="section-heading"><p class="eyebrow">Ölçüm fırsatları</p><h2>Başlangıç değeri belirlendikten sonra izlenebilecek göstergeler</h2><p>Bunlar müşteri sonucu iddiası değildir; proje başında tanımı ve veri kaynağı doğrulanacak ölçüm seçenekleridir.</p></div>${list(sector.metrics, 'metric-list')}</section>
     <section class="content-section sector-next"><div><p class="eyebrow">İlgili hizmetler</p><h2>Tek bir sayfada kalmayın</h2><div class="service-path-grid">${services}</div></div><aside class="resource-feature"><span class="resource-format">Ücretsiz kaynak · ${escapeHtml(resource.version)}</span><h2>${escapeHtml(resource.title)}</h2><p>${escapeHtml(resource.summary)}</p><div class="hero-actions">${resourceLinks}</div><small>Son güncelleme: ${escapeHtml(resource.updatedAt)} · ${escapeHtml(resource.reviewer)}</small></aside></section>
+    ${trainingSection}
     <section class="content-section"><div class="section-heading"><p class="eyebrow">Sık sorulanlar</p><h2>Kapsamı doğru beklentiyle başlatın</h2></div><div class="sector-faq-list">${faq}</div></section>
     <section class="section-note sector-final-cta"><div><p class="eyebrow">15 dakikalık başlangıç</p><h2>Sektörünüzün önceliğini birlikte netleştirelim</h2><p>Lokasyon, çalışan profili, hedef tarih ve öncelikli riski paylaşın; ilk çalışma kapsamını konuşalım.</p></div><a class="button primary" href="${consultation}">Ön görüşme talebi oluşturun</a></section>
   </div>`;
