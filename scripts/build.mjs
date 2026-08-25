@@ -195,6 +195,22 @@ function addSharedShell(html, styles, scripts, content, file) {
   return html.replace('</body>', `<script src="${scripts.configName}"></script><script src="${scripts.tickerName}" defer></script></body>`);
 }
 
+function replaceSharedFooter(html, content) {
+  let keptFooter = false;
+  html = html.replace(/<footer\b[\s\S]*?<\/footer>/gi, () => {
+    if (keptFooter) return '';
+    keptFooter = true;
+    return renderSharedFooter(content.site);
+  });
+  if (!keptFooter) {
+    const bodyClose = html.lastIndexOf('</body>');
+    html = bodyClose >= 0
+      ? `${html.slice(0, bodyClose)}${renderSharedFooter(content.site)}${html.slice(bodyClose)}`
+      : `${html}${renderSharedFooter(content.site)}`;
+  }
+  return html;
+}
+
 function enrichOnlineTraining(html, file) {
   if (file !== 'egitim-online.html' || html.includes('data-online-enrichment')) return html;
   const section = `<section class="content-section" data-online-enrichment><div class="section-heading"><p class="eyebrow">Program envanteri</p><h2>Modüller, uygulama ve ölçüm aynı akışta</h2><p>Online içerik, canlı oturum ve saha görevi birlikte planlanır; her rol için tamamlanma ve uygulama kanıtı ayrı izlenir.</p></div><div class="content-grid three"><article class="evidence-card"><h3>ISO &amp; yönetim sistemleri</h3><p>ISO 9001, ISO 14001, ISO 45001, ISO 50001, ISO 27001 ve ISO 22301 farkındalık modülleri.</p><span class="status-pill">Kısa modül · ön/son test</span></article><article class="evidence-card"><h3>Saha uygulamaları</h3><p>LOTO, risk değerlendirmesi, acil durum ve kök neden çalışmaları görev kartlarıyla ilerler.</p><span class="status-pill">Uygulama görevi · yönetici gözlemi</span></article><article class="evidence-card"><h3>Tekstil &amp; çevre</h3><p>GOTS/GRS izlenebilirlik, GHG veri kalitesi ve çevre farkındalığı için rol bazlı öğrenme yolları.</p><span class="status-pill">Vaka · kanıt matrisi</span></article></div></section><section class="content-section detail-layout"><article class="content-card"><p class="eyebrow">LMS önizlemesi</p><h2>Öğrenme ekranında neler görünür?</h2><ol class="process-list"><li><div><h3>Atama</h3><p>Rol, lokasyon ve vardiyaya göre modül ataması; tamamlanma ve yeniden izleme durumu.</p></div></li><li><div><h3>Ölçme</h3><p>Ön/son test, kısa senaryo ve uygulama görevi puanları aynı rapor üzerinde.</p></div></li><li><div><h3>Takip</h3><p>30/60/90 gün yönetici gözlemi, aksiyon kapanışı ve yeni eğitim ihtiyacı.</p></div></li></ol></article><aside class="aside-card"><p class="eyebrow">Kurumsal başlangıç</p><h3>İçerik ve LMS koşullarınızı paylaşın</h3><p>Mevcut platform, cihaz erişimi, vardiya yapısı ve hedef rollerle uygun formatı seçelim.</p><a class="button primary" href="on-gorusme.html?hizmet=Kurumsal%20Eğitim">Online eğitim talebi</a><a class="button secondary" href="egitim-katalog.html">Katalogdaki programlar</a></aside></section>`;
@@ -269,14 +285,7 @@ async function processHtml(content, generated, styles, scripts) {
     html = html.replace(/\s*<a\s+class=["'][^"']*topbar-phone[^"']*["'][^>]*>[\s\S]*?<\/a>/i, '');
     html = html.replace(/\s*<a\s+class=["'][^"']*visually-hidden[^"']*["'][^>]*href=["']#home-links["'][^>]*>[\s\S]*?<\/a>/i, '');
     html = html.replace(/<header\b[\s\S]*?<\/header>/i, renderSharedHeader(content.site));
-    if (file === 'index.html') {
-      let keptFooter = false;
-      html = html.replace(/<footer\b[\s\S]*?<\/footer>/gi, () => {
-        if (keptFooter) return '';
-        keptFooter = true;
-        return renderSharedFooter(content.site);
-      });
-    }
+    html = replaceSharedFooter(html, content);
     html = html.replaceAll('LOTO Yetkili Kişi', 'LOTO Uygulama Eğitimi');
     html = replaceUnverifiedClaims(html, file);
     html = ensureHeadMeta(html, file);

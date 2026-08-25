@@ -48,11 +48,6 @@
 .button[disabled] { cursor: wait; opacity: .68; }
 .form-privacy-note { margin: 14px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.5; }
 
-.verified-trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 44px 0; }
-.verified-trust a { min-height: 108px; display: grid; grid-template-columns: 34px minmax(0, 1fr); align-content: center; column-gap: 10px; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: rgb(255 255 255 / .88); box-shadow: 0 13px 30px rgb(24 90 119 / .07); }
-.verified-trust a > span { grid-row: 1 / span 2; width: 31px; height: 31px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--teal); font-weight: 900; }
-.verified-trust strong { color: var(--navy); line-height: 1.25; }
-.verified-trust small { margin-top: 4px; color: var(--muted); line-height: 1.35; }
 .footer-trust-badges { display: flex; flex-wrap: wrap; gap: 10px; padding: 18px 0; border-top: 1px solid rgb(244 248 251 / .14); }
 .footer-trust-badges a { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid rgb(244 248 251 / .2); border-radius: 999px; color: rgb(244 248 251 / .86); font-size: .78rem; }
 .footer-trust-badges span { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; color: var(--navy); background: var(--gold); font-weight: 950; }
@@ -161,7 +156,6 @@
   .process-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .process-rail::before { display: none; }
   .sector-index-grid, .resource-grid { grid-template-columns: 1fr; }
-  .verified-trust { grid-template-columns: 1fr; }
   .resource-toolbar { grid-template-columns: 1fr; }
   .exit-offer.is-mobile-offer { width: 100%; max-width: none; margin: auto 0 0; border-radius: 22px 22px 0 0; }
 }
@@ -781,9 +775,9 @@ button.button { cursor: pointer; font: inherit; }
     --hero-pad-bottom: 60px;
   }
   .brand { grid-template-columns: 64px auto; column-gap: 9px; }
-  .brand::before { width: 64px; height: 58px; background-size: 156px auto; }
-  .brand strong { font-size: .98rem; }
-  .brand span { margin-top: 5px; font-size: .61rem; letter-spacing: .17em; }
+  .brand-mark { width: 64px; height: 58px; }
+  .brand-copy strong { font-size: .98rem; }
+  .brand-copy span { margin-top: 5px; font-size: .61rem; letter-spacing: .17em; }
   .utility .container { align-items: flex-start; flex-direction: column; padding: 10px 0; }
   .site-footer .site-footer-inner { grid-template-columns: 1fr; gap: 28px; padding: 34px 0 24px; }
   .footer-contact-block { border-left: 0; border-top: 1px solid rgb(244 248 251 / .16); padding-top: 24px; padding-left: 0; }

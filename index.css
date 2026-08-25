@@ -1004,9 +1004,6 @@
     .nav-backdrop { position: fixed; z-index: 880; inset: 0; border: 0; background: rgb(7 45 62 / .48); backdrop-filter: blur(2px); }
     .nav-backdrop[hidden] { display: none !important; }
     .mobile-action-bar { display: none; }
-    .footer-trust-badges { display: flex; flex-wrap: wrap; gap: 10px; padding: 18px 0; border-top: 1px solid rgb(244 248 251 / .14); }
-    .footer-trust-badges a { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid rgb(244 248 251 / .2); border-radius: 999px; color: rgb(244 248 251 / .86); font-size: .78rem; }
-    .footer-trust-badges span { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; color: #185a77; background: #d6a02b; font-weight: 950; }
     .exit-offer { width: min(590px, calc(100% - 32px)); padding: clamp(27px, 5vw, 44px); border: 1px solid rgb(214 160 43 / .56); border-radius: 22px; color: #f4f8fb; background: linear-gradient(145deg, #104b67, #185a77); box-shadow: 0 30px 90px rgb(7 45 62 / .42); }
     .exit-offer::backdrop { background: rgb(7 45 62 / .55); backdrop-filter: blur(4px); }
     .exit-offer h2 { max-width: 490px; margin: 5px 0 14px; color: #f4f8fb; font-size: clamp(1.65rem, 4vw, 2.5rem); line-height: 1.08; }

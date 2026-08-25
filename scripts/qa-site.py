@@ -96,7 +96,8 @@ def main() -> int:
     html_files = sorted(DIST.glob("*.html"))
     for page in html_files:
         parser = PageParser()
-        parser.feed(page.read_text(encoding="utf-8"))
+        markup = page.read_text(encoding="utf-8")
+        parser.feed(markup)
         pages[page.name] = parser
         duplicate_ids = [value for value, count in Counter(parser.ids).items() if count > 1]
         if duplicate_ids:
@@ -111,6 +112,28 @@ def main() -> int:
             failures.append(f"{page.name}: missing canonical")
         if "noindex" not in parser.robots and parser.schema_count < 1:
             failures.append(f"{page.name}: indexable page missing JSON-LD")
+        class_tokens = [
+            token
+            for class_attr in re.findall(r'class=["\']([^"\']*)["\']', markup)
+            for token in class_attr.split()
+        ]
+        for class_name in (
+            "site-header",
+            "brand",
+            "brand-mark",
+            "brand-copy",
+            "site-footer",
+            "footer-brand-lockup",
+            "footer-logo",
+            "footer-brand-copy",
+            "footer-contact-block",
+            "footer-trust-badges",
+        ):
+            count = class_tokens.count(class_name)
+            if count != 1:
+                failures.append(f"{page.name}: expected one shared {class_name}, found {count}")
+        if "verified-trust" in markup:
+            failures.append(f"{page.name}: duplicate page-level trust strip remains")
         for raw in parser.refs:
             target = local_target(page, raw)
             if target is not None and not target.exists():
