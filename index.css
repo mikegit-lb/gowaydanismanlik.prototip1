@@ -1032,7 +1032,7 @@
     }
 
     /* Keep the homepage lockup identical to the shared page header. */
-    body.multi-page-home .brand-copy strong { color: var(--teal); font-size: 1.2rem; letter-spacing: inherit; line-height: 1; }
+    body.multi-page-home .brand-copy strong { color: var(--teal); font-size: 1.2rem; font-weight: 700; letter-spacing: inherit; line-height: 1; }
     body.multi-page-home .brand-copy span { margin-top: 7px; color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .22em; line-height: 1; }
     @media (max-width: 560px) {
       body.multi-page-home .brand-copy strong { font-size: .98rem; }

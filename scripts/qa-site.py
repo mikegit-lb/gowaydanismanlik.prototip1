@@ -94,6 +94,8 @@ def main() -> int:
     failures: list[str] = []
     pages: dict[str, PageParser] = {}
     html_files = sorted(DIST.glob("*.html"))
+    if not html_files:
+        failures.append("dist: no generated HTML pages found")
     for page in html_files:
         parser = PageParser()
         markup = page.read_text(encoding="utf-8")

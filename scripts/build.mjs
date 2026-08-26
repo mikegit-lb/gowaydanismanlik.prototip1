@@ -54,7 +54,19 @@ const hasHardcodedContactLiteral = (html, site) => {
 };
 
 async function emptyDist() {
-  await fs.rm(dist, { recursive: true, force: true });
+  let lastError;
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    try {
+      await fs.rm(dist, { recursive: true, force: true });
+      lastError = undefined;
+      break;
+    } catch (error) {
+      lastError = error;
+      if (attempt === 3) break;
+      await new Promise((resolve) => setTimeout(resolve, 500 * (attempt + 1)));
+    }
+  }
+  if (lastError) throw new Error(`Unable to clean dist after retries: ${lastError.message}`);
   await fs.mkdir(dist, { recursive: true });
 }
 
