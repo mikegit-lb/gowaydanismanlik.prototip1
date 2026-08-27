@@ -167,12 +167,12 @@ function renderServicePage(content, service, resource) {
 
 function renderSectorHub(content) {
   const cards = content.sectors.map((sector, index) => `<article class="sector-index-card"><span>${String(index + 1).padStart(2, '0')}</span><h2>${escapeHtml(sector.title)}</h2><p>${escapeHtml(sector.summary)}</p><div class="standard-row">${sector.standards.slice(0, 3).map((item) => `<small>${escapeHtml(item)}</small>`).join('')}</div><a class="button primary" href="${escapeHtml(sector.file)}">Sektör sayfasını açın</a></article>`).join('');
-  const contentHtml = `<div class="container">${breadcrumb([{ label: 'Ana Sayfa', href: 'index.html' }, { label: 'Sektörler' }])}<section class="content-section"><div class="section-heading"><p class="eyebrow">10 sektör · tek kanıt dili</p><h2>Sektörünüzü seçin, ilgili hizmet ve kaynağa birlikte ilerleyin</h2><p>Her sayfa sektörün operasyonel tetikleyicilerini, somut çıktıları, ölçüm seçeneklerini ve ücretsiz kaynağını ayrı içerikle ele alır.</p></div><div class="sector-index-grid">${cards}</div></section></div>`;
+  const contentHtml = `<div class="container">${breadcrumb([{ label: 'Ana Sayfa', href: 'index.html' }, { label: 'Sektörler' }])}<section class="content-section"><div class="section-heading"><p class="eyebrow">${content.sectors.length} sektör · tek kanıt dili</p><h2>Sektörünüzü seçin, ilgili hizmet ve kaynağa birlikte ilerleyin</h2><p>Her sayfa sektörün operasyonel tetikleyicilerini, somut çıktıları, ölçüm seçeneklerini ve ücretsiz kaynağını ayrı içerikle ele alır.</p></div><div class="sector-index-grid">${cards}</div></section></div>`;
   return page({
     site: content.site,
     file: 'sektorel-cozumler.html',
     title: 'Sektörel Çözümler',
-    description: 'Üretimden sağlığa, tekstilden enerjiye on sektör için operasyonel risk, sistem, kanıt ve danışmanlık sayfaları.',
+    description: 'Üretimden sağlığa, tekstilden maden, mermer ve yapı malzemelerine farklı sektörler için operasyonel risk, sistem, kanıt ve danışmanlık sayfaları.',
     bodyClass: 'sector-hub-page',
     heroHtml: hero('cozumler-hero-planlama', 'Sektörel çözümler', 'Sektörünüzün gerçek çalışma koşullarına göre ilerleyin', 'Genel hizmet listesi yerine, karar tetikleyicilerini ve beklenen kanıtı sektörünüzün diliyle görün.', '<div class="hero-actions"><a class="button primary" href="#main-content">Sektörleri inceleyin</a><a class="button secondary" href="on-gorusme.html">Ön görüşme</a></div>'),
     content: contentHtml,

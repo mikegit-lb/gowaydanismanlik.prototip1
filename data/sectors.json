@@ -299,6 +299,126 @@
         { "question": "Yayılım nereden başlamalı?", "answer": "Farklı risk ve olgunluk düzeyini temsil eden sınırlı bir pilot grup seçilir; sonuçlar netleşmeden tüm lokasyonlara kopyalanmaz." },
         { "question": "Eğitim etkinliği nasıl kanıtlanır?", "answer": "Katılım kaydına ek olarak görev uygulaması, yönetici gözlemi, kısa değerlendirme ve ilgili performans göstergesi birlikte kullanılır." }
       ]
+    },
+    {
+      "slug": "maden-tas-ocaklari",
+      "file": "sektor-maden-tas-ocaklari.html",
+      "title": "Maden ve Taş Ocakları",
+      "eyebrow": "Sektörel çözüm · Maden ve taş ocakları",
+      "summary": "Açık ocak, yeraltı, kırma-eleme ve sevkiyat operasyonlarında kritik riskleri, çevre verisini ve yüklenici kanıtını birlikte yönetin.",
+      "heroAsset": "hizmetler-hero-endustriyel",
+      "triggers": ["Patlatma, kazı, tahkimat veya hareketli ekipman risklerinin vardiya uygulamasında farklılaşması", "Toz, gürültü, titreşim, su ve atık verilerinin saha kararıyla ilişkilendirilememesi", "Taşeron, kamyon ve ziyaretçi kabul kontrollerinin aynı standarda bağlanmaması", "Denetim veya olay sonrası kanıtların farklı ekiplerde dağınık kalması"],
+      "buyers": ["Maden işletmesi ve ocak yöneticileri", "İSG, çevre, bakım ve üretim ekipleri", "Taşeron, sevkiyat ve saha operasyonu sorumluları"],
+      "standards": ["ISO 45001", "ISO 14001", "ISO 9001", "ISO 50001"],
+      "outputs": ["Faaliyet, ekipman ve kritik risk haritası", "Taşeron kabul, çalışma izni ve saha kontrol standardı", "Toz, su, atık ve enerji veri takip matrisi", "Olay, ramak kala, DÖF ve denetim kanıt paketi"],
+      "process": [
+        { "label": "Saha ve vardiya fotoğrafı", "text": "Ocak, tesis, stok sahası, yollar, bakım işleri ve vardiya geçişleri birlikte incelenir." },
+        { "label": "Kritik kontrol", "text": "Patlatma, kazı, tahkimat, trafik, kaldırma ve enerji izolasyonu gibi kritik işler görevlerle eşleştirilir." },
+        { "label": "Yüklenici standardı", "text": "Yetkinlik, ekipman, saha kabulü, iletişim ve durdurma sorumlulukları ortak bir akışta tanımlanır." },
+        { "label": "Kanıt ve doğrulama", "text": "Saha gözlemi, kayıt örneklemi, tatbikat veya prova denetimiyle kontrollerin çalıştığı test edilir." }
+      ],
+      "metrics": ["Kritik saha kontrolü uygulama oranı", "Taşeron uygunsuzluğu kapanış süresi", "Toz, su veya atık verisi güncellik oranı", "Ramak kala ve olay tekrar eğilimi"],
+      "services": [
+        { "label": "Saha Güvenliği", "href": "saha-guvenligi.html" },
+        { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" },
+        { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" }
+      ],
+      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "faq": [
+        { "question": "Patlatma tasarımı veya mühendislik onayı veriyor musunuz?", "answer": "Hayır. İşletmenin yetkili teknik ekipleri ve ilgili uzmanlarıyla birlikte yönetim, risk, kayıt ve saha kontrol akışının hazırlanmasına destek verilir." },
+        { "question": "Taşeronlar kapsama nasıl alınır?", "answer": "Ön yeterlilik, işe özgü bilgilendirme, ekipman ve yetkinlik kontrolü, saha gözlemi ve aksiyon kapanışı aynı akışta izlenir." },
+        { "question": "Çevre ve İSG verileri birlikte takip edilebilir mi?", "answer": "Evet. Faaliyet, vardiya veya üretim birimiyle normalize edilen çevre göstergeleri kritik saha kontrolleri ve yönetim değerlendirmesiyle birlikte ele alınabilir." }
+      ]
+    },
+    {
+      "slug": "mermer-dogal-tas",
+      "file": "sektor-mermer-dogal-tas.html",
+      "title": "Mermer ve Doğal Taş",
+      "eyebrow": "Sektörel çözüm · Mermer ve doğal taş",
+      "summary": "Ocaktan blok stokuna, kesimden yüzey işlemeye kadar kalite, su, çamur, enerji ve iş güvenliği kanıtlarını aynı akışta görünür kılın.",
+      "heroAsset": "cevre-danismanligi-hero",
+      "triggers": ["Blok, plaka ve sipariş bilgilerinin üretim ve sevkiyat boyunca aynı kimlikle izlenememesi", "Kesim, parlatma ve yüzey işlemlerinde su, çamur ve enerji kayıtlarının dağınık olması", "Kaldırma, forklift, taş düşmesi ve makine risklerinde vardiya farklarının oluşması", "Müşteri kalite, çevre veya sürdürülebilirlik taleplerine kanıtların kısa sürede derlenememesi"],
+      "buyers": ["Ocak, fabrika ve üretim yöneticileri", "Kalite, çevre, İSG ve bakım ekipleri", "Planlama, ihracat, depo ve sevkiyat sorumluları"],
+      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "outputs": ["Blok/plaka ve sipariş izlenebilirlik haritası", "Kesim, kalite ve yüzey işlem kontrol standardı", "Su, çamur, atık ve enerji veri matrisi", "Kaldırma, trafik, makine ve bakım risk kontrol planı"],
+      "process": [
+        { "label": "Ürün akışı", "text": "Ocak, blok stok, kesim, yüzey işlem, kalite, paketleme ve sevkiyat zinciri örneklemle izlenir." },
+        { "label": "Kayıp ve risk", "text": "Fire, kırılma, yeniden işleme, su kullanımı, çamur ve kritik saha işleri aynı risk fotoğrafında değerlendirilir." },
+        { "label": "Kontrol standardı", "text": "Makine, kaldırma, forklift, kimyasal, PPE ve kalite kontrol sorumlulukları görev bazında netleştirilir." },
+        { "label": "Müşteri kanıtı", "text": "Sipariş ve ürün dosyası üzerinden kalite, çevre, enerji ve saha uygulaması kanıtları birlikte doğrulanır." }
+      ],
+      "metrics": ["Siparişten sevkiyata izlenebilirlik tamamlama süresi", "Birim ürün başına su ve enerji kullanımı", "Kırılma veya yeniden işleme oranı", "Kritik saha uygunsuzluğu kapanış süresi"],
+      "services": [
+        { "label": "ISO Yönetim Sistemleri", "href": "iso-yonetim-sistemleri.html" },
+        { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" },
+        { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" }
+      ],
+      "resourceSlug": "iso-14064-ghg-hesaplama-veri-matrisi",
+      "faq": [
+        { "question": "Mermer ve doğal taşta hangi kayıtlarla başlanır?", "answer": "Blok veya plaka kimliği, üretim emri, kalite kontrol, fire/yeniden işleme, stok, sevkiyat ve temel kaynak tüketimi kayıtları iyi bir başlangıç sağlar." },
+        { "question": "Çamur ve atık yönetimi üretimden ayrı mı ele alınır?", "answer": "Hayır. Üretim adımı, su kullanımı, çamur/atık oluşumu, geçici depolama ve teslim kayıtları aynı süreç haritasında ilişkilendirilir." },
+        { "question": "İhracat müşterilerinin talepleri sisteme bağlanabilir mi?", "answer": "Müşteri şartı, ürün dosyası, sorumlu, kayıt ve güncelleme tarihi üzerinden izlenebilir bir şart–kanıt matrisi kurulabilir." }
+      ]
+    },
+    {
+      "slug": "cimento-yapi-malzemeleri",
+      "file": "sektor-cimento-yapi-malzemeleri.html",
+      "title": "Çimento ve Yapı Malzemeleri",
+      "eyebrow": "Sektörel çözüm · Çimento ve yapı malzemeleri",
+      "summary": "Enerji yoğun prosesleri, hammadde ve ürün kalitesini, emisyonları ve saha güvenliğini ölçülebilir bir işletme ritmine bağlayın.",
+      "heroAsset": "hizmetler-hero-endustriyel",
+      "triggers": ["Fırın, öğütme, kurutma veya basınçlı hava gibi enerji yoğun proseslerde kayıpların görünür olmaması", "Hammadde, reçete, üretim partisi ve laboratuvar sonuçlarının kopuk tutulması", "Toz, emisyon, atık ve çevre kontrollerinin üretim hedefinden ayrı yürütülmesi", "Bakım, sıcak iş, kapalı alan ve araç trafiği risklerinin saha uygulamasında farklılaşması"],
+      "buyers": ["Fabrika, üretim ve teknik direktörlük ekipleri", "Kalite, çevre, enerji ve İSG yöneticileri", "Bakım, laboratuvar, sevkiyat ve satın alma sorumluları"],
+      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "outputs": ["Proses, hammadde ve ürün kalite haritası", "Enerji gözden geçirmesi ve EnPI takip matrisi", "Emisyon, atık ve çevre yükümlülük takvimi", "Bakım, sıcak iş, kapalı alan ve trafik kontrol seti"],
+      "process": [
+        { "label": "Proses verisi", "text": "Hammadde kabulünden üretim, laboratuvar, paketleme ve sevkiyata kadar kritik veri noktaları çıkarılır." },
+        { "label": "Enerji ve çevre", "text": "Yakıt, elektrik, proses ısısı, emisyon, toz, atık ve üretim miktarı aynı dönem tanımıyla eşleştirilir." },
+        { "label": "Kritik iş kontrolü", "text": "Bakım duruşu, sıcak iş, kapalı alan, yüksekte çalışma ve araç trafiği için işe başlama kontrolleri kurulur." },
+        { "label": "Performans provası", "text": "İç tetkik, enerji veri incelemesi ve saha gözlemleriyle göstergelerin karar üretip üretmediği doğrulanır." }
+      ],
+      "metrics": ["Birim ürün başına enerji tüketimi", "Üretim veya sevkiyat başına emisyon eğilimi", "Laboratuvar/kalite uygunsuzluğu kapanış süresi", "Kritik bakım ve saha kontrolü uygulama oranı"],
+      "services": [
+        { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" },
+        { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" },
+        { "label": "Entegre ISO/İSG Programı", "href": "entegre-program.html" }
+      ],
+      "resourceSlug": "iso-50001-seu-enpi-calisma-kitabi",
+      "faq": [
+        { "question": "Enerji çalışması yalnızca fatura analizi midir?", "answer": "Hayır. Önemli enerji kullanımları, ilgili değişkenler, ölçüm noktaları, EnPI hedefleri ve aksiyonların sahadaki karşılığı birlikte incelenir." },
+        { "question": "Ürün kalitesi ve çevre performansı birlikte yönetilebilir mi?", "answer": "Hammadde, proses, laboratuvar, emisyon ve üretim verileri ortak dönem ve sorumluluk tanımıyla ilişkilendirilebilir." },
+        { "question": "Bakım duruşlarında İSG kontrolleri nasıl görünür olur?", "answer": "İş emri, enerji izolasyonu, çalışma izni, ekip yetkinliği, saha kontrolü ve kapanış kanıtı aynı görev akışında takip edilir." }
+      ]
+    },
+    {
+      "slug": "cam-seramik",
+      "file": "sektor-cam-seramik.html",
+      "title": "Cam ve Seramik",
+      "eyebrow": "Sektörel çözüm · Cam ve seramik",
+      "summary": "Fırın ve şekillendirme proseslerinde kalite, enerji, kimyasal, bakım ve çalışan güvenliği kanıtlarını tek operasyonel omurgada birleştirin.",
+      "heroAsset": "cozumler-hero-planlama",
+      "triggers": ["Fırın, kalıp, reçete veya hammadde değişikliklerinin kalite ve enerji riskine geç yansıması", "Cam kırılması, sıcak yüzey, kimyasal ve hareketli ekipman risklerinde kontrol farkları", "Kalite laboratuvarı sonuçlarının üretim ve müşteri şikâyeti aksiyonuna bağlanamaması", "Enerji, su, atık ve emisyon verilerinin proses göstergeleriyle birlikte izlenememesi"],
+      "buyers": ["Fabrika, üretim ve proses mühendisliği ekipleri", "Kalite, laboratuvar, çevre ve İSG yöneticileri", "Bakım, enerji, depo ve sevkiyat sorumluları"],
+      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "outputs": ["Hammadde, reçete, proses ve ürün izlenebilirlik haritası", "Fırın, enerji ve bakım performans göstergeleri", "Kırılma, sıcak iş, kimyasal ve makine risk kontrol standardı", "Laboratuvar, müşteri şikâyeti ve DÖF kanıt akışı"],
+      "process": [
+        { "label": "Proses örneklemi", "text": "Hammadde, reçete, fırın, şekillendirme, kalite, paketleme ve sevkiyat adımları temsili ürünle izlenir." },
+        { "label": "Değişiklik kontrolü", "text": "Reçete, ekipman, kalıp, tedarikçi veya proses değişikliğinin kalite, enerji ve İSG etkisi değerlendirilir." },
+        { "label": "Saha standardı", "text": "Sıcak yüzey, kırılma, kimyasal, kaldırma, bakım ve acil durum kontrolleri görev ve vardiya bazında netleştirilir." },
+        { "label": "Kök neden ve ölçüm", "text": "Laboratuvar sonucu, müşteri şikâyeti, proses göstergesi ve düzeltici aksiyon aynı kapanış mantığında doğrulanır." }
+      ],
+      "metrics": ["İlk seferde uygun ürün oranı", "Birim ürün başına enerji kullanımı", "Tekrarlayan kalite uygunsuzluğu oranı", "Kritik saha aksiyonu kapanış süresi"],
+      "services": [
+        { "label": "ISO Yönetim Sistemleri", "href": "iso-yonetim-sistemleri.html" },
+        { "label": "Saha Güvenliği", "href": "saha-guvenligi.html" },
+        { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" }
+      ],
+      "resourceSlug": "denetim-kanit-matrisi",
+      "faq": [
+        { "question": "Fırın performansı hangi verilerle izlenebilir?", "answer": "Enerji girdisi, üretim miktarı, ürün/reçete, duruş, kalite sonucu ve ilgili proses değişkenleri aynı dönem ve birim tanımıyla ele alınabilir." },
+        { "question": "Müşteri şikâyeti kalite sistemine nasıl bağlanır?", "answer": "Şikâyet, ürün/parti, proses koşulu, laboratuvar veya saha kanıtı, kök neden, aksiyon ve etkinlik kontrolü üzerinden izlenebilir hale getirilir." },
+        { "question": "Saha güvenliği ile üretim hedefi çatışır mı?", "answer": "Kritik kontrol noktaları işi durdurma veya devam ettirme kararını netleştirir; vardiya hedefleriyle güvenli başlatma ve kapatma koşulları birlikte planlanır." }
+      ]
     }
   ]
 }
