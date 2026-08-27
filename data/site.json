@@ -70,7 +70,13 @@
       "iso-22000-gida-guvenligi.html",
       "iso-14064-karbon-ghg-hesap.html",
       "gida-belgelendirme-hazirlik.html",
-      "sosyal-uygunluk-denetim-hazirlik.html"
+      "sosyal-uygunluk-denetim-hazirlik.html",
+      "maden-tas-ocaklari-danismanligi.html",
+      "mermer-dogal-tas-danismanligi.html",
+      "cimento-yapi-malzemeleri-danismanligi.html",
+      "tedarikci-yuklenici-yonetimi.html",
+      "proses-performans-iyilestirme.html",
+      "mevzuat-uyum-takip.html"
     ]
   },
   "trainingCatalog": [
@@ -126,7 +132,7 @@
   "services": [
     { "slug": "iso-yonetim-sistemleri", "title": "ISO Yönetim Sistemleri", "summary": "Sistemleri kopya dokümanlara değil, gerçek operasyonunuza göre kuruyoruz.", "href": "iso-yonetim-sistemleri.html", "category": "Yönetim standartları" },
     { "slug": "iso-denetim-hazirligi", "title": "ISO Denetim Hazırlığı", "summary": "Son dakika paniği yerine kanıta dayalı, izlenebilir denetim hazırlığı.", "href": "iso-denetim-hazirligi.html", "category": "Yönetim standartları" },
-    { "slug": "isg-yonetimi", "title": "İSG Yönetimi (ISO 45001)", "summary": "Güvenliği saha davranışına, çalışan katılımına ve uygulanabilir kontrollere bağlıyoruz.", "href": "isg-yonetimi.html", "category": "Saha ve güvenlik" },
+    { "slug": "isg-yonetimi", "title": "İSG Yönetimi", "summary": "Güvenliği saha davranışına, çalışan katılımına ve uygulanabilir kontrollere bağlıyoruz.", "href": "isg-yonetimi.html", "category": "Saha ve güvenlik" },
     { "slug": "saha-guvenligi", "title": "Saha Güvenliği", "summary": "Makine güvenliği, LOTO, yüklenici, kimyasal ve saha kontrollerini birlikte yönetin.", "href": "saha-guvenligi.html", "category": "Saha ve güvenlik" },
     { "slug": "yangin-acil-durum", "title": "Yangın ve Acil Durum", "summary": "Senaryo, ekip, eğitim ve tatbikatı tek çalışan hazırlık sisteminde birleştiriyoruz.", "href": "yangin-acil-durum.html", "category": "Saha ve güvenlik" },
     { "slug": "kurumsal-egitim", "title": "Kurumsal Eğitim", "summary": "Davranış değişimi ve ölçülebilir yetkinlik için göreve, riske ve sahaya göre eğitim.", "href": "kurumsal-egitim.html", "category": "Gelişim" },
@@ -135,7 +141,7 @@
     { "slug": "tekstil-standartlari", "title": "Tekstil Standartları", "summary": "GOTS, GRS, OCS ve RCS izlenebilirliği ile denetim hazırlığını güçlendirin.", "href": "tekstil-standartlari.html", "category": "Sektörel çözümler" },
     { "slug": "surdurulebilirlik", "title": "Sürdürülebilirlik", "summary": "Karbon ayak izi, sürdürülebilirlik raporlaması ve ESG hedeflerini ölçülebilir kılın.", "href": "surdurulebilirlik.html", "category": "Çevre ve sürdürülebilirlik" },
     { "slug": "iso-50001-enerji-yonetimi", "title": "ISO 50001 Enerji Yönetimi", "summary": "Enerji gözden geçirmesi, EnPI hedefleri ve doğrulanabilir aksiyonlarla enerji performansını yönetin.", "href": "iso-50001-enerji-yonetimi.html", "category": "Çevre ve sürdürülebilirlik" },
-    { "slug": "entegre-program", "title": "Entegre ISO/İSG Programı", "summary": "9001, 14001 ve 45001'i üç fazlı tek bir gelişim yol haritasında birleştirin.", "href": "entegre-program.html", "category": "Gelişim" },
+    { "slug": "entegre-program", "title": "Entegre ISO/İSG Programı", "summary": "9001, 14001 ve İSG yönetimini üç fazlı tek bir gelişim yol haritasında birleştirin.", "href": "entegre-program.html", "category": "Gelişim" },
     { "slug": "is-ortaklari", "title": "Çözüm Ortaklığı", "summary": "Belgelendirme, test, eğitim ve uzmanlık ihtiyaçları için güvenilir partner ağı.", "href": "is-ortaklari.html", "category": "Sektörel çözümler" },
     { "slug": "sektorel-cozumler", "title": "Sektörel Çözümler", "summary": "Tekstil, üretim, metal, gıda, maden, mermer, yapı malzemeleri, enerji ve çok lokasyonlu işletmeler için çözümler.", "href": "sektorel-cozumler.html", "category": "Sektörel çözümler" },
     { "slug": "iso-27001-bilgi-guvenligi", "title": "ISO 27001 Bilgi Güvenliği Yönetim Sistemi", "summary": "Veri, sistem ve proses risklerini anahtar kelime veya teknik kontrol ile değil, işlenecek süreç, sorumlu ve kanıtla yönetin.", "href": "iso-27001-bilgi-guvenligi.html", "category": "Sistem ve güvenlik" },
@@ -144,6 +150,12 @@
     { "slug": "iso-22000-gida-guvenligi", "title": "ISO 22000 Gıda Güvenliği Yönetim Sistemi", "summary": "Ön gereksinim programlarını, tehlike analizini ve izlenebilirlik kayıtlarını üretim akışına yerleştirin.", "href": "iso-22000-gida-guvenligi.html", "category": "Sektörel çözümler" },
     { "slug": "iso-14064-karbon-ghg-hesap", "title": "ISO 14064 Karbon ve GHG Hesaplama", "summary": "Sınırları, emisyon kaynaklarını, veri kalitesini ve hesaplama varsayımlarını izlenebilir bir envanterde yönetin.", "href": "iso-14064-karbon-ghg-hesap.html", "category": "Çevre ve sürdürülebilirlik" },
     { "slug": "gida-belgelendirme-hazirlik", "title": "Gıda Denetim ve Sistem Hazırlığı", "summary": "Gıda tesisinizde hijyen, proses, izlenebilirlik ve denetim kanıtlarını uygulanabilir bir hazırlık planına bağlayın.", "href": "gida-belgelendirme-hazirlik.html", "category": "Sektörel çözümler" },
-    { "slug": "sosyal-uygunluk-denetim-hazirlik", "title": "Sosyal Uygunluk Denetim Hazırlığı", "summary": "Çalışma koşulları, çalışan kayıtları, saha uygulamaları ve tedarikçi beklentilerini denetime hazır hale getirin.", "href": "sosyal-uygunluk-denetim-hazirlik.html", "category": "Sektörel çözümler" }
+    { "slug": "sosyal-uygunluk-denetim-hazirlik", "title": "Sosyal Uygunluk Denetim Hazırlığı", "summary": "Çalışma koşulları, çalışan kayıtları, saha uygulamaları ve tedarikçi beklentilerini denetime hazır hale getirin.", "href": "sosyal-uygunluk-denetim-hazirlik.html", "category": "Sektörel çözümler" },
+    { "slug": "maden-tas-ocaklari-danismanligi", "title": "Maden ve Taş Ocakları Danışmanlığı", "summary": "Ocak, kırma-eleme ve sevkiyat akışında saha riski, çevre verisi, yüklenici kontrolü ve denetim kanıtını birlikte kurun.", "href": "maden-tas-ocaklari-danismanligi.html", "category": "Sektörel danışmanlık" },
+    { "slug": "mermer-dogal-tas-danismanligi", "title": "Mermer ve Doğal Taş Danışmanlığı", "summary": "Bloktan sevkiyata kadar izlenebilirlik, kalite, su-çamur yönetimi, enerji ve saha güvenliği akışını güçlendirin.", "href": "mermer-dogal-tas-danismanligi.html", "category": "Sektörel danışmanlık" },
+    { "slug": "cimento-yapi-malzemeleri-danismanligi", "title": "Çimento ve Yapı Malzemeleri Danışmanlığı", "summary": "Enerji yoğun proses, hammadde, laboratuvar, emisyon ve bakım risklerini ölçülebilir fabrika kararlarına dönüştürün.", "href": "cimento-yapi-malzemeleri-danismanligi.html", "category": "Sektörel danışmanlık" },
+    { "slug": "tedarikci-yuklenici-yonetimi", "title": "Tedarikçi ve Yüklenici Yönetimi", "summary": "Dış sağlayıcı seçiminden saha kabulüne, performans izleminden aksiyon kapanışına kadar tek bir kanıt akışı kurun.", "href": "tedarikci-yuklenici-yonetimi.html", "category": "Operasyonel kontrol" },
+    { "slug": "proses-performans-iyilestirme", "title": "Proses ve Performans İyileştirme", "summary": "Süreç hedeflerini gerçek veri, kök neden, sorumluluk ve doğrulanabilir iyileştirme döngüsüne bağlayın.", "href": "proses-performans-iyilestirme.html", "category": "Süreç ve performans" },
+    { "slug": "mevzuat-uyum-takip", "title": "Mevzuat ve Uyum Takip Sistemi", "summary": "Yasal ve diğer şartları sorumlu, termin, kanıt ve değişiklik kontrolüyle işletme gündemine taşıyın.", "href": "mevzuat-uyum-takip.html", "category": "Uyum ve kanıt" }
   ]
 }

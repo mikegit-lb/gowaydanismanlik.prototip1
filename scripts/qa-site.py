@@ -118,6 +118,9 @@ def main() -> int:
         markup = page.read_text(encoding="utf-8")
         parser.feed(markup)
         pages[page.name] = parser
+        retired_standard = ''.join(('45', '001'))
+        if re.search(rf"{retired_standard}|iso-{retired_standard}", markup, re.I):
+            failures.append(f"{page.name}: retired safety-standard reference remains in production HTML")
         if not re.search(r'<link\b[^>]*rel=["\']preload["\'][^>]*as=["\']style["\']', markup, re.I):
             failures.append(f"{page.name}: missing non-blocking stylesheet preload")
         has_home_css = bool(re.search(r'index\.[a-f0-9]+\.css', markup, re.I))

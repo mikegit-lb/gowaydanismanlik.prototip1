@@ -286,7 +286,7 @@ function addServicesHubEnhancements(html, content, file) {
     const cells = content.sectors.map((sector) => service.sectorLinks?.includes(sector.file) ? '<td class="matrix-hit" aria-label="Kapsam var">●</td>' : '<td aria-label="Bu sayfada belirtilmedi">—</td>').join('');
     return `<tr data-service-matrix-row data-category="${escapeAttribute(category)}"><th scope="row"><a href="${escapeAttribute(service.file)}">${escapeAttribute(service.title)}</a><small>${escapeAttribute(category)}</small></th>${cells}</tr>`;
   }).join('');
-  const section = `<section id="service-sector-matrix" class="content-section service-matrix-section" aria-labelledby="service-sector-matrix-title"><div class="section-heading"><p class="eyebrow">21 hizmet × ${content.sectors.length} sektör</p><h2 id="service-sector-matrix-title">Hangi hizmet hangi sahada karşılık bulur?</h2><p>İşaretler hizmet manifestosunda tanımlı sektör bağlantılarını gösterir; kapsam ilk görüşmede işletmenin gerçek verisiyle kesinleştirilir.</p></div><label class="matrix-filter">Hizmet ailesi<select id="service-matrix-filter"><option value="">Tümü</option>${options}</select></label><div class="comparison-table-wrap"><table class="comparison-table service-matrix"><thead><tr><th scope="col">Hizmet</th>${headers}</tr></thead><tbody>${rows}</tbody></table></div><script>document.addEventListener('DOMContentLoaded',()=>{const filter=document.querySelector('#service-matrix-filter');const rows=[...document.querySelectorAll('[data-service-matrix-row]')];filter?.addEventListener('change',()=>rows.forEach(row=>{row.hidden=Boolean(filter.value)&&row.dataset.category!==filter.value;}));});</script></section>`;
+  const section = `<section id="service-sector-matrix" class="content-section service-matrix-section" aria-labelledby="service-sector-matrix-title"><div class="section-heading"><p class="eyebrow">${content.services.length} hizmet × ${content.sectors.length} sektör</p><h2 id="service-sector-matrix-title">Hangi hizmet hangi sahada karşılık bulur?</h2><p>İşaretler hizmet manifestosunda tanımlı sektör bağlantılarını gösterir; kapsam ilk görüşmede işletmenin gerçek verisiyle kesinleştirilir.</p></div><label class="matrix-filter">Hizmet ailesi<select id="service-matrix-filter"><option value="">Tümü</option>${options}</select></label><div class="comparison-table-wrap"><table class="comparison-table service-matrix"><thead><tr><th scope="col">Hizmet</th>${headers}</tr></thead><tbody>${rows}</tbody></table></div><script>document.addEventListener('DOMContentLoaded',()=>{const filter=document.querySelector('#service-matrix-filter');const rows=[...document.querySelectorAll('[data-service-matrix-row]')];filter?.addEventListener('change',()=>rows.forEach(row=>{row.hidden=Boolean(filter.value)&&row.dataset.category!==filter.value;}));});</script></section>`;
   return withSchema.replace('</main>', `${section}</main>`);
 }
 
@@ -314,7 +314,6 @@ async function processHtml(content, generated, styles, scripts) {
     html = html.replaceAll('LOTO Yetkili Kişi', 'LOTO Uygulama Eğitimi');
     html = replaceUnverifiedClaims(html, file);
     if (file === 'egitim-online.html' || file === 'egitim-takvimi.html') {
-      html = html.replaceAll('ISO 45001 İç Tetkikçi', 'ISO 9001 İç Tetkikçi');
     }
     html = ensureHeadMeta(html, file);
     html = addOrganizationSchema(html, file, content);
@@ -322,7 +321,6 @@ async function processHtml(content, generated, styles, scripts) {
     html = addAnalytics(html, content.analytics);
     html = addSharedShell(html, styles, scripts, content, file);
     html = enrichOnlineTraining(html, file);
-    if (file.startsWith('egitim-') && /\b45001\b/i.test(html)) throw new Error(`Retired ISO 45001 training remains in education page: ${file}`);
     html = await minifyInlineScripts(html, file);
     html = html.replace(/<script type="application\/json" id="training-data">\s*<\/script>/gi, '');
     html = await minifyHtml(html, { collapseWhitespace: true, conservativeCollapse: true, keepClosingSlash: true, removeComments: true, minifyCSS: false, minifyJS: false });
@@ -348,11 +346,10 @@ async function validateContent(content) {
   if (!/^https:\/\/wa\.me\/[1-9][0-9]+$/.test(site.whatsappHref)) throw new Error(`Invalid whatsappHref: ${site.whatsappHref}`);
   if (!/^mailto:[^\s@]+@[^\s@]+\.[^\s@]+$/.test(site.emailHref)) throw new Error(`Invalid emailHref: ${site.emailHref}`);
   if (content.sectors.length < 10) throw new Error(`Expected at least 10 sectors, found ${content.sectors.length}`);
-  if (content.services.length !== 21) throw new Error(`Expected 21 services, found ${content.services.length}`);
+  if (content.services.length < 21) throw new Error(`Expected at least 21 services, found ${content.services.length}`);
   if (content.resources.length !== 16) throw new Error(`Expected 16 resources, found ${content.resources.length}`);
   const trainingCatalog = content.site.trainingCatalog || [];
   const trainingSlugs = new Set(trainingCatalog.map((item) => item.slug));
-  if (trainingCatalog.some((item) => /45001/i.test(`${item.slug} ${item.topic}`))) throw new Error('ISO 45001 training remains in trainingCatalog');
   for (const service of content.services) {
     for (const slug of service.trainingSlugs || []) if (!trainingSlugs.has(slug)) throw new Error(`Unknown training slug ${slug} in ${service.slug}`);
   }
@@ -363,6 +360,10 @@ async function validateContent(content) {
   unique(content.services.map((item) => item.file), 'service file');
   const resourceSlugs = new Set(content.resources.map((item) => item.slug));
   const serviceFiles = new Set(content.services.map((item) => item.file));
+  const siteServiceFiles = new Set((content.site.services || []).map((item) => item.href));
+  if (siteServiceFiles.size !== content.services.length || content.services.some((service) => !siteServiceFiles.has(service.file))) {
+    throw new Error('Site service navigation is out of sync with data/services.json');
+  }
   content.services.forEach((service) => {
     if (!resourceSlugs.has(service.resourceSlug)) throw new Error(`Service ${service.slug} references missing resource ${service.resourceSlug}`);
     (service.siblingServices || []).forEach((file) => { if (!serviceFiles.has(file)) throw new Error(`Service ${service.slug} references missing sibling ${file}`); });

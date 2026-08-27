@@ -9,7 +9,7 @@
       "heroAsset": "hizmetler-hero-endustriyel",
       "triggers": ["Makine ve ekipman kaynaklı ramak kala olaylarının tekrarlanması", "Bakım sırasında enerji izolasyonunun kişiye bağlı yürütülmesi", "Kalite, çevre ve İSG kayıtlarının ayrı sistemlerde tutulması", "Müşteri veya belgelendirme denetimi öncesi kanıtların dağınık olması"],
       "buyers": ["Fabrika ve operasyon yöneticileri", "Kalite, çevre ve İSG yöneticileri", "Bakım, üretim ve insan kaynakları ekipleri"],
-      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "standards": ["ISO 9001", "ISO 14001", "İSG yönetimi", "ISO 50001"],
       "outputs": ["Proses ve risk haritası", "Makine/enerji kaynağı envanteri ve LOTO kartları", "Ortak hedef ve gösterge panosu", "İç tetkik, DÖF ve yönetim gözden geçirmesi kanıt paketi"],
       "process": [
         { "label": "Saha fotoğrafı", "text": "Üretim akışı, bakım işleri, vardiya düzeni ve mevcut kayıtlar birlikte incelenir." },
@@ -23,7 +23,7 @@
         { "label": "Saha Güvenliği", "href": "saha-guvenligi.html" },
         { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" }
       ],
-      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "resourceSlug": "saha-guvenligi-denetim-kontrol-listesi",
       "faq": [
         { "question": "Çalışma üretimi durdurur mu?", "answer": "İnceleme ve uygulama adımları vardiya, bakım ve üretim planıyla eşleştirilir; zorunlu duruş ihtiyacı kapsam belirlenirken açıkça planlanır." },
         { "question": "LOTO yalnızca bakım ekibini mi kapsar?", "answer": "Hayır. Temizlik, ayar, arıza giderme ve sıkışma açma gibi tehlikeli enerjiye maruz kalınabilecek işler de kapsama göre değerlendirilir." },
@@ -39,7 +39,7 @@
       "heroAsset": "cevre-danismanligi-hero",
       "triggers": ["Geri çağırma provasının hedef sürede tamamlanamaması", "Hijyen ve kritik kontrol kayıtlarında vardiya farklılıkları", "Soğutma ve buhar sistemlerinde enerji yoğunluğunun izlenmemesi", "Tedarikçi değişikliklerinin risk değerlendirmesine geç yansıması"],
       "buyers": ["Fabrika ve kalite güvence yöneticileri", "Gıda güvenliği ekipleri", "Satın alma, depo, bakım ve üretim sorumluları"],
-      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "standards": ["ISO 9001", "ISO 14001", "İSG yönetimi", "ISO 50001"],
       "outputs": ["Lot ve geri çağırma kanıt haritası", "Hijyen/görev bazlı kontrol standardı", "Tedarikçi onay ve değişiklik takip matrisi", "Soğuk zincir ve enerji performans göstergeleri"],
       "process": [
         { "label": "Akış testi", "text": "Hammadde kabulünden sevkiyata örnek bir lotun kayıt zinciri izlenir." },
@@ -99,7 +99,7 @@
       "heroAsset": "cozumler-hero-planlama",
       "triggers": ["Yaya ve forklift yollarının operasyon sırasında karışması", "Raf, rampa ve yükleme kontrollerinin kayıt altına alınmaması", "Taşeron ve sürücü kurallarının lokasyona göre değişmesi", "Birden fazla depoda aynı performans standardının kurulamaması"],
       "buyers": ["Depo ve lojistik yöneticileri", "Operasyon, İSG ve kalite ekipleri", "Tesis, güvenlik ve taşeron yönetimi sorumluları"],
-      "standards": ["ISO 9001", "ISO 45001", "ISO 14001", "ISO 39001 bağlantıları"],
+      "standards": ["ISO 9001", "İSG yönetimi", "ISO 14001", "ISO 39001 bağlantıları"],
       "outputs": ["Araç-yaya trafik ve kör nokta haritası", "Raf/rampa/yükleme kontrol standardı", "Sürücü ve taşeron kabul akışı", "Lokasyonlar arası ortak gösterge ve denetim seti"],
       "process": [
         { "label": "Yoğunluk gözlemi", "text": "Vardiya değişimi, yükleme piki ve ziyaretçi akışı sahada gözlenir." },
@@ -113,7 +113,7 @@
         { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" },
         { "label": "Entegre Program", "href": "entegre-program.html" }
       ],
-      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "resourceSlug": "saha-guvenligi-denetim-kontrol-listesi",
       "faq": [
         { "question": "Çalışma yalnızca depo içini mi kapsar?", "answer": "Kapsama göre saha girişi, güvenlik noktası, bekleme alanı, rampa, yükleme, depo içi trafik ve acil durum akışı birlikte ele alınır." },
         { "question": "Çok lokasyon için tek sistem kurulabilir mi?", "answer": "Ortak minimum standart ve gösterge seti oluşturulur; her lokasyonun yerleşim ve operasyon riskleri ayrıca korunur." },
@@ -129,7 +129,7 @@
       "heroAsset": "uzman-kadro-hero-saha-ekibi",
       "triggers": ["Alt işverenlerin farklı izin ve kontrol formları kullanması", "Günlük iş değişikliklerinin risk değerlendirmesine yansımaması", "Yüksekte çalışma, kaldırma veya sıcak iş kontrollerinin imzaya indirgenmesi", "Saha gözlemlerinin aksiyon sahibine ve kapanış kanıtına bağlanmaması"],
       "buyers": ["Proje ve şantiye yöneticileri", "İSG, kalite ve saha kontrol ekipleri", "Ana yüklenici ve alt işveren koordinatörleri"],
-      "standards": ["ISO 45001", "ISO 9001", "ISO 14001", "Yüklenici yönetimi"],
+      "standards": ["İSG yönetimi", "ISO 9001", "ISO 14001", "Yüklenici yönetimi"],
       "outputs": ["İş ve risk bazlı izin sistemi", "Alt işveren yeterlilik ve saha kabul matrisi", "Günlük saha kontrol ve kapatma standardı", "Ramak kala, uygunsuzluk ve aksiyon takip panosu"],
       "process": [
         { "label": "İş paketi", "text": "Planlanan faaliyetler, ekipler, ekipman ve eşzamanlı işler üzerinden risk profili çıkarılır." },
@@ -143,7 +143,7 @@
         { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" },
         { "label": "Yangın ve Acil Durum", "href": "yangin-acil-durum.html" }
       ],
-      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "resourceSlug": "saha-guvenligi-denetim-kontrol-listesi",
       "faq": [
         { "question": "Mevcut çalışma izinlerimiz kullanılabilir mi?", "answer": "Mevcut formlar korunabilir; karar, yetki, saha doğrulaması ve kapatma kanıtı açısından boşluklar hedefli biçimde iyileştirilir." },
         { "question": "Alt işveren eğitimi tek başına yeterli mi?", "answer": "Eğitim, yeterlilik kontrolü, işe özel izin, saha gözetimi ve performans geri bildirimiyle birlikte çalıştığında etkili olur." },
@@ -159,7 +159,7 @@
       "heroAsset": "hizmetler-hero-endustriyel",
       "triggers": ["Müşteri denetim bulgularının tekrar etmesi", "Mühendislik veya proses değişikliklerinin ilgili kayıtlara eksik yansıması", "Kök neden analizlerinin semptom düzeyinde kalması", "Kapasite, kalite, güvenlik ve enerji hedeflerinin farklı panolarda izlenmesi"],
       "buyers": ["Fabrika, kalite ve operasyon yöneticileri", "Proses, bakım ve mühendislik ekipleri", "Müşteri kalite ve tedarikçi geliştirme sorumluları"],
-      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "standards": ["ISO 9001", "ISO 14001", "İSG yönetimi", "ISO 50001"],
       "outputs": ["Müşteri şartı ve kanıt eşleştirme matrisi", "Değişiklik kontrol ve onay akışı", "Kök neden/DÖF etkinlik değerlendirmesi", "Proses, güvenlik ve enerji gösterge seti"],
       "process": [
         { "label": "Şart eşleştirme", "text": "Müşteri maddeleri, iç süreçler, sorumlular ve mevcut kanıtlar aynı tabloda toplanır." },
@@ -189,7 +189,7 @@
       "heroAsset": "cevre-danismanligi-hero",
       "triggers": ["Kimyasal envanter, SDS ve saha etiketlerinin aynı güncellikte olmaması", "Proses veya hammadde değişikliklerinin çevre/İSG etkisinin geç değerlendirilmesi", "Depolama, transfer ve dökülme kontrollerinin lokasyona göre değişmesi", "Atık, emisyon ve enerji verilerinin yönetim kararına dönüşmemesi"],
       "buyers": ["Tesis, üretim ve teknik yöneticiler", "Çevre, İSG ve kalite ekipleri", "Laboratuvar, depo, bakım ve satın alma sorumluları"],
-      "standards": ["ISO 14001", "ISO 45001", "ISO 9001", "ISO 50001"],
+      "standards": ["ISO 14001", "İSG yönetimi", "ISO 9001", "ISO 50001"],
       "outputs": ["Kimyasal envanter ve uygunluk matrisi", "Depolama/transfer/dökülme kontrol standardı", "Değişiklik yönetimi ve onay akışı", "Atık, emisyon, olay ve enerji performans panosu"],
       "process": [
         { "label": "Envanter doğrulama", "text": "Satın alma kayıtları, SDS, saha etiketi, miktar ve depolama alanı karşılaştırılır." },
@@ -203,7 +203,7 @@
         { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" },
         { "label": "Yangın ve Acil Durum", "href": "yangin-acil-durum.html" }
       ],
-      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "resourceSlug": "saha-guvenligi-denetim-kontrol-listesi",
       "faq": [
         { "question": "Mevzuat uygunluğunu garanti ediyor musunuz?", "answer": "Güncel yükümlülüklerin belirlenmesi ve kanıt sisteminin kurulması desteklenir; resmî uygunluk kararı veya hukuki garanti verilmez." },
         { "question": "Kimyasal envanter nasıl güncel tutulur?", "answer": "Satın alma onayı, yeni ürün kabulü, SDS kontrolü, saha etiketi ve periyodik sayım aynı değişiklik akışına bağlanır." },
@@ -219,7 +219,7 @@
       "heroAsset": "enerji-yonetimi-hero",
       "triggers": ["Kritik varlıkların bakım ve risk kayıtlarının ayrı sistemlerde kalması", "Yüklenici çalışmalarında enerji izolasyonu ve izin adımlarının değişmesi", "Çevresel olay ve performans verilerinin proje kararına geç yansıması", "Enerji baz hattı ve yatırım tasarruflarının doğrulanamaması"],
       "buyers": ["Tesis, varlık ve işletme yöneticileri", "Bakım, proje, çevre ve İSG ekipleri", "Enerji yöneticileri ve yatırım planlama sorumluları"],
-      "standards": ["ISO 50001", "ISO 14001", "ISO 45001", "ISO 9001"],
+      "standards": ["ISO 50001", "ISO 14001", "İSG yönetimi", "ISO 9001"],
       "outputs": ["Kritik varlık ve önemli enerji kullanımı haritası", "Bakım/izolasyon/yüklenici kontrol standardı", "EnPI, baz hat ve proje doğrulama tablosu", "Çevre olayı, süreklilik ve aksiyon takip sistemi"],
       "process": [
         { "label": "Varlık resmi", "text": "Kritik ekipman, enerji akışı, bakım stratejisi ve arıza geçmişi birlikte incelenir." },
@@ -249,7 +249,7 @@
       "heroAsset": "sss-hero-danismanlik",
       "triggers": ["Numune veya hizmet kayıtlarında izlenebilirlik boşlukları", "Cihaz bakım/kalibrasyon planlarının riskle ilişkilendirilmemesi", "Kimyasal, biyolojik ve kesici-delici risk kontrollerinde bölüm farkları", "Acil durum ve iş sürekliliği planlarının birlikte test edilmemesi"],
       "buyers": ["Laboratuvar ve sağlık işletmesi yöneticileri", "Kalite, teknik hizmetler ve İSG ekipleri", "Enfeksiyon, atık ve acil durum sorumluları"],
-      "standards": ["ISO 9001", "ISO 45001", "ISO 14001", "İş sürekliliği bağlantıları"],
+      "standards": ["ISO 9001", "İSG yönetimi", "ISO 14001", "İş sürekliliği bağlantıları"],
       "outputs": ["Hizmet/numune izlenebilirlik haritası", "Cihaz bakım, kontrol ve sapma matrisi", "Kimyasal/biyolojik risk kontrol standardı", "Acil durum, atık ve süreklilik tatbikat planı"],
       "process": [
         { "label": "Hizmet akışı", "text": "Başvuru veya numune kabulünden sonuç/teslim aşamasına kritik kayıtlar izlenir." },
@@ -279,7 +279,7 @@
       "heroAsset": "hakkimizda-hero",
       "triggers": ["Lokasyonların aynı işi farklı kayıt ve kontrol yöntemleriyle yürütmesi", "Merkez prosedürlerinin yerel operasyon koşullarına uymaması", "Müşteri şikâyeti ve hizmet hatalarının kök nedene bağlanmaması", "Eğitim tamamlanmasının davranış ve performansla doğrulanmaması"],
       "buyers": ["Genel müdürlük ve operasyon yöneticileri", "Kalite, İK, eğitim ve müşteri deneyimi ekipleri", "Bölge ve lokasyon yöneticileri"],
-      "standards": ["ISO 9001", "ISO 45001", "ISO 10002 bağlantıları", "Entegre yönetim sistemleri"],
+      "standards": ["ISO 9001", "İSG yönetimi", "ISO 10002 bağlantıları", "Entegre yönetim sistemleri"],
       "outputs": ["Merkez-lokasyon sorumluluk matrisi", "Ortak minimum süreç ve kanıt standardı", "Lokasyon denetim ve gösterge panosu", "Rol bazlı eğitim ve saha doğrulama planı"],
       "process": [
         { "label": "Temsili örneklem", "text": "Farklı büyüklük ve riskte lokasyonlar seçilerek merkez kuralı ile gerçek uygulama karşılaştırılır." },
@@ -309,7 +309,7 @@
       "heroAsset": "hizmetler-hero-endustriyel",
       "triggers": ["Patlatma, kazı, tahkimat veya hareketli ekipman risklerinin vardiya uygulamasında farklılaşması", "Toz, gürültü, titreşim, su ve atık verilerinin saha kararıyla ilişkilendirilememesi", "Taşeron, kamyon ve ziyaretçi kabul kontrollerinin aynı standarda bağlanmaması", "Denetim veya olay sonrası kanıtların farklı ekiplerde dağınık kalması"],
       "buyers": ["Maden işletmesi ve ocak yöneticileri", "İSG, çevre, bakım ve üretim ekipleri", "Taşeron, sevkiyat ve saha operasyonu sorumluları"],
-      "standards": ["ISO 45001", "ISO 14001", "ISO 9001", "ISO 50001"],
+      "standards": ["İSG yönetimi", "ISO 14001", "ISO 9001", "ISO 50001"],
       "outputs": ["Faaliyet, ekipman ve kritik risk haritası", "Taşeron kabul, çalışma izni ve saha kontrol standardı", "Toz, su, atık ve enerji veri takip matrisi", "Olay, ramak kala, DÖF ve denetim kanıt paketi"],
       "process": [
         { "label": "Saha ve vardiya fotoğrafı", "text": "Ocak, tesis, stok sahası, yollar, bakım işleri ve vardiya geçişleri birlikte incelenir." },
@@ -323,7 +323,7 @@
         { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" },
         { "label": "İSG Yönetimi", "href": "isg-yonetimi.html" }
       ],
-      "resourceSlug": "iso-45001-saha-denetim-kontrol-listesi",
+      "resourceSlug": "saha-guvenligi-denetim-kontrol-listesi",
       "faq": [
         { "question": "Patlatma tasarımı veya mühendislik onayı veriyor musunuz?", "answer": "Hayır. İşletmenin yetkili teknik ekipleri ve ilgili uzmanlarıyla birlikte yönetim, risk, kayıt ve saha kontrol akışının hazırlanmasına destek verilir." },
         { "question": "Taşeronlar kapsama nasıl alınır?", "answer": "Ön yeterlilik, işe özgü bilgilendirme, ekipman ve yetkinlik kontrolü, saha gözlemi ve aksiyon kapanışı aynı akışta izlenir." },
@@ -339,7 +339,7 @@
       "heroAsset": "cevre-danismanligi-hero",
       "triggers": ["Blok, plaka ve sipariş bilgilerinin üretim ve sevkiyat boyunca aynı kimlikle izlenememesi", "Kesim, parlatma ve yüzey işlemlerinde su, çamur ve enerji kayıtlarının dağınık olması", "Kaldırma, forklift, taş düşmesi ve makine risklerinde vardiya farklarının oluşması", "Müşteri kalite, çevre veya sürdürülebilirlik taleplerine kanıtların kısa sürede derlenememesi"],
       "buyers": ["Ocak, fabrika ve üretim yöneticileri", "Kalite, çevre, İSG ve bakım ekipleri", "Planlama, ihracat, depo ve sevkiyat sorumluları"],
-      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "standards": ["ISO 9001", "ISO 14001", "İSG yönetimi", "ISO 50001"],
       "outputs": ["Blok/plaka ve sipariş izlenebilirlik haritası", "Kesim, kalite ve yüzey işlem kontrol standardı", "Su, çamur, atık ve enerji veri matrisi", "Kaldırma, trafik, makine ve bakım risk kontrol planı"],
       "process": [
         { "label": "Ürün akışı", "text": "Ocak, blok stok, kesim, yüzey işlem, kalite, paketleme ve sevkiyat zinciri örneklemle izlenir." },
@@ -369,7 +369,7 @@
       "heroAsset": "hizmetler-hero-endustriyel",
       "triggers": ["Fırın, öğütme, kurutma veya basınçlı hava gibi enerji yoğun proseslerde kayıpların görünür olmaması", "Hammadde, reçete, üretim partisi ve laboratuvar sonuçlarının kopuk tutulması", "Toz, emisyon, atık ve çevre kontrollerinin üretim hedefinden ayrı yürütülmesi", "Bakım, sıcak iş, kapalı alan ve araç trafiği risklerinin saha uygulamasında farklılaşması"],
       "buyers": ["Fabrika, üretim ve teknik direktörlük ekipleri", "Kalite, çevre, enerji ve İSG yöneticileri", "Bakım, laboratuvar, sevkiyat ve satın alma sorumluları"],
-      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "standards": ["ISO 9001", "ISO 14001", "İSG yönetimi", "ISO 50001"],
       "outputs": ["Proses, hammadde ve ürün kalite haritası", "Enerji gözden geçirmesi ve EnPI takip matrisi", "Emisyon, atık ve çevre yükümlülük takvimi", "Bakım, sıcak iş, kapalı alan ve trafik kontrol seti"],
       "process": [
         { "label": "Proses verisi", "text": "Hammadde kabulünden üretim, laboratuvar, paketleme ve sevkiyata kadar kritik veri noktaları çıkarılır." },
@@ -399,7 +399,7 @@
       "heroAsset": "cozumler-hero-planlama",
       "triggers": ["Fırın, kalıp, reçete veya hammadde değişikliklerinin kalite ve enerji riskine geç yansıması", "Cam kırılması, sıcak yüzey, kimyasal ve hareketli ekipman risklerinde kontrol farkları", "Kalite laboratuvarı sonuçlarının üretim ve müşteri şikâyeti aksiyonuna bağlanamaması", "Enerji, su, atık ve emisyon verilerinin proses göstergeleriyle birlikte izlenememesi"],
       "buyers": ["Fabrika, üretim ve proses mühendisliği ekipleri", "Kalite, laboratuvar, çevre ve İSG yöneticileri", "Bakım, enerji, depo ve sevkiyat sorumluları"],
-      "standards": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 50001"],
+      "standards": ["ISO 9001", "ISO 14001", "İSG yönetimi", "ISO 50001"],
       "outputs": ["Hammadde, reçete, proses ve ürün izlenebilirlik haritası", "Fırın, enerji ve bakım performans göstergeleri", "Kırılma, sıcak iş, kimyasal ve makine risk kontrol standardı", "Laboratuvar, müşteri şikâyeti ve DÖF kanıt akışı"],
       "process": [
         { "label": "Proses örneklemi", "text": "Hammadde, reçete, fırın, şekillendirme, kalite, paketleme ve sevkiyat adımları temsili ürünle izlenir." },

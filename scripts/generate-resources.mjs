@@ -43,8 +43,8 @@ const templates = [
     ]
   },
   {
-    file: 'iso-45001-saha-denetim-kontrol-listesi-v1.docx',
-    title: 'ISO 45001 Saha Denetim Kontrol Listesi',
+    file: 'saha-guvenligi-denetim-kontrol-listesi-v1.docx',
+    title: 'Saha Güvenliği Denetim Kontrol Listesi',
     intro: 'Makine, enerji izolasyonu, yüklenici, kimyasal, trafik ve acil durum kontrollerini sahada kayıt altına almak için düzenlenebilir şablon.',
     rows: [
       ['Makine', 'Koruyucular, acil durdurma ve tehlikeli bölge erişimi kontrol edildi mi?', 'Fotoğraf, ekipman kontrol kaydı'],

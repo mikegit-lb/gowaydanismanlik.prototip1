@@ -18,11 +18,11 @@
       ]
     },
     {
-      "slug": "iso-45001-saha-denetim-kontrol-listesi",
-      "title": "ISO 45001 Saha Denetim Kontrol Listesi",
+      "slug": "saha-guvenligi-denetim-kontrol-listesi",
+      "title": "Saha Güvenliği Denetim Kontrol Listesi",
       "summary": "Makine, enerji izolasyonu, yüklenici, kimyasal ve acil durum kontrollerini sistematik biçimde kaydedin.",
       "sector": "Üretim ve saha operasyonları",
-      "standard": "ISO 45001",
+      "standard": "İSG yönetimi",
       "need": "Saha güvenliği",
       "version": "1.0",
       "updatedAt": "2026-08-23",
@@ -30,8 +30,8 @@
       "reviewer": "Teknik inceleme bekliyor",
       "relatedService": "saha-guvenligi.html",
       "files": [
-        { "format": "PDF", "href": "assets/downloads/iso-45001-saha-denetim-kontrol-listesi-v1.pdf" },
-        { "format": "DOCX", "href": "assets/downloads/iso-45001-saha-denetim-kontrol-listesi-v1.docx" }
+        { "format": "PDF", "href": "assets/downloads/saha-guvenligi-denetim-kontrol-listesi-v1.pdf" },
+        { "format": "DOCX", "href": "assets/downloads/saha-guvenligi-denetim-kontrol-listesi-v1.docx" }
       ]
     },
     {

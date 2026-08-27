@@ -48,7 +48,7 @@ RESOURCE_ROWS = {
         ("İç tetkik", "Tetkik kapsamı, tarafsızlık, bulgu ve kapanış kanıtı tamam mı?", "Program, rapor, kapanış kanıtı"),
         ("YGG", "Yönetim gözden geçirmesi gerekli girdilerle karar üretiyor mu?", "Gündem, tutanak, karar takibi"),
     ],
-    "iso-45001-saha-denetim-kontrol-listesi": [
+    "saha-guvenligi-denetim-kontrol-listesi": [
         ("Makine", "Koruyucular, acil durdurma ve tehlikeli bölge erişimi kontrol edildi mi?", "Fotoğraf, ekipman kontrol kaydı"),
         ("LOTO", "Bakım/temizlik/ayar işlerinde tüm enerji kaynakları tanımlı mı?", "LOTO kartı, izolasyon doğrulaması"),
         ("Kimyasal", "SDS, etiket, depolama ve dökülme ekipmanı güncel mi?", "Kimyasal envanter, saha kontrolü"),
@@ -342,7 +342,7 @@ def make_evidence_matrix(target):
     ws.append(["Madde / şart", "Gereklilik", "Süreç", "Sorumlu", "Kanıt / kayıt", "Revizyon / dönem", "Durum", "Aksiyon", "Termin"])
     examples = [
         ["ISO 9001 6.1", "Risk ve fırsatlar", "Stratejik planlama", "Kalite yöneticisi", "Risk kaydı 2026", "2026-Q3", "Kısmen", "Geciken aksiyonları kapat", ""],
-        ["ISO 45001 8.1", "Operasyonel kontrol", "Bakım", "Bakım yöneticisi", "LOTO-PR-02 ve kartlar", "Rev.1", "Açık", "Ekipman kapsamını doğrula", ""],
+        ["İSG yönetimi 8.1", "Operasyonel kontrol", "Bakım", "Bakım yöneticisi", "LOTO-PR-02 ve kartlar", "Rev.1", "Açık", "Ekipman kapsamını doğrula", ""],
         ["ISO 14001 9.1", "İzleme ve ölçme", "Çevre", "Çevre sorumlusu", "Atık ve emisyon kayıtları", "2026-Q2", "Tam", "", ""],
     ]
     for row in examples:
