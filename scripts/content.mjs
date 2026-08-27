@@ -270,3 +270,11 @@ export function createRuntimeConfig(content) {
 export function createTrainingRuntimeConfig(content) {
   return { trainingCatalog: content.site.trainingCatalog || [] };
 }
+
+export function createSourceRuntimeConfig(content) {
+  return { ...createRuntimeConfig(content), ...createTrainingRuntimeConfig(content) };
+}
+
+export function serializeRuntimeConfig(config) {
+  return `window.GOWAY_SITE_CONFIG=${JSON.stringify(config).replaceAll('<', '\\u003c')};\n`;
+}

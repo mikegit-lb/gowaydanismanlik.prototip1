@@ -7,7 +7,7 @@ import cssnano from 'cssnano';
 import { minify as minifyHtml } from 'html-minifier-terser';
 import { minify as minifyJs } from 'terser';
 import sharp from 'sharp';
-import { createRuntimeConfig, createTrainingRuntimeConfig, loadContent, renderGeneratedPages, renderSharedFooter, renderSharedHeader } from './content.mjs';
+import { createRuntimeConfig, createSourceRuntimeConfig, createTrainingRuntimeConfig, loadContent, renderGeneratedPages, renderSharedFooter, renderSharedHeader, serializeRuntimeConfig } from './content.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -146,7 +146,7 @@ async function processScripts(content) {
   const tickerName = `site-ticker.${hash(minified.code)}.js`;
   await fs.writeFile(path.join(dist, tickerName), minified.code);
 
-  const runtime = `window.GOWAY_SITE_CONFIG=${JSON.stringify(createRuntimeConfig(content)).replaceAll('<', '\\u003c')};\n`;
+  const runtime = serializeRuntimeConfig(createRuntimeConfig(content));
   const configName = `site-config.${hash(runtime)}.js`;
   await fs.writeFile(path.join(dist, configName), runtime);
   const trainingRuntime = `window.GOWAY_SITE_CONFIG=Object.assign(window.GOWAY_SITE_CONFIG||{},${JSON.stringify(createTrainingRuntimeConfig(content)).replaceAll('<', '\\u003c')});\n`;
@@ -215,9 +215,10 @@ function addSharedShell(html, styles, scripts, content, file) {
     ? `<script src="${scripts.configName}" defer></script><script src="${scripts.trainingName}" defer></script><script src="${scripts.tickerName}" defer></script>`
     : `<script src="${scripts.configName}" defer></script><script src="${scripts.tickerName}" defer></script>`;
   html = html.replace('</body>', `${runtimeScripts}</body>`);
+  const criticalStyle = `<style data-critical-css>${optimizedCriticalCss}${criticalMobileCss}</style>`;
   return html
     .replace(/<link\s+rel=["']stylesheet["']\s+href=["']([^"']+\.css)["']\s*\/?\s*>/gi, (_match, href) => `<link rel="preload" as="style" href="${href}"><link rel="stylesheet" href="${href}">`)
-    .replace('</head>', `<style data-critical-css>${optimizedCriticalCss}${criticalMobileCss}</style></head>`);
+    .replace(/<head>/i, `<head>${criticalStyle}`);
 }
 
 function replaceSharedFooter(html, content) {
@@ -375,6 +376,10 @@ async function validateContent(content) {
   }
 }
 
+async function writeSourceRuntimeConfig(content) {
+  await fs.writeFile(path.join(root, 'site-config.js'), serializeRuntimeConfig(createSourceRuntimeConfig(content)));
+}
+
 async function validateOutput(files, content, scripts) {
   const failures = [], publicText = [];
   for (const file of files) {
@@ -413,6 +418,7 @@ async function directorySize(folder) {
 async function build() {
   const content = await loadContent(root);
   await validateContent(content);
+  await writeSourceRuntimeConfig(content);
   await emptyDist();
   await copyStatic(root, dist);
   await optimizeImages();

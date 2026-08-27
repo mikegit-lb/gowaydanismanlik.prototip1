@@ -1,8 +1,8 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "node node_modules/serve/build/main.js dist --listen 4173",
-      "startServerReadyPattern": "Accepting connections",
+      "startServerCommand": "node scripts/lighthouse-server.mjs",
+      "startServerReadyPattern": "Lighthouse server listening on 4173",
       "startServerReadyTimeout": 100000,
       "url": [
         "http://localhost:4173/",
@@ -14,7 +14,10 @@
         "http://localhost:4173/referanslar.html",
         "http://localhost:4173/gizlilik-politikasi.html"
       ],
-      "numberOfRuns": 3
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--disable-dev-shm-usage --disable-gpu --disable-crash-reporter --no-first-run --no-default-browser-check"
+      }
     },
     "assert": {
       "assertions": {

@@ -222,6 +222,40 @@
     }));
   };
 
+  const initializeTrainingRegistration = () => {
+    if (currentPage !== 'egitim-takvimi.html') return;
+    const form = document.querySelector('#kayit form');
+    if (!form || !site.emailHref) return;
+    let status = form.querySelector('[data-training-form-status]');
+    if (!status) {
+      status = document.createElement('p');
+      status.className = 'form-status';
+      status.dataset.trainingFormStatus = 'true';
+      status.setAttribute('role', 'status');
+      status.setAttribute('aria-live', 'polite');
+      status.tabIndex = -1;
+      form.querySelector('.form-actions')?.append(status);
+    }
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const payload = new FormData(form);
+      const training = String(payload.get('training') || 'Eğitim ön kaydı');
+      const subject = `Goway eğitim ön kayıt talebi · ${training}`;
+      const body = [
+        `Ad soyad: ${payload.get('name') || ''}`,
+        `E-posta: ${payload.get('email') || ''}`,
+        `Eğitim: ${training}`,
+        `Not: ${payload.get('note') || '-'}`
+      ].join('\n');
+      const email = site.emailHref.replace(/^mailto:/, '');
+      status.textContent = 'E-posta uygulamanızda düzenleyebileceğiniz bir ön kayıt taslağı hazırlanıyor.';
+      status.dataset.state = 'success';
+      track('training_form_handoff', { page: currentPage, training });
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      status.focus();
+    });
+  };
+
   const setFieldError = (form, name, message = '') => {
     const field = form.elements[name];
     const error = form.querySelector(`[data-error-for="${name}"]`);
@@ -397,6 +431,7 @@
   ensureFooterTrust();
   normalizeTrainingNames();
   initializeTrainingCalendar();
+  initializeTrainingRegistration();
   document.querySelectorAll('[data-consultation-form]').forEach(initializeConsultationForm);
   initializeResourceFilters();
   initializeExitOffer();
