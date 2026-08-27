@@ -101,18 +101,24 @@
     .icon { width: 24px; height: 24px; display: inline-grid; place-items: center; flex: 0 0 auto; }
     .icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
-    .topbar { border-bottom: 1px solid rgba(244,248,251,.18); color: var(--surface-soft); background: linear-gradient(90deg, var(--brand-blue-dark), var(--brand-blue)); font-size: .82rem; line-height: 1.6; }
-    .topbar-inner { width: min(1120px, calc(100% - 40px)); min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .topbar-context, .topbar-phone { flex: 0 0 auto; }
+    .topbar { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid rgba(244,248,251,.18); color: var(--surface-soft); background: linear-gradient(90deg, #0d4b67 0%, #155d79 52%, #0f4b68 100%); font-size: .78rem; line-height: 1.4; }
+    .topbar::after { position: absolute; z-index: -1; inset: 0; background: radial-gradient(circle at 50% -90%, rgba(244,248,251,.2), transparent 50%); content: ""; pointer-events: none; }
+    .topbar-inner { width: min(1120px, calc(100% - 40px)); min-height: 46px; display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,.9fr) minmax(0,1fr); align-items: center; gap: 18px; }
+    .topbar-context, .topbar-phone { display: inline-flex; min-height: 28px; align-items: center; gap: 8px; flex: 0 0 auto; letter-spacing: .015em; }
+    .topbar-context { grid-column: 1; color: rgba(244,248,251,.88); }
+    .topbar-context::before { width: 7px; height: 7px; flex: 0 0 auto; border: 1px solid var(--gold-400); border-radius: 50%; background: var(--gold-400); box-shadow: 0 0 0 4px rgba(214,160,43,.14); content: ""; }
     .topbar a { color: inherit; }
+    .topbar-phone { grid-column: 3; justify-self: end; padding: 6px 11px; border: 1px solid rgba(244,248,251,.24); border-radius: 999px; background: rgba(244,248,251,.06); font-size: .76rem; font-weight: 800; white-space: nowrap; }
+    .topbar-phone::before { color: var(--gold-400); content: "☎"; font-size: .72rem; }
     .topbar-ticker { position: relative; min-width: 220px; height: 20px; flex: 1 1 auto; overflow: hidden; color: rgba(244,248,251,.84); font-size: .72rem; font-weight: 800; letter-spacing: .045em; mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+    .topbar-ticker { grid-column: 2; min-width: 0; width: 100%; padding-inline: 18px; border-inline: 1px solid rgba(244,248,251,.15); }
     .topbar-ticker-stage { position: relative; width: 100%; height: 100%; }
-    .topbar-ticker-item { position: absolute; inset: 50% 0 auto; display: block; overflow: hidden; opacity: 0; transform: translate3d(48px,-50%,0); text-align: center; text-overflow: ellipsis; white-space: nowrap; will-change: transform, opacity; animation: topbarSlogan 42s linear infinite; animation-delay: var(--ticker-delay); }
+    .topbar-ticker-item { position: absolute; inset: 50% 0 auto; display: block; overflow: hidden; opacity: 0; transform: translate3d(48px,-50%,0); text-align: center; text-overflow: ellipsis; white-space: nowrap; will-change: transform, opacity; animation: topbarSlogan 90s linear infinite; animation-delay: var(--ticker-delay); }
     .topbar-ticker:hover .topbar-ticker-item, .topbar-ticker:focus-within .topbar-ticker-item { animation-play-state: paused; }
     .topbar-ticker-item::before { display: inline-block; width: 5px; height: 5px; margin: 0 10px 1px 0; border-radius: 50%; background: var(--gold-400); content: ""; }
     @keyframes topbarSlogan {
       0% { opacity: 0; transform: translate3d(48px,-50%,0); }
-      1.8%, 14.8% { opacity: 1; transform: translate3d(0,-50%,0); }
+      0.6%, 15.5% { opacity: 1; transform: translate3d(0,-50%,0); }
       16.667%, 100% { opacity: 0; transform: translate3d(-48px,-50%,0); }
     }
     .topbar a:hover { color: var(--gold-300); }
@@ -888,9 +894,10 @@
       body.multi-page-home .cta-note { overflow-wrap: break-word; }
     }
     @media (max-width: 560px) {
-      .topbar-inner { width: min(100% - 28px, 1120px); align-items: flex-start; flex-direction: column; gap: 7px; padding: 10px 0; }
+      .topbar-inner { width: min(100% - 28px, 1120px); grid-template-columns: 1fr; align-items: stretch; gap: 7px; padding: 10px 0; }
       .topbar-context { display: none; }
-      .topbar-ticker { width: 100%; min-width: 0; }
+      .topbar-ticker { grid-column: 1; width: 100%; min-width: 0; padding-inline: 0; border-inline: 0; }
+      .topbar-phone { grid-column: 1; justify-self: start; }
     }
     /* Shared customer-supplied logo mark with the brand name beside it. */
     body.multi-page-home .nav-wrap { min-height: var(--header-height); }
@@ -1003,11 +1010,12 @@
     .nav-backdrop { position: fixed; z-index: 880; inset: 0; border: 0; background: rgb(7 45 62 / .48); backdrop-filter: blur(2px); }
     .nav-backdrop[hidden] { display: none !important; }
     .mobile-action-bar { display: none; }
-    .exit-offer { width: min(590px, calc(100% - 32px)); padding: clamp(27px, 5vw, 44px); border: 1px solid rgb(214 160 43 / .56); border-radius: 22px; color: #f4f8fb; background: linear-gradient(145deg, #104b67, #185a77); box-shadow: 0 30px 90px rgb(7 45 62 / .42); }
-    .exit-offer::backdrop { background: rgb(7 45 62 / .55); backdrop-filter: blur(4px); }
+    .exit-offer { width: min(590px, calc(100% - 32px)); padding: clamp(27px, 5vw, 44px); border: 1px solid rgb(214 160 43 / .56); border-radius: 22px; color: #f4f8fb; background: linear-gradient(145deg, #155a79, #246f90); box-shadow: 0 30px 90px rgb(7 45 62 / .42); }
+    .exit-offer::backdrop { background: rgb(7 45 62 / .48); backdrop-filter: blur(4px); }
     .exit-offer h2 { max-width: 490px; margin: 5px 0 14px; color: #f4f8fb; font-size: clamp(1.65rem, 4vw, 2.5rem); line-height: 1.08; }
     .exit-offer > p:not(.eyebrow) { color: rgb(244 248 251 / .8); }
     .exit-offer .eyebrow { color: #d6a02b; }
+    .exit-offer > .eyebrow strong { font-size: 1.2em; letter-spacing: .02em; }
     .exit-offer .button.secondary { color: #f4f8fb; border-color: rgb(244 248 251 / .4); background: transparent; }
     .exit-offer-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border: 0; color: #f4f8fb; background: transparent; font-size: 2rem; cursor: pointer; }
 

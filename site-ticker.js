@@ -27,7 +27,7 @@
     slogans.forEach((slogan, index) => {
       const item = document.createElement('span');
       item.className = 'site-slogan-item';
-      item.style.setProperty('--ticker-delay', `${index * 7}s`);
+      item.style.setProperty('--ticker-delay', `${index * 15}s`);
       item.textContent = slogan;
       stage.append(item);
     });
@@ -396,7 +396,7 @@
     const params = new URLSearchParams();
     if (isSector) params.set('sektor', currentPage.replace(/^sektor-|\.html$/g, ''));
     if (isResource) params.set('kaynak', 'kaynak-merkezi');
-    dialog.innerHTML = `<button class="exit-offer-close" type="button" aria-label="Teklifi kapat">×</button><p class="eyebrow">Ücretsiz ön görüşme</p><h2 id="exit-offer-title">${heading}</h2><p>${copy}</p><div class="hero-actions"><a class="button primary" href="on-gorusme.html?${params}">15 dakikalık görüşme isteyin</a><button class="button secondary exit-offer-dismiss" type="button">Şimdi değil</button></div>`;
+    dialog.innerHTML = `<button class="exit-offer-close" type="button" aria-label="Teklifi kapat">×</button><p class="eyebrow"><strong>Ücretsiz</strong> ön görüşme</p><h2 id="exit-offer-title">${heading}</h2><p>${copy}</p><div class="hero-actions"><a class="button primary" href="on-gorusme.html?${params}">15 dakikalık görüşme isteyin</a><button class="button secondary exit-offer-dismiss" type="button">Şimdi değil</button></div>`;
     document.body.append(dialog);
     let eligibleByTime = false, shown = false, previousFocus = null;
     const show = () => {
