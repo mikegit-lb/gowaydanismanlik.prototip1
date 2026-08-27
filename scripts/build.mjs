@@ -7,7 +7,7 @@ import cssnano from 'cssnano';
 import { minify as minifyHtml } from 'html-minifier-terser';
 import { minify as minifyJs } from 'terser';
 import sharp from 'sharp';
-import { createRuntimeConfig, loadContent, renderGeneratedPages, renderSharedFooter, renderSharedHeader } from './content.mjs';
+import { createRuntimeConfig, createTrainingRuntimeConfig, loadContent, renderGeneratedPages, renderSharedFooter, renderSharedHeader } from './content.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -21,6 +21,10 @@ const heroSources = [
 ];
 const noIndexPages = new Set(['404.html', 'belge-sorgulama.html', 'medya.html', 'katalog.html']);
 const generatedSourceOverrides = new Set(['hizmet-katalogu.html', 'sektorel-cozumler.html', 'katalog.html', 'egitim-katalog.html', 'egitim-takip.html']);
+const trainingPages = new Set(['egitim-katalog.html', 'egitim-takvimi.html']);
+const criticalCss = `:root{--container:min(1120px,calc(100% - 40px));--navy:#185a77;--teal:#185a77;--hero-navy:#104b67;--header-height:92px;--hero-min-height:700px;--hero-pad-top:clamp(72px,11vw,138px);--hero-pad-bottom:clamp(64px,9vw,104px)}*,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:#163b4f;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}img{display:block;max-width:100%;height:auto}.container{width:var(--container);margin-inline:auto}.utility{min-height:36px;background:#073247;color:#f4f8fb}.utility .container{display:flex;align-items:center;justify-content:space-between;min-height:36px}.utility a{color:#f4f8fb}.site-header{position:relative;z-index:10;background:#fff;border-bottom:1px solid rgba(17,90,118,.12)}.site-header>.container,.site-header .nav-wrap{min-height:var(--header-height);display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:12px;color:var(--navy);text-decoration:none}.brand-mark{display:block;width:64px;height:58px;background:url("assets/goway-mark-160.webp") center/contain no-repeat}.brand-copy{display:grid;line-height:1}.brand-copy strong{color:var(--teal);font-size:1.2rem;font-weight:700;letter-spacing:.02em}.brand-copy span{margin-top:7px;color:var(--navy);font-size:.66rem;font-weight:800;letter-spacing:.22em}.page-nav{display:flex;align-items:center;gap:4px}.page-nav a{color:#255268;text-decoration:none}.header-actions{display:flex}.hero,.hero-page{position:relative;display:flex;align-items:center;min-height:var(--hero-min-height);overflow:hidden;background:var(--hero-navy);color:#fff}.hero-media{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}.hero-media img{width:100%;height:100%;object-fit:cover}.hero-inner,.hero-page>.container{position:relative;z-index:2}.hero-inner{padding:var(--hero-pad-top) 0 var(--hero-pad-bottom)}.hero h1,.hero-page h1{max-width:820px;margin:0;color:#fff;line-height:1.05}.hero p,.hero-page .lede{max-width:720px}.hero-actions{display:flex;flex-wrap:wrap;gap:12px}.button,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;text-decoration:none}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}@media(max-width:820px){:root{--container:calc(100% - 28px);--header-height:132px;--hero-min-height:640px;--hero-pad-top:64px;--hero-pad-bottom:64px}.site-header>.container,.site-header .nav-wrap{min-height:var(--header-height)}.page-nav{overflow-x:auto}.header-actions{display:none}.hero,.hero-page{min-height:var(--hero-min-height)}.hero-inner{padding:var(--hero-pad-top) 0 var(--hero-pad-bottom)}.hero h1,.hero-page h1{font-size:clamp(2.2rem,11vw,3.6rem)}}@media(max-width:560px){:root{--hero-min-height:606px;--hero-pad-top:58px;--hero-pad-bottom:60px}}`;
+const criticalMobileCss = `@media(max-width:820px){.site-header>.container,.site-header .nav-wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:8px 0 10px}.site-header .menu-toggle{display:grid!important;width:48px;height:48px;place-items:center;gap:4px;padding:11px;border:1px solid rgba(47,131,166,.22);border-radius:12px;color:#185a77;background:#fff}.site-header .menu-toggle>span:not(.visually-hidden){display:block;width:24px;height:2px;background:currentColor}.site-header .page-nav{position:fixed;z-index:920;top:0;right:0;bottom:0;width:min(86vw,360px);min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:5px;padding:92px 22px 32px;overflow-x:hidden!important;overflow-y:auto!important;border-left:1px solid rgba(47,131,166,.2);background:#f4f8fb;box-shadow:-24px 0 60px rgba(7,45,62,.22);transform:translateX(105%);transition:transform .24s ease}.site-header .page-nav a{width:100%;min-height:48px;display:flex;align-items:center;padding:11px 13px;border-radius:9px}body.menu-open .site-header .page-nav{transform:translateX(0)}}`;
+const optimizedCriticalCss = criticalCss.replaceAll('assets/goway-mark-160.webp', 'assets/goway-mark-96.webp');
 
 const hash = (value) => crypto.createHash('sha256').update(value).digest('hex').slice(0, 10);
 const exists = async (file) => { try { await fs.access(file); return true; } catch { return false; } };
@@ -113,7 +117,7 @@ async function optimizeImages() {
       ];
     }));
   }
-  await sharp(path.join(root, 'goway-mark.png')).resize({ width: 160, withoutEnlargement: true }).webp({ quality: 82, effort: 6 }).toFile(path.join(dist, 'assets', 'goway-mark-160.webp'));
+  await sharp(path.join(root, 'goway-mark.png')).resize({ width: 96, withoutEnlargement: true }).webp({ quality: 78, effort: 6 }).toFile(path.join(dist, 'assets', 'goway-mark-96.webp'));
 }
 
 async function processStyles() {
@@ -121,8 +125,8 @@ async function processStyles() {
   for (const file of ['site-pages.css', 'index.css']) {
     let source = await fs.readFile(path.join(root, file), 'utf8');
     source = source
-      .replaceAll('url("goway-mark.png")', 'url("assets/goway-mark-160.webp")')
-      .replaceAll("url('goway-mark.png')", "url('assets/goway-mark-160.webp')")
+      .replaceAll('url("goway-mark.png")', 'url("assets/goway-mark-96.webp")')
+      .replaceAll("url('goway-mark.png')", "url('assets/goway-mark-96.webp')")
       .replaceAll('url("hero-industrial.jpg")', 'url("assets/hero/ana-sayfa-iso-isg-kurumsal-hero-800.avif")')
       .replaceAll("url('hero-industrial.jpg')", "url('assets/hero/ana-sayfa-iso-isg-kurumsal-hero-800.avif')")
       .replaceAll('url("assets/goway-hero-ambient.png")', 'url("assets/hero/goway-hero-ambient-1200.avif")')
@@ -145,7 +149,10 @@ async function processScripts(content) {
   const runtime = `window.GOWAY_SITE_CONFIG=${JSON.stringify(createRuntimeConfig(content)).replaceAll('<', '\\u003c')};\n`;
   const configName = `site-config.${hash(runtime)}.js`;
   await fs.writeFile(path.join(dist, configName), runtime);
-  return { tickerName, configName };
+  const trainingRuntime = `window.GOWAY_SITE_CONFIG=Object.assign(window.GOWAY_SITE_CONFIG||{},${JSON.stringify(createTrainingRuntimeConfig(content)).replaceAll('<', '\\u003c')});\n`;
+  const trainingName = `training-config.${hash(trainingRuntime)}.js`;
+  await fs.writeFile(path.join(dist, trainingName), trainingRuntime);
+  return { tickerName, configName, trainingName };
 }
 
 function pruneLegacyHomepage(html) {
@@ -195,8 +202,8 @@ function addSharedShell(html, styles, scripts, content, file) {
     .replace(/href=["']index\.css(?:\?[^"']*)?["']/g, `href="${styles['index.css']}"`)
     .replace(/\s*<script\s+src=["']site-config(?:\.[a-f0-9]+)?\.js["'](?:\s+defer)?><\/script>/gi, '')
     .replace(/\s*<script\s+src=["']site-ticker(?:\.[a-f0-9]+)?\.js["'](?:\s+defer)?><\/script>/gi, '')
-    .replaceAll('src="goway-mark.png"', 'src="assets/goway-mark-160.webp"')
-    .replaceAll("src='goway-mark.png'", "src='assets/goway-mark-160.webp'")
+    .replaceAll('src="goway-mark.png"', 'src="assets/goway-mark-96.webp"')
+    .replaceAll("src='goway-mark.png'", "src='assets/goway-mark-96.webp'")
     .replaceAll('assets/goway-hero-ambient.png', 'assets/hero/goway-hero-ambient-1200.avif');
   html = html.replace(/<img(?![^>]*\bwidth=)([^>]*class=["'][^"']*(?:footer-logo|home-footer-logo)[^"']*["'][^>]*)>/gi, '<img width="80" height="72"$1>');
   html = html.replace(/<img(?![^>]*\bwidth=)([^>]*src=["']assets\/hero\/[^"']+["'][^>]*)>/gi, '<img width="1600" height="900"$1>');
@@ -204,7 +211,13 @@ function addSharedShell(html, styles, scripts, content, file) {
   const navLinks = content.site.navigation.map((item) => `<a href="${escapeAttribute(item.href)}"${item.href === file ? ' aria-current="page"' : ''}>${escapeAttribute(item.label)}</a>`).join('');
   html = html.replace(/<nav\b[^>]*class=["'][^"']*(?:page-nav|nav-links)[^"']*["'][^>]*>[\s\S]*?<\/nav>/i, `<nav class="page-nav" id="site-navigation" aria-label="Ana menü">${navLinks}</nav>`);
   if (!html.includes('skip-link')) html = html.replace(/<body([^>]*)>/i, '<body$1><a class="visually-hidden skip-link" href="#main-content">İçeriğe geç</a>');
-  return html.replace('</body>', `<script src="${scripts.configName}"></script><script src="${scripts.tickerName}" defer></script></body>`);
+  const runtimeScripts = trainingPages.has(file)
+    ? `<script src="${scripts.configName}" defer></script><script src="${scripts.trainingName}" defer></script><script src="${scripts.tickerName}" defer></script>`
+    : `<script src="${scripts.configName}" defer></script><script src="${scripts.tickerName}" defer></script>`;
+  html = html.replace('</body>', `${runtimeScripts}</body>`);
+  return html
+    .replace(/<link\s+rel=["']stylesheet["']\s+href=["']([^"']+\.css)["']\s*\/?\s*>/gi, (_match, href) => `<link rel="preload" as="style" href="${href}"><link rel="stylesheet" href="${href}">`)
+    .replace('</head>', `<style data-critical-css>${optimizedCriticalCss}${criticalMobileCss}</style></head>`);
 }
 
 function replaceSharedFooter(html, content) {

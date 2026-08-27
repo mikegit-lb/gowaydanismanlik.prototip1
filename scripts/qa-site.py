@@ -96,11 +96,44 @@ def main() -> int:
     html_files = sorted(DIST.glob("*.html"))
     if not html_files:
         failures.append("dist: no generated HTML pages found")
+    css_files = sorted(DIST.glob("*.css"))
+    css_text = " ".join(item.read_text(encoding="utf-8") for item in css_files)
+    if "ana-sayfa-iso-isg-kurumsal-hero-800.avif" in css_text:
+        failures.append("index.css: mobile hero background duplicates the picture image")
+    if not (DIST / "assets" / "goway-mark-96.webp").exists():
+        failures.append("assets: missing 96px footer logo variant")
+    config_files = sorted(DIST.glob("site-config.*.js"))
+    training_config_files = sorted(DIST.glob("training-config.*.js"))
+    if len(config_files) != 1:
+        failures.append(f"runtime: expected one site config, found {len(config_files)}")
+    if len(training_config_files) != 1:
+        failures.append(f"runtime: expected one training config, found {len(training_config_files)}")
+    if config_files:
+        config_text = config_files[0].read_text(encoding="utf-8")
+        for field in ('"heroes":', '"services":', '"sectors":', '"trainingCatalog":'):
+            if field in config_text:
+                failures.append(f"runtime: base site config still contains {field}")
     for page in html_files:
         parser = PageParser()
         markup = page.read_text(encoding="utf-8")
         parser.feed(markup)
         pages[page.name] = parser
+        if not re.search(r'<link\b[^>]*rel=["\']preload["\'][^>]*as=["\']style["\']', markup, re.I):
+            failures.append(f"{page.name}: missing non-blocking stylesheet preload")
+        has_home_css = bool(re.search(r'index\.[a-f0-9]+\.css', markup, re.I))
+        if has_home_css != (page.name == "index.html"):
+            failures.append(f"{page.name}: unexpected homepage CSS bundle loading")
+        if not re.search(r'<style\b[^>]*data-critical-css', markup, re.I):
+            failures.append(f"{page.name}: missing critical CSS")
+        for image in re.findall(r'<img\b[^>]*>', markup, re.I):
+            if 'assets/hero/' not in image and not re.search(r'\bloading=["\']lazy["\']', image, re.I):
+                failures.append(f"{page.name}: non-hero image is not lazy-loaded")
+        config_match = re.search(r'<script\b[^>]*src=["\'][^"\']*site-config\.[a-f0-9]+\.js["\'][^>]*>', markup, re.I)
+        if not config_match or not re.search(r'\bdefer(?:=["\'][^"\']*["\'])?(?:\s|>)', config_match.group(0), re.I):
+            failures.append(f"{page.name}: site config is not deferred")
+        has_training_config = bool(re.search(r'training-config\.[a-f0-9]+\.js', markup, re.I))
+        if has_training_config != (page.name in {"egitim-katalog.html", "egitim-takvimi.html"}):
+            failures.append(f"{page.name}: unexpected training config loading")
         duplicate_ids = [value for value, count in Counter(parser.ids).items() if count > 1]
         if duplicate_ids:
             failures.append(f"{page.name}: duplicate ids {', '.join(duplicate_ids)}")

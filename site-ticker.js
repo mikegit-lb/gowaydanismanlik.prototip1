@@ -99,8 +99,7 @@
     let returnFocus = null;
     const mobileQuery = window.matchMedia('(max-width: 820px)');
     const placeNavigation = () => {
-      if (mobileQuery.matches) document.body.append(nav);
-      else container.insertBefore(nav, container.querySelector('.header-actions'));
+      container.insertBefore(nav, container.querySelector('.header-actions'));
     };
     placeNavigation();
     mobileQuery.addEventListener('change', placeNavigation);

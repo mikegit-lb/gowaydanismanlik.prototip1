@@ -2,3 +2,5 @@ node_modules/
 dist/
 hizmet-katalogu.html
 .lighthouseci/
+__pycache__/
+*.py[cod]

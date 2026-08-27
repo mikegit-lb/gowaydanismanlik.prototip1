@@ -263,10 +263,10 @@ export function createRuntimeConfig(content) {
       servicePages: content.site.runtimeNavigation.servicePages,
       sectorPages: content.sectors.map((sector) => sector.file),
       resourcePages: ['kaynaklar.html']
-    },
-    heroes: content.site.heroes,
-    services: content.services,
-    sectors: content.sectors.map(({ slug, file, title }) => ({ slug, file, title })),
-    trainingCatalog: content.site.trainingCatalog || []
+    }
   };
+}
+
+export function createTrainingRuntimeConfig(content) {
+  return { trainingCatalog: content.site.trainingCatalog || [] };
 }
