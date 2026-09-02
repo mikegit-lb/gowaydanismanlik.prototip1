@@ -174,7 +174,7 @@ function renderSectorHub(content) {
     site: content.site,
     file: 'sektorel-cozumler.html',
     title: 'Sektörel Çözümler',
-    description: 'Üretimden sağlığa, tekstilden maden, mermer ve yapı malzemelerine farklı sektörler için operasyonel risk, sistem, kanıt ve danışmanlık sayfaları.',
+    description: 'Üretim, gıda, tekstil, lojistik, turizm, tarım, enerji, sağlık ve atık yönetimi dahil farklı sektörler için operasyonel risk, sistem, kanıt ve danışmanlık sayfaları.',
     bodyClass: 'sector-hub-page',
     heroHtml: hero('cozumler-hero-planlama', 'Sektörel çözümler', 'Sektörünüzün gerçek çalışma koşullarına göre ilerleyin', 'Genel hizmet listesi yerine, karar tetikleyicilerini ve beklenen kanıtı sektörünüzün diliyle görün.', '<div class="hero-actions"><a class="button primary" href="#main-content">Sektörleri inceleyin</a><a class="button secondary" href="on-gorusme.html">Ön görüşme</a></div>'),
     content: contentHtml,

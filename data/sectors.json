@@ -419,6 +419,96 @@
         { "question": "Müşteri şikâyeti kalite sistemine nasıl bağlanır?", "answer": "Şikâyet, ürün/parti, proses koşulu, laboratuvar veya saha kanıtı, kök neden, aksiyon ve etkinlik kontrolü üzerinden izlenebilir hale getirilir." },
         { "question": "Saha güvenliği ile üretim hedefi çatışır mı?", "answer": "Kritik kontrol noktaları işi durdurma veya devam ettirme kararını netleştirir; vardiya hedefleriyle güvenli başlatma ve kapatma koşulları birlikte planlanır." }
       ]
+    },
+    {
+      "slug": "turizm-konaklama",
+      "file": "sektor-turizm-konaklama.html",
+      "title": "Turizm, Konaklama ve Yiyecek Hizmetleri",
+      "eyebrow": "Sektörel çözüm · Turizm ve konaklama",
+      "summary": "Misafir deneyimi, gıda ve hijyen, enerji, acil durum ve çok lokasyonlu operasyonları ölçülebilir bir hizmet standardında birleştirin.",
+      "heroAsset": "cozumler-hero-planlama",
+      "triggers": ["Vardiya ve departmanlar arasında hizmet standardının değişmesi", "Mutfak, hijyen, bakım ve acil durum kayıtlarının birbirinden kopuk tutulması", "Doluluk ve sezon değişiminde enerji, su ve sarfiyat verilerinin izlenememesi", "Misafir şikâyetlerinin kök neden ve kapanış kanıtına bağlanamaması"],
+      "buyers": ["Otel, tesis ve işletme yöneticileri", "Operasyon, kalite, teknik ve İK ekipleri", "Mutfak, satın alma, kat hizmetleri ve güvenlik sorumluları"],
+      "standards": ["ISO 9001", "ISO 14001", "ISO 50001", "ISO 10002"],
+      "outputs": ["Misafir yolculuğu ve hizmet standardı haritası", "Hijyen, gıda, bakım ve acil durum kontrol seti", "Enerji, su, atık ve doluluk göstergeleri", "Şikâyet, DÖF ve vardiya devir teslim takip akışı"],
+      "process": [
+        { "label": "Hizmet akışı", "text": "Rezervasyon, karşılama, konaklama, mutfak, temizlik, bakım ve çıkış adımları örneklemle incelenir." },
+        { "label": "Kritik kontrol", "text": "Hijyen, gıda, kimyasal, yangın, yüklenici ve misafir güvenliği kontrolleri görevlerle eşleştirilir." },
+        { "label": "Vardiya standardı", "text": "Devir teslim, kontrol sıklığı, sorumlu ve kayıt dili departmanlar arasında ortaklaştırılır." },
+        { "label": "Deneyim ve ölçüm", "text": "Şikâyet, enerji, atık, hizmet kesintisi ve aksiyon verileri yönetim değerlendirmesine bağlanır." }
+      ],
+      "metrics": ["Tekrarlayan misafir şikâyeti oranı", "Eksik veya geç tamamlanan kritik kontrol sayısı", "Konaklayan kişi veya doluluk başına enerji ve su kullanımı", "Acil durum ve bakım aksiyonu kapanış süresi"],
+      "services": [
+        { "label": "ISO 10002 Şikâyet Yönetimi", "href": "iso-10002-sikayet-yonetimi.html" },
+        { "label": "Sürdürülebilirlik", "href": "surdurulebilirlik.html" },
+        { "label": "Yangın ve Acil Durum", "href": "yangin-acil-durum.html" }
+      ],
+      "resourceSlug": "iso-10002-sikayet-yonetimi-kontrol-listesi",
+      "faq": [
+        { "question": "Turizm tesisi belgelendirmesi yapıyor musunuz?", "answer": "Hayır. Goway işletme kapsamının, kayıtların, uygulama standardının ve denetim hazırlığının geliştirilmesine destek verir; resmî belge veya sınıflandırma kararı yetkili kuruma aittir." },
+        { "question": "Sezonluk işletmelerde sistem kurulabilir mi?", "answer": "Evet. Sezon öncesi hazırlık, yoğun dönem kontrolü, vardiya devri ve sezon kapanış değerlendirmesi kısa ve kanıtlanabilir bir ritme bağlanabilir." },
+        { "question": "Enerji ve misafir deneyimi birlikte izlenebilir mi?", "answer": "Doluluk, oda/alan kullanımı, hizmet seviyesi ve tüketim verileri aynı dönem tanımıyla izlenebilir; hedef ve veri kalitesi kapsam aşamasında netleştirilir." }
+      ]
+    },
+    {
+      "slug": "tarim-gida-tedarik",
+      "file": "sektor-tarim-gida-tedarik.html",
+      "title": "Tarım ve Gıda Tedarik Zinciri",
+      "eyebrow": "Sektörel çözüm · Tarım ve gıda tedarik zinciri",
+      "summary": "Tarladan depoya ve sevkiyata kadar izlenebilirlik, tedarikçi, çevre, çalışan güvenliği ve gıda risklerini aynı akışta yönetin.",
+      "heroAsset": "cevre-danismanligi-hero",
+      "triggers": ["Ürün, parti, üretici ve sevkiyat bilgilerinin aynı kimlikle izlenememesi", "Tedarikçi ve üretici kanıtlarının kapsam veya güncellik açısından eksik kalması", "Depolama, soğuk zincir ve taşıma kontrollerinin lokasyona göre değişmesi", "Su, enerji, ilaçlama, atık ve gıda güvenliği verilerinin ayrı tutulması"],
+      "buyers": ["Tarım işletmesi ve gıda tedarik zinciri yöneticileri", "Kalite, gıda güvenliği, satın alma ve depo ekipleri", "Üretici, lojistik ve sürdürülebilirlik koordinatörleri"],
+      "standards": ["ISO 22000", "ISO 9001", "ISO 14001", "İSG yönetimi"],
+      "outputs": ["Ürün, parti ve üretici izlenebilirlik haritası", "Tedarikçi yeterlilik ve değişiklik takip matrisi", "Soğuk zincir, depo ve sevkiyat kontrol standardı", "Su, enerji, atık ve gıda güvenliği aksiyon planı"],
+      "process": [
+        { "label": "Zincir örneklemi", "text": "Üretim veya hasat kaydından kabul, depolama, işleme ve sevkiyata kadar temsili bir parti izlenir." },
+        { "label": "Risk eşleştirme", "text": "Biyolojik, kimyasal, fiziksel, çevresel ve çalışan güvenliği riskleri ilgili adımlara bağlanır." },
+        { "label": "Tedarikçi kanıtı", "text": "Üretici, taşıyıcı, depo ve dış hizmet sağlayıcıların kapsamı, kaydı ve sorumluluğu netleştirilir." },
+        { "label": "Geri çekme provası", "text": "Parti bulma, miktar doğrulama, iletişim ve kapanış adımları süre ve kanıtla test edilir." }
+      ],
+      "metrics": ["Bir partiyi geriye ve ileriye izleme süresi", "Eksik veya geç tedarikçi kanıtı oranı", "Soğuk zincir ve kritik kayıt sapması", "Birim ürün başına su, enerji veya atık göstergesi"],
+      "services": [
+        { "label": "ISO 22000 Gıda Güvenliği", "href": "iso-22000-gida-guvenligi.html" },
+        { "label": "Tedarikçi ve Yüklenici Yönetimi", "href": "tedarikci-yuklenici-yonetimi.html" },
+        { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" }
+      ],
+      "resourceSlug": "iso-22000-gida-guvenligi-on-hazirlik-listesi",
+      "faq": [
+        { "question": "Tarım işletmesine gıda sertifikası veriyor musunuz?", "answer": "Hayır. Sistem hazırlığı, izlenebilirlik, risk değerlendirmesi, kayıt ve denetim hazırlığı desteklenir; belgelendirme kararı bağımsız yetkili kuruluşa aittir." },
+        { "question": "Küçük üreticiler de kapsama alınabilir mi?", "answer": "Evet. Üretici profiline göre temel kabul, kayıt, eğitim, numune, taşıma ve izlenebilirlik adımları sadeleştirilerek uygulanabilir." },
+        { "question": "Geri çekme veya geri çağırma provası yapılabilir mi?", "answer": "Temsili parti, zaman damgası, miktar, iletişim ve eksik kanıtlar üzerinden masa başı veya saha provası tasarlanabilir." }
+      ]
+    },
+    {
+      "slug": "atik-geri-donusum",
+      "file": "sektor-atik-geri-donusum.html",
+      "title": "Atık Yönetimi ve Geri Dönüşüm",
+      "eyebrow": "Sektörel çözüm · Atık ve geri dönüşüm",
+      "summary": "Atık kabulünden ayrıştırma ve sevkiyata kadar çevre yükümlülüklerini, saha güvenliğini ve kaynak verimliliğini görünür kılın.",
+      "heroAsset": "cevre-danismanligi-hero",
+      "triggers": ["Atık türü, miktarı, geçici depolama ve teslim kayıtlarının farklı dosyalarda tutulması", "Tehlikeli atık, kimyasal ve araç trafiği risklerinin vardiyaya göre değişmesi", "Lisanslı taşıma veya teslim kanıtlarının parti bazında izlenememesi", "Enerji, su, fire ve geri kazanım verilerinin yönetim kararına dönüşmemesi"],
+      "buyers": ["Atık işleme ve geri dönüşüm tesisi yöneticileri", "Çevre, İSG, kalite ve operasyon ekipleri", "Saha, bakım, lojistik ve tedarik sorumluları"],
+      "standards": ["ISO 14001", "İSG yönetimi", "ISO 9001", "ISO 50001"],
+      "outputs": ["Atık akışı ve yükümlülük kanıt haritası", "Kabul, ayrıştırma, depolama ve sevkiyat kontrol standardı", "Kimyasal, makine, trafik ve acil durum risk planı", "Geri kazanım, fire, enerji ve aksiyon göstergeleri"],
+      "process": [
+        { "label": "Akış doğrulama", "text": "Atığın kabulünden sınıflandırma, geçici depolama, işleme ve teslimata kadar bir akış izlenir." },
+        { "label": "Saha riski", "text": "Makine, kesici/delici, kimyasal, yangın, trafik ve yüklenici riskleri görev bazında değerlendirilir." },
+        { "label": "Kayıt standardı", "text": "Miktar, tür, kaynak, taşıma, teslim, uygunsuzluk ve sorumlu bilgileri ortak kayıt düzenine alınır." },
+        { "label": "Performans takibi", "text": "Geri kazanım, fire, enerji, olay ve çevre aksiyonları dönemsel yönetim değerlendirmesine bağlanır." }
+      ],
+      "metrics": ["İzlenebilir atık teslimi oranı", "Uygunsuz depolama veya sınıflandırma sayısı", "Geri kazanım ve fire oranı", "Ton başına enerji kullanımı ve kritik aksiyon kapanış süresi"],
+      "services": [
+        { "label": "Çevre Danışmanlığı", "href": "cevre-danismanligi.html" },
+        { "label": "Saha Güvenliği", "href": "saha-guvenligi.html" },
+        { "label": "ISO 50001 Enerji Yönetimi", "href": "iso-50001-enerji-yonetimi.html" }
+      ],
+      "resourceSlug": "ced-sonrasi-isletme-uyum-kontrol-listesi",
+      "faq": [
+        { "question": "Atık taşıma veya lisans işlemlerini siz mi yürütüyorsunuz?", "answer": "Goway süreç, kayıt, kontrol ve uygunluk hazırlığına destek verir; taşıma, kabul ve resmî izin kararları ilgili yetkili kuruluşların sorumluluğundadır." },
+        { "question": "Sıfır atık yaklaşımı üretim verisine bağlanabilir mi?", "answer": "Atık türü, kaynak, miktar, geri kazanım, fire ve tüketim verileri ortak dönem ve sorumluluk tanımıyla izlenebilir hale getirilebilir." },
+        { "question": "Tehlikeli ve tehlikesiz atık aynı sistemde izlenebilir mi?", "answer": "Ortak kayıt omurgası kullanılabilir; sınıflandırma, depolama, taşıma ve teslim kriterleri her atık türü için ayrı kontrol noktalarıyla korunur." }
+      ]
     }
   ]
 }
