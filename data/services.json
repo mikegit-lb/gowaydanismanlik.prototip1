@@ -112,7 +112,7 @@
       "resourceSlug": "denetim-kanit-matrisi", "trainingSlugs": ["iso-9001-ic-tetkikci", "iso-9001-proses-kpi", "kok-neden"], "sectorLinks": ["sektor-uretim-metal.html", "sektor-gida.html", "sektor-maden-tas-ocaklari.html", "sektor-mermer-dogal-tas.html", "sektor-cimento-yapi-malzemeleri.html", "sektor-cam-seramik.html"], "siblingServices": ["iso-yonetim-sistemleri.html", "isg-yonetimi.html", "kurumsal-egitim.html"]
     },
     {
-      "slug": "is-ortaklari", "file": "is-ortaklari.html", "title": "Çözüm Ortaklığı", "eyebrow": "Hizmet · Uzman ağı", "summary": "Test, ölçüm, eğitim ve bağımsız değerlendirme ihtiyaçlarını doğru uzmanlıkla eşleştirin.", "heroAsset": "uzman-kadro-hero-saha-ekibi",
+      "slug": "is-ortaklari", "file": "is-ortaklari.html", "title": "Çözüm Ortaklığı", "eyebrow": "Hizmet · Uzman ağı", "summary": "Doğrulanmış çözüm ortaklığı alanlarını, rol ve kapsam bilgileri netleştikçe şeffaf biçimde görünür kılın.", "heroAsset": "uzman-kadro-hero-saha-ekibi",
       "scope": ["Projenin birden fazla teknik uzmanlık gerektirmesi", "Test, ölçüm veya eğitim tedarikçilerinin kapsamının netleşmemesi", "Bağımsız karar ile danışmanlık sorumluluğunun ayrıştırılması"],
       "deliverables": ["İhtiyaç ve rol matrisi", "Uzman/tedarikçi kapsamı", "Teslimat, arayüz ve takip planı"],
       "firstStepData": ["İhtiyaç ve teknik kapsam", "Lokasyon ve zamanlama", "Mevcut tedarikçi/rapor listesi"],
