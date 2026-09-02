@@ -12,7 +12,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
-      TARGET_URL: ${{ vars.UPTIME_URL || 'https://www.gowaydanismanlik.com/' }}
+      TARGET_URL: ${{ vars.UPTIME_URL || 'https://gowaydanismanlik-prototip1.vercel.app/' }}
     steps:
       - name: Check homepage
         run: |
