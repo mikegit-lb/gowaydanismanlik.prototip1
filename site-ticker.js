@@ -6,6 +6,7 @@
   const legalPages = new Set(['404.html', 'cerez-politikasi.html', 'gizlilik-politikasi.html', 'kvkk-aydinlatma-metni.html', 'kullanim-sartlari.html']);
   const popupExcluded = new Set([...legalPages, 'on-gorusme.html', 'iletisim.html']);
   const focusableSelector = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  const staticShell = document.body?.dataset.gowayShell === 'static';
 
   const track = (eventName, detail = {}) => {
     const safeDetail = Object.fromEntries(Object.entries(detail).filter(([, value]) => ['string', 'number', 'boolean'].includes(typeof value)));
@@ -54,17 +55,19 @@
     nav.id = nav.id || 'site-navigation';
     nav.classList.add('nav-links');
     nav.setAttribute('aria-label', 'Ana menü');
-    const activePage = activeNavigationPage();
-    nav.replaceChildren(...(navigation.primary || []).map((item) => {
-      const link = document.createElement('a');
-      link.href = item.href;
-      link.textContent = item.label;
-      if (item.href === activePage) {
-        link.classList.add('active');
-        link.setAttribute('aria-current', 'page');
-      }
-      return link;
-    }));
+    if (!staticShell) {
+      const activePage = activeNavigationPage();
+      nav.replaceChildren(...(navigation.primary || []).map((item) => {
+        const link = document.createElement('a');
+        link.href = item.href;
+        link.textContent = item.label;
+        if (item.href === activePage) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
+        }
+        return link;
+      }));
+    }
 
     let toggle = container.querySelector('.menu-toggle');
     if (!toggle) {
@@ -74,8 +77,10 @@
       toggle.innerHTML = '<span></span><span></span><span></span><span class="visually-hidden">Menüyü aç</span>';
       container.insertBefore(toggle, nav);
     }
-    if (toggle.parentElement !== container) container.insertBefore(toggle, nav);
-    if (toggle.querySelectorAll(':scope > span:not(.visually-hidden)').length !== 3) toggle.innerHTML = '<span></span><span></span><span></span><span class="visually-hidden">Menüyü aç</span>';
+    if (!staticShell) {
+      if (toggle.parentElement !== container) container.insertBefore(toggle, nav);
+      if (toggle.querySelectorAll(':scope > span:not(.visually-hidden)').length !== 3) toggle.innerHTML = '<span></span><span></span><span></span><span class="visually-hidden">Menüyü aç</span>';
+    }
     toggle.setAttribute('aria-controls', nav.id);
     toggle.setAttribute('aria-expanded', 'false');
 
@@ -101,8 +106,10 @@
     const placeNavigation = () => {
       container.insertBefore(nav, container.querySelector('.header-actions'));
     };
-    placeNavigation();
-    mobileQuery.addEventListener('change', placeNavigation);
+    if (!staticShell) {
+      placeNavigation();
+      mobileQuery.addEventListener('change', placeNavigation);
+    }
     const setOpen = (open) => {
       document.body.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
@@ -133,6 +140,7 @@
   };
 
   const ensureUtility = () => {
+    if (staticShell) return;
     if (document.querySelector('.topbar')) return;
     let utility = document.querySelector('.utility');
     const header = document.querySelector('.site-header');
@@ -156,6 +164,7 @@
   };
 
   const applySiteIdentity = () => {
+    if (staticShell) return;
     document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
       link.href = site.phoneHref;
       if (!link.closest('.mobile-action-bar')) link.textContent = site.phone;
@@ -180,6 +189,7 @@
   };
 
   const ensureFooterTrust = () => {
+    if (staticShell) return;
     const footer = document.querySelector('.site-footer, .home-footer');
     if (!footer || footer.querySelector('.footer-trust-badges')) return;
     const badges = document.createElement('nav');
@@ -189,13 +199,6 @@
     const legal = footer.querySelector('.footer-legal-row, .home-footer-legal');
     if (legal) footer.insertBefore(badges, legal);
     else footer.append(badges);
-  };
-
-  const normalizeTrainingNames = () => {
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach((node) => { if (node.nodeValue.includes('LOTO Yetkili Kişi')) node.nodeValue = node.nodeValue.replaceAll('LOTO Yetkili Kişi', 'LOTO Uygulama Eğitimi'); });
   };
 
   const initializeTrainingCalendar = () => {
@@ -429,7 +432,6 @@
   applySiteIdentity();
   ensureMobileActions();
   ensureFooterTrust();
-  normalizeTrainingNames();
   initializeTrainingCalendar();
   initializeTrainingRegistration();
   document.querySelectorAll('[data-consultation-form]').forEach(initializeConsultationForm);

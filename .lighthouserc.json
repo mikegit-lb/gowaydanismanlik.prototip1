@@ -14,12 +14,13 @@
         "http://localhost:4173/referanslar.html",
         "http://localhost:4173/gizlilik-politikasi.html"
       ],
-      "numberOfRuns": 1,
+      "numberOfRuns": 3,
       "settings": {
         "chromeFlags": "--disable-dev-shm-usage --disable-gpu --disable-crash-reporter --no-first-run --no-default-browser-check"
       }
     },
     "assert": {
+      "aggregationMethod": "median",
       "assertions": {
         "categories:performance": ["error", { "minScore": 0.85 }],
         "categories:accessibility": ["error", { "minScore": 0.95 }],

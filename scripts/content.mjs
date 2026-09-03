@@ -28,13 +28,15 @@ export async function loadContent(root) {
 
 function header(site) {
   const links = site.navigation.map((item) => `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`).join('');
-  return `<div class="utility"><div class="container"><span>${escapeHtml(site.site.address)}</span><a href="${escapeHtml(site.site.phoneHref)}">${escapeHtml(site.site.phone)}</a></div></div>
+  const slogans = site.slogans || [];
+  const ticker = `<div class="site-slogan-ticker" role="region" aria-label="Goway sloganları: ${escapeHtml(slogans.join(' '))}"><div class="site-slogan-stage" aria-hidden="true">${slogans.map((slogan, index) => `<span class="site-slogan-item" style="--ticker-delay:${index * 15}s">${escapeHtml(slogan)}</span>`).join('')}</div></div>`;
+  return `<div class="utility"><div class="container"><span>${escapeHtml(site.site.address)}</span>${ticker}<a href="${escapeHtml(site.site.phoneHref)}">${escapeHtml(site.site.phone)}</a></div></div>
   <header class="site-header"><div class="container nav-wrap">
     <a class="brand" href="index.html" aria-label="Goway Danışmanlık ana sayfa"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><strong>GOWAY</strong><span>DANIŞMANLIK</span></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span><span class="visually-hidden">Menüyü aç</span></button>
     <nav class="page-nav" id="site-navigation" aria-label="Ana menü">${links}</nav>
     <div class="header-actions"><a class="button primary header-cta" href="on-gorusme.html">Ücretsiz Ön Görüşme</a></div>
-  </div></header>`;
+  </div></header><button class="nav-backdrop" type="button" aria-label="Menüyü kapat" hidden></button>`;
 }
 
 export const renderSharedHeader = header;

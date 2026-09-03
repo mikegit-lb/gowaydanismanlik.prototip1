@@ -206,6 +206,7 @@ function addSharedShell(html, styles, scripts, content, file) {
     .replaceAll('src="goway-mark.png"', 'src="assets/goway-mark-96.webp"')
     .replaceAll("src='goway-mark.png'", "src='assets/goway-mark-96.webp'")
     .replaceAll('assets/goway-hero-ambient.png', 'assets/hero/goway-hero-ambient-1200.avif');
+  html = html.replace(/<body([^>]*)>/i, '<body$1 data-goway-shell="static">');
   html = html.replace(/<img(?![^>]*\bwidth=)([^>]*class=["'][^"']*(?:footer-logo|home-footer-logo)[^"']*["'][^>]*)>/gi, '<img width="80" height="72"$1>');
   html = html.replace(/<img(?![^>]*\bwidth=)([^>]*src=["']assets\/hero\/[^"']+["'][^>]*)>/gi, '<img width="1600" height="900"$1>');
   if (!/<main\b[^>]*\bid=["']main-content["']/i.test(html)) html = html.replace(/<main(\s|>)/i, '<main id="main-content"$1');
@@ -311,6 +312,7 @@ async function processHtml(content, generated, styles, scripts) {
     }
     html = html.replace(/\s*<a\s+class=["'][^"']*topbar-phone[^"']*["'][^>]*>[\s\S]*?<\/a>/i, '');
     html = html.replace(/\s*<a\s+class=["'][^"']*visually-hidden[^"']*["'][^>]*href=["']#home-links["'][^>]*>[\s\S]*?<\/a>/i, '');
+    html = html.replace(/\s*<button class="nav-backdrop" type="button" aria-label="Menüyü kapat" hidden><\/button>/gi, '');
     html = html.replace(/<header\b[\s\S]*?<\/header>/i, renderSharedHeader(content.site));
     html = replaceSharedFooter(html, content);
     html = html.replaceAll('LOTO Yetkili Kişi', 'LOTO Uygulama Eğitimi');

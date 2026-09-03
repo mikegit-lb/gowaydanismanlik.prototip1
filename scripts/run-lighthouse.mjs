@@ -19,6 +19,7 @@ const urls = [
   '/referanslar.html',
   '/gizlilik-politikasi.html'
 ];
+const runsPerUrl = 3;
 
 const waitForServer = (server) => new Promise((resolve, reject) => {
   let output = '';
@@ -54,11 +55,13 @@ const main = async () => {
     });
     for (const [index, pathname] of urls.entries()) {
       const requestedUrl = `http://localhost:4173${pathname}`;
-      process.stdout.write(`Lighthouse ${index + 1}/${urls.length}: ${requestedUrl}\n`);
-      const result = await lighthouse(requestedUrl, { port: chrome.port, output: 'json', logLevel: 'error' });
-      const report = result?.lhr;
-      if (!report) throw new Error(`Lighthouse returned no report for ${requestedUrl}`);
-      await fs.writeFile(path.join(outputDir, `lhr-${Date.now()}.json`), JSON.stringify(report));
+      for (let run = 0; run < runsPerUrl; run += 1) {
+        process.stdout.write(`Lighthouse ${index + 1}/${urls.length} · run ${run + 1}/${runsPerUrl}: ${requestedUrl}\n`);
+        const result = await lighthouse(requestedUrl, { port: chrome.port, output: 'json', logLevel: 'error' });
+        const report = result?.lhr;
+        if (!report) throw new Error(`Lighthouse returned no report for ${requestedUrl}`);
+        await fs.writeFile(path.join(outputDir, `lhr-${Date.now()}.json`), JSON.stringify(report));
+      }
     }
   } finally {
     if (chrome) chrome.kill();
