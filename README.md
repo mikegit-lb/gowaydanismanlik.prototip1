@@ -2,6 +2,8 @@
 
 Veri odaklı statik site üretimi; sektör sayfaları, indirilebilir kaynaklar, e-posta taslaklı iletişim formu ve erişilebilir mobil navigasyon içerir.
 
+Yerel geliştirme ve CI için Node.js 24.x gerekir.
+
 ## Yerel kullanım
 
 ```powershell
