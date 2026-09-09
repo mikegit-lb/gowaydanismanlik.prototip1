@@ -27,4 +27,11 @@ Ertelenen form servisi, hukuk incelemesi, müşteri logoları ve ölçümlü vak
 - `npm run qa:site`: benzersiz metadata, şema, bağlantı, DOM ve üretim paketi taraması
 - `npm run lighthouse`: sekiz temsilî rota için mobil Lighthouse çalışması
 - `npm run qa:resources`: PDF, DOCX ve XLSX yapısal doğrulaması
-- `npm run ci`: build, site QA, resource QA ve Lighthouse kontrolleri
+- `npm run resources:check`: yeniden üretilen indirmelerin Git'te kayıtlı dosyalarla aynı olduğunu doğrular; `npm run resources` sonrasında çalıştırılır
+- `npm test`: gerçek dosya sistemiyle izleme döngüsü, sıralı build ve hata sonrası toparlanma kontrolleri
+- `npm run qa:browser`: Chrome/Chromium ile kapalı mobil menü odağı, ekran genişliği geçişleri, form seçenekleri ve e-posta taslağı kontrolleri (`CHROME_PATH` ile tarayıcı seçilebilir)
+- `npm run ci`: izleme testleri, build, site QA, resource QA, tarayıcı QA ve Lighthouse kontrolleri
+
+Ön görüşme formunun hizmet ve sektör seçenekleri `data/services.json` ve `data/sectors.json` üzerinden build sırasında üretilir. Kaynak önizlemesi aynı seçenekleri `npm run source-runtime` ile alır. İzleme modu üretilen dosyaları ve araç klasörlerini yok sayar; devam eden build sırasında yapılan değişiklikler tek bir sonraki build'e alınır.
+
+İçerik hash'i taşıyan CSS/JS dosyaları uzun süre önbelleğe alınır. Sabit URL kullanan görseller ve indirilebilir kaynaklar yeniden doğrulanır; aynı URL'de güncellenen dosya bir yıl boyunca eski kalmaz.

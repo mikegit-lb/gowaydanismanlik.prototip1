@@ -5,14 +5,14 @@
       "startServerReadyPattern": "Lighthouse server listening on 4173",
       "startServerReadyTimeout": 100000,
       "url": [
-        "http://localhost:4173/",
-        "http://localhost:4173/on-gorusme.html",
-        "http://localhost:4173/iso-50001-enerji-yonetimi.html",
-        "http://localhost:4173/sektorel-cozumler.html",
-        "http://localhost:4173/sektor-uretim-metal.html",
-        "http://localhost:4173/kaynaklar.html",
-        "http://localhost:4173/referanslar.html",
-        "http://localhost:4173/gizlilik-politikasi.html"
+        "http://127.0.0.1:4173/",
+        "http://127.0.0.1:4173/on-gorusme.html",
+        "http://127.0.0.1:4173/iso-50001-enerji-yonetimi.html",
+        "http://127.0.0.1:4173/sektorel-cozumler.html",
+        "http://127.0.0.1:4173/sektor-uretim-metal.html",
+        "http://127.0.0.1:4173/kaynaklar.html",
+        "http://127.0.0.1:4173/referanslar.html",
+        "http://127.0.0.1:4173/gizlilik-politikasi.html"
       ],
       "numberOfRuns": 3,
       "settings": {

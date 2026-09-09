@@ -276,7 +276,23 @@ export function createTrainingRuntimeConfig(content) {
 }
 
 export function createSourceRuntimeConfig(content) {
-  return { ...createRuntimeConfig(content), ...createTrainingRuntimeConfig(content) };
+  return {
+    ...createRuntimeConfig(content),
+    ...createTrainingRuntimeConfig(content),
+    consultation: {
+      services: content.services.map(({ slug, title }) => ({ slug, title })),
+      sectors: content.sectors.map(({ slug, title }) => ({ slug, title }))
+    }
+  };
+}
+
+export function renderConsultationOptions(html, content) {
+  return html.replace(/(<select\b[^>]*data-consultation-options=["'](services|sectors)["'][^>]*>)[\s\S]*?<\/select>/gi, (_match, opening, kind) => {
+    const placeholder = kind === 'services' ? 'Hizmet seçiniz' : 'Sektör seçiniz';
+    const options = content[kind].map(({ slug, title }) => `<option value="${escapeHtml(title)}" data-slug="${escapeHtml(slug)}">${escapeHtml(title)}</option>`).join('');
+    const general = kind === 'services' ? '<option value="Genel ön görüşme">Genel ön görüşme</option>' : '';
+    return `${opening}<option value="">${placeholder}</option>${options}${general}</select>`;
+  });
 }
 
 export function serializeRuntimeConfig(config) {

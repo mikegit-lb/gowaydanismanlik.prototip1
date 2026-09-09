@@ -54,17 +54,18 @@ const main = async () => {
       chromeFlags: ['--headless=new', '--disable-dev-shm-usage', '--disable-gpu', '--disable-crash-reporter', '--no-first-run', '--no-default-browser-check']
     });
     for (const [index, pathname] of urls.entries()) {
-      const requestedUrl = `http://localhost:4173${pathname}`;
+      const requestedUrl = `http://127.0.0.1:4173${pathname}`;
       for (let run = 0; run < runsPerUrl; run += 1) {
         process.stdout.write(`Lighthouse ${index + 1}/${urls.length} · run ${run + 1}/${runsPerUrl}: ${requestedUrl}\n`);
         const result = await lighthouse(requestedUrl, { port: chrome.port, output: 'json', logLevel: 'error' });
         const report = result?.lhr;
         if (!report) throw new Error(`Lighthouse returned no report for ${requestedUrl}`);
+        if (report.runtimeError) throw new Error(`Lighthouse could not audit ${requestedUrl}: ${report.runtimeError.message}`);
         await fs.writeFile(path.join(outputDir, `lhr-${Date.now()}.json`), JSON.stringify(report));
       }
     }
   } finally {
-    if (chrome) chrome.kill();
+    if (chrome) await chrome.kill();
     if (server.exitCode === null) server.kill();
     if (profile) {
       try { await fs.rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 500 }); }

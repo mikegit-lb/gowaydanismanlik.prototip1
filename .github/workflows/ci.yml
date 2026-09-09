@@ -27,6 +27,8 @@ jobs:
       - run: npm ci
       - run: python -m pip install -r requirements.txt
       - run: npm run resources
+      - name: Check generated resource drift
+        run: npm run resources:check
       - name: Validate generated resources
         run: npm run qa:resources
       - run: npm run ci

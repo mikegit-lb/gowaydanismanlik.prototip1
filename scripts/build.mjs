@@ -7,7 +7,8 @@ import cssnano from 'cssnano';
 import { minify as minifyHtml } from 'html-minifier-terser';
 import { minify as minifyJs } from 'terser';
 import sharp from 'sharp';
-import { createRuntimeConfig, createSourceRuntimeConfig, createTrainingRuntimeConfig, loadContent, renderGeneratedPages, renderSharedFooter, renderSharedHeader, serializeRuntimeConfig } from './content.mjs';
+import { createRuntimeConfig, createSourceRuntimeConfig, createTrainingRuntimeConfig, loadContent, renderConsultationOptions, renderGeneratedPages, renderSharedFooter, renderSharedHeader, serializeRuntimeConfig } from './content.mjs';
+import { watchBuild } from './watch.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -217,7 +218,8 @@ function addSharedShell(html, styles, scripts, content, file) {
     ? `<script src="${scripts.configName}" defer></script><script src="${scripts.trainingName}" defer></script><script src="${scripts.tickerName}" defer></script>`
     : `<script src="${scripts.configName}" defer></script><script src="${scripts.tickerName}" defer></script>`;
   html = html.replace('</body>', `${runtimeScripts}</body>`);
-  const criticalStyle = `<style data-critical-css>${optimizedCriticalCss}${criticalShellCss}${criticalMobileCss}</style>`;
+  const closedMenuCss = '@media(max-width:820px){body:not(.menu-open) .site-header .page-nav{visibility:hidden;pointer-events:none}}';
+  const criticalStyle = `<style data-critical-css>${optimizedCriticalCss}${criticalShellCss}${criticalMobileCss}${closedMenuCss}</style>`;
   return html
     .replace(/<link\s+rel=["']stylesheet["']\s+href=["']([^"']+\.css)["']\s*\/?\s*>/gi, (_match, href) => `<link rel="preload" as="style" href="${href}"><link rel="stylesheet" href="${href}">`)
     .replace(/<head>/i, `<head>${criticalStyle}`);
@@ -303,6 +305,7 @@ async function processHtml(content, generated, styles, scripts) {
     }
     let html = file === 'index.html' ? pruneLegacyHomepage(original) : original;
     html = replaceContactTokens(html, content.site.site);
+    html = renderConsultationOptions(html, content);
     // Every route uses the same utility strip, logo lockup, responsive menu and CTA.
     // Remove hand-authored shell variants before inserting the canonical shell.
     const utilityStart = html.search(/<div\s+class=["'](?:topbar|utility)["'][^>]*>/i);
@@ -380,7 +383,13 @@ async function validateContent(content) {
 }
 
 async function writeSourceRuntimeConfig(content) {
-  await fs.writeFile(path.join(root, 'site-config.js'), serializeRuntimeConfig(createSourceRuntimeConfig(content)));
+  const file = path.join(root, 'site-config.js');
+  const next = serializeRuntimeConfig(createSourceRuntimeConfig(content));
+  const previous = await fs.readFile(file, 'utf8').catch((error) => {
+    if (error.code !== 'ENOENT') throw error;
+    return null;
+  });
+  if (previous !== next) await fs.writeFile(file, next);
 }
 
 async function validateOutput(files, content, scripts) {
@@ -438,14 +447,10 @@ if (process.argv.includes('--clean')) {
   await fs.rm(dist, { recursive: true, force: true });
   console.log('Removed dist/');
 } else if (process.argv.includes('--watch')) {
-  await build();
-  let timer;
-  const watcher = (await import('node:fs')).watch(root, { recursive: true }, (_event, changed) => {
-    if (changed && (changed.startsWith('dist') || changed.startsWith('node_modules'))) return;
-    clearTimeout(timer);
-    timer = setTimeout(() => build().catch((error) => console.error(error.stack || error.message)), 300);
-  });
+  const watcher = watchBuild(root, build, { onError: (error) => console.error(error.stack || error.message) });
   process.on('SIGINT', () => watcher.close());
+  process.on('SIGTERM', () => watcher.close());
+  await watcher.ready;
 } else {
   await build();
 }

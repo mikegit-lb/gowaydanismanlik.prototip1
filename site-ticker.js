@@ -111,18 +111,26 @@
       mobileQuery.addEventListener('change', placeNavigation);
     }
     const setOpen = (open) => {
+      open = Boolean(open && mobileQuery.matches);
       document.body.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
       toggle.querySelector('.visually-hidden').textContent = open ? 'Menüyü kapat' : 'Menüyü aç';
       backdrop.hidden = !open;
+      const closedOnMobile = mobileQuery.matches && !open;
+      if (closedOnMobile && nav.contains(document.activeElement)) toggle.focus();
+      nav.inert = closedOnMobile;
+      if (closedOnMobile) nav.setAttribute('aria-hidden', 'true');
+      else nav.removeAttribute('aria-hidden');
       if (open) {
         returnFocus = document.activeElement;
         track('nav_open', { page: currentPage });
         requestAnimationFrame(() => nav.querySelector('a')?.focus());
-      } else if (returnFocus && document.contains(returnFocus)) {
-        returnFocus.focus();
+      } else {
+        if (mobileQuery.matches && returnFocus && document.contains(returnFocus)) returnFocus.focus();
+        returnFocus = null;
       }
     };
+    setOpen(false);
     toggle.addEventListener('click', () => setOpen(!document.body.classList.contains('menu-open')));
     backdrop.addEventListener('click', () => setOpen(false));
     nav.addEventListener('click', (event) => { if (event.target.closest('a')) setOpen(false); });
@@ -136,7 +144,7 @@
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
       if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     });
-    window.matchMedia('(min-width: 821px)').addEventListener('change', (event) => { if (event.matches) setOpen(false); });
+    mobileQuery.addEventListener('change', () => setOpen(false));
   };
 
   const ensureUtility = () => {
@@ -272,6 +280,20 @@
   };
 
   const initializeConsultationForm = (form) => {
+    // Production options are rendered at build time; keep source previews in sync too.
+    if (!staticShell && config.consultation) {
+      form.querySelectorAll('[data-consultation-options]').forEach((select) => {
+        const kind = select.dataset.consultationOptions;
+        const placeholder = kind === 'services' ? 'Hizmet seçiniz' : 'Sektör seçiniz';
+        const options = (config.consultation[kind] || []).map(({ slug, title }) => {
+          const option = new Option(title, title);
+          option.dataset.slug = slug;
+          return option;
+        });
+        select.replaceChildren(new Option(placeholder, ''), ...options);
+        if (kind === 'services') select.add(new Option('Genel ön görüşme', 'Genel ön görüşme'));
+      });
+    }
     const status = form.querySelector('[data-form-status]');
     const params = new URLSearchParams(window.location.search);
     const sourcePage = form.elements.source_page;
