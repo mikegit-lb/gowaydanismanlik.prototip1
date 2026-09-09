@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import xml.etree.ElementTree as ET
 import zipfile
 from pathlib import Path
 
@@ -22,6 +23,10 @@ import reportlab
 from reportlab import rl_config
 
 rl_config.invariant = 1
+# Keep generated PDFs byte-stable across Python/zlib patch versions. The
+# downloads are small enough that reproducibility is more valuable than
+# Flate compression here.
+rl_config.pageCompression = 0
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "downloads"
@@ -407,8 +412,18 @@ def normalize_office_package(target: Path):
                     xml,
                 )
                 data = xml.encode("utf-8")
+            if info.filename.endswith((".xml", ".rels")):
+                # ElementTree's XML serializer changed namespace and empty-tag
+                # formatting between Python releases. Canonicalize every XML
+                # part so Python 3.12 and 3.14 produce the same package bytes.
+                canonical = ET.canonicalize(data.decode("utf-8"), strip_text=False)
+                canonical = re.sub(r"\s+/>", "/>", canonical)
+                data = canonical.encode("utf-8")
             normalized = zipfile.ZipInfo(info.filename, ZIP_TIMESTAMP)
-            normalized.compress_type = zipfile.ZIP_DEFLATED
+            # zlib output differs between Python patch versions. Store the
+            # normalized XML package parts without compression so regenerated
+            # DOCX/XLSX files remain byte-identical across CI and local runs.
+            normalized.compress_type = zipfile.ZIP_STORED
             normalized.create_system = 3
             normalized.external_attr = info.external_attr
             output.writestr(normalized, data)

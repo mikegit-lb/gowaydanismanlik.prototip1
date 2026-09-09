@@ -15,7 +15,7 @@ npm run build
 npm start
 ```
 
-Resource generation uses the pinned Python dependencies in `requirements.txt`; the Node-side DOCX generator uses the pinned `docx` package in `package.json`. PDF and Office package metadata is normalized so regeneration is deterministic. On CI, Python 3.12 is installed before `npm run resources`, and CI fails if the regenerated resources differ from the committed files.
+Resource generation uses the pinned Python dependencies in `requirements.txt`; the Node-side DOCX generator uses the pinned `docx` package in `package.json`. PDF and Office package metadata and compression are normalized so regeneration stays byte-stable across Python patch versions. On CI, Python 3.12 is installed before `npm run resources`, and CI fails if the regenerated resources differ from the committed files.
 
 `npm run source-runtime` `data/` manifestlerinden doğrudan kaynak önizleme için geçerli `site-config.js` üretir. `npm run build` ayrıca bu uyumluluk dosyasını günceller ve `dist/` klasörünü üretir. Sektörler, kaynaklar, eğitimler ve içerik iddiaları `data/` altındaki manifestlerden yönetilir. `egitim-katalog.html`, `egitim-takip.html`, `hizmet-katalogu.html` ve `sektorel-cozumler.html` gibi katalog/hub rotaları yalnızca build sırasında üretilir; düzenleme noktası `data/` ve `scripts/content.mjs` dosyalarıdır.
 
