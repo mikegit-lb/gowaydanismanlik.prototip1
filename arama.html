@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="Goway Danışmanlık sitesinde hizmet, sektör, kaynak ve eğitim arayın.">
+  <link rel="canonical" href="https://www.gowaydanismanlik.com/arama.html">
+  <title>Site İçi Arama | Goway Danışmanlık</title>
+  <link rel="stylesheet" href="site-pages.css">
+</head>
+<body class="search-page">
+  <a class="visually-hidden skip-link" href="#main-content">İçeriğe geç</a>
+  <header class="site-header"><div class="container"><nav class="page-nav" aria-label="Ana menü"></nav></div></header>
+  <main id="main-content">
+    <section class="content-section search-shell" aria-labelledby="search-title">
+      <div class="container">
+        <p class="eyebrow">Goway bilgi alanı</p>
+        <h1 id="search-title">Site içinde arayın</h1>
+        <p class="search-intro">Hizmet, sektör, kaynak veya eğitim adını yazarak ilgili sayfaya ilerleyin.</p>
+        <form class="search-page-form" data-site-search-form role="search" action="arama.html" method="get">
+          <label for="search-query">Arama terimi</label>
+          <div class="search-page-control"><input id="search-query" name="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="Örneğin: ISO 50001, gıda veya LOTO"><button class="button primary" type="submit">Ara</button></div>
+        </form>
+        <p class="search-status" data-search-status aria-live="polite">Hizmet, sektör, kaynak veya eğitim arayın.</p>
+        <p class="search-count" data-search-count hidden></p>
+        <div class="search-results" data-search-results></div>
+        <p class="section-note search-empty" data-search-empty>Aramanızın sonuçlarını burada göreceksiniz.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"></footer>
+</body>
+</html>

@@ -35,7 +35,7 @@ try {
   browser = await puppeteer.launch({
     executablePath: process.env.CHROME_PATH || Launcher.getFirstInstallation(),
     headless: true,
-    args: ['--disable-dev-shm-usage', '--disable-gpu']
+    args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
   });
   const page = await browser.newPage();
   const errors = [];
@@ -72,6 +72,27 @@ try {
     console.log(`Menu focus and breakpoint checks passed: ${route}`);
   }
 
+  await page.setViewport({ width: 390, height: 844 });
+  await visit('/');
+  await page.click('.search-toggle');
+  await page.waitForFunction(() => !document.querySelector('#site-search-panel').hidden && document.activeElement === document.querySelector('#site-search-input'));
+  assert.equal(await page.$eval('.search-toggle', (button) => button.getAttribute('aria-expanded')), 'true');
+  await page.keyboard.press('Escape');
+  assert.equal(await page.$eval('#site-search-panel', (panel) => panel.hidden), true);
+  assert.equal(await page.evaluate(() => document.activeElement === document.querySelector('.search-toggle')), true);
+
+  await visit('/arama.html?q=ISO%2050001');
+  assert.equal(await page.$eval('#search-query', (input) => input.value), 'ISO 50001');
+  assert.ok(await page.$$eval('.search-result a', (links) => links.some((link) => link.textContent.includes('ISO 50001'))), 'ISO 50001 query returned no result');
+  await visit('/arama.html?q=g%C4%B1da');
+  assert.ok(await page.$$eval('.search-result a', (links) => links.some((link) => link.getAttribute('href') === './sektor-gida.html')), 'Turkish-normalized gıda query missed the food sector');
+  await visit('/arama.html?q=kesinlikle-bulunamaz');
+  assert.equal(await page.$eval('[data-search-empty]', (node) => node.hidden), false);
+  assert.match(await page.$eval('[data-search-status]', (node) => node.textContent), /eşleşen sonuç bulunamadı/);
+  await page.$eval('#search-query', (input) => { input.value = 'ISO 50001'; input.dispatchEvent(new Event('input', { bubbles: true })); });
+  assert.equal(new URL(page.url()).searchParams.get('q'), 'ISO 50001');
+  console.log('Search QA passed: header focus behavior, Turkish normalization, ranking, no-results state and shareable query URL.');
+
   // Catalog completeness must hold before any client JavaScript runs.
   await page.setJavaScriptEnabled(false);
   await visit('/on-gorusme.html');
@@ -84,15 +105,15 @@ try {
   await visit(`/on-gorusme.html?hizmet=${service.slug}&sektor=${sector.slug}`);
   assert.equal(await page.$eval('#service', (select) => select.value), service.title);
   assert.equal(await page.$eval('#sector', (select) => select.value), sector.title);
-  await page.click('button[type="submit"]');
+  await page.click('[data-consultation-form] button[type="submit"]');
   assert.equal(await page.$eval('[data-form-status]', (status) => status.dataset.state), 'error');
   await page.type('#name', 'Browser QA');
   await page.type('#email', 'invalid-email');
   await page.type('#message', 'Local regression check');
-  await page.click('button[type="submit"]');
+  await page.click('[data-consultation-form] button[type="submit"]');
   assert.equal(await page.$eval('#email', (email) => email.getAttribute('aria-invalid')), 'true');
   await page.$eval('#email', (email) => { email.value = 'qa@example.com'; });
-  await page.click('button[type="submit"]');
+  await page.click('[data-consultation-form] button[type="submit"]');
   const draft = await page.evaluate(() => window.__qaHandoff);
   assert.ok(draft?.startsWith('mailto:'), 'Valid form did not prepare an email draft');
   const body = new URL(draft).searchParams.get('body');

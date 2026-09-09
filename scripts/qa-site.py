@@ -197,6 +197,28 @@ def main() -> int:
         failures.append("local Lighthouse artifacts copied to production")
     sector_pages = list(DIST.glob("sektor-*.html"))
     downloads = [item for item in (DIST / "assets" / "downloads").glob("*") if item.is_file()]
+    search_page = pages.get("arama.html")
+    if search_page is None:
+        failures.append("search: arama.html is missing")
+    else:
+        if "noindex" not in search_page.robots:
+            failures.append("search: arama.html must be noindex")
+        if not search_page.canonical.endswith("/arama.html"):
+            failures.append(f"search: unexpected canonical {search_page.canonical}")
+    sitemap_text = (DIST / "sitemap.xml").read_text(encoding="utf-8") if (DIST / "sitemap.xml").exists() else ""
+    if "arama.html" in sitemap_text:
+        failures.append("search: arama.html must be absent from sitemap")
+    search_assets = sorted(DIST.glob("search-index.[a-f0-9]*.js"))
+    if len(search_assets) != 1:
+        failures.append(f"search: expected one hashed index asset, found {len(search_assets)}")
+    else:
+        asset_name = search_assets[0].name
+        for page_name, parser in pages.items():
+            markup = (DIST / page_name).read_text(encoding="utf-8")
+            if asset_name in markup and page_name != "arama.html":
+                failures.append(f"search: index asset is loaded by {page_name}")
+        if search_page and asset_name not in (DIST / "arama.html").read_text(encoding="utf-8"):
+            failures.append("search: arama.html does not reference the hashed index asset")
     result = {
         "ok": not failures,
         "failures": failures,

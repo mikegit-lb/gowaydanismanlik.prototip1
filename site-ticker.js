@@ -90,6 +90,48 @@
       actions.innerHTML = '<a class="button primary header-cta" href="on-gorusme.html">Ücretsiz Ön Görüşme</a>';
       container.append(actions);
     }
+    const actions = container.querySelector(':scope > .header-actions');
+    let searchToggle = actions.querySelector('.search-toggle');
+    if (!searchToggle) {
+      searchToggle = document.createElement('button');
+      searchToggle.type = 'button';
+      searchToggle.className = 'search-toggle';
+      searchToggle.innerHTML = '<span aria-hidden="true"></span><span class="visually-hidden">Site içinde ara</span>';
+      actions.insertBefore(searchToggle, actions.firstChild);
+    }
+    searchToggle.setAttribute('aria-controls', 'site-search-panel');
+    searchToggle.setAttribute('aria-expanded', 'false');
+    let searchPanel = document.getElementById('site-search-panel');
+    if (!searchPanel) {
+      searchPanel = document.createElement('div');
+      searchPanel.className = 'site-search-panel';
+      searchPanel.id = 'site-search-panel';
+      searchPanel.innerHTML = '<div class="container"><form class="site-search-form" role="search" action="arama.html" method="get"><label for="site-search-input">Site içinde ara</label><div class="site-search-control"><input id="site-search-input" name="q" type="search" autocomplete="off" placeholder="Hizmet, sektör veya konu ara"><button class="button primary" type="submit">Ara</button></div></form></div>';
+      header.after(searchPanel);
+    }
+    const searchInput = searchPanel.querySelector('input[name="q"]');
+    const setSearchOpen = (open) => {
+      open = Boolean(open);
+      if (open && document.body.classList.contains('menu-open')) setOpen(false);
+      if (open && !searchPanel.hidden) return;
+      searchPanel.hidden = !open;
+      searchPanel.inert = !open;
+      searchToggle.setAttribute('aria-expanded', String(open));
+      if (open) {
+        track('search_open', { page: currentPage });
+        requestAnimationFrame(() => searchInput?.focus());
+      } else {
+        track('search_close', { page: currentPage });
+        searchToggle.focus();
+      }
+    };
+    searchPanel.hidden = true;
+    searchPanel.inert = true;
+    searchToggle.addEventListener('click', () => setSearchOpen(searchPanel.hidden));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !searchPanel.hidden) { event.preventDefault(); setSearchOpen(false); }
+    });
+    searchPanel.querySelector('form')?.addEventListener('submit', () => track('search_submit', { page: currentPage }));
 
     let backdrop = document.querySelector('.nav-backdrop');
     if (!backdrop) {

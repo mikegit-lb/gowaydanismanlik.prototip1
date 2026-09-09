@@ -35,8 +35,8 @@ function header(site) {
     <a class="brand" href="index.html" aria-label="Goway Danışmanlık ana sayfa"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><strong>GOWAY</strong><span>DANIŞMANLIK</span></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span><span class="visually-hidden">Menüyü aç</span></button>
     <nav class="page-nav" id="site-navigation" aria-label="Ana menü">${links}</nav>
-    <div class="header-actions"><a class="button primary header-cta" href="on-gorusme.html">Ücretsiz Ön Görüşme</a></div>
-  </div></header><button class="nav-backdrop" type="button" aria-label="Menüyü kapat" hidden></button>`;
+    <div class="header-actions"><button class="search-toggle" type="button" aria-expanded="false" aria-controls="site-search-panel"><span aria-hidden="true"></span><span class="visually-hidden">Site içinde ara</span></button><a class="button primary header-cta" href="on-gorusme.html">Ücretsiz Ön Görüşme</a></div>
+  </div></header><div class="site-search-panel" id="site-search-panel" hidden><div class="container"><form class="site-search-form" role="search" action="arama.html" method="get"><label for="site-search-input">Site içinde ara</label><div class="site-search-control"><input id="site-search-input" name="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="Hizmet, sektör veya konu ara"><button class="button primary" type="submit">Ara</button></div></form></div></div><button class="nav-backdrop" type="button" aria-label="Menüyü kapat" hidden></button>`;
 }
 
 export const renderSharedHeader = header;

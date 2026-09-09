@@ -20,7 +20,8 @@ const heroSources = [
   'hizmetler-hero-endustriyel', 'iletisim-hero-ilk-gorusme', 'sss-hero-danismanlik',
   'tekstil-standartlari-hero', 'tesvik-danismanligi-hero', 'uzman-kadro-hero-saha-ekibi'
 ];
-const noIndexPages = new Set(['404.html', 'belge-sorgulama.html', 'medya.html', 'katalog.html']);
+const noIndexPages = new Set(['404.html', 'arama.html', 'belge-sorgulama.html', 'medya.html', 'katalog.html']);
+const searchExcludedPages = new Set(['404.html', 'arama.html', 'belge-sorgulama.html', 'cerez-politikasi.html', 'gizlilik-politikasi.html', 'kvkk-aydinlatma-metni.html', 'kullanim-sartlari.html', 'medya.html', 'katalog.html', 'on-gorusme.html', 'iletisim.html']);
 const generatedSourceOverrides = new Set(['hizmet-katalogu.html', 'sektorel-cozumler.html', 'katalog.html', 'egitim-katalog.html', 'egitim-takip.html']);
 const trainingPages = new Set(['egitim-katalog.html', 'egitim-takvimi.html']);
 const criticalCss = `:root{--container:min(1120px,calc(100% - 40px));--navy:#185a77;--teal:#185a77;--hero-navy:#104b67;--header-height:92px;--hero-min-height:700px;--hero-pad-top:clamp(72px,11vw,138px);--hero-pad-bottom:clamp(64px,9vw,104px)}*,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:#163b4f;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}img{display:block;max-width:100%;height:auto}.container{width:var(--container);margin-inline:auto}.utility{min-height:36px;background:#073247;color:#f4f8fb}.utility .container{display:flex;align-items:center;justify-content:space-between;min-height:36px}.utility a{color:#f4f8fb}.site-header{position:relative;z-index:10;background:#fff;border-bottom:1px solid rgba(17,90,118,.12)}.site-header>.container,.site-header .nav-wrap{min-height:var(--header-height);display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:12px;color:var(--navy);text-decoration:none}.brand-mark{display:block;width:64px;height:58px;background:url("assets/goway-mark-160.webp") center/contain no-repeat}.brand-copy{display:grid;line-height:1}.brand-copy strong{color:var(--teal);font-size:1.2rem;font-weight:700;letter-spacing:.02em}.brand-copy span{margin-top:7px;color:var(--navy);font-size:.66rem;font-weight:800;letter-spacing:.22em}.page-nav{display:flex;align-items:center;gap:4px}.page-nav a{color:#255268;text-decoration:none}.header-actions{display:flex}.hero,.hero-page{position:relative;display:flex;align-items:center;min-height:var(--hero-min-height);overflow:hidden;background:var(--hero-navy);color:#fff}.hero-media{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}.hero-media img{width:100%;height:100%;object-fit:cover}.hero-inner,.hero-page>.container{position:relative;z-index:2}.hero-inner{padding:var(--hero-pad-top) 0 var(--hero-pad-bottom)}.hero h1,.hero-page h1{max-width:820px;margin:0;color:#fff;line-height:1.05}.hero p,.hero-page .lede{max-width:720px}.hero-actions{display:flex;flex-wrap:wrap;gap:12px}.button,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;text-decoration:none}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}@media(max-width:820px){:root{--container:calc(100% - 28px);--header-height:132px;--hero-min-height:640px;--hero-pad-top:64px;--hero-pad-bottom:64px}.site-header>.container,.site-header .nav-wrap{min-height:var(--header-height)}.page-nav{overflow-x:auto}.header-actions{display:none}.hero,.hero-page{min-height:var(--hero-min-height)}.hero-inner{padding:var(--hero-pad-top) 0 var(--hero-pad-bottom)}.hero h1,.hero-page h1{font-size:clamp(2.2rem,11vw,3.6rem)}}@media(max-width:560px){:root{--hero-min-height:606px;--hero-pad-top:58px;--hero-pad-bottom:60px}}`;
@@ -80,7 +81,7 @@ function shouldSkipStatic(relative, entry) {
   const normalized = relative.replaceAll('\\', '/');
   const top = normalized.split('/')[0];
   if (top.startsWith('.') || ['node_modules', 'dist', 'docs', 'scripts', 'data', 'templates'].includes(top)) return true;
-  if (['package.json', 'package-lock.json', 'README.md', 'sitemap.xml', 'site-config.js', 'site-ticker.js', 'index.css', 'site-pages.css'].includes(normalized)) return true;
+  if (['package.json', 'package-lock.json', 'README.md', 'sitemap.xml', 'site-config.js', 'site-ticker.js', 'site-search.js', 'index.css', 'site-pages.css'].includes(normalized)) return true;
   if (entry.isFile() && normalized.endsWith('.html')) return true;
   if (['goway-mark.png', 'goway-logo.png', 'hero-industrial.jpg'].includes(normalized)) return true;
   if (normalized === 'assets/hero' || normalized.startsWith('assets/hero/')) return true;
@@ -154,7 +155,12 @@ async function processScripts(content) {
   const trainingRuntime = `window.GOWAY_SITE_CONFIG=Object.assign(window.GOWAY_SITE_CONFIG||{},${JSON.stringify(createTrainingRuntimeConfig(content)).replaceAll('<', '\\u003c')});\n`;
   const trainingName = `training-config.${hash(trainingRuntime)}.js`;
   await fs.writeFile(path.join(dist, trainingName), trainingRuntime);
-  return { tickerName, configName, trainingName };
+  const searchSource = await fs.readFile(path.join(root, 'site-search.js'), 'utf8');
+  const searchMinified = await minifyJs(searchSource, { format: { comments: false } });
+  if (!searchMinified.code) throw new Error('Terser returned an empty site-search.js file');
+  const searchName = `site-search.${hash(searchMinified.code)}.js`;
+  await fs.writeFile(path.join(dist, searchName), searchMinified.code);
+  return { tickerName, configName, trainingName, searchName };
 }
 
 function pruneLegacyHomepage(html) {
@@ -315,6 +321,7 @@ async function processHtml(content, generated, styles, scripts) {
     }
     html = html.replace(/\s*<a\s+class=["'][^"']*topbar-phone[^"']*["'][^>]*>[\s\S]*?<\/a>/i, '');
     html = html.replace(/\s*<a\s+class=["'][^"']*visually-hidden[^"']*["'][^>]*href=["']#home-links["'][^>]*>[\s\S]*?<\/a>/i, '');
+    html = html.replace(/\s*<div\s+class=["']site-search-panel["'][^>]*>[\s\S]*?<\/form>\s*<\/div>\s*<\/div>/gi, '');
     html = html.replace(/\s*<button class="nav-backdrop" type="button" aria-label="Menüyü kapat" hidden><\/button>/gi, '');
     html = html.replace(/<header\b[\s\S]*?<\/header>/i, renderSharedHeader(content.site));
     html = replaceSharedFooter(html, content);
@@ -334,6 +341,47 @@ async function processHtml(content, generated, styles, scripts) {
     await fs.writeFile(path.join(dist, file), html);
   }
   return [...pages.keys()];
+}
+
+const searchText = (value = '') => String(value)
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/&amp;/g, '&')
+  .replace(/&quot;/g, '"')
+  .replace(/&#39;/g, "'")
+  .replace(/&lt;/g, '<')
+  .replace(/&gt;/g, '>')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+const searchMatch = (html, expression) => searchText(html.match(expression)?.[1] || '');
+
+async function writeSearchIndex(files, content, scripts) {
+  const records = new Map();
+  const add = (record) => {
+    if (!record.url || !record.title) return;
+    const existing = records.get(record.url);
+    records.set(record.url, existing ? { ...existing, ...record, headings: [...new Set([...(existing.headings || []), ...(record.headings || [])])].filter(Boolean) } : record);
+  };
+  for (const file of files) {
+    if (searchExcludedPages.has(file)) continue;
+    const html = await fs.readFile(path.join(dist, file), 'utf8');
+    const title = searchMatch(html, /<title>([\s\S]*?)<\/title>/i).replace(/\s*\|\s*Goway Danışmanlık$/i, '');
+    const description = searchMatch(html, /<meta\b[^>]*\bname=["']description["'][^>]*\bcontent=["']([^"']*)["'][^>]*>/i)
+      || searchMatch(html, /<meta\b[^>]*\bcontent=["']([^"']*)["'][^>]*\bname=["']description["'][^>]*>/i);
+    const headings = [...html.matchAll(/<h[12]\b[^>]*>([\s\S]*?)<\/h[12]>/gi)].map((match) => searchText(match[1])).filter(Boolean);
+    add({ url: file === 'index.html' ? './' : `./${file}`, title, summary: description, headings, category: 'Sayfa', type: 'page' });
+  }
+  for (const service of content.services) if (!searchExcludedPages.has(service.file)) add({ url: `./${service.file}`, title: service.title, summary: service.summary, headings: service.deliverables || [], category: service.eyebrow || 'Hizmet', type: 'service' });
+  for (const sector of content.sectors) if (!searchExcludedPages.has(sector.file)) add({ url: `./${sector.file}`, title: sector.title, summary: sector.summary, headings: [...(sector.standards || []), ...(sector.outputs || [])], category: sector.eyebrow || 'Sektör', type: 'sector' });
+  for (const resource of content.resources) add({ url: `./kaynaklar.html#resource-${resource.slug}`, title: resource.title, summary: resource.summary, headings: [resource.standard, resource.need], category: resource.sector || 'Kaynak', type: 'resource' });
+  for (const training of content.site.trainingCatalog || []) add({ url: `./egitim-katalog.html#training-${training.slug}`, title: training.topic, summary: [training.audience, training.measurement, ...(training.outcomes || [])].filter(Boolean).join('. '), headings: [training.track, training.sector, training.level], category: 'Eğitim', type: 'training' });
+  const payload = `window.GOWAY_SEARCH_INDEX=${JSON.stringify([...records.values()]).replaceAll('<', '\\u003c')};\n`;
+  const name = `search-index.${hash(payload)}.js`;
+  await fs.writeFile(path.join(dist, name), payload);
+  const searchPage = path.join(dist, 'arama.html');
+  const html = await fs.readFile(searchPage, 'utf8');
+  await fs.writeFile(searchPage, html.replace('</body>', `<script src="${name}" defer></script><script src="${scripts.searchName}" defer></script></body>`));
+  return name;
 }
 
 async function writeSitemap(files) {
@@ -437,6 +485,7 @@ async function build() {
   const styles = await processStyles();
   const scripts = await processScripts(content);
   const files = await processHtml(content, renderGeneratedPages(content), styles, scripts);
+  await writeSearchIndex(files, content, scripts);
   const sitemapCount = await writeSitemap(files);
   await validateOutput(files, content, scripts);
   const bytes = await directorySize(dist);

@@ -15,7 +15,7 @@
     "analytics": "node scripts/build.mjs",
     "resources": "node scripts/generate-resources.mjs",
     "resources:check": "node scripts/check-resource-drift.mjs",
-    "test": "node --test scripts/watch.test.mjs",
+    "test": "node --test scripts/watch.test.mjs scripts/search.test.mjs",
     "qa:browser": "node scripts/qa-browser.mjs",
     "source-runtime": "node scripts/sitegen.mjs",
     "qa:site": "python scripts/qa-site.py",
